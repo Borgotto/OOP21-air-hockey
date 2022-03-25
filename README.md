@@ -8,6 +8,10 @@ https://github.com/akullpp/awesome-java
 
 **<h1 > Air hockey 🥏🥅</h1>**
 
+L'obiettivo del progetto è quello di sviluppare un gioco simile a hockey da tavolo, chiamato anche air hockey.
+Il giocatore comanderà un [piattino](https://en.wikipedia.org/wiki/Air_hockey#/media/File:Air_Hockey_Mallet.jpg) e dovrà cercare di fare gol nella rete avversaria protetta da un'AI anch'essa al controllo di un piattino.
+La partita terminerà raggiunto un certo punteggio o alla chiusura dell'applicazione.
+
 **<h3> Membri: </h3>**
 
 - **Emanuele Borghini - emanuele.borghini@studio.unibo.it**
