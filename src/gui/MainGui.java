@@ -3,7 +3,7 @@ package gui;
 public class MainGui {
 
     public static void main(String[] args) {
-        new MenuGui(5);
+        new MenuGui(50);
 
     }
 
