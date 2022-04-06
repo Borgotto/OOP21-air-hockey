@@ -2,6 +2,7 @@ package logics;
 
 /**
  * The abstract class Player contains the common fields and methods that can be found in any player of the game.
+ * Instances of the Player class are equivalent to the mallet they control.
  */
 public abstract class Player {
     protected int score = 0;
