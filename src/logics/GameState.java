@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class GameState implements Serializable {
     private final Player mainPlayer;
-    private final Player enemyPlayer;
+    private final EnemyPlayer enemyPlayer;
     private final int maxScore;
     private final boolean isEnemyAi;
     private final int arenaWidth;
@@ -19,7 +19,7 @@ public class GameState implements Serializable {
      * @param enemyPlayer The enemy player.
      * @param maxScore The maximum score of the game.
      */
-    public GameState(Player mainPlayer, Player enemyPlayer, int maxScore, boolean isEnemyAi, int arenaWidth, int arenaHeight) {
+    public GameState(Player mainPlayer, EnemyPlayer enemyPlayer, int maxScore, boolean isEnemyAi, int arenaWidth, int arenaHeight) {
         this.mainPlayer = mainPlayer;
         this.enemyPlayer = enemyPlayer;
         this.maxScore = maxScore;

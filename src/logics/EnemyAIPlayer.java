@@ -3,7 +3,7 @@ package logics;
 /**
  * The class EnemyAIPlayer represents the enemy player, controlled by the computer.
  */
-public class EnemyAIPlayer extends Player {
+public class EnemyAIPlayer extends EnemyPlayer {
 
     /**
      * The difficulty the enemy AI.
