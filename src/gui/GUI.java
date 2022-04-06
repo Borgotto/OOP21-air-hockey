@@ -1,10 +1,7 @@
 package gui;
 
-public class MainGui {
-
+public class GUI {
     public static void main(String[] args) {
         new MenuGui(50);
-
     }
-
 }
