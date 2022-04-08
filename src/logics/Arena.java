@@ -24,18 +24,6 @@ public class Arena {
     }
 
     /**
-     * Create a new Arena with a certain width, height, friction and goal size.
-     * The size of the puck is proportional to the size of the Arena.
-     * @param width The new arena's height.
-     * @param height The new arena's width.
-     * @param friction The new arena's friction.
-     * @param goalSize The new arena's goal size.
-     */
-    public Arena(double width, double height, double friction, double goalSize) {
-        this(width, height, friction, goalSize, goalSize / 3);
-    }
-
-    /**
      * Create a new Arena with a certain width, height and friction.
      * The size of the goal is proportional to the size of the Arena.
      * @param width The new arena's height.
