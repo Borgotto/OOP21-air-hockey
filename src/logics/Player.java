@@ -14,12 +14,12 @@ public abstract class Player {
 
     /**
      * This is the default constructor of the Player subclasses. It creates a new player in the position (posX, posY) and gives it a name.
-     * @param currentPosition The player's current position.
+     * @param initialPosition The player's initial position.
      * @param name The player's name.
      */
-    public Player(Position currentPosition, String name) {
-        this.currentPosition = currentPosition;
-        this.previousPosition = currentPosition;
+    public Player(Position initialPosition, String name) {
+        this.currentPosition = initialPosition;
+        this.previousPosition = initialPosition;
         this.name = name;
     }
 

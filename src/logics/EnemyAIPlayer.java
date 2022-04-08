@@ -1,5 +1,7 @@
 package logics;
 
+import physics.Position;
+
 /**
  * The class EnemyAIPlayer represents the enemy player, controlled by the computer.
  */
@@ -22,13 +24,12 @@ public class EnemyAIPlayer extends EnemyPlayer {
 
     /**
      * This is the constructor for EnemyAIPlayer. It behaves the same as its superclass, but it also adds a level of difficulty.
-     * @param posX The enemy's position on the X-axis.
-     * @param posY The enemy's position on the Y-axis.
+     * @param initialPosition The enemy's initial position.
      * @param name The enemy's name.
      * @param difficulty The enemy's difficulty.
      */
-    public EnemyAIPlayer(int posX, int posY, String name, EnemyDifficulty difficulty) {
-        super(posX, posY, name);
+    public EnemyAIPlayer(Position initialPosition, String name, EnemyDifficulty difficulty) {
+        super(initialPosition, name);
         this.difficulty = difficulty;
     }
 
