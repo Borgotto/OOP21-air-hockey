@@ -28,6 +28,19 @@ public class GameState implements Serializable {
     }
 
     /**
+     * Create a new GameState object using default values.
+     */
+    public GameState() {
+        this.arena = new Arena(9.0, 16.0);
+        double halfArenaWidth = this.arena.getWidth() / 2;
+
+        this.mainPlayer = new NormalPlayer(new Position(halfArenaWidth, this.arena.getHeight()), "Bob");
+        this.enemyPlayer = new EnemyAIPlayer(new Position(halfArenaWidth, 0.0), "Alice", EnemyAIPlayer.EnemyDifficulty.MODERATE);
+        this.maxScore = 5;
+        this.isEnemyAi = true;
+    }
+
+    /**
      * Get the main player's object.
      * @return The main player's object.
      */
