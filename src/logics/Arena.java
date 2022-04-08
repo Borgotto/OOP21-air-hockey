@@ -35,6 +35,16 @@ public class Arena {
     }
 
     /**
+     * Create a new Arena with a certain width and height.
+     * The default value for friction is 1.0.
+     * @param width The new arena's width.
+     * @param height The new arena's height.
+     */
+    public Arena(double width, double height) {
+        this(width, height, 1.0);
+    }
+
+    /**
      * Get the arena's width.
      * @return The arena's width.
      */
