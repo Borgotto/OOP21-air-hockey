@@ -10,8 +10,7 @@ public class GameState implements Serializable {
     private final EnemyPlayer enemyPlayer;
     private final int maxScore;
     private final boolean isEnemyAi;
-    private final int arenaWidth;
-    private final int arenaHeight;
+    private final Arena arena;
 
     /**
      * Create a new GameState object.
@@ -19,13 +18,12 @@ public class GameState implements Serializable {
      * @param enemyPlayer The enemy player.
      * @param maxScore The maximum score of the game.
      */
-    public GameState(Player mainPlayer, EnemyPlayer enemyPlayer, int maxScore, boolean isEnemyAi, int arenaWidth, int arenaHeight) {
+    public GameState(Player mainPlayer, EnemyPlayer enemyPlayer, int maxScore, boolean isEnemyAi, Arena arena) {
         this.mainPlayer = mainPlayer;
         this.enemyPlayer = enemyPlayer;
         this.maxScore = maxScore;
         this.isEnemyAi = isEnemyAi;
-        this.arenaWidth = arenaWidth;
-        this.arenaHeight = arenaHeight;
+        this.arena = arena;
     }
 
     /**
@@ -55,8 +53,8 @@ public class GameState implements Serializable {
     /*
     Move the player by calling the player's move method after checking that it can actually move there.
      */
-    private boolean movePlayer(Player p, int posX, int posY, int bottomBoundary, int topBoundary) {
-        final boolean canMoveX = posX >= 0 && posX < this.arenaWidth;
+    private boolean movePlayer(Player p, double posX, double posY, double bottomBoundary, double topBoundary) {
+        final boolean canMoveX = posX >= 0 && posX < this.arena.getWidth();
         final boolean canMoveY = posY < bottomBoundary && posY >= topBoundary;
         final boolean canMove = canMoveX && canMoveY;
 
@@ -74,7 +72,7 @@ public class GameState implements Serializable {
      * @return True if the player could actually move.
      */
     public boolean moveMainPlayer(int posX, int posY) {
-        return movePlayer(this.mainPlayer, posX, posY, this.arenaHeight, this.arenaHeight / 2);
+        return movePlayer(this.mainPlayer, posX, posY, this.arena.getHeight(), this.arena.getHeight() / 2);
     }
 
     /**
@@ -90,6 +88,6 @@ public class GameState implements Serializable {
             return false;
         }
 
-        return movePlayer(this.enemyPlayer, posX, posY, this.arenaHeight / 2, 0);
+        return movePlayer(this.enemyPlayer, posX, posY, this.arena.getHeight() / 2, 0);
     }
 }
