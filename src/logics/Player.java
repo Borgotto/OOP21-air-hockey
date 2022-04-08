@@ -1,24 +1,25 @@
 package logics;
 
+import physics.Position;
+
 /**
  * The abstract class Player contains the common fields and methods that can be found in any player of the game.
  * Instances of the Player class are equivalent to the mallet they control.
  */
 public abstract class Player {
     protected int score = 0;
-    protected double positionX;
-    protected double positionY;
+    protected Position previousPosition;
+    protected Position currentPosition;
     protected final String name;
 
     /**
      * This is the default constructor of the Player subclasses. It creates a new player in the position (posX, posY) and gives it a name.
-     * @param posX The player's position on the X-axis.
-     * @param posY The player's position on the Y-axis.
+     * @param currentPosition The player's current position.
      * @param name The player's name.
      */
-    public Player(double posX, double posY, String name) {
-        this.positionX = posX;
-        this.positionY = posY;
+    public Player(Position currentPosition, String name) {
+        this.currentPosition = currentPosition;
+        this.previousPosition = currentPosition;
         this.name = name;
     }
 
@@ -35,7 +36,7 @@ public abstract class Player {
      * @return The position on the X-axis.
      */
     public double getPositionX() {
-        return this.positionX;
+        return this.currentPosition.getXPos();
     }
 
     /**
@@ -43,17 +44,16 @@ public abstract class Player {
      * @return The position on the Y-axis.
      */
     public double getPositionY() {
-        return this.positionY;
+        return this.currentPosition.getYPos();
     }
 
     /**
      * Move the player in the (x, y) position.
-     * @param x The position on the X-axis.
-     * @param y The position on the Y-axis.
+     * @param newPosition The next position of the player.
      */
-    public void move(double x, double y) {
-        this.positionX = x;
-        this.positionY = y;
+    public void move(Position newPosition) {
+        this.previousPosition = this.currentPosition;
+        this.currentPosition = newPosition;
     }
 
     /**

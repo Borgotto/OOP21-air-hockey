@@ -1,6 +1,7 @@
 package logics;
 
 import java.io.Serializable;
+import physics.Position;
 
 /**
  * The class GameState holds a state of the game, usually the current one.
@@ -53,13 +54,15 @@ public class GameState implements Serializable {
     /*
     Move the player by calling the player's move method after checking that it can actually move there.
      */
-    private boolean movePlayer(Player p, double posX, double posY, double bottomBoundary, double topBoundary) {
+    private boolean movePlayer(Player p, Position newPosition, double bottomBoundary, double topBoundary) {
+        final double posX = newPosition.getXPos();
+        final double posY = newPosition.getYPos();
         final boolean canMoveX = posX >= 0 && posX < this.arena.getWidth();
         final boolean canMoveY = posY < bottomBoundary && posY >= topBoundary;
         final boolean canMove = canMoveX && canMoveY;
 
         if (canMove) {
-            p.move(posX, posY);
+            p.move(newPosition);
         }
 
         return canMove;
@@ -67,27 +70,25 @@ public class GameState implements Serializable {
 
     /**
      * Move the main player in the position (posX, posY) if it is in the lower part of the arena.
-     * @param posX The player's position on the X-axis.
-     * @param posY The player's position on the Y-axis.
+     * @param newPosition The player's updated position.
      * @return True if the player could actually move.
      */
-    public boolean moveMainPlayer(int posX, int posY) {
-        return movePlayer(this.mainPlayer, posX, posY, this.arena.getHeight(), this.arena.getHeight() / 2);
+    public boolean moveMainPlayer(Position newPosition) {
+        return movePlayer(this.mainPlayer, newPosition, this.arena.getHeight(), this.arena.getHeight() / 2);
     }
 
     /**
      * Move the enemy player in the position (posX, posY) if it is in the higher part of the arena.
      * Use this function only if the enemy is not controlled by the computer.
-     * @param posX The player's position on the X-axis.
-     * @param posY The player's position on the Y-axis.
+     * @param newPosition The player's updated position.
      * @return True if the player could actually move.
      */
-    public boolean moveEnemyPlayer(int posX, int posY) {
+    public boolean moveEnemyPlayer(Position newPosition) {
         // block attempts to move the enemy if it is AI
         if (this.isEnemyAi) {
             return false;
         }
 
-        return movePlayer(this.enemyPlayer, posX, posY, this.arena.getHeight() / 2, 0);
+        return movePlayer(this.enemyPlayer, newPosition, this.arena.getHeight() / 2, 0);
     }
 }
