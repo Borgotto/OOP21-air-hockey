@@ -7,23 +7,20 @@ public class Arena {
     private final double width;
     private final double height;
     private final double friction;
-    private final double goalSize;
-    private final double puckSize;
+    private final double goalWidth;
 
     /**
      * Create a new Arena with a certain width, height, friction and goal size.
      * @param width The new arena's height.
      * @param height The new arena's width.
      * @param friction The new arena's friction.
-     * @param goalSize The new arena's goal size.
-     * @param puckSize The new arena's puck size.
+     * @param goalWidth The new arena's goal size.
      */
-    public Arena(double width, double height, double friction, double goalSize, double puckSize) {
+    public Arena(double width, double height, double friction, double goalWidth) {
         this.width = width;
         this.height = height;
         this.friction = friction;
-        this.goalSize = goalSize;
-        this.puckSize = puckSize;
+        this.goalWidth = goalWidth;
     }
 
     /**
@@ -40,13 +37,13 @@ public class Arena {
 
     /**
      * Create a new Arena with a certain width, height and friction.
-     * The size of goal and puck are proportional to the size of the Arena.
+     * The size of the goal is proportional to the size of the Arena.
      * @param width The new arena's height.
      * @param height The new arena's width.
      * @param friction The new arena's friction.
      */
     public Arena(double width, double height, double friction) {
-        this(width, height, friction, width / 3, width / 9);
+        this(width, height, friction, width / 3);
     }
 
     /**
@@ -77,15 +74,7 @@ public class Arena {
      * Get the arena's goal size.
      * @return The arena's goal size.
      */
-    public double getGoalSize() {
-        return this.goalSize;
-    }
-
-    /**
-     * Get the arena's puck size.
-     * @return The arena's puck size.
-     */
-    public double getPuckSize() {
-        return this.puckSize;
+    public double getgoalWidth() {
+        return this.goalWidth;
     }
 }
