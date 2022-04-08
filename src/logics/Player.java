@@ -6,8 +6,8 @@ package logics;
  */
 public abstract class Player {
     protected int score = 0;
-    protected int positionX;
-    protected int positionY;
+    protected double positionX;
+    protected double positionY;
     protected final String name;
 
     /**
@@ -16,7 +16,7 @@ public abstract class Player {
      * @param posY The player's position on the Y-axis.
      * @param name The player's name.
      */
-    public Player(int posX, int posY, String name) {
+    public Player(double posX, double posY, String name) {
         this.positionX = posX;
         this.positionY = posY;
         this.name = name;
@@ -34,7 +34,7 @@ public abstract class Player {
      * Get the current position on the X-axis of the player.
      * @return The position on the X-axis.
      */
-    public int getPositionX() {
+    public double getPositionX() {
         return this.positionX;
     }
 
@@ -42,7 +42,7 @@ public abstract class Player {
      * Get the current position on the Y-axis of the player.
      * @return The position on the Y-axis.
      */
-    public int getPositionY() {
+    public double getPositionY() {
         return this.positionY;
     }
 
@@ -51,7 +51,7 @@ public abstract class Player {
      * @param x The position on the X-axis.
      * @param y The position on the Y-axis.
      */
-    public void move(int x, int y) {
+    public void move(double x, double y) {
         this.positionX = x;
         this.positionY = y;
     }
