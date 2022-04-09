@@ -44,7 +44,7 @@ public class EnemyAIPlayer extends EnemyPlayer {
     }
     
     /**
-     * The ene,y moves in accordance with its difficulty
+     * The enemy moves in accordance with its difficulty
      * @return
      */
     public Position move() {
