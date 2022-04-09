@@ -13,7 +13,7 @@ public class Dynamics2D {
      * @param friction, a floating point number to reduce the speed during the movement.
      */
     
-    public Dynamic2D(double friction) {
+    public Dynamics2D(double friction) {
         frictionVector = new Vector2D(friction, friction);
     }
     
