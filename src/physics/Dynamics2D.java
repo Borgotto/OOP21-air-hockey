@@ -6,7 +6,7 @@ package physics;
 
 public class Dynamics2D {
 
-    private final Vector2D frictionVector;
+    private final double frictionConst;
     
     /**
      * Constructor for the class.
@@ -14,7 +14,7 @@ public class Dynamics2D {
      */
     
     public Dynamics2D(double friction) {
-        frictionVector = new Vector2D(friction, friction);
+        this.frictionConst = friction;
     }
     
     /**
@@ -35,10 +35,6 @@ public class Dynamics2D {
      */
     
     public void applyFriction(Vector2D vector) {
-        vector.addVector(frictionVector);
-        if(vector.getXSpeed() < 0 || vector.getYSpeed() < 0) {
-            vector.setXSpeed(0);
-            vector.setYSpeed(0);
-        }
+        vector.mulVectorConst(frictionConst);
     }
 }
