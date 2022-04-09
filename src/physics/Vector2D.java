@@ -1,7 +1,7 @@
 package physics;
 
 /**
- * The Vector2D class represents a 2 dimensional vector in velocity.
+ * The Vector2D class represents a 2-dimensional vector in velocity.
  */
 
 public class Vector2D {
@@ -9,7 +9,7 @@ public class Vector2D {
     private double ySpeed;
     
     /**
-     * Constructor for the bidimensional vector.
+     * Constructor for the 2-dimensional vector.
      * @param xSpeed, the speed in the X axis.
      * @param ySpeed, the speed in the Y axis.
      */
@@ -27,6 +27,16 @@ public class Vector2D {
     public void addVector(Vector2D vector) {
         this.xSpeed += vector.xSpeed;
         this.ySpeed += vector.ySpeed;
+    }
+    
+    /**
+     * The mulVectorConst multiplies the vector with a double constant.
+     * @param mulConstant, the number used to multiply the vector.
+     */
+    
+    public void mulVectorConst(double mulConstant) {
+        this.xSpeed = (this.getXSpeed() * mulConstant);
+        this.ySpeed = (this.getYSpeed() * mulConstant);
     }
     
     /**
