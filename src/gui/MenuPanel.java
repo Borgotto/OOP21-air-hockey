@@ -6,16 +6,12 @@ import java.io.*;
 import java.net.*;
 import javax.swing.*;
 
-public class MenuGui extends JFrame {
+public class MenuPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
-    public MenuGui(int size) {
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(9*size, 16*size);
-        this.setTitle("Air Hockey");
-
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridBagLayout());
+    public MenuPanel() {
+        this.setName("Air Hockey");
+        this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.BOTH;
@@ -25,20 +21,24 @@ public class MenuGui extends JFrame {
 
         c.gridy = 0;
         var logoLabel = new JLabel("inserire immagine logo qua");
-        panel.add(logoLabel, c);
+        this.add(logoLabel, c);
 
         c.gridy = 1;
         var b1 = new JButton("New game");
-        panel.add(b1, c);
+        b1.addActionListener(e -> {
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            JPanelLoader.load(parentFrame, new GamePanel());
+        });
+        this.add(b1, c);
 
         c.gridy = 2;
         var b2 = new JButton("Continue");
         b2.setEnabled(false);
-        panel.add(b2, c);
+        this.add(b2, c);
 
         c.gridy = 3;
         var b3 = new JButton("Settings");
-        panel.add(b3, c);
+        this.add(b3, c);
 
         c.gridy = 4;
         var b4 = new JButton("Credits");
@@ -72,16 +72,13 @@ public class MenuGui extends JFrame {
             messagePanel.add(engineersLabel);
             JOptionPane.showMessageDialog(this, messagePanel, b4.getText(), JOptionPane.PLAIN_MESSAGE);
         });
-        panel.add(b4, c);
+        this.add(b4, c);
 
         c.gridy = 5;
         var b5 = new JButton("Quit");
         b5.addActionListener(e -> {
             System.exit(0);
         });
-        panel.add(b5, c);
-
-        this.getContentPane().add(panel);
-        this.setVisible(true);
+        this.add(b5, c);
     }
 }
