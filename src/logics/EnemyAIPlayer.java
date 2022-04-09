@@ -1,12 +1,14 @@
 package logics;
 
 import physics.Position;
+import java.lang.Math;
 
 /**
  * The class EnemyAIPlayer represents the enemy player, controlled by the computer.
  */
 public class EnemyAIPlayer extends EnemyPlayer {
-
+	
+	private Position position;
     /**
      * The difficulty the enemy AI.
      * It can be:
@@ -39,5 +41,25 @@ public class EnemyAIPlayer extends EnemyPlayer {
      */
     public EnemyDifficulty getDifficulty() {
         return this.difficulty;
+    }
+    
+    /**
+     * The ene,y moves in accordance with its difficulty
+     * @return
+     */
+    public Position move() {
+    	switch(getDifficulty()) {
+    		case DUMB:
+    			this.position = moveRandom();
+    		case EASY:
+    		case MODERATE:
+    		case HARD:
+    		case EXTREME:
+    	}
+		return this.position;
+    }
+    
+    private Position moveRandom() {
+    	return new Position(Math.random(), Math.random());
     }
 }
