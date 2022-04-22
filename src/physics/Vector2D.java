@@ -7,6 +7,7 @@ package physics;
 public class Vector2D {
     private double vectorX = 0;
     private double vectorY = 0;
+    private final double SWAPNUMBER = -1;
     
     /**
      * Constructor for the 2-dimensional vector.
@@ -30,16 +31,6 @@ public class Vector2D {
     }
     
     /**
-     * The decVector method is used to decrease the vector with another vector.
-     * @param vector, the other vector to be decreased.
-     */
-    
-    public void decVector(Vector2D vector) {
-        this.vectorX -= vector.vectorX;
-        this.vectorY -= vector.vectorY;
-    }
-    
-    /**
      * Modifies directly the speed of the vector in the X axis.
      * @param speed in X
      */
@@ -55,6 +46,22 @@ public class Vector2D {
     
     public void setVectorY(double yVector) {
         this.vectorY = yVector;
+    }
+    
+    /**
+     * Swap the X axis.
+     */
+    
+    public void swapSignX() {
+        this.vectorX = this.getVectorX()*this.SWAPNUMBER;
+    }
+    
+    /**
+     * Swap the Y axis.
+     */
+    
+    public void swapSignY() {
+        this.vectorY = this.getVectorY()*this.SWAPNUMBER;
     }
     
     /**

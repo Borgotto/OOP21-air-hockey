@@ -8,6 +8,7 @@ import utilities.Pair;
 
 public class Dynamics2D {
 
+    private Vector2D speedVector;
     private final double frictionConst;
     
     /**
@@ -15,7 +16,18 @@ public class Dynamics2D {
      * @param friction, a floating point number to reduce the speed during the movement.
      */
     
+    public Dynamics2D() {
+        this.speedVector = new Vector2D(0,0);
+        this.frictionConst = 0.1;
+    }
+    
     public Dynamics2D(double friction) {
+        this.speedVector = new Vector2D(0,0);
+        this.frictionConst = friction;
+    }
+    
+    public Dynamics2D(double xSpeed, double ySpeed, double friction) {
+        this.speedVector = new Vector2D(xSpeed, ySpeed);
         this.frictionConst = friction;
     }
     
@@ -26,9 +38,9 @@ public class Dynamics2D {
      * @return a Vector2D object that contains the speed of the object.
      */
     
-    public Vector2D velocityCalc(Pair<Float,Float> lastCord, Pair <Float,Float> newCord) {
-        Vector2D velVector = new Vector2D(newCord.getX() - lastCord.getX(), newCord.getY() - lastCord.getY());
-        return velVector;
+    public Pair<Double,Double> updatePos(Pair<Double,Double> lastPos) {
+        Pair<Double,Double> newPos = new Pair<Double,Double>(lastPos.getX() + this.speedVector.getVectorX(), lastPos.getY() + this.speedVector.getVectorY());
+        return newPos;
     }
     
     /**
@@ -37,7 +49,7 @@ public class Dynamics2D {
      */
     
     public void applyFriction(Vector2D vector) {
-        vector.mulVectorConst(frictionConst);
+        
     }
     
 }
