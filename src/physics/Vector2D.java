@@ -5,8 +5,8 @@ package physics;
  */
 
 public class Vector2D {
-    private double xSpeed;
-    private double ySpeed;
+    private double vectorX = 0;
+    private double vectorY = 0;
     
     /**
      * Constructor for the 2-dimensional vector.
@@ -14,29 +14,29 @@ public class Vector2D {
      * @param ySpeed, the speed in the Y axis.
      */
     
-    public Vector2D(double xSpeed, double ySpeed) {
-        this.xSpeed = xSpeed;
-        this.ySpeed = ySpeed;
+    public Vector2D(double xVector, double yVector) {
+        this.vectorX = xVector;
+        this.vectorY = yVector;
     }
     
     /**
-     * The addVector method is used to modify the vector with another vector.
+     * The addVector method is used to add a vector.
      * @param vector, the other vector to be added.
      */
     
     public void addVector(Vector2D vector) {
-        this.xSpeed += vector.xSpeed;
-        this.ySpeed += vector.ySpeed;
+        this.vectorX += vector.vectorX;
+        this.vectorY += vector.vectorY;
     }
     
     /**
-     * The mulVectorConst multiplies the vector with a double constant.
-     * @param mulConstant, the number used to multiply the vector.
+     * The decVector method is used to decrease the vector with another vector.
+     * @param vector, the other vector to be decreased.
      */
     
-    public void mulVectorConst(double mulConstant) {
-        this.xSpeed = (this.getXSpeed() * mulConstant);
-        this.ySpeed = (this.getYSpeed() * mulConstant);
+    public void decVector(Vector2D vector) {
+        this.vectorX -= vector.vectorX;
+        this.vectorY -= vector.vectorY;
     }
     
     /**
@@ -44,8 +44,8 @@ public class Vector2D {
      * @param speed in X
      */
     
-    public void setXSpeed(double speed) {
-        this.xSpeed = speed;
+    public void setVectorX(double xVector) {
+        this.vectorX = xVector;
     }
     
     /**
@@ -53,8 +53,8 @@ public class Vector2D {
      * @param speed in Y
      */
     
-    public void setYSpeed(double speed) {
-        this.xSpeed = speed;
+    public void setVectorY(double yVector) {
+        this.vectorY = yVector;
     }
     
     /**
@@ -62,8 +62,8 @@ public class Vector2D {
      * @return the speed in the X axis.
      */
     
-    public double getXSpeed() {
-        return this.xSpeed;
+    public double getVectorX() {
+        return this.vectorX;
     }
     
     /**
@@ -71,7 +71,15 @@ public class Vector2D {
      * @return the speed in the Y axis.
      */
     
-    public double getYSpeed() {
-        return this.ySpeed;
+    public double getVectorY() {
+        return this.vectorY;
+    }
+    
+    /**
+     * toString method of Vector2D class.
+     */
+    
+    public String toString() {
+        return "Vector2D [xVector=" + this.vectorX + ", yVector=" + this.vectorY + "]";
     }
 }

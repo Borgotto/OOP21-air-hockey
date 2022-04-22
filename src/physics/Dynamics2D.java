@@ -1,5 +1,7 @@
 package physics;
 
+import utilities.Pair;
+
 /**
  * The Dynamic2D class represent the physics laws in a 2 dimensional horizontal area.
  */
@@ -24,8 +26,8 @@ public class Dynamics2D {
      * @return a Vector2D object that contains the speed of the object.
      */
     
-    public Vector2D velocityCalc(Position last, Position current) {
-        Vector2D velVector = new Vector2D(current.getXPos() - last.getXPos(), current.getYPos() - last.getYPos());
+    public Vector2D velocityCalc(Pair<Float,Float> lastCord, Pair <Float,Float> newCord) {
+        Vector2D velVector = new Vector2D(newCord.getX() - lastCord.getX(), newCord.getY() - lastCord.getY());
         return velVector;
     }
     
@@ -37,4 +39,5 @@ public class Dynamics2D {
     public void applyFriction(Vector2D vector) {
         vector.mulVectorConst(frictionConst);
     }
+    
 }
