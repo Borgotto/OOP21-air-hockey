@@ -1,6 +1,6 @@
 package logics;
 
-import physics.Position;
+import utils.Pair;
 
 /**
  * The abstract class Player contains the common fields and methods that can be found in any player of the game.
@@ -8,8 +8,7 @@ import physics.Position;
  */
 public abstract class Player {
     protected int score = 0;
-    protected Position previousPosition;
-    protected Position currentPosition;
+    protected Pair<Double,Double> position;
     protected final String name;
 
     /**
@@ -17,9 +16,8 @@ public abstract class Player {
      * @param initialPosition The player's initial position.
      * @param name The player's name.
      */
-    public Player(Position initialPosition, String name) {
-        this.currentPosition = initialPosition;
-        this.previousPosition = initialPosition;
+    public Player(Pair<Double,Double> initialPosition, String name) {
+        this.position = initialPosition;
         this.name = name;
     }
 
@@ -36,7 +34,7 @@ public abstract class Player {
      * @return The position on the X-axis.
      */
     public double getPositionX() {
-        return this.currentPosition.getXPos();
+        return this.position.getX();
     }
 
     /**
@@ -44,16 +42,15 @@ public abstract class Player {
      * @return The position on the Y-axis.
      */
     public double getPositionY() {
-        return this.currentPosition.getYPos();
+        return this.position.getY();
     }
 
     /**
      * Move the player in the (x, y) position.
      * @param newPosition The next position of the player.
      */
-    public void move(Position newPosition) {
-        this.previousPosition = this.currentPosition;
-        this.currentPosition = newPosition;
+    public void move(Pair<Double,Double> newPosition) {
+        this.position = newPosition;
     }
 
     /**

@@ -1,6 +1,6 @@
 package logics;
 
-import physics.Position;
+import utils.Pair;
 
 /**
  * The class NormalPlayer represents a user-controlled player.
@@ -11,7 +11,7 @@ public class NormalPlayer extends Player {
      * @param initialPosition The player's initial position.
      * @param name The player's name.
      */
-    public NormalPlayer(Position initialPosition, String name) {
+    public NormalPlayer(Pair<Double,Double> initialPosition, String name) {
         super(initialPosition, name);
     }
 }

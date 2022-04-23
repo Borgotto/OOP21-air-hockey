@@ -1,5 +1,7 @@
 package logics;
 
+import utils.Pair;
+
 /**
  * The objects of the Arena class represent specific arenas the player can play in.
  */

@@ -1,17 +1,17 @@
 package logics;
 
 import java.io.Serializable;
-import physics.Position;
+import utils.Pair;
 
 /**
  * The class GameState holds a state of the game, usually the current one.
  */
 public class GameState implements Serializable {
-    private final Player mainPlayer;
+    private final NormalPlayer mainPlayer;
     private final EnemyPlayer enemyPlayer;
     private final int maxScore;
-    private final boolean isEnemyAi;
     private final Arena arena;
+    private final Puck puck;
 
     /**
      * Create a new GameState object.
@@ -19,12 +19,12 @@ public class GameState implements Serializable {
      * @param enemyPlayer The enemy player.
      * @param maxScore The maximum score of the game.
      */
-    public GameState(Player mainPlayer, EnemyPlayer enemyPlayer, int maxScore, boolean isEnemyAi, Arena arena) {
+    public GameState(NormalPlayer mainPlayer, EnemyPlayer enemyPlayer, int maxScore, Arena arena, Puck puck) {
         this.mainPlayer = mainPlayer;
         this.enemyPlayer = enemyPlayer;
         this.maxScore = maxScore;
-        this.isEnemyAi = isEnemyAi;
         this.arena = arena;
+        this.puck = puck;
     }
 
     /**
@@ -34,10 +34,10 @@ public class GameState implements Serializable {
         this.arena = new Arena(9.0, 16.0);
         double halfArenaWidth = this.arena.getWidth() / 2;
 
-        this.mainPlayer = new NormalPlayer(new Position(halfArenaWidth, this.arena.getHeight()), "Bob");
-        this.enemyPlayer = new EnemyAIPlayer(new Position(halfArenaWidth, 0.0), "Alice", EnemyAIPlayer.EnemyDifficulty.MODERATE);
+        this.mainPlayer = new NormalPlayer(new Pair<Double,Double>(halfArenaWidth, this.arena.getHeight()), "Bob");
+        this.enemyPlayer = new EnemyPlayer(new Pair<Double,Double>(halfArenaWidth, 0.0), "Alice", EnemyPlayer.Difficulty.MODERATE);
         this.maxScore = 5;
-        this.isEnemyAi = true;
+        this.puck = new Puck();
     }
 
     /**
@@ -67,9 +67,9 @@ public class GameState implements Serializable {
     /*
     Move the player by calling the player's move method after checking that it can actually move there.
      */
-    private boolean movePlayer(Player p, Position newPosition, double bottomBoundary, double topBoundary) {
-        final double posX = newPosition.getXPos();
-        final double posY = newPosition.getYPos();
+    private boolean movePlayer(Player p, Pair<Double,Double> newPosition, double bottomBoundary, double topBoundary) {
+        final double posX = newPosition.getX();
+        final double posY = newPosition.getY();
         final boolean canMoveX = posX >= 0 && posX < this.arena.getWidth();
         final boolean canMoveY = posY < bottomBoundary && posY >= topBoundary;
         final boolean canMove = canMoveX && canMoveY;
@@ -86,7 +86,7 @@ public class GameState implements Serializable {
      * @param newPosition The player's updated position.
      * @return True if the player could actually move.
      */
-    public boolean moveMainPlayer(Position newPosition) {
+    public boolean moveMainPlayer(Pair<Double,Double> newPosition) {
         return movePlayer(this.mainPlayer, newPosition, this.arena.getHeight(), this.arena.getHeight() / 2);
     }
 
@@ -96,12 +96,7 @@ public class GameState implements Serializable {
      * @param newPosition The player's updated position.
      * @return True if the player could actually move.
      */
-    public boolean moveEnemyPlayer(Position newPosition) {
-        // block attempts to move the enemy if it is AI
-        if (this.isEnemyAi) {
-            return false;
-        }
-
+    public boolean moveEnemyPlayer(Pair<Double,Double> newPosition) {
         return movePlayer(this.enemyPlayer, newPosition, this.arena.getHeight() / 2, 0);
     }
 }

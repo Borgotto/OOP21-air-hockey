@@ -1,6 +1,6 @@
 package physics;
 
-import utilities.Pair;
+import utils.Pair;
 
 /**
  * The Dynamic2D class represent the physics laws in a 2 dimensional horizontal area.
