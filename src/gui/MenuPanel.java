@@ -38,6 +38,10 @@ public class MenuPanel extends JPanel {
 
         c.gridy = 3;
         var b3 = new JButton("Settings");
+        b3.addActionListener(e -> {
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            JPanelLoader.load(parentFrame, new SettingsPanel());
+        });
         this.add(b3, c);
 
         c.gridy = 4;
