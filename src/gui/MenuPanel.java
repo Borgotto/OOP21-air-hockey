@@ -6,6 +6,8 @@ import java.io.*;
 import java.net.*;
 import javax.swing.*;
 
+import utils.JPanelLoader;
+
 public class MenuPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 

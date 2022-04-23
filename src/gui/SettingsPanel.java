@@ -3,6 +3,8 @@ package gui;
 import java.awt.*;
 import javax.swing.*;
 
+import utils.JPanelLoader;
+
 
 public class SettingsPanel extends JPanel {
     private static final long serialVersionUID = 1L;

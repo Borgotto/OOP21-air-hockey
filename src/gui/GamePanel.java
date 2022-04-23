@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import logics.GameState;
+import utils.JPanelLoader;
 
 public class GamePanel extends JPanel {
     private static final long serialVersionUID = 1L;
