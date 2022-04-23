@@ -1,9 +1,6 @@
 package gui;
 
 import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.net.*;
 import javax.swing.*;
 
 import logics.GameState;
@@ -23,9 +20,9 @@ public class GamePanel extends JPanel {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             JPanelLoader.load(parentFrame, new MenuPanel());
         });
-        this.add(b1);
+        this.add(b1,c);
         
         
-        this.game = new GameState(null, null, ABORT, getFocusTraversalKeysEnabled(), null);        
+        this.game = new GameState();        
     }
 }
