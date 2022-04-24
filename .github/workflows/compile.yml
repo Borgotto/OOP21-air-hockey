@@ -15,13 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Java JDK
-        uses: actions/setup-java@v3.1.1
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-          java-package: # optional, default is jdk
-          check-latest: # optional
+      - name: Install OpenJDK
+        run: sudo apt update && sudo apt install openjdk-11-jdk
 
       - name: Compile only Main dependencies
         run: javac -sourcepath src -d out src/gui/Main.java
