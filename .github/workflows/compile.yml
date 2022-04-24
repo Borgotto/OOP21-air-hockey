@@ -23,3 +23,6 @@ jobs:
 
       - name: Compile all source files
         run: find src -name "*.java" -print | xargs javac -d out
+
+      - name: Make JAR archive
+        run: find out -print | xargs jar cf air-hockey.jar
