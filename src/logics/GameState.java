@@ -7,6 +7,8 @@ import utils.Pair;
  * The class GameState holds a state of the game, usually the current one.
  */
 public class GameState implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private final NormalPlayer mainPlayer;
     private final EnemyPlayer enemyPlayer;
     private final int maxScore;
@@ -75,7 +77,7 @@ public class GameState implements Serializable {
         final boolean canMove = canMoveX && canMoveY;
 
         if (canMove) {
-            p.move(newPosition);
+            p.setPosition(newPosition);
         }
 
         return canMove;
