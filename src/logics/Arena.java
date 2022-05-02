@@ -5,7 +5,7 @@ import utils.Pair;
 /**
  * The objects of the Arena class represent specific arenas the player can play in.
  */
-public class Arena {
+public class Arena implements GameObject{
     private final double width;
     private final double height;
     private final double friction;
@@ -76,5 +76,22 @@ public class Arena {
      */
     public double getgoalWidth() {
         return this.goalWidth;
+    }
+
+    @Override
+    public boolean update() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void setPosition(Pair<Double, Double> position) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public Pair<Double, Double> getPosition() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

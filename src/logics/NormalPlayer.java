@@ -14,4 +14,27 @@ public class NormalPlayer extends Player {
     public NormalPlayer(Pair<Double,Double> initialPosition, String name) {
         super(initialPosition, name);
     }
+
+    @Override
+    public Pair<Double, Double> nextPosition() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean update() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void setPosition(Pair<Double, Double> position) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public Pair<Double, Double> getPosition() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

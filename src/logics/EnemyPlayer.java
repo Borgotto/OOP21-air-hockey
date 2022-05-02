@@ -62,4 +62,27 @@ public class EnemyPlayer extends Player {
     private Pair<Double,Double> moveRandom() {
         return new Pair<Double,Double>(Math.random(), Math.random());
     }
+
+    @Override
+    public Pair<Double, Double> nextPosition() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean update() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void setPosition(Pair<Double, Double> position) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public Pair<Double, Double> getPosition() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

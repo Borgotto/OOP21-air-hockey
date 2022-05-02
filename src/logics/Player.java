@@ -6,7 +6,7 @@ import utils.Pair;
  * The abstract class Player contains the common fields and methods that can be found in any player of the game.
  * Instances of the Player class are equivalent to the mallet they control.
  */
-public abstract class Player {
+public abstract class Player implements GameObjectWithPhysics {
     protected int score = 0;
     protected Pair<Double,Double> position;
     protected final String name;
@@ -27,30 +27,6 @@ public abstract class Player {
      */
     public int getScore() {
         return this.score;
-    }
-
-    /**
-     * Get the current position on the X-axis of the player.
-     * @return The position on the X-axis.
-     */
-    public double getPositionX() {
-        return this.position.getX();
-    }
-
-    /**
-     * Get the current position on the Y-axis of the player.
-     * @return The position on the Y-axis.
-     */
-    public double getPositionY() {
-        return this.position.getY();
-    }
-
-    /**
-     * Move the player in the (x, y) position.
-     * @param newPosition The next position of the player.
-     */
-    public void move(Pair<Double,Double> newPosition) {
-        this.position = newPosition;
     }
 
     /**
