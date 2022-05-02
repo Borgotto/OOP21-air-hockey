@@ -9,10 +9,10 @@ import utils.Pair;
 public class GameState implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private final NormalPlayer mainPlayer;
-    private final EnemyPlayer enemyPlayer;
     private final int maxScore;
     private final Arena arena;
+    private final NormalPlayer mainPlayer;
+    private final EnemyPlayer enemyPlayer;
     private final Puck puck;
 
     /**
