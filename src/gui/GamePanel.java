@@ -12,18 +12,41 @@ public class GamePanel extends JPanel {
     private final GameState game;
     
     public GamePanel() {
-        this.setName("Air Hockey");
-        this.setLayout(new GridBagLayout());
+        GridBagLayout layout = new GridBagLayout();
+        this.setLayout(layout);
         GridBagConstraints c = new GridBagConstraints();
-        
-        var b1 = new JButton("lessgo");
-        b1.addActionListener(e -> {
-            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            JPanelLoader.load(parentFrame, new MenuPanel());
+
+        // Add the game field as a canvas
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridheight = 3;
+        Canvas canvas = new Canvas();
+        this.add(canvas, c);
+
+        // Add the scores as labels
+        c.gridx = 1;
+        c.gridy = 0;
+        Label enemyScore = new Label("0");
+        this.add(enemyScore, c);
+        c.gridy = 2;
+        Label playerScore = new Label("0");
+        this.add(playerScore, c);
+
+        // Add the pause button
+        c.gridx = 1;
+        c.gridy = 1;
+        JButton pauseButton = new JButton("Pause");
+        /* TODO
+        pauseButton.addActionListener(e -> {
+            if (game.isPaused()) {
+
+            }
         });
-        this.add(b1,c);
-        
-        
-        this.game = new GameState();        
+        */
+        this.add(pauseButton, c);
+
+
+
+        this.game = new GameState();
     }
 }
