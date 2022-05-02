@@ -33,11 +33,11 @@ public class GameState implements Serializable {
     public GameState() {
         this.arena = new Arena(9.0, 16.0);
         double halfArenaWidth = this.arena.getWidth() / 2;
-
+        double halfArenaHeight = this.arena.getHeight() / 2;
         this.mainPlayer = new NormalPlayer(new Pair<Double,Double>(halfArenaWidth, this.arena.getHeight()), "Bob");
         this.enemyPlayer = new EnemyPlayer(new Pair<Double,Double>(halfArenaWidth, 0.0), "Alice", EnemyPlayer.Difficulty.MODERATE);
         this.maxScore = 5;
-        this.puck = new Puck();
+        this.puck = new Puck(new Pair<Double, Double>(halfArenaWidth, halfArenaHeight));
     }
 
     /**
