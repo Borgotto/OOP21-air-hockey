@@ -13,8 +13,7 @@ public class GamePanel extends JPanel {
     
     public GamePanel() {
         this.setName("Air Hockey - Game");
-        GridBagLayout layout = new GridBagLayout();
-        this.setLayout(layout);
+        this.setLayout(new GridBagLayout());
 
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.CENTER;
@@ -47,7 +46,7 @@ public class GamePanel extends JPanel {
         c.gridy = 1;
         JButton pauseButton = new JButton("Pause");
         pauseButton.addActionListener(e -> {
-
+            JPanelLoader.load(JPanelLoader.getParentFrame(this), new PausePanel());
         });
         this.add(pauseButton, c);
     }
