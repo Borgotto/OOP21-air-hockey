@@ -5,9 +5,9 @@ package physics;
  */
 
 public class Vector2D {
-    private double vectorX = 0;
-    private double vectorY = 0;
-    private final double SWAPNUMBER = -1;
+    private Double vectorX = 0.0;
+    private Double vectorY = 0.0;
+    private final Double SWAPNUMBER = -1.0;
     
     /**
      * Constructor for the 2-dimensional vector.
@@ -15,7 +15,7 @@ public class Vector2D {
      * @param ySpeed, the speed in the Y axis.
      */
     
-    public Vector2D(double xVector, double yVector) {
+    public Vector2D(Double xVector, Double yVector) {
         this.vectorX = xVector;
         this.vectorY = yVector;
     }
@@ -35,7 +35,7 @@ public class Vector2D {
      * @param speed in X
      */
     
-    public void setVectorX(double xVector) {
+    public void setVectorX(Double xVector) {
         this.vectorX = xVector;
     }
     
@@ -44,7 +44,7 @@ public class Vector2D {
      * @param speed in Y
      */
     
-    public void setVectorY(double yVector) {
+    public void setVectorY(Double yVector) {
         this.vectorY = yVector;
     }
     
@@ -69,7 +69,7 @@ public class Vector2D {
      * @return the speed in the X axis.
      */
     
-    public double getVectorX() {
+    public Double getVectorX() {
         return this.vectorX;
     }
     
@@ -78,7 +78,7 @@ public class Vector2D {
      * @return the speed in the Y axis.
      */
     
-    public double getVectorY() {
+    public Double getVectorY() {
         return this.vectorY;
     }
     

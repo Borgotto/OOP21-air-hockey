@@ -9,7 +9,7 @@ import utils.Pair;
 public class Dynamics2D {
 
     private Vector2D speedVector;
-    private final double frictionConst;
+    private final Double frictionConst;
     
     /**
      * Constructor for the class.
@@ -17,16 +17,16 @@ public class Dynamics2D {
      */
     
     public Dynamics2D() {
-        this.speedVector = new Vector2D(0,0);
+        this.speedVector = new Vector2D(0.0,0.0);
         this.frictionConst = 0.1;
     }
     
-    public Dynamics2D(double friction) {
-        this.speedVector = new Vector2D(0,0);
+    public Dynamics2D(Double friction) {
+        this.speedVector = new Vector2D(0.0,0.0);
         this.frictionConst = friction;
     }
     
-    public Dynamics2D(double xSpeed, double ySpeed, double friction) {
+    public Dynamics2D(Double xSpeed, Double ySpeed, Double friction) {
         this.speedVector = new Vector2D(xSpeed, ySpeed);
         this.frictionConst = friction;
     }

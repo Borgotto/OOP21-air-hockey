@@ -9,7 +9,7 @@ import utils.Pair;
 public class GameState implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private final int maxScore;
+    private final Integer maxScore;
     private final Arena arena;
     private final NormalPlayer mainPlayer;
     private final EnemyPlayer enemyPlayer;
@@ -21,7 +21,7 @@ public class GameState implements Serializable {
      * @param enemyPlayer The enemy player.
      * @param maxScore The maximum score of the game.
      */
-    public GameState(NormalPlayer mainPlayer, EnemyPlayer enemyPlayer, int maxScore, Arena arena, Puck puck) {
+    public GameState(NormalPlayer mainPlayer, EnemyPlayer enemyPlayer, Integer maxScore, Arena arena, Puck puck) {
         this.mainPlayer = mainPlayer;
         this.enemyPlayer = enemyPlayer;
         this.maxScore = maxScore;
@@ -34,8 +34,8 @@ public class GameState implements Serializable {
      */
     public GameState() {
         this.arena = new Arena(9.0, 16.0);
-        double halfArenaWidth = this.arena.getWidth() / 2;
-        double halfArenaHeight = this.arena.getHeight() / 2;
+        Double halfArenaWidth = this.arena.getWidth() / 2;
+        Double halfArenaHeight = this.arena.getHeight() / 2;
         this.mainPlayer = new NormalPlayer(new Pair<Double,Double>(halfArenaWidth, this.arena.getHeight()), "Bob");
         this.enemyPlayer = new EnemyPlayer(new Pair<Double,Double>(halfArenaWidth, 0.0), "Alice", EnemyPlayer.Difficulty.MODERATE);
         this.maxScore = 5;
@@ -62,16 +62,16 @@ public class GameState implements Serializable {
      * Get the maximum score.
      * @return The maximum score.
      */
-    public int getMaxScore() {
+    public Integer getMaxScore() {
         return this.maxScore;
     }
 
     /*
     Move the player by calling the player's move method after checking that it can actually move there.
      */
-    private boolean movePlayer(Player p, Pair<Double,Double> newPosition, double bottomBoundary, double topBoundary) {
-        final double posX = newPosition.getX();
-        final double posY = newPosition.getY();
+    private boolean movePlayer(Player p, Pair<Double,Double> newPosition, Double bottomBoundary, Double topBoundary) {
+        final Double posX = newPosition.getX();
+        final Double posY = newPosition.getY();
         final boolean canMoveX = posX >= 0 && posX < this.arena.getWidth();
         final boolean canMoveY = posY < bottomBoundary && posY >= topBoundary;
         final boolean canMove = canMoveX && canMoveY;
@@ -99,6 +99,6 @@ public class GameState implements Serializable {
      * @return True if the player could actually move.
      */
     public boolean moveEnemyPlayer(Pair<Double,Double> newPosition) {
-        return movePlayer(this.enemyPlayer, newPosition, this.arena.getHeight() / 2, 0);
+        return movePlayer(this.enemyPlayer, newPosition, this.arena.getHeight() / 2, 0.0);
     }
 }

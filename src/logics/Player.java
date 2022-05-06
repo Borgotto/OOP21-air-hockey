@@ -7,7 +7,7 @@ import utils.Pair;
  * Instances of the Player class are equivalent to the mallet they control.
  */
 public abstract class Player implements GameObjectWithPhysics {
-    protected int score = 0;
+    protected Integer score = 0;
     protected Pair<Double,Double> position;
     protected final String name;
 
@@ -25,7 +25,7 @@ public abstract class Player implements GameObjectWithPhysics {
      * Get the current score of the player.
      * @return The player's current score.
      */
-    public int getScore() {
+    public Integer getScore() {
         return this.score;
     }
 

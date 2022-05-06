@@ -6,10 +6,10 @@ import utils.Pair;
  * The objects of the Arena class represent specific arenas the player can play in.
  */
 public class Arena implements GameObject{
-    private final double width;
-    private final double height;
-    private final double friction;
-    private final double goalWidth;
+    private final Double width;
+    private final Double height;
+    private final Double friction;
+    private final Double goalWidth;
 
     /**
      * Create a new Arena with a certain width, height, friction and goal size.
@@ -18,7 +18,7 @@ public class Arena implements GameObject{
      * @param friction The new arena's friction.
      * @param goalWidth The new arena's goal size.
      */
-    public Arena(double width, double height, double friction, double goalWidth) {
+    public Arena(Double width, Double height, Double friction, Double goalWidth) {
         this.width = width;
         this.height = height;
         this.friction = friction;
@@ -32,7 +32,7 @@ public class Arena implements GameObject{
      * @param height The new arena's width.
      * @param friction The new arena's friction.
      */
-    public Arena(double width, double height, double friction) {
+    public Arena(Double width, Double height, Double friction) {
         this(width, height, friction, width / 3);
     }
 
@@ -42,7 +42,7 @@ public class Arena implements GameObject{
      * @param width The new arena's width.
      * @param height The new arena's height.
      */
-    public Arena(double width, double height) {
+    public Arena(Double width, Double height) {
         this(width, height, 1.0);
     }
 
@@ -50,7 +50,7 @@ public class Arena implements GameObject{
      * Get the arena's width.
      * @return The arena's width.
      */
-    public double getWidth() {
+    public Double getWidth() {
         return this.width;
     }
 
@@ -58,7 +58,7 @@ public class Arena implements GameObject{
      * Get the arena's height.
      * @return The arena's height.
      */
-    public double getHeight() {
+    public Double getHeight() {
         return this.height;
     }
 
@@ -66,7 +66,7 @@ public class Arena implements GameObject{
      * Get the arena's friction.
      * @return The arena's friction.
      */
-    public double getFriction() {
+    public Double getFriction() {
         return this.friction;
     }
 
@@ -74,7 +74,7 @@ public class Arena implements GameObject{
      * Get the arena's goal size.
      * @return The arena's goal size.
      */
-    public double getgoalWidth() {
+    public Double getgoalWidth() {
         return this.goalWidth;
     }
 
