@@ -14,6 +14,7 @@ public class GameState implements Serializable {
     private final NormalPlayer mainPlayer;
     private final EnemyPlayer enemyPlayer;
     private final Puck puck;
+    //private static volatile GameState instance = null;
 
     /**
      * Create a new GameState object.
@@ -41,6 +42,17 @@ public class GameState implements Serializable {
         this.maxScore = 5;
         this.puck = new Puck(new Pair<Double, Double>(halfArenaWidth, halfArenaHeight));
     }
+
+    /**
+     * Get the current GameState instance. (see Singleton pattern)
+     * @return The current GameState instance.
+     */
+    /* TODO
+    public GameState getInstance() {
+
+    }
+    */
+
 
     /**
      * Get the main player's object.
