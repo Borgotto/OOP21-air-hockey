@@ -84,14 +84,4 @@ public class Arena implements GameObject{
         return false;
     }
 
-    @Override
-    public void setPosition(Pair<Double, Double> position) {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public Pair<Double, Double> getPosition() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

@@ -37,4 +37,10 @@ public class NormalPlayer extends Player {
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public boolean canMove() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }

@@ -85,4 +85,10 @@ public class EnemyPlayer extends Player {
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public boolean canMove() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }

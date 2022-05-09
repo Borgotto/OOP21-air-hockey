@@ -36,4 +36,10 @@ private Pair<Double, Double> position;
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public boolean canMove() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }
