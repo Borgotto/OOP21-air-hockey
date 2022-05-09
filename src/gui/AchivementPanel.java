@@ -6,14 +6,12 @@ import javax.swing.*;
 import java.io.*;
 import javax.imageio.ImageIO;
 
-public class AchivementPanel extends JPanel {
+public class AchivementPanel extends AbstractGridBagLayoutJPanel {
 	private static final long serialVersionUID = 1L;
 	private static final String IMAGE_PATH = "res/achivement.png";
 
 	public AchivementPanel() {
-		this.setName("Achivement!");
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
+		super("Achievement");
 
 		c.fill = GridBagConstraints.BOTH;
 

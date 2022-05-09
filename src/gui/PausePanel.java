@@ -5,14 +5,13 @@ import utils.JPanelLoader;
 import javax.swing.*;
 import java.awt.*;
 
-public class PausePanel extends JPanel {
+public class PausePanel extends AbstractGridBagLayoutJPanel {
+    private static final long serialVersionUID = 1L;
 
     public PausePanel() {
-        this.setName("Air Hockey - Pause");
-        setLayout(new GridBagLayout());
+        super("Air Hockey - Pause");
+        
         this.setBackground(Color.BLACK);
-
-        GridBagConstraints c = new GridBagConstraints();
         c.gridx = 1;
         c.weightx = 1.0;
         c.weighty = 1.0;

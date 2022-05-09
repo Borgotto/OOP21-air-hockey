@@ -8,14 +8,12 @@ import javax.swing.*;
 
 import utils.JPanelLoader;
 
-public class MenuPanel extends JPanel {
+public class MenuPanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;
 
     public MenuPanel() {
-        this.setName("Air Hockey");
-        this.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-
+        super("Air Hockey");
+     
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.9;
         c.weighty = 0.9;

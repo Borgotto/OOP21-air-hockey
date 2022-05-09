@@ -6,16 +6,14 @@ import javax.swing.*;
 import logics.GameState;
 import utils.JPanelLoader;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;
     
     private final GameState game = new GameState();
     
     public GamePanel() {
-        this.setName("Air Hockey - Game");
-        this.setLayout(new GridBagLayout());
-
-        GridBagConstraints c = new GridBagConstraints();
+        super("Air Hockey - Game");
+        
         c.anchor = GridBagConstraints.CENTER;
         c.weighty = 1.0;
 

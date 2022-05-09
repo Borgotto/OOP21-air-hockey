@@ -6,13 +6,11 @@ import javax.swing.*;
 import utils.JPanelLoader;
 
 
-public class SettingsPanel extends JPanel {
+public class SettingsPanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;
     
     public SettingsPanel() {
-        this.setName("Air Hockey");
-        this.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        super("Air Hockey - Settings");
         
         var b1 = new JButton("Go back");
         b1.addActionListener(e -> {
