@@ -16,7 +16,6 @@ public class PuckBody extends RigidBody {
 	 * @param friction The puck friction in the game.
 	 * @param world
 	 */
-    
     public PuckBody(float radius, Vec2 pos, float friction, World world) {
     	setWorld(world);
         setBodyType(BodyType.DYNAMIC);

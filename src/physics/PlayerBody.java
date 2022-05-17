@@ -15,7 +15,6 @@ public class PlayerBody extends RigidBody {
 	 * @param pos Position to be spawned
 	 * @param world
 	 */
-        
     public PlayerBody(float radius, Vec2 pos, World world) {
     	setWorld(world);
         setBodyType(BodyType.KINEMATIC);
