@@ -8,8 +8,17 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 public class PuckBody extends RigidBody {
+	
+	/**
+	 * Puck body generator.
+	 * @param radius
+	 * @param pos Position to be spawned.
+	 * @param friction The puck friction in the game.
+	 * @param world
+	 */
     
-    public PuckBody(float radius, Vec2 pos, float density, float friction, World world) {        
+    public PuckBody(float radius, Vec2 pos, float friction, World world) {
+    	setWorld(world);
         setBodyType(BodyType.DYNAMIC);
         setPosition(pos);
         setLinearDamping(0.0f);
@@ -20,7 +29,7 @@ public class PuckBody extends RigidBody {
         
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;
-        fixture.density = density;
+        fixture.density = 1.0f;
         fixture.friction = friction;
         
         Body playerBody = world.createBody(getBodyDef());
@@ -28,7 +37,4 @@ public class PuckBody extends RigidBody {
         setBody(playerBody);
     }
 
-    public void update(float dt) {
-        
-    }
 }

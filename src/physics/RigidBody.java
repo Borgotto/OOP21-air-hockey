@@ -4,8 +4,11 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.World;
 
 public abstract class RigidBody {
+	
+	World world = null;
     
     BodyType bodyType = BodyType.STATIC;
     private Vec2 position = new Vec2(0.0f, 0.0f);
@@ -30,89 +33,102 @@ public abstract class RigidBody {
         bodyDef.allowSleep = false;
     }
 
-    /**
-     * @return the bodyType
-     */
-    public BodyType getBodyType() {
-        return bodyType;
-    }
+	/**
+	 * @return the world
+	 */
+	public World getWorld() {
+		return world;
+	}
 
-    /**
-     * @param bodyType the bodyType to set
-     */
-    public void setBodyType(BodyType bodyType) {
-        this.bodyType = bodyType;
-    }
+	/**
+	 * @param world the world to set
+	 */
+	public void setWorld(World world) {
+		this.world = world;
+	}
 
-    /**
-     * @return the position
-     */
-    public Vec2 getPosition() {
-        return position;
-    }
+	/**
+	 * @return the bodyType
+	 */
+	public BodyType getBodyType() {
+		return bodyType;
+	}
 
-    /**
-     * @param position the position to set
-     */
-    public void setPosition(Vec2 position) {
-        this.position = position;
-    }
+	/**
+	 * @param bodyType the bodyType to set
+	 */
+	public void setBodyType(BodyType bodyType) {
+		this.bodyType = bodyType;
+	}
 
-    /**
-     * @return the linearDamping
-     */
-    public float getLinearDamping() {
-        return linearDamping;
-    }
+	/**
+	 * @return the position
+	 */
+	public Vec2 getPosition() {
+		return position;
+	}
 
-    /**
-     * @param linearDamping the linearDamping to set
-     */
-    public void setLinearDamping(float linearDamping) {
-        this.linearDamping = linearDamping;
-    }
+	/**
+	 * @param position the position to set
+	 */
+	public void setPosition(Vec2 position) {
+		this.position = position;
+	}
 
-    /**
-     * @return the mass
-     */
-    public float getMass() {
-        return mass;
-    }
+	/**
+	 * @return the linearDamping
+	 */
+	public float getLinearDamping() {
+		return linearDamping;
+	}
 
-    /**
-     * @param mass the mass to set
-     */
-    public void setMass(float mass) {
-        this.mass = mass;
-    }
+	/**
+	 * @param linearDamping the linearDamping to set
+	 */
+	public void setLinearDamping(float linearDamping) {
+		this.linearDamping = linearDamping;
+	}
 
-    /**
-     * @return the bodyDef
-     */
-    public BodyDef getBodyDef() {
-        return bodyDef;
-    }
+	/**
+	 * @return the mass
+	 */
+	public float getMass() {
+		return mass;
+	}
 
-    /**
-     * @param bodyDef the bodyDef to set
-     */
-    public void setBodyDef(BodyDef bodyDef) {
-        this.bodyDef = bodyDef;
-    }
+	/**
+	 * @param mass the mass to set
+	 */
+	public void setMass(float mass) {
+		this.mass = mass;
+	}
 
-    /**
-     * @return the body
-     */
-    public Body getBody() {
-        return body;
-    }
+	/**
+	 * @return the bodyDef
+	 */
+	public BodyDef getBodyDef() {
+		return bodyDef;
+	}
 
-    /**
-     * @param body the body to set
-     */
-    public void setBody(Body body) {
-        this.body = body;
-    }
+	/**
+	 * @param bodyDef the bodyDef to set
+	 */
+	public void setBodyDef(BodyDef bodyDef) {
+		this.bodyDef = bodyDef;
+	}
 
-    
+	/**
+	 * @return the body
+	 */
+	public Body getBody() {
+		return body;
+	}
+
+	/**
+	 * @param body the body to set
+	 */
+	public void setBody(Body body) {
+		this.body = body;
+	}
+	
 }

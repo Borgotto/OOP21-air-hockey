@@ -8,8 +8,16 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 public class PlayerBody extends RigidBody {
+	
+	/**
+	 * Player body generator
+	 * @param radius
+	 * @param pos Position to be spawned
+	 * @param world
+	 */
         
-    public PlayerBody(float radius, Vec2 pos, World world) {      
+    public PlayerBody(float radius, Vec2 pos, World world) {
+    	setWorld(world);
         setBodyType(BodyType.KINEMATIC);
         setPosition(pos);
         setLinearDamping(0.1f);
@@ -26,8 +34,5 @@ public class PlayerBody extends RigidBody {
         playerBody.createFixture(fixture);
         setBody(playerBody);
     }
-
-    public void update(float dt) {
-        
-    }
+    
 }
