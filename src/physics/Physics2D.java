@@ -3,10 +3,9 @@ package physics;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
-import utils.Pair;
-
 public class Physics2D {
-    
+    private final double conversionDelta;
+	
     private final Vec2 gravity = new Vec2(0.0f , 0.0f);
     private World world = new World(gravity);
     
@@ -14,40 +13,36 @@ public class Physics2D {
     private final int velocityIterations = 6;
     private final int positionIterations = 3;
     
-    public Physics2D() {
-    	
+    public Physics2D(final double conversionDelta) {
+    	this.conversionDelta = conversionDelta;
     }
     
     /**
-     * Update the physics world.
-     * @param dt the 
+     * Update the physics world
      */
-    
     public void update() {
     	world.step(physicsTime, velocityIterations, positionIterations);  
     }
-    
-    /**
-     * @param gameBody the RigidBody to search.
-     * @return pairPos the position in pixels.
-     */
-    public Pair<Double,Double> getBodyPos(RigidBody gameBody) {
-    	Vec2 vecPos = gameBody.getPosition();
-    	
-    	/**
-    	 * TODO: Implement unit converter between pixels and vectors.
-    	 */
-    	
-    	Pair<Double,Double> pairPos = new Pair<Double,Double>((double)vecPos.x,(double)vecPos.y);
-    	return pairPos;
-    }
-    
 
-    /**
-     * @return the world
-     */
-    public World getWorld() {
-        return world;
-    }
+	/**
+	 * @return the world
+	 */
+	public World getWorld() {
+		return world;
+	}
+
+	/**
+	 * @param world the world to set
+	 */
+	public void setWorld(World world) {
+		this.world = world;
+	}
+
+	/**
+	 * @return the conversionDelta
+	 */
+	public double getConversionDelta() {
+		return conversionDelta;
+	}
     
 }

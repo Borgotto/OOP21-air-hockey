@@ -17,9 +17,9 @@ public class PlayerBody extends RigidBody {
 	 */
     public PlayerBody(float radius, Vec2 pos, World world) {
     	setWorld(world);
-        setBodyType(BodyType.KINEMATIC);
-        setPosition(pos);
-        setLinearDamping(0.1f);
+        setBodyTypeDef(BodyType.DYNAMIC);
+        setPositionDef(pos);
+        setLinearDampingDef(0.1f);
         configBodyDef();
         
         CircleShape shape = new CircleShape();

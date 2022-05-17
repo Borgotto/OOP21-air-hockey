@@ -18,9 +18,9 @@ public class PuckBody extends RigidBody {
 	 */
     public PuckBody(float radius, Vec2 pos, float friction, World world) {
     	setWorld(world);
-        setBodyType(BodyType.DYNAMIC);
-        setPosition(pos);
-        setLinearDamping(0.0f);
+        setBodyTypeDef(BodyType.DYNAMIC);
+        setPositionDef(pos);
+        setLinearDampingDef(0.0f);
         configBodyDef();
         
         CircleShape shape = new CircleShape();
@@ -35,5 +35,5 @@ public class PuckBody extends RigidBody {
         playerBody.createFixture(fixture);
         setBody(playerBody);
     }
-
+    
 }

@@ -13,9 +13,8 @@ public class ArenaBody extends RigidBody {
 	 * Arena body generator
 	 * @param world
 	 */
-    
     public ArenaBody(World world) {
-        setBodyType(BodyType.STATIC);
+        setBodyTypeDef(BodyType.STATIC);
         Body arenaBody = world.createBody(getBodyDef());
         
         EdgeShape wallShape = new EdgeShape();
@@ -25,10 +24,8 @@ public class ArenaBody extends RigidBody {
         sd.density = 0.0f;
         sd.restitution = 0.9f;
         
-        /**
-         * The arena dimensions are 16x32 meters. (Proportion: 9:16)
-         */
-        
+        //The arena dimensions are 16x32 meters. (Proportion: 9:16)
+                
         // Vertical walls of the arena
         wallShape.set(new Vec2(0.0f, 0.0f), new Vec2(0.0f, 32.0f));
         arenaBody.createFixture(sd);

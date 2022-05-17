@@ -8,29 +8,43 @@ import org.jbox2d.dynamics.World;
 
 public abstract class RigidBody {
 	
-	World world = null;
+	World world;
     
-    BodyType bodyType = BodyType.STATIC;
-    private Vec2 position = new Vec2(0.0f, 0.0f);
-    private float linearDamping = 0.0f;
-    private float mass = 1;
+    BodyType bodyTypeDef = BodyType.STATIC;
+    private Vec2 positionDef = new Vec2(0.0f, 0.0f);
+    private float linearDampingDef = 0.0f;
    
     private BodyDef bodyDef = new BodyDef();
-    private Body body = null;
+    private Body body;
     
     /**
      * set the BodyDef data
      */
     public void configBodyDef() {
-        bodyDef.type = getBodyType();
-        bodyDef.position.set(getPosition());
-        bodyDef.linearDamping = getLinearDamping();
+        bodyDef.type = getBodyTypeDef();
+        bodyDef.position.set(getPositionDef());
+        bodyDef.linearDamping = getLinearDampingDef();
         bodyDef.angularDamping = 0.0f;
         bodyDef.gravityScale = 0.0f;
         bodyDef.fixedRotation = true;
+        bodyDef.angle = 0.0f;
         bodyDef.bullet = true;
         bodyDef.active = true;
         bodyDef.allowSleep = false;
+    }
+    
+    /**
+     * @return the body position
+     */
+    public Vec2 getPosition() {
+    	return body.getPosition();
+    }
+    
+    /**
+     * @param pos to set the object
+     */
+    public void setPosition(Vec2 pos) {
+    	body.setTransform(pos, 0.0f);
     }
 
 	/**
@@ -48,59 +62,45 @@ public abstract class RigidBody {
 	}
 
 	/**
-	 * @return the bodyType
+	 * @return the bodyTypeDef
 	 */
-	public BodyType getBodyType() {
-		return bodyType;
+	public BodyType getBodyTypeDef() {
+		return bodyTypeDef;
 	}
 
 	/**
-	 * @param bodyType the bodyType to set
+	 * @param bodyTypeDef the bodyTypeDef to set
 	 */
-	public void setBodyType(BodyType bodyType) {
-		this.bodyType = bodyType;
+	public void setBodyTypeDef(BodyType bodyTypeDef) {
+		this.bodyTypeDef = bodyTypeDef;
 	}
 
 	/**
-	 * @return the position
+	 * @return the positionDef
 	 */
-	public Vec2 getPosition() {
-		return position;
+	public Vec2 getPositionDef() {
+		return positionDef;
 	}
 
 	/**
-	 * @param position the position to set
+	 * @param positionDef the positionDef to set
 	 */
-	public void setPosition(Vec2 position) {
-		this.position = position;
+	public void setPositionDef(Vec2 positionDef) {
+		this.positionDef = positionDef;
 	}
 
 	/**
-	 * @return the linearDamping
+	 * @return the linearDampingDef
 	 */
-	public float getLinearDamping() {
-		return linearDamping;
+	public float getLinearDampingDef() {
+		return linearDampingDef;
 	}
 
 	/**
-	 * @param linearDamping the linearDamping to set
+	 * @param linearDampingDef the linearDampingDef to set
 	 */
-	public void setLinearDamping(float linearDamping) {
-		this.linearDamping = linearDamping;
-	}
-
-	/**
-	 * @return the mass
-	 */
-	public float getMass() {
-		return mass;
-	}
-
-	/**
-	 * @param mass the mass to set
-	 */
-	public void setMass(float mass) {
-		this.mass = mass;
+	public void setLinearDampingDef(float linearDampingDef) {
+		this.linearDampingDef = linearDampingDef;
 	}
 
 	/**
@@ -130,5 +130,6 @@ public abstract class RigidBody {
 	public void setBody(Body body) {
 		this.body = body;
 	}
+    
 	
 }
