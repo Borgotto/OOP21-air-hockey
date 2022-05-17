@@ -8,8 +8,13 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 public class ArenaBody extends RigidBody {
+	
+	/**
+	 * Arena body generator
+	 * @param world
+	 */
     
-    public ArenaBody(float height, float width, World world) {
+    public ArenaBody(World world) {
         setBodyType(BodyType.STATIC);
         Body arenaBody = world.createBody(getBodyDef());
         
@@ -20,20 +25,23 @@ public class ArenaBody extends RigidBody {
         sd.density = 0.0f;
         sd.restitution = 0.9f;
         
+        /**
+         * The arena dimensions are 16x32 meters. (Proportion: 9:16)
+         */
+        
         // Vertical walls of the arena
-        // Left wall
-        wallShape.set(new Vec2(0.0f, 0.0f), new Vec2(0.0f, height));
+        wallShape.set(new Vec2(0.0f, 0.0f), new Vec2(0.0f, 32.0f));
         arenaBody.createFixture(sd);
         // Right wall
-        wallShape.set(new Vec2(width, 0.0f), new Vec2(width, height));
+        wallShape.set(new Vec2(18.0f, 0.0f), new Vec2(18.0f, 32.0f));
         arenaBody.createFixture(sd);
         
         // Horizontal walls of the arena
         // Bottom wall
-        wallShape.set(new Vec2(0.0f, 0.0f), new Vec2(width, 0.0f));
+        wallShape.set(new Vec2(0.0f, 0.0f), new Vec2(18.0f, 0.0f));
         arenaBody.createFixture(sd);
         // Top Wall
-        wallShape.set(new Vec2(0.0f, height), new Vec2(width, height));
+        wallShape.set(new Vec2(0.0f, 32.0f), new Vec2(18.0f, 32.0f));
         arenaBody.createFixture(sd);
         
         setBody(arenaBody);
