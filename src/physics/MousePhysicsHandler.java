@@ -15,11 +15,11 @@ public class MousePhysicsHandler {
 	private MouseJointDef mouseJointDef = new MouseJointDef();
 	private MouseJoint mouseJoint;
 	
-	public MousePhysicsHandler(World world, PlayerBody playerBody) {
-		setWorld(world);
+	public MousePhysicsHandler(PlayerBody playerBody, ArenaBody arenaBody) {
+		setWorld(playerBody.getWorld());
 		setPlayerBody(playerBody);
 		
-		mouseJointDef.bodyA = null; // TODO: fix bodyA to the ground.
+		mouseJointDef.bodyA = arenaBody.getBody();
 		mouseJointDef.bodyB = getPlayerBody().getBody();
 		mouseJointDef.dampingRatio = 0.9f;
 		mouseJointDef.maxForce = 1000f;
@@ -27,12 +27,11 @@ public class MousePhysicsHandler {
 	}
 	
 	/**
-	 * @param mousePos the position of the mouse when is pressed
+	 * Used when the mouse is clicked. The method checks himself if the click was in the player area.
+	 * @param mousePos the mouse position
+	 * @return true if the mouse was clicked 
 	 */
 	public void MousePressed(final Vec2 mousePos) {
-		/**
-		 * TODO: check if the mouse is in the box.
-		 */
 		mouseJointDef.target.set(mousePos);
 		setMouseJoint((MouseJoint)world.createJoint(getMouseJointDef()));
 	}
@@ -53,7 +52,7 @@ public class MousePhysicsHandler {
 
 	/**
 	 * @param world the world to set
-	 */
+	 */ 
 	public void setWorld(World world) {
 		this.world = world;
 	}
