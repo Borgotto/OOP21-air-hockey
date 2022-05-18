@@ -3,7 +3,7 @@ package physics;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
-public class Physics2DImpl {	
+public class Physics2DImpl implements Physics2D {	
     private final Vec2 gravity;
     private World world;
     
