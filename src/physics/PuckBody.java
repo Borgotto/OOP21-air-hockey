@@ -7,7 +7,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-public class PuckBody extends RigidBody {
+public class PuckBody extends RigidBodyImpl {
 	
 	/**
 	 * Puck body generator.

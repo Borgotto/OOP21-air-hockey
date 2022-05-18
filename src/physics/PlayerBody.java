@@ -7,7 +7,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-public class PlayerBody extends RigidBody {
+public class PlayerBody extends RigidBodyImpl {
 	
 	/**
 	 * Player body generator
