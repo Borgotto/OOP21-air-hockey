@@ -10,39 +10,82 @@ import org.jbox2d.dynamics.World;
 
 public class ArenaBody extends RigidBodyImpl {
 	
+	private final float width;
+	private final float height;
+	
 	/**
 	 * Arena body generator
 	 * @param world
 	 */
-    public ArenaBody(float width, float height, World world) {
+    public ArenaBody(final float width, final float height, final World world) {
+    	this.width = width;
+    	this.height = height;
+    	
         setBodyTypeDef(BodyType.STATIC);
         Body arenaBody = world.createBody(getBodyDef());
         
-        EdgeShape wallShape = new EdgeShape();
+        EdgeShape shape = new EdgeShape();
         
-        FixtureDef sd = new FixtureDef();
-        sd.shape = new EdgeShape();
-        sd.density = 0.0f;
-        sd.restitution = 0.9f;
+        FixtureDef arenaFixtureDef = new FixtureDef();
+        arenaFixtureDef.shape = shape;
+        arenaFixtureDef.density = 0.0f;
+        arenaFixtureDef.restitution = 0.9f;
         
-        //The arena dimensions are 16x32 meters. (Proportion: 9:16)
+        // The arena proportion is 9:16
                 
         // Vertical walls of the arena
-        wallShape.set(new Vec2(0.0f, 0.0f), new Vec2(0.0f, height));
-        arenaBody.createFixture(sd);
+        shape.set(new Vec2(0.0f, 0.0f), new Vec2(0.0f, getHeight()));
+        arenaBody.createFixture(arenaFixtureDef);
         // Right wall
-        wallShape.set(new Vec2(width, 0.0f), new Vec2(width, height));
-        arenaBody.createFixture(sd);
+        shape.set(new Vec2(getWidth(), 0.0f), new Vec2(getWidth(), getHeight()));
+        arenaBody.createFixture(arenaFixtureDef);
         
         // Horizontal walls of the arena
         // Bottom wall
-        wallShape.set(new Vec2(0.0f, 0.0f), new Vec2(width, 0.0f));
-        arenaBody.createFixture(sd);
+        shape.set(new Vec2(0.0f, 0.0f), new Vec2(getWidth(), 0.0f));
+        arenaBody.createFixture(arenaFixtureDef);
         // Top Wall
-        wallShape.set(new Vec2(0.0f, height), new Vec2(width, height));
-        arenaBody.createFixture(sd);
+        shape.set(new Vec2(0.0f, getHeight()), new Vec2(getWidth(), getHeight()));
+        arenaBody.createFixture(arenaFixtureDef);
         
         setBody(arenaBody);
     }
+    
+    /**
+     * Generates a wall where only the player collides with.
+     * @param playerBody the player to be limited
+     */
+    public void setPlayerArenaLimit(PlayerBody playerBody) {
+    	EdgeShape shape = new EdgeShape();
+    	
+    	FixtureDef midArenaFixtureDef = new FixtureDef();
+    	
+    	midArenaFixtureDef.shape = shape;
+    	midArenaFixtureDef.density = 0.0f;
+    	midArenaFixtureDef.restitution = 0.9f;
+    	
+    	shape.set(new Vec2(0.0f, (float)(getWidth()/2)), new Vec2(getHeight(), (float)(getWidth()/2)));
+    	
+    	/**
+    	 * TODO: create filtering for playerBody.
+    	 */
+    	
+    	getBody().createFixture(midArenaFixtureDef);
+    	
+    }
+
+	/**
+	 * @return the width
+	 */
+	public float getWidth() {
+		return width;
+	}
+
+	/**
+	 * @return the height
+	 */
+	public float getHeight() {
+		return height;
+	}
     
 }
