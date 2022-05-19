@@ -19,10 +19,10 @@ jobs:
         run: sudo apt update && sudo apt install openjdk-11-jdk
 
       - name: Compile only Main dependencies
-        run: javac -sourcepath src -d out src/gui/Main.java
+        run: javac -sourcepath src -cp lib/* -d out src/gui/Main.java
 
       - name: Compile all source files
-        run: find src -name "*.java" -print | xargs javac -d out
+        run: find src -name "*.java" -print | xargs javac -cp lib/* -d out
 
       - name: Make JAR archive
         run: find out -print | xargs jar cf air-hockey.jar
