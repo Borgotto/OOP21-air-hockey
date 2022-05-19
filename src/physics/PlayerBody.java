@@ -15,7 +15,7 @@ public class PlayerBody extends RigidBodyImpl {
 	 * @param pos Position to be spawned
 	 * @param world
 	 */
-    public PlayerBody(float radius, Vec2 pos, World world) {
+    public PlayerBody(final float radius, final Vec2 pos, final World world) {
     	setWorld(world);
         setBodyTypeDef(BodyType.DYNAMIC);
         setPositionDef(pos);
@@ -39,8 +39,12 @@ public class PlayerBody extends RigidBodyImpl {
     
     // Methods only for Enemy IA
     
-    public void ApplyForce(Vec2 force) {
-        
+    /**
+     * Apply a force to the player body.
+     * @param force to be applied to the body.
+     */
+    public void ApplyForce(final Vec2 force) {
+        getBody().applyForceToCenter(force);
     }
     
 }

@@ -41,12 +41,12 @@ public abstract class RigidBodyImpl implements RigidBody {
     }
     
     /**
+     * The setPosition method set the body in a position and resets the speed of the object.
      * @param pos to set the object
      */
     public void setPosition(Vec2 pos) {
+        body.setLinearVelocity(new Vec2(0.0f, 0.0f));
     	body.setTransform(pos, 0.0f);
-    	Vec2 resetSpeed = new Vec2(0.0f, 0.0f);
-    	body.setLinearVelocity(resetSpeed);
     }
 
 	/**
