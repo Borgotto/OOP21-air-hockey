@@ -5,7 +5,6 @@ import org.jbox2d.collision.shapes.EdgeShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
@@ -48,12 +47,8 @@ public class ArenaBody extends RigidBodyImpl {
         shape.set(new Vec2(0.0f, (float)(height/2)), new Vec2(width, (float)(height/2)));
         arenaFixtureDef.filter.maskBits = 0x0002;
         arenaBody.createFixture(arenaFixtureDef);
-
         
         setBody(arenaBody);
     }
-    
-    /*
-     * TODO: method that register a PlayerBody to the mid wall arena filter.
-     */
+ 
 }

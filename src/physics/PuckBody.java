@@ -36,4 +36,14 @@ public class PuckBody extends RigidBodyImpl {
         setBody(playerBody);
     }
     
+    // Methods only for Enemy IA
+    
+    /**
+     * @return the predicted position 1 second after the current position of the puck.
+     */
+    public Vec2 puckPrediction() {
+        Vec2 futurePos = new Vec2(getBody().getLinearVelocity().x + getPosition().x, getBody().getLinearVelocity().y + getPosition().y);
+        return futurePos;
+    }
+    
 }

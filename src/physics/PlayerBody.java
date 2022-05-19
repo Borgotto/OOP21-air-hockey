@@ -29,12 +29,18 @@ public class PlayerBody extends RigidBodyImpl {
         fixture.shape = shape;
         fixture.density = 0.4f;
         
-        // Bit mask for mid arena fixture collision.
+        // Bit mask for mid arena fixture collision
         fixture.filter.categoryBits = 0x0002;
         
         Body playerBody = world.createBody(getBodyDef());
         playerBody.createFixture(fixture);
         setBody(playerBody);
+    }
+    
+    // Methods only for Enemy IA
+    
+    public void ApplyForce(Vec2 force) {
+        
     }
     
 }
