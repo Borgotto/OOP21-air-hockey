@@ -19,7 +19,7 @@ public class PuckBody extends RigidBodyImpl {
     public PuckBody(float radius, Vec2 pos, World world) {
     	setWorld(world);
         setBodyTypeDef(BodyType.DYNAMIC);
-        setPositionDef(pos);
+        setStartPositionDef(pos);
         setLinearDampingDef(0.1f);
         configBodyDef();
         
@@ -41,10 +41,8 @@ public class PuckBody extends RigidBodyImpl {
     /**
      * @return the predicted position 1 second after the current position of the puck.
      */
-    public Vec2 puckPrediction() {
-        
-        Vec2 futurePos = new Vec2(getBody().getLinearVelocity().x + getPosition().x, getBody().getLinearVelocity().y + getPosition().y);
-        return futurePos;
+    public Vec2 getNextPos() {
+        return new Vec2(getBody().getLinearVelocity().x + getPosition().x, getBody().getLinearVelocity().y + getPosition().y);
     }
     
 }

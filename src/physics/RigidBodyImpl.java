@@ -22,7 +22,7 @@ public abstract class RigidBodyImpl implements RigidBody {
      */
     protected void configBodyDef() {
         bodyDef.type = getBodyTypeDef();
-        bodyDef.position.set(getPositionDef());
+        bodyDef.position.set(getStartPositionDef());
         bodyDef.linearDamping = getLinearDampingDef();
         bodyDef.angularDamping = 0.0f;
         bodyDef.gravityScale = 0.0f;
@@ -60,92 +60,90 @@ public abstract class RigidBodyImpl implements RigidBody {
 	}
     
     /**
+     * @return the body
+     */
+    @Override
+    public Body getBody() {
+        return body;
+    }
+    
+    /**
      * resets the body position to the start position.
      */
     @Override
     public void resetBodyPos() {
         body.setLinearVelocity(new Vec2(0.0f, 0.0f));
-        body.setTransform(getPositionDef(), 0.0f);
+        body.setTransform(getStartPositionDef(), 0.0f);
     }
 
-	/**
-	 * @param world the world to set
-	 */
-	public void setWorld(World world) {
-		this.world = world;
-	}
+    /**
+     * @return the bodyTypeDef
+     */
+    protected BodyType getBodyTypeDef() {
+        return bodyTypeDef;
+    }
 
-	/**
-	 * @return the bodyTypeDef
-	 */
-	protected BodyType getBodyTypeDef() {
-		return bodyTypeDef;
-	}
+    /**
+     * @param bodyTypeDef the bodyTypeDef to set
+     */
+    protected void setBodyTypeDef(BodyType bodyTypeDef) {
+        this.bodyTypeDef = bodyTypeDef;
+    }
 
-	/**
-	 * @param bodyTypeDef the bodyTypeDef to set
-	 */
-	protected void setBodyTypeDef(BodyType bodyTypeDef) {
-		this.bodyTypeDef = bodyTypeDef;
-	}
+    /**
+     * @return the startPositionDef
+     */
+    protected Vec2 getStartPositionDef() {
+        return startPositionDef;
+    }
 
-	/**
-	 * @return the positionDef
-	 */
-	protected Vec2 getPositionDef() {
-		return startPositionDef;
-	}
+    /**
+     * @param startPositionDef the startPositionDef to set
+     */
+    protected void setStartPositionDef(Vec2 startPositionDef) {
+        this.startPositionDef = startPositionDef;
+    }
 
-	/**
-	 * @param positionDef the positionDef to set
-	 */
-	protected void setPositionDef(Vec2 positionDef) {
-		this.startPositionDef = positionDef;
-	}
+    /**
+     * @return the linearDampingDef
+     */
+    protected float getLinearDampingDef() {
+        return linearDampingDef;
+    }
 
-	/**
-	 * @return the linearDampingDef
-	 */
-	protected float getLinearDampingDef() {
-		return linearDampingDef;
-	}
+    /**
+     * @param linearDampingDef the linearDampingDef to set
+     */
+    protected void setLinearDampingDef(float linearDampingDef) {
+        this.linearDampingDef = linearDampingDef;
+    }
 
-	/**
-	 * @param linearDampingDef the linearDampingDef to set
-	 */
-	protected void setLinearDampingDef(float linearDampingDef) {
-		this.linearDampingDef = linearDampingDef;
-	}
+    /**
+     * @return the bodyDef
+     */
+    protected BodyDef getBodyDef() {
+        return bodyDef;
+    }
 
-	/**
-	 * @return the bodyDef
-	 */
-	protected BodyDef getBodyDef() {
-		return bodyDef;
-	}
+    /**
+     * @param bodyDef the bodyDef to set
+     */
+    protected void setBodyDef(BodyDef bodyDef) {
+        this.bodyDef = bodyDef;
+    }
 
-	/**
-	 * @param bodyDef the bodyDef to set
-	 */
-	protected void setBodyDef(BodyDef bodyDef) {
-		this.bodyDef = bodyDef;
-	}
+    /**
+     * @param world the world to set
+     */
+    protected void setWorld(World world) {
+        this.world = world;
+    }
 
-	/**
-	 * @return the body
-	 */
-	@Override
-	public Body getBody() {
-		return body;
-	}
-
-	/**
-	 * @param body the body to set
-	 */
-	@Override
-	public void setBody(Body body) {
-		this.body = body;
-	}
-    
+    /**
+     * @param body the body to set
+     */
+    protected void setBody(Body body) {
+        this.body = body;
+    }
 	
 }

@@ -19,7 +19,7 @@ public class PlayerBody extends RigidBodyImpl {
     	setWorld(world);
         setBodyTypeDef(BodyType.DYNAMIC);
         setLinearDampingDef(0.0f);
-        setPositionDef(pos);
+        setStartPositionDef(pos);
         configBodyDef();
         
         CircleShape shape = new CircleShape();

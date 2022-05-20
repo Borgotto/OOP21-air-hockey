@@ -14,8 +14,6 @@ public interface RigidBody {
     
     public Body getBody();
     
-    public void setBody(Body body);
-    
     public void resetBodyPos();
     
 }
