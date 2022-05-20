@@ -12,8 +12,6 @@ public interface RigidBody {
     
     public World getWorld();
     
-    public void setWorld(World world);
-    
     public Body getBody();
     
     public void setBody(Body body);

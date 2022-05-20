@@ -71,7 +71,6 @@ public abstract class RigidBodyImpl implements RigidBody {
 	/**
 	 * @param world the world to set
 	 */
-    @Override
 	public void setWorld(World world) {
 		this.world = world;
 	}
