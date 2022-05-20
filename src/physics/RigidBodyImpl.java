@@ -36,6 +36,7 @@ public abstract class RigidBodyImpl implements RigidBody {
     /**
      * @return the body position
      */
+    @Override
     public Vec2 getPosition() {
     	return body.getPosition();
     }
@@ -44,6 +45,7 @@ public abstract class RigidBodyImpl implements RigidBody {
      * The setPosition method set the body in a position and resets the speed of the object.
      * @param pos to set the object
      */
+    @Override
     public void setPosition(Vec2 pos) {
         body.setLinearVelocity(new Vec2(0.0f, 0.0f));
     	body.setTransform(pos, 0.0f);
@@ -52,6 +54,7 @@ public abstract class RigidBodyImpl implements RigidBody {
 	/**
 	 * @return the world
 	 */
+    @Override
 	public World getWorld() {
 		return world;
 	}
@@ -59,6 +62,7 @@ public abstract class RigidBodyImpl implements RigidBody {
 	/**
 	 * @param world the world to set
 	 */
+    @Override
 	public void setWorld(World world) {
 		this.world = world;
 	}
@@ -122,6 +126,7 @@ public abstract class RigidBodyImpl implements RigidBody {
 	/**
 	 * @return the body
 	 */
+	@Override
 	public Body getBody() {
 		return body;
 	}
@@ -129,6 +134,7 @@ public abstract class RigidBodyImpl implements RigidBody {
 	/**
 	 * @param body the body to set
 	 */
+	@Override
 	public void setBody(Body body) {
 		this.body = body;
 	}

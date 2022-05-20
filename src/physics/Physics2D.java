@@ -10,4 +10,8 @@ public interface Physics2D {
     
     public void setWorld(World world);
     
+    public void deleteWorld();
+    
+    public void resetWorld();
+    
 }
