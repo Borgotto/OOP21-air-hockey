@@ -20,7 +20,7 @@ public class PuckBody extends RigidBodyImpl {
     	setWorld(world);
         setBodyTypeDef(BodyType.DYNAMIC);
         setPositionDef(pos);
-        setLinearDampingDef(0.0f);
+        setLinearDampingDef(0.1f);
         configBodyDef();
         
         CircleShape shape = new CircleShape();
@@ -29,7 +29,7 @@ public class PuckBody extends RigidBodyImpl {
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;
         fixture.density = 1.0f;
-        fixture.friction = 0.1f;
+        fixture.restitution = 1.0f;
         
         Body playerBody = world.createBody(getBodyDef());
         playerBody.createFixture(fixture);

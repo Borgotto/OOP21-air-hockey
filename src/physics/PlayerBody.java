@@ -18,8 +18,8 @@ public class PlayerBody extends RigidBodyImpl {
     public PlayerBody(final float radius, final Vec2 pos, final World world) {
     	setWorld(world);
         setBodyTypeDef(BodyType.DYNAMIC);
+        setLinearDampingDef(0.0f);
         setPositionDef(pos);
-        setLinearDampingDef(0.1f);
         configBodyDef();
         
         CircleShape shape = new CircleShape();
@@ -28,6 +28,7 @@ public class PlayerBody extends RigidBodyImpl {
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;
         fixture.density = 0.4f;
+        fixture.friction = 0.3f;
         
         // Bit mask for mid arena fixture collision
         fixture.filter.categoryBits = 0x0002;
