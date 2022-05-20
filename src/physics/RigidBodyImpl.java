@@ -20,7 +20,7 @@ public abstract class RigidBodyImpl implements RigidBody {
     /**
      * set the BodyDef data
      */
-    public void configBodyDef() {
+    protected void configBodyDef() {
         bodyDef.type = getBodyTypeDef();
         bodyDef.position.set(getPositionDef());
         bodyDef.linearDamping = getLinearDampingDef();
@@ -66,56 +66,56 @@ public abstract class RigidBodyImpl implements RigidBody {
 	/**
 	 * @return the bodyTypeDef
 	 */
-	public BodyType getBodyTypeDef() {
+	protected BodyType getBodyTypeDef() {
 		return bodyTypeDef;
 	}
 
 	/**
 	 * @param bodyTypeDef the bodyTypeDef to set
 	 */
-	public void setBodyTypeDef(BodyType bodyTypeDef) {
+	protected void setBodyTypeDef(BodyType bodyTypeDef) {
 		this.bodyTypeDef = bodyTypeDef;
 	}
 
 	/**
 	 * @return the positionDef
 	 */
-	public Vec2 getPositionDef() {
+	protected Vec2 getPositionDef() {
 		return positionDef;
 	}
 
 	/**
 	 * @param positionDef the positionDef to set
 	 */
-	public void setPositionDef(Vec2 positionDef) {
+	protected void setPositionDef(Vec2 positionDef) {
 		this.positionDef = positionDef;
 	}
 
 	/**
 	 * @return the linearDampingDef
 	 */
-	public float getLinearDampingDef() {
+	protected float getLinearDampingDef() {
 		return linearDampingDef;
 	}
 
 	/**
 	 * @param linearDampingDef the linearDampingDef to set
 	 */
-	public void setLinearDampingDef(float linearDampingDef) {
+	protected void setLinearDampingDef(float linearDampingDef) {
 		this.linearDampingDef = linearDampingDef;
 	}
 
 	/**
 	 * @return the bodyDef
 	 */
-	public BodyDef getBodyDef() {
+	protected BodyDef getBodyDef() {
 		return bodyDef;
 	}
 
 	/**
 	 * @param bodyDef the bodyDef to set
 	 */
-	public void setBodyDef(BodyDef bodyDef) {
+	protected void setBodyDef(BodyDef bodyDef) {
 		this.bodyDef = bodyDef;
 	}
 
