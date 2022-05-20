@@ -1,18 +1,12 @@
 package logics;
 
-import utils.Pair;
+import physics.RigidBody;
 
 /**
  * interface that extends {@link logics.GameObject} and adds physics related
  * methods to the GameObject
  *
  */
-public interface GameObjectWithPhysics extends GameObject {
-    boolean canMove();
+public interface GameObjectWithPhysics extends GameObject, RigidBody {
     
-    Pair<Double,Double> nextPosition();
-    
-    void setPosition(Pair<Double, Double> position);
-    
-    Pair<Double, Double> getPosition();
 }
