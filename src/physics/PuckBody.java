@@ -16,7 +16,7 @@ public class PuckBody extends RigidBodyImpl {
 	 * @param friction The puck friction in the game.
 	 * @param world
 	 */
-    public PuckBody(float radius, Vec2 pos, float friction, World world) {
+    public PuckBody(float radius, Vec2 pos, World world) {
     	setWorld(world);
         setBodyTypeDef(BodyType.DYNAMIC);
         setPositionDef(pos);
@@ -29,7 +29,7 @@ public class PuckBody extends RigidBodyImpl {
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;
         fixture.density = 1.0f;
-        fixture.friction = friction;
+        fixture.friction = 0.1f;
         
         Body playerBody = world.createBody(getBodyDef());
         playerBody.createFixture(fixture);
@@ -42,6 +42,7 @@ public class PuckBody extends RigidBodyImpl {
      * @return the predicted position 1 second after the current position of the puck.
      */
     public Vec2 puckPrediction() {
+        
         Vec2 futurePos = new Vec2(getBody().getLinearVelocity().x + getPosition().x, getBody().getLinearVelocity().y + getPosition().y);
         return futurePos;
     }
