@@ -11,7 +11,7 @@ public abstract class RigidBodyImpl implements RigidBody {
 	World world;
     
     BodyType bodyTypeDef = BodyType.STATIC;
-    private Vec2 positionDef = new Vec2(0.0f, 0.0f);
+    private Vec2 startPositionDef = new Vec2(0.0f, 0.0f);
     private float linearDampingDef = 0.0f;
    
     private BodyDef bodyDef = new BodyDef();
@@ -42,7 +42,7 @@ public abstract class RigidBodyImpl implements RigidBody {
     }
     
     /**
-     * The setPosition method set the body in a position and resets the speed of the object.
+     * set the body in a position and resets the speed of the object.
      * @param pos to set the object
      */
     @Override
@@ -58,6 +58,15 @@ public abstract class RigidBodyImpl implements RigidBody {
 	public World getWorld() {
 		return world;
 	}
+    
+    /**
+     * resets the body position to the start position.
+     */
+    @Override
+    public void resetBodyPos() {
+        body.setLinearVelocity(new Vec2(0.0f, 0.0f));
+        body.setTransform(getPositionDef(), 0.0f);
+    }
 
 	/**
 	 * @param world the world to set
@@ -85,14 +94,14 @@ public abstract class RigidBodyImpl implements RigidBody {
 	 * @return the positionDef
 	 */
 	protected Vec2 getPositionDef() {
-		return positionDef;
+		return startPositionDef;
 	}
 
 	/**
 	 * @param positionDef the positionDef to set
 	 */
 	protected void setPositionDef(Vec2 positionDef) {
-		this.positionDef = positionDef;
+		this.startPositionDef = positionDef;
 	}
 
 	/**
