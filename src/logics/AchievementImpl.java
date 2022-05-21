@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 public class AchievementImpl implements Achievement {
 	
 	private static final long serialVersionUID = 1L;
-	private final ImageIcon icon;
+	private final String iconPath;
 	private final String name;
 	private final String description;
 	private final Predicate<GameState> condition;
@@ -15,7 +15,7 @@ public class AchievementImpl implements Achievement {
 	 * Create a new Achievement object with default values
 	 */
 	public AchievementImpl() {
-		this.icon = new ImageIcon();
+		this.iconPath = "";
 		this.name = "";
 		this.description = "";
 		this.condition = (gameState) -> true; 
@@ -23,24 +23,24 @@ public class AchievementImpl implements Achievement {
 	
 	/**
 	 * Create a new Achievement object with given values
-	 * @param icon The icon of the achievement
+	 * @param iconPath The path to the file
 	 * @param name The name of the achievement
 	 * @param description A brief description of what has been unlocked
-	 * @param condition The unlocking condition of the achievement
+	 * @param condition The unlocking condition
 	 */
-	public AchievementImpl(ImageIcon icon, String name, String description, Predicate<GameState> condition) {
-		this.icon = icon;
+	public AchievementImpl(String iconPath, String name, String description, Predicate<GameState> condition) {
+		this.iconPath = iconPath;
 		this.name = name;
 		this.description = description;
 		this.condition = condition;
 	}
 	
 	/**
-	 * Get the icon of the achievement
-	 * @return The icon of the achievement
+	 * Get the image icon using icon path 
+	 * @return The image icon
 	 */
 	public ImageIcon getIcon() {
-		return this.icon;
+		return new ImageIcon(this.iconPath);
 	}
 	
 	 /**
