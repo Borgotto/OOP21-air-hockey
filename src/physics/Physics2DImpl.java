@@ -35,20 +35,6 @@ public class Physics2DImpl implements Physics2D {
 		return world;
 	}
 
-	/**
-	 * @param world the world to set
-	 */
-	@Override
-	public void setWorld(World world) {
-		this.world = world;
-	}
-
-    @Override
-    public void deleteWorld() {
-        // TODO Auto-generated method stub
-        
-    }
-
     @Override
     public void resetWorld() {
         // TODO Auto-generated method stub
