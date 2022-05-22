@@ -1,11 +1,16 @@
 package physics;
 
+import java.util.ArrayList;
+
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 
 public class Physics2DImpl implements Physics2D {	
     private final Vec2 gravity;
     private World world;
+    
+    private ArrayList<RigidBody> rigidBodyList = new ArrayList<RigidBody>();
     
     private final float physicsTime;
     private final int velocityIterations;
@@ -27,18 +32,23 @@ public class Physics2DImpl implements Physics2D {
     	world.step(physicsTime, velocityIterations, positionIterations);  
     }
 
-	/**
-	 * @return the world
-	 */
-    @Override
+	@Override
 	public World getWorld() {
-		return world;
+		return this.world;
 	}
 
-    @Override
-    public void resetWorld() {
-        // TODO Auto-generated method stub
-        
-    }
-	
+	@Override
+	public Body addRigidBody(RigidBodyImpl rigidBody) {
+		Body body = getWorld().createBody(rigidBody.getBodyDef());
+		this.rigidBodyList.add(rigidBody);
+		return body;
+	}
+
+	@Override
+	public void resetWorld() {
+		for(RigidBody rigidBody : rigidBodyList) {
+			rigidBody.resetBodyPos();
+		}
+	}
+
 }
