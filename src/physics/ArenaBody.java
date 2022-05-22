@@ -6,7 +6,6 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
-import org.jbox2d.dynamics.World;
 
 public class ArenaBody extends RigidBodyImpl {
 	
@@ -21,13 +20,13 @@ public class ArenaBody extends RigidBodyImpl {
      * @param goalSize the size of the goal hole
      * @param world the world to generate the arena
      */
-    public ArenaBody(final float width, final float height, final float goalSize, final World world) {
+    public ArenaBody(final float width, final float height, final float goalSize, final Physics2DImpl physicsWorld) {
         this.width = width;
         this.height = height;
         this.goalSize = goalSize;
         
         setBodyTypeDef(BodyType.STATIC);
-        Body arenaBody = world.createBody(getBodyDef());
+        Body arenaBody = physicsWorld.addRigidBody(this);
         
         EdgeShape shape = new EdgeShape();
         
