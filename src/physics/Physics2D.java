@@ -13,4 +13,5 @@ public interface Physics2D {
     
     public void resetWorld();
     
+    public void deleteAllBodies();
 }
