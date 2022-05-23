@@ -5,7 +5,6 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
-import org.jbox2d.dynamics.World;
 
 public class PlayerBody extends RigidBodyImpl {
 	
@@ -15,7 +14,7 @@ public class PlayerBody extends RigidBodyImpl {
 	 * @param pos Position to be spawned
 	 * @param world
 	 */
-    public PlayerBody(final float radius, final Vec2 pos, final World world) {
+    public PlayerBody(final float radius, final Vec2 pos, final Physics2DImpl physicsWorld) {
     	setWorld(world);
         setBodyTypeDef(BodyType.DYNAMIC);
         setLinearDampingDef(0.0f);
@@ -33,7 +32,7 @@ public class PlayerBody extends RigidBodyImpl {
         // Bit mask for mid arena fixture collision
         fixture.filter.categoryBits = 0x0002;
         
-        Body playerBody = world.createBody(getBodyDef());
+        Body playerBody = physicsWorld.addRigidBody(this);
         playerBody.createFixture(fixture);
         setBody(playerBody);
     }
@@ -44,7 +43,7 @@ public class PlayerBody extends RigidBodyImpl {
      * Apply a force to the player body.
      * @param force to be applied to the body.
      */
-    public void ApplyForce(final Vec2 force) {
+    public void applyForce(final Vec2 force) {
         getBody().applyForceToCenter(force);
     }
     

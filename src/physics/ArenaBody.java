@@ -6,23 +6,27 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
-import org.jbox2d.dynamics.World;
 
 public class ArenaBody extends RigidBodyImpl {
 	
     public final float width;
     public final float height;
+    public final float goalSize;
     
-	/**
-	 * Arena body generator
-	 * @param world
-	 */
-    public ArenaBody(final float width, final float height, final World world) {
+    /**
+     * ArenaBody constructor
+     * @param width the width of the arena
+     * @param height the height of the arena
+     * @param goalSize the size of the goal hole
+     * @param world the world to generate the arena
+     */
+    public ArenaBody(final float width, final float height, final float goalSize, final Physics2DImpl physicsWorld) {
         this.width = width;
         this.height = height;
+        this.goalSize = goalSize;
         
         setBodyTypeDef(BodyType.STATIC);
-        Body arenaBody = world.createBody(getBodyDef());
+        Body arenaBody = physicsWorld.addRigidBody(this);
         
         EdgeShape shape = new EdgeShape();
         
@@ -30,22 +34,29 @@ public class ArenaBody extends RigidBodyImpl {
         arenaFixtureDef.shape = shape;
         arenaFixtureDef.density = 0.0f;
         arenaFixtureDef.restitution = 0.9f;
-        
-        // The arena proportion is 9:16
-                
-        // Vertical walls of the arena
+
+        // Left vertical wall
         shape.set(new Vec2(0.0f, 0.0f), new Vec2(0.0f, getHeight()));
         arenaBody.createFixture(arenaFixtureDef);
-        // Right wall
+        // Right vertical wall
         shape.set(new Vec2(getWidth(), 0.0f), new Vec2(getWidth(), getHeight()));
         arenaBody.createFixture(arenaFixtureDef);
         
-        // Horizontal walls of the arena
-        // Bottom wall
-        shape.set(new Vec2(0.0f, 0.0f), new Vec2(getWidth(), 0.0f));
+        float goalHalfSize = (getGoalSize()/2);
+        float widthHalfSize = (getWidth()/2);
+        
+        // Bottom-left horizontal wall
+        shape.set(new Vec2(0.0f, 0.0f), new Vec2(widthHalfSize - goalHalfSize, 0.0f));
         arenaBody.createFixture(arenaFixtureDef);
-        // Top Wall
-        shape.set(new Vec2(0.0f, getHeight()), new Vec2(getWidth(), getHeight()));
+        // Bottom-right horizontal wall
+        shape.set(new Vec2(widthHalfSize + goalHalfSize, 0.0f), new Vec2(getWidth(), 0.0f));
+        arenaBody.createFixture(arenaFixtureDef);
+        
+        // Bottom-left horizontal wall
+        shape.set(new Vec2(0.0f,  getHeight()), new Vec2(widthHalfSize - goalHalfSize, getHeight()));
+        arenaBody.createFixture(arenaFixtureDef);
+        // Bottom-right horizontal wall
+        shape.set(new Vec2(widthHalfSize + goalHalfSize,  getHeight()), new Vec2(getWidth(),  getHeight()));
         arenaBody.createFixture(arenaFixtureDef);
         
         // Generation of the mid arena wall. This wall has the properties of collide only with the player, not the puck.
@@ -57,19 +68,24 @@ public class ArenaBody extends RigidBodyImpl {
     }
 
     /**
-     * @return the width
+     * @return the width of the arena
      */
     public float getWidth() {
         return width;
     }
 
     /**
-     * @return the height
+     * @return the height of the arena
      */
     public float getHeight() {
         return height;
     }
-    
-    
+
+	/**
+	 * @return the goal size of the arena
+	 */
+	public float getGoalSize() {
+		return goalSize;
+	}
  
 }

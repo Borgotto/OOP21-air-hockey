@@ -5,7 +5,6 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
-import org.jbox2d.dynamics.World;
 
 public class PuckBody extends RigidBodyImpl {
 	
@@ -16,7 +15,7 @@ public class PuckBody extends RigidBodyImpl {
 	 * @param friction The puck friction in the game.
 	 * @param world
 	 */
-    public PuckBody(float radius, Vec2 pos, World world) {
+    public PuckBody(final float radius, final Vec2 pos, final Physics2DImpl physicsWorld) {
     	setWorld(world);
         setBodyTypeDef(BodyType.DYNAMIC);
         setStartPositionDef(pos);
@@ -31,7 +30,7 @@ public class PuckBody extends RigidBodyImpl {
         fixture.density = 1.0f;
         fixture.restitution = 1.0f;
         
-        Body playerBody = world.createBody(getBodyDef());
+        Body playerBody = physicsWorld.addRigidBody(this);
         playerBody.createFixture(fixture);
         setBody(playerBody);
     }
