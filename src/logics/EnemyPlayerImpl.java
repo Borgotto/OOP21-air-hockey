@@ -32,12 +32,12 @@ public class EnemyPlayerImpl implements EnemyPlayer {
         return this.difficulty;
     }
 
+    public void update() {
+        //TODO
+    }
+    
     public Vec2 nextPosition() {
         return this.difficulty.getMovingStrategy().apply(this.getPosition());
-    }
-
-    public boolean update() {
-        return false;
     }
 
     public Integer getScore() {

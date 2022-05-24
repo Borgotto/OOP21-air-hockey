@@ -18,8 +18,8 @@ public class MainPlayerImpl implements MainPlayer {
         this.score = 0;
     }
 
-    public boolean update() {
-        return false;
+    public void update() {
+        //TODO
     }
 
     public Integer getScore() {

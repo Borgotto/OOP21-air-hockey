@@ -6,5 +6,9 @@ package logics;
  * frame
  */
 public interface GameObject {
-    boolean update();
+    
+    /**
+     * Method that allows to update the {@code GameObject}
+     */
+    void update();
 }
