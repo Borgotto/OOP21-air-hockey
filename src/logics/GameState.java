@@ -1,104 +1,76 @@
 package logics;
 
 import java.io.Serializable;
-import utils.Pair;
+import physics.Physics2D;
+import physics.Physics2DImpl;
 
 /**
- * The class GameState holds a state of the game, usually the current one.
+ * The class GameState holds the state of the game.
  */
-public class GameState implements Serializable {
+public class GameState implements GameObject, Serializable {
     private static final long serialVersionUID = 1L;
-    
-    private final Integer maxScore;
+
+    private final Physics2D gamePhysics;
     private final Arena arena;
-    private final NormalPlayer mainPlayer;
+    private final MainPlayer mainPlayer;
     private final EnemyPlayer enemyPlayer;
     private final Puck puck;
-
-    /**
-     * Create a new GameState object.
-     * @param mainPlayer The main player.
-     * @param enemyPlayer The enemy player.
-     * @param maxScore The maximum score of the game.
-     */
-    public GameState(NormalPlayer mainPlayer, EnemyPlayer enemyPlayer, Integer maxScore, Arena arena, Puck puck) {
-        this.mainPlayer = mainPlayer;
-        this.enemyPlayer = enemyPlayer;
-        this.maxScore = maxScore;
-        this.arena = arena;
-        this.puck = puck;
-    }
+    private final Integer maxScore;
 
     /**
      * Create a new GameState object using default values.
      */
     public GameState() {
-        this.arena = new Arena(9.0, 16.0);
-        Double halfArenaWidth = this.arena.getWidth() / 2;
-        Double halfArenaHeight = this.arena.getHeight() / 2;
-        this.mainPlayer = new NormalPlayer(new Pair<Double,Double>(halfArenaWidth, this.arena.getHeight()), "Bob");
-        this.enemyPlayer = new EnemyPlayer(new Pair<Double,Double>(halfArenaWidth, 0.0), "Alice", EnemyPlayer.Difficulty.MODERATE);
-        this.maxScore = 5;
-        this.puck = new Puck(new Pair<Double, Double>(halfArenaWidth, halfArenaHeight));
+        this.gamePhysics = new Physics2DImpl();
+        this.arena = new ArenaImpl(50.0f, this.gamePhysics);
+        this.mainPlayer = new MainPlayerImpl(this.gamePhysics);
+        this.enemyPlayer = new EnemyPlayerImpl(this.gamePhysics);
+        this.puck = new PuckImpl(this.gamePhysics);
+        this.maxScore = 35;
     }
 
     /**
-     * Get the main player's object.
-     * @return The main player's object.
+     * Get the current {@link Arena}
+     * @return the arena
      */
-    public Player getMainPlayer() {
+    public Arena getArena() {
+        return this.arena;
+    }
+
+    /**
+     * Get the {@link Player} controlled by the user
+     * @return the {@code Player}
+     */
+    public MainPlayer getMainPlayer() {
         return this.mainPlayer;
     }
 
     /**
-     * Get the enemy player's object.
-     * @return The enemy player's object.
+     * Get the {@link Player} controlled by the CPU
+     * @return the {@code Player}
      */
-    public Player getEnemyPlayer() {
+    public EnemyPlayer getEnemyPlayer() {
         return this.enemyPlayer;
     }
 
     /**
-     * Get the maximum score.
-     * @return The maximum score.
+     * Get the {@link Puck} 
+     * @return the {@code Puck}
+     */
+    public Puck getPuck() {
+        return this.puck;
+    }
+
+    /**
+     * Get the maximum score a {@code Player} can have before
+     * winning the game
+     * @return the integer representing the maxScore
      */
     public Integer getMaxScore() {
         return this.maxScore;
     }
 
-    /*
-    Move the player by calling the player's move method after checking that it can actually move there.
-     */
-    private boolean movePlayer(Player p, Pair<Double,Double> newPosition, Double bottomBoundary, Double topBoundary) {
-        final Double posX = newPosition.getX();
-        final Double posY = newPosition.getY();
-        final boolean canMoveX = posX >= 0 && posX < this.arena.getWidth();
-        final boolean canMoveY = posY < bottomBoundary && posY >= topBoundary;
-        final boolean canMove = canMoveX && canMoveY;
-
-        if (canMove) {
-            p.setPosition(newPosition);
-        }
-
-        return canMove;
-    }
-
-    /**
-     * Move the main player in the position (posX, posY) if it is in the lower part of the arena.
-     * @param newPosition The player's updated position.
-     * @return True if the player could actually move.
-     */
-    public boolean moveMainPlayer(Pair<Double,Double> newPosition) {
-        return movePlayer(this.mainPlayer, newPosition, this.arena.getHeight(), this.arena.getHeight() / 2);
-    }
-
-    /**
-     * Move the enemy player in the position (posX, posY) if it is in the higher part of the arena.
-     * Use this function only if the enemy is not controlled by the computer.
-     * @param newPosition The player's updated position.
-     * @return True if the player could actually move.
-     */
-    public boolean moveEnemyPlayer(Pair<Double,Double> newPosition) {
-        return movePlayer(this.enemyPlayer, newPosition, this.arena.getHeight() / 2, 0.0);
+    public void update() {
+        /*TODO*/
     }
 }
