@@ -15,7 +15,7 @@ public class PuckBody extends RigidBodyImpl {
 	 * @param friction The puck friction in the game.
 	 * @param world
 	 */
-    public PuckBody(final float radius, final Vec2 pos, final Physics2DImpl physicsWorld) {
+    public PuckBody(final float radius, final Vec2 pos, final Physics2D physicsWorld) {
     	setWorld(world);
         setBodyTypeDef(BodyType.DYNAMIC);
         setStartPositionDef(pos);

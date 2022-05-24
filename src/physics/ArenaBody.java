@@ -20,7 +20,7 @@ public class ArenaBody extends RigidBodyImpl {
      * @param goalSize the size of the goal hole
      * @param world the world to generate the arena
      */
-    public ArenaBody(final float width, final float height, final float goalSize, final Physics2DImpl physicsWorld) {
+    public ArenaBody(final float width, final float height, final float goalSize, final Physics2D physicsWorld) {
         this.width = width;
         this.height = height;
         this.goalSize = goalSize;

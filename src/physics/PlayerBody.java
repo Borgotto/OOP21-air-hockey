@@ -14,7 +14,7 @@ public class PlayerBody extends RigidBodyImpl {
 	 * @param pos Position to be spawned
 	 * @param world
 	 */
-    public PlayerBody(final float radius, final Vec2 pos, final Physics2DImpl physicsWorld) {
+    public PlayerBody(final float radius, final Vec2 pos, final Physics2D physicsWorld) {
     	setWorld(world);
         setBodyTypeDef(BodyType.DYNAMIC);
         setLinearDampingDef(0.0f);
