@@ -1,94 +1,34 @@
 package logics;
 
-import java.lang.Math;
-import utils.Pair;
+import org.jbox2d.common.Vec2;
 
-/**
- * The class EnemyAIPlayer represents the enemy player, controlled by the computer.
- */
-public class EnemyPlayer extends Player {
-    
-    private Pair<Double,Double> position;
+import java.util.function.Function;
+
+public interface EnemyPlayer extends Player {
     /**
      * The difficulty the enemy AI.
      * It can be:
      *  - DUMB: the enemy makes random movements (random directions and speed) around the arena
      *  - EASY: the enemy mostly makes random movements, but sometimes it tries to score a goal
-     *  - MODERATE: the enemy often makes random movements, but when it detects that the player tried to score a goal, it defends its goal
-     *  - HARD: the enemy rarely makes random movements, it often either tries to score a goal or defend its area
-     *  - EXTREME: the enemy never makes random movements, it is always alert, it always tries to score a goal and when it is not possible, it defends its area
+     *  - NORMAL: the enemy tries to predict the puck's direction
      */
     public enum Difficulty {
-        DUMB, EASY, MODERATE, HARD, EXTREME
-    }
+        DUMB(null),
+        EASY(null),
+        NORMAL(null);
 
-    protected final Difficulty difficulty;
+        private Function<Vec2, Vec2> movingStrategy;
 
-    /**
-     * This is the constructor for EnemyAIPlayer. It behaves the same as its superclass, but it also adds a level of difficulty.
-     * @param initialPosition The enemy's initial position.
-     * @param name The enemy's name.
-     * @param difficulty The enemy's difficulty.
-     */
-    public EnemyPlayer(Pair<Double,Double> initialPosition, String name, Difficulty difficulty) {
-        super(initialPosition, name);
-        this.difficulty = difficulty;
-    }
-
-    /**
-     * Get the difficulty of the enemy player.
-     * @return The difficulty set for the enemy.
-     */
-    public Difficulty getDifficulty() {
-        return this.difficulty;
-    }
-    
-    /**
-     * The enemy moves in accordance with its difficulty
-     * @return
-     */
-    public Pair<Double,Double> move() {
-        switch(getDifficulty()) {
-            case DUMB:
-                this.position = moveRandom();
-            case EASY:
-            case MODERATE:
-            case HARD:
-            case EXTREME:
+        private Difficulty(Function<Vec2, Vec2> movingStrategy) {
+            this.movingStrategy = movingStrategy;
         }
-        return this.position;
-    }
-    
-    private Pair<Double,Double> moveRandom() {
-        return new Pair<Double,Double>(Math.random(), Math.random());
+
+        public Function<Vec2, Vec2> getMovingStrategy() {
+            return this.movingStrategy;
+        }
     }
 
-    @Override
-    public Pair<Double, Double> nextPosition() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    public Vec2 nextPosition();
 
-    @Override
-    public boolean update() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public void setPosition(Pair<Double, Double> position) {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public Pair<Double, Double> getPosition() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public boolean canMove() {
-        // TODO Auto-generated method stub
-        return false;
-    }
+    public Difficulty getDifficulty();
 }
