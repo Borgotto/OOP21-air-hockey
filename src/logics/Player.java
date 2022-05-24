@@ -1,46 +1,25 @@
 package logics;
 
-import utils.Pair;
-
 /**
  * The abstract class Player contains the common fields and methods that can be found in any player of the game.
  * Instances of the Player class are equivalent to the mallet they control.
  */
-public abstract class Player implements GameObjectWithPhysics {
-    protected Integer score = 0;
-    protected Pair<Double,Double> position;
-    protected final String name;
-
-    /**
-     * This is the default constructor of the Player subclasses. It creates a new player in the position (posX, posY) and gives it a name.
-     * @param initialPosition The player's initial position.
-     * @param name The player's name.
-     */
-    public Player(Pair<Double,Double> initialPosition, String name) {
-        this.position = initialPosition;
-        this.name = name;
-    }
+public interface Player extends GameObjectWithPhysics {
 
     /**
      * Get the current score of the player.
      * @return The player's current score.
      */
-    public Integer getScore() {
-        return this.score;
-    }
+    public Integer getScore();
 
     /**
-     * Get the player name.
-     * @return The player name.
+     * Set the current score of the player.
+     * @param score The player's desired score.
      */
-    public String getName() {
-        return this.name;
-    }
+    public void setScore(Integer score);
 
     /**
      * Score a point.
      */
-    public void scorePoint() {
-        this.score++;
-    }
+    public void scorePoint();
 }
