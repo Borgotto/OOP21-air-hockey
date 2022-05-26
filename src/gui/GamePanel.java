@@ -14,11 +14,12 @@ import java.io.IOException;
 public class GamePanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;
     
-    private final GameState game = new GameState();
+    private GameState game;
+    private Canvas canvas;
     
-    public GamePanel() {
+    public GamePanel(GameState game) throws IOException {
         super("Air Hockey - Game");
-        
+
         c.anchor = GridBagConstraints.CENTER;
         c.weighty = 1.0;
 
@@ -28,9 +29,9 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         c.weightx = 3.0/4.0;
         c.gridheight = 3;
         c.fill = GridBagConstraints.BOTH;
-        Canvas canvas = new Canvas();
-        canvas.setBackground(Color.BLACK);
-        this.add(canvas, c);
+        this.canvas = new Canvas();
+        this.canvas.setBackground(Color.BLACK);
+        this.add(this.canvas, c);
         c.gridheight = 1;
         c.fill = GridBagConstraints.NONE;
 
