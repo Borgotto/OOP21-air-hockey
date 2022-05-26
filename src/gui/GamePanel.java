@@ -1,10 +1,15 @@
 package gui;
 
-import java.awt.*;
-import javax.swing.*;
-
+import logics.Arena;
 import logics.GameState;
 import utils.JPanelLoader;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class GamePanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;
