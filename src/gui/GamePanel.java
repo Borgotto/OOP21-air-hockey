@@ -53,5 +53,71 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
             JPanelLoader.load(JPanelLoader.getParentFrame(this), new PausePanel());
         });
         this.add(pauseButton, c);
+        this.game = game;
+
+        this.gameLoop();
+    }
+
+    public GamePanel() throws IOException {
+        this(new GameState());
+    }
+
+    private void gameLoop() throws IOException {
+        boolean exit = false;
+
+        BufferedImage puck = loadImage("puck.png");
+        BufferedImage mainPlayer = loadImage("main_player.png");
+        BufferedImage enemyPlayer = loadImage("enemy_player.png");
+        BufferedImage arena = loadImage("arena.png");
+
+        while (!exit) {
+            game.update();
+            BufferedImage frame = this.drawFrame(puck, mainPlayer, enemyPlayer, arena);
+            canvas.getGraphics().drawImage(frame, 0,0, null);
+        }
+    }
+
+    private BufferedImage drawFrame(BufferedImage puckImage, BufferedImage mainPlayerImage, BufferedImage enemyPlayerImage, BufferedImage arenaImage) {
+        // get the frame's size
+        Arena arena = game.getArena();
+        int frameWidth = this.metersToPixel(arena.getWidth());
+        int frameHeight = this.metersToPixel(arena.getHeight());
+
+        // initialize the frame
+        BufferedImage fullFrame = new BufferedImage(frameWidth, frameHeight, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = fullFrame.createGraphics();
+
+        // draw the arena
+        g.drawImage(arenaImage, 0, 0, frameWidth, frameHeight, null);
+
+        // draw the puck
+        int puckX = this.metersToPixel(game.getPuck().getPosition().x);
+        int puckY = this.metersToPixel(game.getPuck().getPosition().y);
+        g.drawImage(puckImage, puckX, puckY, null);
+
+        // draw the main player
+        int mainPlayerX = this.metersToPixel(game.getMainPlayer().getPosition().x);
+        int mainPlayerY = this.metersToPixel(game.getMainPlayer().getPosition().y);
+        g.drawImage(mainPlayerImage, mainPlayerX, mainPlayerY, null);
+
+        // draw the enemy player
+        int enemyPlayerX = this.metersToPixel(game.getEnemyPlayer().getPosition().x);
+        int enemyPlayerY = this.metersToPixel(game.getEnemyPlayer().getPosition().y);
+        g.drawImage(enemyPlayerImage, enemyPlayerX, enemyPlayerY, null);
+
+        return fullFrame;
+    }
+
+    private BufferedImage loadImage(String filename) throws IOException {
+        return ImageIO.read(new File("res/", filename));
+    }
+
+    /* Convert meters to pixels */
+    private int metersToPixel(float meters) {
+        int pixelHeight = this.getHeight();
+        float metersHeight = this.game.getArena().getHeight();
+
+        float ratio = pixelHeight / metersHeight;
+        return (int) (meters * ratio);
     }
 }
