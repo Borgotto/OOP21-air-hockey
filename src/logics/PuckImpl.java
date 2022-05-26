@@ -18,7 +18,8 @@ public class PuckImpl implements Puck {
      * @param world the {@link Physics2D} object to put the puck in
      */
 	public PuckImpl(Physics2D world) {
-		this.body = new PuckBody(7.0f,null, world);
+        // TODO: import Arena to scale position
+		this.body = new PuckBody(7.0f,new Vec2(9.0f, 16.0f), world);
 	}
 	
 	public void update() {

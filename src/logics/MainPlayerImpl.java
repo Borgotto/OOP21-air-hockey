@@ -14,7 +14,8 @@ public class MainPlayerImpl implements MainPlayer {
     private Integer score;
 
     public MainPlayerImpl(Physics2D world) {
-        this.body = new PlayerBody(7.0f, null, world);
+        // TODO: import Arena to scale position
+        this.body = new PlayerBody(7.0f, new Vec2(9.0f, 8.0f), world);
         this.score = 0;
     }
 
