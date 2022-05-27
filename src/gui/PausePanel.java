@@ -34,7 +34,7 @@ public class PausePanel extends AbstractGridBagLayoutJPanel {
             try {
                 JPanelLoader.load(parentFrame, new GamePanel());
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(parentFrame, ex.getMessage(), "Error while creating GamePanel", JOptionPane.ERROR_MESSAGE);
+                new ExceptionPanel(ex);
             }
         });
         this.add(restart, c);
