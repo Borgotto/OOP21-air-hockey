@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="OOP21-air-hockey:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/OOP21_air_hockey_jar</output-path>
+    <root id="archive" name="OOP21-air-hockey.jar">
+      <element id="module-output" name="OOP21-air-hockey" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jbox2d-library.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$/res" />
+    </root>
+  </artifact>
+</component>

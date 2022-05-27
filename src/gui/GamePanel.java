@@ -3,6 +3,7 @@ package gui;
 import logics.Arena;
 import logics.GameState;
 import utils.JPanelLoader;
+import utils.ResourceLoader;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -65,10 +66,10 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     private void gameLoop() throws IOException {
         boolean exit = false;
 
-        BufferedImage puck = loadImage("puck.png");
-        BufferedImage mainPlayer = loadImage("main_player.png");
-        BufferedImage enemyPlayer = loadImage("enemy_player.png");
-        BufferedImage arena = loadImage("arena.png");
+        BufferedImage puck = ResourceLoader.loadImage("puck.png");
+        BufferedImage mainPlayer = ResourceLoader.loadImage("main_player.png");
+        BufferedImage enemyPlayer = ResourceLoader.loadImage("enemy_player.png");
+        BufferedImage arena = ResourceLoader.loadImage("arena.png");
 
         while (!exit) {
             game.update();

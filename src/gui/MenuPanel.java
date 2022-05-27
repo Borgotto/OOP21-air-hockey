@@ -1,6 +1,7 @@
 package gui;
 
 import utils.JPanelLoader;
+import utils.ResourceLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +23,7 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         c.insets = new Insets(15,15,15,15);  //padding
 
         c.gridy = 0;
-        var logoLabel = new JLabel("inserire immagine logo qua");
+        var logoLabel = new JLabel(new ImageIcon(ResourceLoader.loadImage("airhockey_logo.png")));
         this.add(logoLabel, c);
 
         c.gridy = 1;
