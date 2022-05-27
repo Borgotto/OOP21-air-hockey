@@ -23,7 +23,7 @@ public class PausePanel extends AbstractGridBagLayoutJPanel {
         c.anchor = GridBagConstraints.SOUTH;
         JButton resume = new JButton("Resume");
         resume.addActionListener(e -> {
-            JPanelLoader.load(JPanelLoader.getParentFrame(this), new GamePanel());
+            SwingUtilities.getWindowAncestor(this).dispose();
         });
         this.add(resume, c);
 
