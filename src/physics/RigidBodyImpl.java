@@ -68,12 +68,19 @@ public abstract class RigidBodyImpl implements RigidBody {
     }
     
     /**
-     * resets the body position to the start position.
+     * reset the body position to the start position.
      */
     @Override
     public void resetBodyPos() {
-        body.setLinearVelocity(new Vec2(0.0f, 0.0f));
+        resetBodySpeed();
         body.setTransform(getStartPositionDef(), 0.0f);
+    }
+    
+    /**
+     * reset the body speed, stops the body
+     */
+    protected void resetBodySpeed() {
+        body.setLinearVelocity(new Vec2(0.0f, 0.0f));
     }
 
     /**

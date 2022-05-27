@@ -43,7 +43,7 @@ public class PlayerBody extends RigidBodyImpl {
      * Apply a force to the player body.
      * @param force to be applied to the body.
      */
-    public void applyForce(final Vec2 force) {
+    public void updateSpeedVec(final Vec2 force) {
         getBody().applyForceToCenter(force);
     }
     
