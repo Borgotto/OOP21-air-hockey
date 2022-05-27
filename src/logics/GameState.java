@@ -1,5 +1,6 @@
 package logics;
 
+import org.jbox2d.common.Vec2;
 import physics.Physics2D;
 import physics.Physics2DImpl;
 
@@ -24,10 +25,15 @@ public class GameState implements GameObject, Serializable {
     public GameState() {
         this.gamePhysics = new Physics2DImpl();
         this.arena = new ArenaImpl(50.0f, this.gamePhysics);
-        this.mainPlayer = new MainPlayerImpl(this.gamePhysics);
-        this.enemyPlayer = new EnemyPlayerImpl(this.gamePhysics);
-        this.puck = new PuckImpl(this.gamePhysics);
         this.maxScore = 35;
+
+        float arenaWidth = this.getArena().getWidth();
+        float arenaHeight = this.getArena().getHeight();
+        float goalSize = this.getArena().getGoalWidth();
+
+        this.mainPlayer = new MainPlayerImpl(this.gamePhysics, arenaWidth / 6.0f, new Vec2(arenaWidth / 2.0f, arenaHeight * (1.0f / 4.0f)));
+        this.enemyPlayer = new EnemyPlayerImpl(this.gamePhysics, arenaWidth / 6.0f, new Vec2(arenaWidth / 2.0f,  arenaHeight * (3.0f / 4.0f)));
+        this.puck = new PuckImpl(this.gamePhysics, goalSize * (4.0f / 5.0f), new Vec2(arenaWidth / 2.0f, arenaHeight / 2.0f));
     }
 
     /**
