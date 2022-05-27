@@ -43,7 +43,7 @@ public class PausePanel extends AbstractGridBagLayoutJPanel {
         c.anchor = GridBagConstraints.NORTH;
         JButton exit = new JButton("Exit");
         exit.addActionListener(e -> {
-            int answer = JOptionPane.showConfirmDialog(null, "Exit?", "Confirm exit?", JOptionPane.YES_NO_OPTION);
+            int answer = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Exit?", JOptionPane.YES_NO_OPTION);
             if (answer == JOptionPane.YES_OPTION) {
                 JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
                 frame.dispose();
