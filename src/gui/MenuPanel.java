@@ -33,7 +33,7 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
             try {
                 JPanelLoader.load(parentFrame, new GamePanel());
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(parentFrame, ex.getMessage(), "Error while creating GamePanel", JOptionPane.ERROR_MESSAGE);
+                new ExceptionPanel(ex);
             }
         });
         this.add(b1, c);
