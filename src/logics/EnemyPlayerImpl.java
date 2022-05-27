@@ -18,9 +18,8 @@ public class EnemyPlayerImpl implements EnemyPlayer {
     private final Difficulty difficulty;
     private Integer score;
 
-    public EnemyPlayerImpl(Physics2D world) {
-        // TODO: import Arena to scale position
-        this.body = new PlayerBody(10.0f, new Vec2(9.0f, 24.0f), world);
+    public EnemyPlayerImpl(Physics2D world, float radius, Vec2 position) {
+        this.body = new PlayerBody(radius, position, world);
         this.difficulty = Difficulty.EASY;
         this.score = 0;
     }
