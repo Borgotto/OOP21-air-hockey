@@ -33,6 +33,12 @@ public class PuckImpl implements Puck {
 	public void moveToPlayer(ArenaImpl arena, Player player) {
 	    //TODO
 	}
+	
+	public Vec2 getNextPos() {
+	    //TODO
+	    return null;
+	}
+	
 	public Vec2 getPosition() {
 		return this.body.getPosition();
 	}
