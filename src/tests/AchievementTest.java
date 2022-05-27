@@ -2,15 +2,13 @@ package tests;
 
 import logics.AchievementImpl;
 import logics.GameState;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.*;
 
 class AchievementTest {
 
-	@Test
-	void testAchievement() {
+    @org.junit.Test
+	public void testAchievement() {
 		var gamestate = new GameState();
         var achievement = new AchievementImpl(null, "Champion", "Score 5 goals in one game", (game) -> game.getMainPlayer().getScore() >= 5);
         var achievement2 = new AchievementImpl(null, "PogChamp", "score 15 goals in one game", (game) -> game.getMainPlayer().getScore() >= 15);
