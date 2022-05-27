@@ -1,13 +1,30 @@
 package utils;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Optional;
 
 /**
- * Functional interface to serialize a generic object {@code O}
+ * Functional interface to serialize and deserialize a generic object {@code O}
  */
 public interface ObjectSerializer <O> {
-    void serialize(O obj, String filename) throws IOException;
-    Optional<O> deserialize(String filename) throws IOException, FileNotFoundException, ClassNotFoundException;
+    static <O> void serialize(O obj, String filename) throws IOException {
+        try (FileOutputStream file = new FileOutputStream(filename);
+                ObjectOutputStream out = new ObjectOutputStream(file);) {
+            out.writeObject(obj);
+        }
+    };
+    
+    
+    @SuppressWarnings("unchecked")
+    static <O> Optional<O> deserialize(String filename) throws IOException, FileNotFoundException, ClassNotFoundException {
+        try (FileInputStream file = new FileInputStream(filename);
+                ObjectInputStream in = new ObjectInputStream(file);) {
+               return Optional.of((O)in.readObject());
+           }
+       };
 }
