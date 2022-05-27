@@ -6,6 +6,7 @@ import utils.MessageDialogBuilder;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class PausePanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;
@@ -30,7 +31,13 @@ public class PausePanel extends AbstractGridBagLayoutJPanel {
         c.anchor = GridBagConstraints.CENTER;
         JButton restart = new JButton("Restart");
         restart.addActionListener(e -> {
-            JPanelLoader.load(JPanelLoader.getParentFrame(this), new GamePanel(new GameState()));
+            JFrame parentFrame = JPanelLoader.getParentFrame(this);
+
+            try {
+                JPanelLoader.load(parentFrame, new GamePanel());
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(parentFrame, ex.getMessage(), "Error while creating GamePanel", JOptionPane.ERROR_MESSAGE);
+            }
         });
         this.add(restart, c);
 
