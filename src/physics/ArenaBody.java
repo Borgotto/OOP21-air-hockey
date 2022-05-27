@@ -9,9 +9,9 @@ import org.jbox2d.dynamics.FixtureDef;
 
 public class ArenaBody extends RigidBodyImpl {
 	
-    public final float width;
-    public final float height;
-    public final float goalSize;
+    private final float width;
+    private final float height;
+    private final float goalSize;
     
     /**
      * ArenaBody constructor

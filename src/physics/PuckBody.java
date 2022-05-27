@@ -8,6 +8,8 @@ import org.jbox2d.dynamics.FixtureDef;
 
 public class PuckBody extends RigidBodyImpl {
 	
+    private final float radius;
+    
 	/**
 	 * Puck body generator.
 	 * @param radius
@@ -16,6 +18,8 @@ public class PuckBody extends RigidBodyImpl {
 	 * @param world
 	 */
     public PuckBody(final float radius, final Vec2 pos, final Physics2D physicsWorld) {
+        this.radius = radius;
+        
     	setWorld(world);
         setBodyTypeDef(BodyType.DYNAMIC);
         setStartPositionDef(pos);
@@ -23,7 +27,7 @@ public class PuckBody extends RigidBodyImpl {
         configBodyDef();
         
         CircleShape shape = new CircleShape();
-        shape.m_radius = radius;
+        shape.m_radius = getRadius();
         
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;
@@ -43,5 +47,12 @@ public class PuckBody extends RigidBodyImpl {
     public Vec2 getNextPos() {
         return new Vec2(getBody().getLinearVelocity().x + getPosition().x, getBody().getLinearVelocity().y + getPosition().y);
     }
+
+    /**
+     * @return the radius
+     */
+    public float getRadius() {
+        return radius;
+    } 
     
 }
