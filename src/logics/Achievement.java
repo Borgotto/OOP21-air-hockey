@@ -1,8 +1,8 @@
 package logics;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.util.function.Predicate;
-import javax.swing.ImageIcon;
 
 public interface Achievement extends Serializable {
 	

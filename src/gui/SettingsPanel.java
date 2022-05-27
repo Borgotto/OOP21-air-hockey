@@ -1,9 +1,8 @@
 package gui;
 
-import java.awt.*;
-import javax.swing.*;
-
 import utils.JPanelLoader;
+
+import javax.swing.*;
 
 
 public class SettingsPanel extends AbstractGridBagLayoutJPanel {

@@ -1,8 +1,9 @@
 package logics;
 
-import java.io.Serializable;
 import physics.Physics2D;
 import physics.Physics2DImpl;
+
+import java.io.Serializable;
 
 /**
  * The class GameState holds the state of the game.

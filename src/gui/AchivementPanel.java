@@ -1,10 +1,11 @@
 package gui;
 
-import java.awt.*;
-import java.awt.image.*;
-import javax.swing.*;
-import java.io.*;
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class AchivementPanel extends AbstractGridBagLayoutJPanel {
 	private static final long serialVersionUID = 1L;

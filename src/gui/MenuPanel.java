@@ -1,12 +1,14 @@
 package gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.net.*;
-import javax.swing.*;
-
 import utils.JPanelLoader;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class MenuPanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;

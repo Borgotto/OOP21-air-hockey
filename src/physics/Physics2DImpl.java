@@ -1,10 +1,10 @@
 package physics;
 
-import java.util.ArrayList;
-
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
+
+import java.util.ArrayList;
 
 public class Physics2DImpl implements Physics2D {	
     private final Vec2 gravity;

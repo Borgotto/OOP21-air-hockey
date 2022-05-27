@@ -1,8 +1,8 @@
 package gui;
 
-import javax.swing.*;
-
 import utils.JPanelLoader;
+
+import javax.swing.*;
 
 public class GUI extends JFrame {
     private static final long serialVersionUID = 1L;

@@ -1,7 +1,7 @@
 package logics;
 
+import javax.swing.*;
 import java.util.function.Predicate;
-import javax.swing.ImageIcon;
 
 public class AchievementImpl implements Achievement {
 	
