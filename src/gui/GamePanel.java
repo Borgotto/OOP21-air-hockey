@@ -16,6 +16,10 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     
     private GameState game;
     private Canvas canvas;
+
+    public GamePanel() throws IOException {
+        this(new GameState());
+    }
     
     public GamePanel(GameState game) throws IOException {
         super("Air Hockey - Game");
@@ -56,10 +60,6 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         this.game = game;
 
         this.gameLoop();
-    }
-
-    public GamePanel() throws IOException {
-        this(new GameState());
     }
 
     private void gameLoop() throws IOException {
