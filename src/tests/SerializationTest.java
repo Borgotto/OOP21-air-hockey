@@ -2,10 +2,7 @@ package tests;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 import utils.ObjectSerializer;
 
@@ -26,18 +23,41 @@ public class SerializationTest {
         try {
             ObjectSerializer.serialize("string", "string.ser");
         } catch (IOException e) {
+            e.printStackTrace();
             fail("failed to serialize");
         }
     }
     
     @org.junit.Test
     void testDeserialization() {
-        
+        try {
+            assertTrue(ObjectSerializer.deserialize("string.ser").equals("string"));
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            fail("failed to deserialize");
+        }
     }
     
     @org.junit.Test
     void testSerializationAndDeserialization() {
-        
+        try {
+            ObjectSerializer.serialize("string", "string.ser");
+            assertTrue(ObjectSerializer.deserialize("string.ser").equals("string"));
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            fail("failed to serialize and deserialize");
+        }
+    }
+
+    @org.junit.Test
+    void testDeserializationAndSerialization() {
+        try {
+            ObjectSerializer.deserialize("string.ser");
+            ObjectSerializer.serialize("string", "string.ser");
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            fail("failed to serialize and deserialize");
+        }
     }
     
     @org.junit.After
