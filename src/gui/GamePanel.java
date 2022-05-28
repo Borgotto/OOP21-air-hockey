@@ -18,11 +18,11 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     private GameState game;
     private Canvas canvas;
 
-    public GamePanel() throws IOException {
+    public GamePanel() {
         this(new GameState());
     }
     
-    public GamePanel(GameState game) throws IOException {
+    public GamePanel(GameState game) {
         super("Air Hockey - Game");
 
         c.anchor = GridBagConstraints.CENTER;
@@ -63,7 +63,7 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         this.gameLoop();
     }
 
-    private void gameLoop() throws IOException {
+    private void gameLoop() {
         boolean exit = false;
 
         BufferedImage puck = ResourceLoader.loadImage("puck.png");
