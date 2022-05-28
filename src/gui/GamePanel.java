@@ -109,10 +109,6 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         return fullFrame;
     }
 
-    private BufferedImage loadImage(String filename) throws IOException {
-        return ImageIO.read(new File("res/", filename));
-    }
-
     /* Convert meters to pixels */
     private int metersToPixel(float meters) {
         int pixelHeight = this.getHeight();
