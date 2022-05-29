@@ -5,28 +5,33 @@ import gui.ExceptionPanel;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.file.Path;
+import java.util.Optional;
 
 /**
  * Load resources from the JAR file.
  */
-public class ResourceLoader {
+public interface ResourceLoader {
     /**
-     * Load an image from the JAR file.
-     * @param resourceName The resource name (without path).
-     * @return The image as a BufferedImage.
+     * Load a generic F file from the JAR file.
+     * Currently supported:
+     * - Images
+     * @param resourcePath The resource name (with path).
+     * @param fileType The file type.
+     * @return The file as {@code fileType} class.
      */
-    public static BufferedImage loadImage(String resourceName) {
-        BufferedImage img;
+    @SuppressWarnings("unchecked")
+    public static <F> F load(Path resourcePath, Class<F> fileType) throws IOException {
+        File file = resourcePath.toFile();
 
-        try {
-            img = ImageIO.read(new FileInputStream("res/" + resourceName));
-        } catch (IOException e) {
-            new ExceptionPanel(e);
-
-            // this won't be executed anyway
-            img = new BufferedImage(0, 0, BufferedImage.TYPE_INT_RGB);
+        try (FileInputStream fileInputStream = new FileInputStream(file)) {
+            switch (fileType.getName()) {
+                case "java.awt.image.BufferedImage":
+                    return (F) ImageIO.read(fileInputStream);
+                default:
+                    throw new IllegalArgumentException("Unsupported file type: " + fileType.getName());
+            }
         }
 
-        return img;
     }
 }
