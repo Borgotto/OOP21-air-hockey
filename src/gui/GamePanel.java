@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 public class GamePanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;
@@ -66,15 +67,19 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     private void gameLoop() {
         boolean exit = false;
 
-        BufferedImage puck = ResourceLoader.loadImage("puck.png");
-        BufferedImage mainPlayer = ResourceLoader.loadImage("main_player.png");
-        BufferedImage enemyPlayer = ResourceLoader.loadImage("enemy_player.png");
-        BufferedImage arena = ResourceLoader.loadImage("arena.png");
+        try {
+            BufferedImage puck = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+            BufferedImage mainPlayer = ResourceLoader.load(Path.of("res/main_player.png"), BufferedImage.class);
+            BufferedImage enemyPlayer = ResourceLoader.load(Path.of("res/enemy_player.png"), BufferedImage.class);
+            BufferedImage arena = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
 
-        while (!exit) {
-            game.update();
-            BufferedImage frame = this.drawFrame(puck, mainPlayer, enemyPlayer, arena);
-            canvas.getGraphics().drawImage(frame, 0,0, null);
+            while (!exit) {
+                game.update();
+                BufferedImage frame = this.drawFrame(puck, mainPlayer, enemyPlayer, arena);
+                canvas.getGraphics().drawImage(frame, 0,0, null);
+            }
+        } catch (IOException e) {
+            new ExceptionPanel(e);
         }
     }
 
