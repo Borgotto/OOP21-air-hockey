@@ -8,9 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
 
 public class MenuPanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;
@@ -24,13 +26,7 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         c.insets = new Insets(15,15,15,15);  //padding
 
         c.gridy = 0;
-        Image logoImage = ResourceLoader.loadImage("airhockey_logo.png");
-        int logoImageRatio = logoImage.getWidth(null) / logoImage.getHeight(null);
-        int logoImageWidth = this.getWidth();
-        ImageIcon scaledLogo = new ImageIcon(ImageScaler.scale(logoImage, new Dimension(logoImageWidth, logoImageWidth / logoImageRatio)));
-        var logoLabel = new JLabel();
-        logoLabel.setIcon(scaledLogo);
-        this.add(logoLabel, c);
+        this.add(new JLabel(), c);
 
         c.gridy = 1;
         var b1 = new JButton("New game");
@@ -93,5 +89,18 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
             System.exit(0);
         });
         this.add(b5, c);
+    }
+
+    /**
+     * Method to be called after the panel is loaded.
+     * It's used to set the images to the correct size in this panel.
+     */
+    protected void setImages() {
+        try {
+            // TODO: get logo label and set its image to "res/airhockey_logo.png"
+            throw new IOException("Not implemented yet");
+        } catch (IOException e) {
+            new ExceptionPanel(e);
+        }
     }
 }
