@@ -1,5 +1,6 @@
 package gui;
 
+import utils.ImageScaler;
 import utils.JPanelLoader;
 import utils.ResourceLoader;
 
@@ -23,7 +24,12 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         c.insets = new Insets(15,15,15,15);  //padding
 
         c.gridy = 0;
-        var logoLabel = new JLabel(new ImageIcon(ResourceLoader.loadImage("airhockey_logo.png")));
+        Image logoImage = ResourceLoader.loadImage("airhockey_logo.png");
+        int logoImageRatio = logoImage.getWidth(null) / logoImage.getHeight(null);
+        int logoImageWidth = this.getWidth();
+        ImageIcon scaledLogo = new ImageIcon(ImageScaler.scale(logoImage, new Dimension(logoImageWidth, logoImageWidth / logoImageRatio)));
+        var logoLabel = new JLabel();
+        logoLabel.setIcon(scaledLogo);
         this.add(logoLabel, c);
 
         c.gridy = 1;
