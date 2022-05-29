@@ -75,8 +75,7 @@ public interface EnemyPlayer extends Player {
         }
     }
 
-	
-    public Vec2 nextPosition();
+    public Vec2 nextPosition(GameState gameState);
 
     public Difficulty getDifficulty();
 }

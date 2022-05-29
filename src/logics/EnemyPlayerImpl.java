@@ -32,8 +32,8 @@ public class EnemyPlayerImpl implements EnemyPlayer {
         //TODO
     }
     
-    public Vec2 nextPosition() {
-        return this.difficulty.getMovingStrategy().apply(this.getPosition());
+    public Vec2 nextPosition(GameState gameState) {
+        return this.difficulty.getMovingStrategy().apply(gameState);
     }
 
     public Integer getScore() {
