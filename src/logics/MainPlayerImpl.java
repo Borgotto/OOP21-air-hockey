@@ -5,6 +5,7 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import physics.Physics2D;
 import physics.PlayerBody;
+import physics.RigidBody;
 
 /**
  * The class NormalPlayer represents a user-controlled player.
@@ -48,6 +49,10 @@ public class MainPlayerImpl implements MainPlayer {
 
     public Body getBody() {
         return this.body.getBody();
+    }
+
+    public RigidBody getRigidBody() {
+        return this.body;
     }
 
     public void resetBodyPos() {

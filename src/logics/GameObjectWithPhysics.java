@@ -8,5 +8,10 @@ import physics.RigidBody;
  *
  */
 public interface GameObjectWithPhysics extends GameObject, RigidBody {
+
+    /**
+     * @return the {@link physics.RigidBody} of the current {@code GameObjectWithPhysics}
+     */
+    public RigidBody getRigidBody();
     
 }

@@ -5,6 +5,7 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import physics.Physics2D;
 import physics.PuckBody;
+import physics.RigidBody;
 
 /**
  * The Puck class representing the puck of the {@link Arena}
@@ -53,6 +54,10 @@ public class PuckImpl implements Puck {
     public Body getBody() {
         return this.body.getBody();
     }
+
+	public RigidBody getRigidBody() {
+		return this.body;
+	}
 
     public void resetBodyPos() {
         this.body.resetBodyPos();

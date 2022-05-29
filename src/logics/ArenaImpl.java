@@ -5,6 +5,7 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import physics.ArenaBody;
 import physics.Physics2D;
+import physics.RigidBody;
 
 
 /**
@@ -46,6 +47,10 @@ public class ArenaImpl implements Arena {
 
     public Body getBody() {
         return this.body.getBody();
+    }
+
+    public RigidBody getRigidBody() {
+        return this.body;
     }
 
     public float getWidth() {
