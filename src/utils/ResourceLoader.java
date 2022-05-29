@@ -21,8 +21,10 @@ public class ResourceLoader {
         try {
             img = ImageIO.read(new FileInputStream("res/" + resourceName));
         } catch (IOException e) {
-            img = new BufferedImage(0, 0, BufferedImage.TYPE_INT_ARGB);
             new ExceptionPanel(e);
+
+            // this won't be executed anyway
+            img = new BufferedImage(0, 0, BufferedImage.TYPE_INT_RGB);
         }
 
         return img;
