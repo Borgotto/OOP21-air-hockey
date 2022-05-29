@@ -10,6 +10,8 @@ public class GUI extends JFrame {
     public GUI(Integer size) {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(3*size, 4*size);
+
+        this.pack();
         
         JPanelLoader.load(this, new MenuPanel());
 
