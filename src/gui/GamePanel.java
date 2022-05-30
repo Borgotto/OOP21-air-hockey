@@ -91,33 +91,31 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         }
     }
 
-    private BufferedImage drawFrame(BufferedImage puckImage, BufferedImage mainPlayerImage, BufferedImage enemyPlayerImage, BufferedImage arenaImage) {
+    private BufferedImage drawFrame() {
+        // get the positions
+        Pair<Integer, Integer> mainPlayerPosition = UnitConverter.MeterToPixel(this.game.getMainPlayer().getPosition());
+        Pair<Integer, Integer> enemyPlayerPosition = UnitConverter.MeterToPixel(this.game.getEnemyPlayer().getPosition());
+        Pair<Integer, Integer> puckPosition = UnitConverter.MeterToPixel(this.game.getPuck().getPosition());
+
         // get the frame's size
-        Arena arena = game.getArena();
-        int frameWidth = this.metersToPixel(arena.getWidth());
-        int frameHeight = this.metersToPixel(arena.getHeight());
+        Arena arena = this.game.getArena();
+        Pair<Integer, Integer> frameSize = UnitConverter.MeterToPixel(new Vec2(arena.getWidth(), arena.getHeight()));
 
         // initialize the frame
-        BufferedImage fullFrame = new BufferedImage(frameWidth, frameHeight, BufferedImage.TYPE_INT_RGB);
+        BufferedImage fullFrame = new BufferedImage(frameSize.getX(), frameSize.getY(), BufferedImage.TYPE_INT_RGB);
         Graphics2D g = fullFrame.createGraphics();
 
         // draw the arena
-        g.drawImage(arenaImage, 0, 0, frameWidth, frameHeight, null);
+        g.drawImage(this.arenaImage, 0, 0, frameSize.getX(), frameSize.getY(), null);
 
         // draw the puck
-        int puckX = this.metersToPixel(game.getPuck().getPosition().x);
-        int puckY = this.metersToPixel(game.getPuck().getPosition().y);
-        g.drawImage(puckImage, puckX, puckY, null);
+        g.drawImage(this.puckImage, puckPosition.getX(), puckPosition.getY(), null);
 
         // draw the main player
-        int mainPlayerX = this.metersToPixel(game.getMainPlayer().getPosition().x);
-        int mainPlayerY = this.metersToPixel(game.getMainPlayer().getPosition().y);
-        g.drawImage(mainPlayerImage, mainPlayerX, mainPlayerY, null);
+        g.drawImage(this.mainPlayerImage, mainPlayerPosition.getX(), mainPlayerPosition.getY(), null);
 
         // draw the enemy player
-        int enemyPlayerX = this.metersToPixel(game.getEnemyPlayer().getPosition().x);
-        int enemyPlayerY = this.metersToPixel(game.getEnemyPlayer().getPosition().y);
-        g.drawImage(enemyPlayerImage, enemyPlayerX, enemyPlayerY, null);
+        g.drawImage(this.enemyPlayerImage, enemyPlayerPosition.getX(), enemyPlayerPosition.getY(), null);
 
         return fullFrame;
     }
