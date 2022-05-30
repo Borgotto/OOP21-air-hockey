@@ -32,7 +32,11 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         var b1 = new JButton("New game");
         b1.addActionListener(e -> {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            JPanelLoader.load(parentFrame, new GamePanel());
+            try {
+                JPanelLoader.load(parentFrame, new GamePanel());
+            } catch (IOException ex) {
+                new ExceptionPanel(ex);
+            }
         });
         this.add(b1, c);
 

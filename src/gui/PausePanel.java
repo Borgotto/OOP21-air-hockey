@@ -30,7 +30,11 @@ public class PausePanel extends AbstractGridBagLayoutJPanel {
         JButton restart = new JButton("Restart");
         restart.addActionListener(e -> {
             JFrame parentFrame = JPanelLoader.getParentFrame(this);
-            JPanelLoader.load(parentFrame, new GamePanel());
+            try {
+                JPanelLoader.load(parentFrame, new GamePanel());
+            } catch (IOException ex) {
+                new ExceptionPanel(ex);
+            }
         });
         this.add(restart, c);
 
