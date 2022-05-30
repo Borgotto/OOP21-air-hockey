@@ -3,25 +3,29 @@ package utils;
 import org.jbox2d.common.Vec2;
 
 public class UnitConverter {
-    
-    private static final const double deltaConversion;
-    
-    public UnitConverter(double deltaConversion) {
-        this.deltaConversion = deltaConversion;
-    }
-    
-	public static Pair<Integer,Integer> MeterToPixel(final Vec2 posVector, final double delta) {
-		int xPair = (int)(posVector.x*delta);
-		int yPair = (int)(posVector.y*delta);
+   
+    private static double deltaConversion = 1.0;
+
+	public static Pair<Integer,Integer> MeterToPixel(final Vec2 posVector) {
+		int xPair = (int)(posVector.x*deltaConversion);
+		int yPair = (int)(posVector.y*deltaConversion);
 		Pair<Integer,Integer> posPair = new Pair<Integer,Integer>(xPair, yPair);
 		return posPair;
 	}
 	
-	public static Vec2 PixelToMeter(final Pair<Integer,Integer> posPair, final double delta) {
-		float xVec = (float)(posPair.getX()/delta);
-		float yVec = (float)(posPair.getY()/delta);
+	public static Vec2 PixelToMeter(final Pair<Integer,Integer> posPair) {
+		float xVec = (float)(posPair.getX()/deltaConversion);
+		float yVec = (float)(posPair.getY()/deltaConversion);
 		Vec2 posVector = new Vec2(xVec, yVec);
 		return posVector;
+	}
+	
+	public static void setDeltaConversion(double constant) {
+	    deltaConversion = constant;
+	}
+	
+	public static double getDeltaConversion() {
+	    return deltaConversion;
 	}
 	
 }
