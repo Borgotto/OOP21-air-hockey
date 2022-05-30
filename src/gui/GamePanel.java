@@ -79,19 +79,15 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     private void gameLoop() {
         boolean exit = false;
 
-        try {
-            BufferedImage puck = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
-            BufferedImage mainPlayer = ResourceLoader.load(Path.of("res/main_player.png"), BufferedImage.class);
-            BufferedImage enemyPlayer = ResourceLoader.load(Path.of("res/enemy_player.png"), BufferedImage.class);
-            BufferedImage arena = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
+        // Create buttons to handle the puck and the two players
+        JButton mainPlayerButton = new JButton("", new ImageIcon(this.mainPlayerImage));
+        JButton enemyPlayerButton = new JButton("", new ImageIcon(this.enemyPlayerImage));
+        JButton puckButton = new JButton("", new ImageIcon(this.puckImage));
 
-            while (!exit) {
-                game.update();
-                BufferedImage frame = this.drawFrame(puck, mainPlayer, enemyPlayer, arena);
-                canvas.getGraphics().drawImage(frame, 0,0, null);
-            }
-        } catch (IOException e) {
-            new ExceptionPanel(e);
+        while (!exit) {
+            BufferedImage frame = this.drawFrame();
+            this.canvas.getGraphics().drawImage(frame, 0,0, null);
+            this.game.update();
         }
     }
 
