@@ -2,14 +2,15 @@ package gui;
 
 import logics.Arena;
 import logics.GameState;
+import org.jbox2d.common.Vec2;
 import utils.JPanelLoader;
+import utils.Pair;
 import utils.ResourceLoader;
+import utils.UnitConverter;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
