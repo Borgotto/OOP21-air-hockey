@@ -15,20 +15,29 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 
 public class MenuPanel extends AbstractGridBagLayoutJPanel {
-    private static final long serialVersionUID = 1L;
-
     public MenuPanel() {
-        super("Air Hockey");
-     
-        c.fill = GridBagConstraints.BOTH;
-        c.weightx = 0.9;
-        c.weighty = 0.9;
-        c.insets = new Insets(15,15,15,15);  //padding
+        super("Air Hockey", new Dimension(GUI.getMinScreenSize()/2, GUI.getMinScreenSize()));
 
+        int pad = this.getPreferredSize().width/40;
+        c.insets = new Insets(pad, pad, pad/2, pad);
+        c.gridx = 0;
         c.gridy = 0;
-        this.add(new JLabel(), c);
 
+        // adjust the logo image size based on the panel size
+        // the image needs to have 2:1 aspect ratio or it'll get stretched
+        Image logoImage = new ImageIcon("res/airhockey_logo.png").getImage();
+        Dimension logoDimension = new Dimension(this.getPreferredSize().width-2*pad, (this.getPreferredSize().height-2*pad)/4 );
+        ImageIcon logoIconScaled = new ImageIcon(ImageScaler.scale(logoImage, logoDimension));
+        JLabel logoLabel = new JLabel(logoIconScaled);
+        this.add(logoLabel, c);
+
+        c.insets = new Insets(pad/2, pad, pad/2, pad);
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 1;
+        c.weighty = 1;
+        c.gridx = 0;
         c.gridy = 1;
+
         var b1 = new JButton("New game");
         b1.addActionListener(e -> {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -40,12 +49,16 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         });
         this.add(b1, c);
 
+        c.gridx = 0;
         c.gridy = 2;
+
         var b2 = new JButton("Continue");
         b2.setEnabled(false);
         this.add(b2, c);
 
+        c.gridx = 0;
         c.gridy = 3;
+
         var b3 = new JButton("Settings");
         b3.addActionListener(e -> {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -53,7 +66,9 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         });
         this.add(b3, c);
 
+        c.gridx = 0;
         c.gridy = 4;
+
         var b4 = new JButton("Credits");
         b4.addActionListener(e -> {
             var messagePanel = new JPanel();
@@ -87,24 +102,14 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         });
         this.add(b4, c);
 
+        c.insets = new Insets(pad/2, pad, pad, pad);
+        c.gridx = 0;
         c.gridy = 5;
+
         var b5 = new JButton("Quit");
         b5.addActionListener(e -> {
             System.exit(0);
         });
         this.add(b5, c);
-    }
-
-    /**
-     * Method to be called after the panel is loaded.
-     * It's used to set the images to the correct size in this panel.
-     */
-    protected void setImages() {
-        try {
-            // TODO: get logo label and set its image to "res/airhockey_logo.png"
-            throw new IOException("Not implemented yet");
-        } catch (IOException e) {
-            new ExceptionPanel(e);
-        }
     }
 }
