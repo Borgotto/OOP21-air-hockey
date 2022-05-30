@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public abstract class AbstractGridBagLayoutJPanel extends JPanel {
-    private static final long serialVersionUID = 1L;
     protected final GridBagConstraints c;
     
     public AbstractGridBagLayoutJPanel() {
@@ -16,11 +15,16 @@ public abstract class AbstractGridBagLayoutJPanel extends JPanel {
         this();
         this.setName(name);
     }
-    
-    public AbstractGridBagLayoutJPanel(final String name, final GridBagConstraints c) {
-        super(new GridBagLayout());
-        this.setName(name);
-        this.c = c;
+
+    public AbstractGridBagLayoutJPanel(Dimension size) {
+        this();
+        this.setPreferredSize(size);
     }
-    
+
+    public AbstractGridBagLayoutJPanel(final String name, Dimension size) {
+        this();
+        this.setName(name);
+        this.setPreferredSize(size);
+    }
+
 }
