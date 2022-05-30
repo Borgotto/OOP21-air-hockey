@@ -20,11 +20,16 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     private GameState game;
     private Canvas canvas;
 
-    public GamePanel() {
+    private final BufferedImage puckImage;
+    private final BufferedImage mainPlayerImage;
+    private final BufferedImage enemyPlayerImage;
+    private final BufferedImage arenaImage;
+
+    public GamePanel() throws IOException {
         this(new GameState());
     }
     
-    public GamePanel(GameState game) {
+    public GamePanel(GameState game) throws IOException {
         super("Air Hockey - Game");
 
         c.anchor = GridBagConstraints.CENTER;
@@ -61,6 +66,12 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         });
         this.add(pauseButton, c);
         this.game = game;
+
+        // Load resources
+        this.puckImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+        this.mainPlayerImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+        this.enemyPlayerImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+        this.arenaImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
 
         this.gameLoop();
     }
