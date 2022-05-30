@@ -18,10 +18,8 @@ jobs:
       - name: Install OpenJDK 11 and Maven
         run: sudo apt update && sudo apt install openjdk-11-jdk maven
       
-      - name: Download Maven dependencies into lib/
-        run: |
-          mvn install dependency:copy-dependencies
-          mv target/dependency/* lib/
+      - name: Download Maven dependencies
+        run: mvn install dependency:copy-dependencies
 
       - name: Compile only Main dependencies
         run: javac -sourcepath src -cp lib/* -d out src/gui/Main.java
