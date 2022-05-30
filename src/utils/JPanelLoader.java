@@ -14,6 +14,7 @@ public class JPanelLoader {
         frame.setTitle(panel.getName());
         frame.revalidate();
         frame.repaint();
+        frame.pack();
     }    
     
 }
