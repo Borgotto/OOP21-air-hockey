@@ -3,19 +3,52 @@ package gui;
 import utils.JPanelLoader;
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
+import java.awt.*;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.stream.Stream;
 
+/**
+ * Main class to start the GUI process.
+ */
 public class GUI extends JFrame {
-    private static final long serialVersionUID = 1L;
-    
-    public GUI(Integer size) {
-        var menuPanel = new MenuPanel();
-        JPanelLoader.load(this, menuPanel);
-        this.pack();
-        menuPanel.setImages();
+    /**
+     * Initializes and shows the main menu JPanel.
+     */
+    public GUI() {
+        GUI.setFont(new FontUIResource(new Font("Arial", Font.PLAIN, 28)));
 
+        JPanelLoader.load(this, new MenuPanel());
+
+        this.setIconImage(new ImageIcon("res/airhockey_ico.png").getImage());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(3*size, 4*size);
         this.setResizable(false);
         this.setVisible(true);
+    }
+
+    /**
+     * Method used to get the screen dimensions.
+     * @return the size of the screen in pixels.
+     */
+    public static Dimension getScreenSize() {
+        return Toolkit.getDefaultToolkit().getScreenSize();
+    }
+
+    /**
+     * Method used to get minimum safe screen dimension that's visible on the screen.
+     * @return the minimum safe screen dimension.
+     */
+    public static int getMinScreenSize() {
+        final Dimension screenSize = GUI.getScreenSize();
+        return Math.min(screenSize.width, screenSize.height) * 9/10;
+    }
+
+    public static void setFont (FontUIResource f){
+        UIManager.getDefaults().keys().asIterator().forEachRemaining(key -> {
+            if (UIManager.get(key) instanceof FontUIResource) {
+                UIManager.put(key, f);
+            }
+        });
     }
 }
