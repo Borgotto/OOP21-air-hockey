@@ -119,13 +119,4 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
 
         return fullFrame;
     }
-
-    /* Convert meters to pixels */
-    private int metersToPixel(float meters) {
-        int pixelHeight = this.getHeight();
-        float metersHeight = this.game.getArena().getHeight();
-
-        float ratio = pixelHeight / metersHeight;
-        return (int) (meters * ratio);
-    }
 }
