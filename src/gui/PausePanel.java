@@ -11,8 +11,7 @@ public class PausePanel extends AbstractGridBagLayoutJPanel {
 
     public PausePanel() {
         super("Air Hockey - Pause");
-        
-        this.setBackground(Color.BLACK);
+
         c.gridx = 1;
         c.weightx = 1.0;
         c.weighty = 1.0;
