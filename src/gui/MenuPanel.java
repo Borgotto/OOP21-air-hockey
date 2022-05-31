@@ -1,5 +1,6 @@
 package gui;
 
+import logics.GameState;
 import utils.ImageScaler;
 import utils.JPanelLoader;
 import utils.ResourceLoader;
@@ -42,7 +43,9 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         b1.addActionListener(e -> {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             try {
-                JPanelLoader.load(parentFrame, new GamePanel());
+                GamePanel gamePanel = new GamePanel();
+                JPanelLoader.load(parentFrame, gamePanel);
+                gamePanel.start();
             } catch (IOException ex) {
                 new ExceptionPanel(ex);
             }
