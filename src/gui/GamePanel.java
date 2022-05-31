@@ -53,7 +53,7 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         c.gridy = 1;
         JButton pauseButton = new JButton("Pause");
         pauseButton.addActionListener(e -> {
-            JPanelLoader.load(JPanelLoader.getParentFrame(this), new PausePanel());
+            JOptionPane.showOptionDialog(this, new PausePanel(),"Pause", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
         });
         this.add(pauseButton, c);
         this.game = game;
