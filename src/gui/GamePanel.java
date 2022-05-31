@@ -72,7 +72,9 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         this.mainPlayerImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
         this.enemyPlayerImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
         this.arenaImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+    }
 
+    public void start() {
         this.gameLoop();
     }
 
