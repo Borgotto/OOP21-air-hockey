@@ -4,28 +4,32 @@ import org.jbox2d.common.Vec2;
 
 public class UnitConverter {
    
-    private static double deltaConversion = 1.0;
+    private double conversionFactor;
+    
+    public UnitConverter() {
+        this.conversionFactor = 1.0;
+    }
+    
+    public UnitConverter(final double conversionFactor) {
+        this.conversionFactor = conversionFactor;
+    }
 
-	public static Pair<Integer,Integer> MeterToPixel(final Vec2 posVector) {
-		int xPair = (int)(posVector.x*deltaConversion);
-		int yPair = (int)(posVector.y*deltaConversion);
+	public Pair<Integer,Integer> MeterToPixel(final Vec2 posVector) {
+		int xPair = (int)(posVector.x*this.conversionFactor);
+		int yPair = (int)(posVector.y*this.conversionFactor);
 		Pair<Integer,Integer> posPair = new Pair<Integer,Integer>(xPair, yPair);
 		return posPair;
 	}
 	
-	public static Vec2 PixelToMeter(final Pair<Integer,Integer> posPair) {
-		float xVec = (float)(posPair.getX()/deltaConversion);
-		float yVec = (float)(posPair.getY()/deltaConversion);
+	public Vec2 PixelToMeter(final Pair<Integer,Integer> posPair) {
+		float xVec = (float)(posPair.getX()/this.conversionFactor);
+		float yVec = (float)(posPair.getY()/this.conversionFactor);
 		Vec2 posVector = new Vec2(xVec, yVec);
 		return posVector;
 	}
 	
-	public static void setDeltaConversion(double constant) {
-	    deltaConversion = constant;
-	}
-	
-	public static double getDeltaConversion() {
-	    return deltaConversion;
+	public void setConversionFactor(final double conversionFactor) {
+	    this.conversionFactor = conversionFactor;
 	}
 	
 }
