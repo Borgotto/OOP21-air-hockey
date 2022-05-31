@@ -18,13 +18,12 @@ public interface ObjectSerializer <O> {
             out.writeObject(obj);
         }
     };
-    
-    
+
     @SuppressWarnings("unchecked")
-    static <O> Optional<O> deserialize(String filename) throws IOException, FileNotFoundException, ClassNotFoundException {
+    static <O> O deserialize(String filename) throws IOException, ClassNotFoundException {
         try (FileInputStream file = new FileInputStream(filename);
-                ObjectInputStream in = new ObjectInputStream(file);) {
-               return Optional.of((O)in.readObject());
+             ObjectInputStream in = new ObjectInputStream(file)) {
+               return (O)in.readObject();
            }
        };
 }
