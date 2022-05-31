@@ -1,12 +1,7 @@
 package gui;
 
-import logics.Arena;
 import logics.GameState;
-import org.jbox2d.common.Vec2;
-import utils.JPanelLoader;
-import utils.Pair;
-import utils.ResourceLoader;
-import utils.UnitConverter;
+import utils.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +11,7 @@ import java.nio.file.Path;
 
 public class GamePanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;
-    
+
     private GameState game;
     private Canvas canvas;
 
