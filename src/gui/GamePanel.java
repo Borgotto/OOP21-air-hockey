@@ -86,7 +86,7 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
 
         while (!exit) {
             BufferedImage frame = this.drawFrame();
-            this.canvas.getGraphics().drawImage(frame, 0,0, null);
+            this.canvas.getGraphics().drawImage(frame, 0, 0, (img, infoflags, x, y, width, height) -> false);
             this.game.update();
         }
     }
