@@ -17,7 +17,7 @@ public class GUI extends JFrame {
      * Initializes and shows the main menu JPanel.
      */
     public GUI() {
-        GUI.setFont(new FontUIResource(new Font("Arial", Font.PLAIN, 28)));
+        GUI.setFont(new FontUIResource(new Font("Arial", Font.PLAIN, 14)));
 
         JPanelLoader.load(this, new MenuPanel());
 
@@ -41,9 +41,13 @@ public class GUI extends JFrame {
      */
     public static int getMinScreenSize() {
         final Dimension screenSize = GUI.getScreenSize();
-        return Math.min(screenSize.width, screenSize.height) * 9/10;
+        return Math.min(screenSize.width, screenSize.height) * 8/10;
     }
 
+    /**
+     * Method used to set the font for all components.
+     * @param f the font to set.
+     */
     public static void setFont (FontUIResource f){
         UIManager.getDefaults().keys().asIterator().forEachRemaining(key -> {
             if (UIManager.get(key) instanceof FontUIResource) {
