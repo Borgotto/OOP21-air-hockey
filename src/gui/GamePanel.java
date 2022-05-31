@@ -30,7 +30,7 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     }
     
     public GamePanel(GameState game) throws IOException {
-        super("Air Hockey - Game");
+        super("Air Hockey - Game", new Dimension(GUI.getMinScreenSize(), GUI.getMinScreenSize()));
 
         c.anchor = GridBagConstraints.CENTER;
         c.weighty = 1.0;
