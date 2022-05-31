@@ -1,6 +1,8 @@
 package logics;
 
 import javax.swing.*;
+
+import java.io.Serializable;
 import java.util.function.Predicate;
 
 public class AchievementImpl implements Achievement {
@@ -9,16 +11,17 @@ public class AchievementImpl implements Achievement {
 	private final String iconPath;
 	private final String name;
 	private final String description;
-	private final Predicate<GameState> condition;
+	private Predicate<GameState> condition;
 	
 	/**
 	 * Create a new Achievement object with default values
 	 */
+	@SuppressWarnings("unchecked")
 	public AchievementImpl() {
 		this.iconPath = "";
 		this.name = "";
 		this.description = "";
-		this.condition = (gameState) -> true; 
+		this.condition = (Predicate & Serializable) (game)->true; 
 	}
 	
 	/**
@@ -32,7 +35,7 @@ public class AchievementImpl implements Achievement {
 		this.iconPath = iconPath;
 		this.name = name;
 		this.description = description;
-		this.condition = condition;
+		this.condition = (Predicate & Serializable) condition;
 	}
 	
 	/**
