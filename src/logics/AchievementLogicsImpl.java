@@ -1,46 +1,43 @@
 package logics;
 
-import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import utils.ObjectSerializer;
+
 public class AchievementLogicsImpl implements AchievementLogics {
 	
-	private List<Achievement> achievements;
+	private ArrayList<Achievement> achievements;
 	
 	public AchievementLogicsImpl() {
-		this.achievements = new ArrayList<>();
+		try {
+			this.loadFromFile();
+		} catch (IOException | ClassNotFoundException e) {			
+			this.achievements = new ArrayList<>();
+		}
 	}
 	
-	public AchievementLogicsImpl(File file) {
-		/*TODO*/
-	}
-
-	@Override
 	public void addAchievement(Achievement achievement) {
 		this.achievements.add(achievement);
 	}
 
-	@Override
-	public void addAchievements(List<Achievement> achievements) {
+	public void addAchievements(ArrayList<Achievement> achievements) {
 		this.achievements.addAll(achievements);
 	}
 
-	@Override
 	public List<Achievement> getAchievements() {
 		return this.achievements;
 	}
 
-	@Override
-	public void loadFromFile() {
-		// TODO Auto-generated method stub
-
+	@SuppressWarnings("unchecked")
+	public void loadFromFile() throws IOException, FileNotFoundException, ClassNotFoundException {
+		this.achievements = (ArrayList<Achievement>) ObjectSerializer.deserialize("achievements.ser");
 	}
 
-	@Override
-	public void saveToFile() {
-		// TODO Auto-generated method stub
-
+	public void saveToFile() throws IOException {		
+		ObjectSerializer.serialize(this.achievements, "achievements.ser");
 	}
 
 }
