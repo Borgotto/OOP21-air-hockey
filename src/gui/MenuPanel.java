@@ -17,7 +17,7 @@ import java.nio.file.Path;
 
 public class MenuPanel extends AbstractGridBagLayoutJPanel {
     public MenuPanel() {
-        super("Air Hockey", new Dimension(GUI.getMinScreenSize()/2, GUI.getMinScreenSize()));
+        super("Air Hockey", new Dimension(GUI.getMinScreenSize()*9/16, GUI.getMinScreenSize()));
 
         int pad = this.getPreferredSize().width/40;
         c.insets = new Insets(pad, pad, pad/2, pad);
