@@ -22,10 +22,10 @@ jobs:
         run: mvn install dependency:copy-dependencies
 
       - name: Compile only Main dependencies
-        run: javac -sourcepath src -cp target/dependency/* -d out src/gui/Main.java
+        run: javac -sourcepath src -cp '.:./target/dependency/*' -d out src/gui/Main.java
 
       - name: Compile all source files
-        run: find src -name "*.java" -print | xargs javac -cp target/dependency/* -d out
+        run: find src -name "*.java" -print | xargs javac -cp '.:./target/dependency/*' -d out
 
       - name: Make JAR archive
         run: find out -print | xargs jar cf air-hockey.jar
