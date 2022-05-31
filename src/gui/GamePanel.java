@@ -111,9 +111,9 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
 
         // Invert the Y axis since (0,0) is in the top left corner of the screen in the GUI while it's in the bottom
         // left corner in the game logics
-        mainPlayerPosition.setY(frameSize.getY() - mainPlayerPosition.getY());
-        enemyPlayerPosition.setY(frameSize.getY() - enemyPlayerPosition.getY());
-        puckPosition.setY(frameSize.getY() - puckPosition.getY());
+        mainPlayerPosition = new Pair<>(mainPlayerPosition.getX(), frameSize.getY() - mainPlayerPosition.getY());
+        enemyPlayerPosition = new Pair<>(enemyPlayerPosition.getX(), frameSize.getY() - enemyPlayerPosition.getY());
+        puckPosition = new Pair<>(puckPosition.getX(), frameSize.getY() - puckPosition.getY());
 
         // initialize the frame
         BufferedImage fullFrame = new BufferedImage(frameSize.getX(), frameSize.getY(), BufferedImage.TYPE_INT_RGB);
