@@ -2,8 +2,8 @@ package utils;
 
 public class Pair<X,Y> {
 	
-	private final X x;
-	private final Y y;
+	private X x;
+	private Y y;
 	
 	public Pair(X x, Y y) {
 		super();
@@ -18,6 +18,14 @@ public class Pair<X,Y> {
 	public Y getY() {
 		return y;
 	}
+	
+	public void setX(X x) {
+        this.x = x;
+    }
+
+    public void setY(Y y) {
+        this.y = y;
+    }
 
 	@Override
 	public int hashCode() {
