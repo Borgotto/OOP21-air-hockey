@@ -25,9 +25,8 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         c.gridy = 0;
 
         // adjust the logo image size based on the panel size
-        // the image needs to have 2:1 aspect ratio or it'll get stretched
         Image logoImage = new ImageIcon("res/airhockey_logo.png").getImage();
-        Dimension logoDimension = new Dimension(this.getPreferredSize().width-2*pad, (this.getPreferredSize().height-2*pad)/4 );
+        Dimension logoDimension = new Dimension(this.getPreferredSize().width-2*pad, this.getPreferredSize().height-2*pad);
         ImageIcon logoIconScaled = new ImageIcon(ImageScaler.scale(logoImage, logoDimension));
         JLabel logoLabel = new JLabel(logoIconScaled);
         this.add(logoLabel, c);
