@@ -8,20 +8,10 @@ public class ImageScaler {
     }
 
     public static Image scale(Image img, Dimension bounds) {
-        Dimension imgDim = new Dimension(img.getWidth(null), img.getHeight(null));
-        Dimension newDim = new Dimension(imgDim.width, imgDim.height);
+        double ratio = Math.min(bounds.getWidth() / img.getWidth(null),
+                                bounds.getHeight() / img.getHeight(null));
 
-        // Scale the image dimension to fit the bounds width
-        if (imgDim.getWidth() > bounds.getWidth()) {
-            newDim.setSize(bounds.getWidth(), (bounds.getWidth()*imgDim.getHeight())/imgDim.getWidth());
-        }
-
-        // Scale the image dimension to fit the bounds height
-        if (newDim.getHeight() > bounds.getHeight()) {
-            newDim.setSize((bounds.getHeight()*imgDim.getWidth())/imgDim.getHeight(), bounds.getHeight());
-        }
-
-        // fit the image to the new dimensions
-        return ImageScaler.fit(img, newDim);
+        return ImageScaler.fit(img, new Dimension((int) (img.getWidth(null) * ratio),
+                                                  (int) (img.getHeight(null) * ratio)));
     }
 }
