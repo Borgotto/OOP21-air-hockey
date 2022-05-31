@@ -10,7 +10,7 @@ public class Physics2DImpl implements Physics2D {
     private final Vec2 gravity;
     private World world;
     
-    private ArrayList<RigidBody> rigidBodyList = new ArrayList<RigidBody>();
+    private ArrayList<RigidBody> rigidBodyList;
     
     private final float physicsTime;
     private final int velocityIterations;
@@ -19,6 +19,9 @@ public class Physics2DImpl implements Physics2D {
     public Physics2DImpl() {
         this.gravity = new Vec2(0.0f, 0.0f);
         this.world = new World(gravity);
+        
+        rigidBodyList = new ArrayList<RigidBody>();
+        
         this.physicsTime = 1.0f / 60.0f;
         this.velocityIterations = 6;
         this.positionIterations = 3;
