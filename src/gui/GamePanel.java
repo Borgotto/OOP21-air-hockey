@@ -21,8 +21,14 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     private Canvas canvas;
 
     private final BufferedImage puckImage;
+    JButton puckButton;
+
     private final BufferedImage mainPlayerImage;
+    JButton mainPlayerButton;
+
     private final BufferedImage enemyPlayerImage;
+    JButton enemyPlayerButton;
+
     private final BufferedImage arenaImage;
 
     public GamePanel() throws IOException {
@@ -72,6 +78,11 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         this.mainPlayerImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
         this.enemyPlayerImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
         this.arenaImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+
+        // Create buttons to handle the puck and the two players
+        this.mainPlayerButton = new JButton("", new ImageIcon(this.mainPlayerImage));
+        this.enemyPlayerButton = new JButton("", new ImageIcon(this.enemyPlayerImage));
+        this.puckButton = new JButton("", new ImageIcon(this.puckImage));
     }
 
     public void start() {
@@ -80,11 +91,6 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
 
     private void gameLoop() {
         boolean exit = false;
-
-        // Create buttons to handle the puck and the two players
-        JButton mainPlayerButton = new JButton("", new ImageIcon(this.mainPlayerImage));
-        JButton enemyPlayerButton = new JButton("", new ImageIcon(this.enemyPlayerImage));
-        JButton puckButton = new JButton("", new ImageIcon(this.puckImage));
 
         while (!exit) {
             BufferedImage frame = this.drawFrame();
