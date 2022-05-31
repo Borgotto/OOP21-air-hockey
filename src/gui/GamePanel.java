@@ -77,6 +77,8 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         this.mainPlayerButton = new JButton("", new ImageIcon(mainPlayerImage));
         this.enemyPlayerButton = new JButton("", new ImageIcon(enemyPlayerImage));
         this.puckButton = new JButton("", new ImageIcon(puckImage));
+        this.enemyPlayerButton.setEnabled(false);
+        this.puckButton.setEnabled(false);
     }
 
     public void start() {
