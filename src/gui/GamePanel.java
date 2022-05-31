@@ -20,16 +20,9 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     private GameState game;
     private Canvas canvas;
 
-    private final BufferedImage puckImage;
-    JButton puckButton;
-
-    private final BufferedImage mainPlayerImage;
-    JButton mainPlayerButton;
-
-    private final BufferedImage enemyPlayerImage;
-    JButton enemyPlayerButton;
-
-    private final BufferedImage arenaImage;
+    private final JButton puckButton;
+    private final JButton mainPlayerButton;
+    private final JButton enemyPlayerButton;
 
     public GamePanel() throws IOException {
         this(new GameState());
@@ -48,7 +41,7 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         c.gridheight = 3;
         c.fill = GridBagConstraints.BOTH;
         this.canvas = new Canvas();
-        this.canvas.setBackground(Color.BLACK);
+
         this.add(this.canvas, c);
         c.gridheight = 1;
         c.fill = GridBagConstraints.NONE;
@@ -74,15 +67,17 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         this.game = game;
 
         // Load resources
-        this.puckImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
-        this.mainPlayerImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
-        this.enemyPlayerImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
-        this.arenaImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+        BufferedImage puckImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+        BufferedImage mainPlayerImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+        BufferedImage enemyPlayerImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+        BufferedImage arenaImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+
+        this.canvas.getGraphics().drawImage(arenaImage, 0, 0, null);
 
         // Create buttons to handle the puck and the two players
-        this.mainPlayerButton = new JButton("", new ImageIcon(this.mainPlayerImage));
-        this.enemyPlayerButton = new JButton("", new ImageIcon(this.enemyPlayerImage));
-        this.puckButton = new JButton("", new ImageIcon(this.puckImage));
+        this.mainPlayerButton = new JButton("", new ImageIcon(mainPlayerImage));
+        this.enemyPlayerButton = new JButton("", new ImageIcon(enemyPlayerImage));
+        this.puckButton = new JButton("", new ImageIcon(puckImage));
     }
 
     public void start() {
@@ -93,44 +88,28 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         boolean exit = false;
 
         while (!exit) {
-            BufferedImage frame = this.drawFrame();
-            this.canvas.getGraphics().drawImage(frame, 0, 0, null);
             this.game.update();
+            updatePositions();
         }
     }
 
-    private BufferedImage drawFrame() {
+    private void updatePositions() {
         // get the positions
         Pair<Integer, Integer> mainPlayerPosition = UnitConverter.MeterToPixel(this.game.getMainPlayer().getPosition());
         Pair<Integer, Integer> enemyPlayerPosition = UnitConverter.MeterToPixel(this.game.getEnemyPlayer().getPosition());
         Pair<Integer, Integer> puckPosition = UnitConverter.MeterToPixel(this.game.getPuck().getPosition());
 
+        int arenaHeight = this.canvas.getHeight();
+
         // Invert the Y axis since (0,0) is in the top left corner of the screen in the GUI while it's in the bottom
         // left corner in the game logics
-        mainPlayerPosition.setY(this.canvas.getHeight() - mainPlayerPosition.getY());
-        enemyPlayerPosition.setY(this.canvas.getHeight() - enemyPlayerPosition.getY());
-        puckPosition.setY(this.canvas.getHeight() - puckPosition.getY());
+        mainPlayerPosition = new Pair<>(mainPlayerPosition.getX(), arenaHeight - mainPlayerPosition.getY());
+        enemyPlayerPosition = new Pair<>(enemyPlayerPosition.getX(), arenaHeight - enemyPlayerPosition.getY());
+        puckPosition = new Pair<>(puckPosition.getX(), arenaHeight - puckPosition.getY());
 
-        // get the frame's size
-        Arena arena = this.game.getArena();
-        Pair<Integer, Integer> frameSize = UnitConverter.MeterToPixel(new Vec2(arena.getWidth(), arena.getHeight()));
-
-        // initialize the frame
-        BufferedImage fullFrame = new BufferedImage(frameSize.getX(), frameSize.getY(), BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = fullFrame.createGraphics();
-
-        // draw the arena
-        g.drawImage(this.arenaImage, 0, 0, frameSize.getX(), frameSize.getY(), null);
-
-        // draw the puck
-        g.drawImage(this.puckImage, puckPosition.getX(), puckPosition.getY(), null);
-
-        // draw the main player
-        g.drawImage(this.mainPlayerImage, mainPlayerPosition.getX(), mainPlayerPosition.getY(), null);
-
-        // draw the enemy player
-        g.drawImage(this.enemyPlayerImage, enemyPlayerPosition.getX(), enemyPlayerPosition.getY(), null);
-
-        return fullFrame;
+        // Update the positions of the buttons
+        this.mainPlayerButton.setLocation(mainPlayerPosition.getX(), mainPlayerPosition.getY());
+        this.enemyPlayerButton.setLocation(enemyPlayerPosition.getX(), enemyPlayerPosition.getY());
+        this.puckButton.setLocation(puckPosition.getX(), puckPosition.getY());
     }
 }
