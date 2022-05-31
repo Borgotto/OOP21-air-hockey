@@ -4,6 +4,7 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import physics.ArenaBody;
+import physics.ArenaBodyImpl;
 import physics.Physics2D;
 import physics.RigidBody;
 
@@ -23,7 +24,7 @@ public class ArenaImpl implements Arena {
      */
     public ArenaImpl(float goalWidth, Physics2D world) {
         this.goalWidth = goalWidth;
-        this.body = new ArenaBody(18.0f, 32.0f, goalWidth, world);
+        this.body = new ArenaBodyImpl(18.0f, 32.0f, goalWidth, world);
     }
 
     /**

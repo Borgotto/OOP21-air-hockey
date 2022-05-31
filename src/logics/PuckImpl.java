@@ -5,6 +5,7 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import physics.Physics2D;
 import physics.PuckBody;
+import physics.PuckBodyImpl;
 import physics.RigidBody;
 
 /**
@@ -19,7 +20,7 @@ public class PuckImpl implements Puck {
      * @param world the {@link Physics2D} object to put the puck in
      */
 	public PuckImpl(Physics2D world, float radius, Vec2 position) {
-		this.body = new PuckBody(radius, position, world);
+		this.body = new PuckBodyImpl(radius, position, world);
 	}
 	
 	public void update() {

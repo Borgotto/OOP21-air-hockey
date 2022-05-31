@@ -5,6 +5,7 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import physics.Physics2D;
 import physics.PlayerBody;
+import physics.PlayerBodyImpl;
 import physics.RigidBody;
 
 /**
@@ -16,7 +17,7 @@ public class EnemyPlayerImpl implements EnemyPlayer {
     private Integer score;
 
     public EnemyPlayerImpl(Physics2D world, float radius, Vec2 position) {
-        this.body = new PlayerBody(radius, position, world);
+        this.body = new PlayerBodyImpl(radius, position, world);
         this.difficulty = Difficulty.EASY;
         this.score = 0;
     }
