@@ -5,9 +5,6 @@ import utils.JPanelLoader;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.stream.Stream;
 
 /**
  * Main class to start the GUI process.
@@ -25,7 +22,6 @@ public class GUI extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setVisible(true);
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
