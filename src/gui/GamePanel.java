@@ -105,15 +105,15 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         Pair<Integer, Integer> enemyPlayerPosition = UnitConverter.MeterToPixel(this.game.getEnemyPlayer().getPosition());
         Pair<Integer, Integer> puckPosition = UnitConverter.MeterToPixel(this.game.getPuck().getPosition());
 
-        // Invert the Y axis since (0,0) is in the top left corner of the screen in the GUI while it's in the bottom
-        // left corner in the game logics
-        mainPlayerPosition.setY(this.canvas.getHeight() - mainPlayerPosition.getY());
-        enemyPlayerPosition.setY(this.canvas.getHeight() - enemyPlayerPosition.getY());
-        puckPosition.setY(this.canvas.getHeight() - puckPosition.getY());
-
         // get the frame's size
         Arena arena = this.game.getArena();
         Pair<Integer, Integer> frameSize = UnitConverter.MeterToPixel(new Vec2(arena.getWidth(), arena.getHeight()));
+
+        // Invert the Y axis since (0,0) is in the top left corner of the screen in the GUI while it's in the bottom
+        // left corner in the game logics
+        mainPlayerPosition.setY(frameSize.getY() - mainPlayerPosition.getY());
+        enemyPlayerPosition.setY(frameSize.getY() - enemyPlayerPosition.getY());
+        puckPosition.setY(frameSize.getY() - puckPosition.getY());
 
         // initialize the frame
         BufferedImage fullFrame = new BufferedImage(frameSize.getX(), frameSize.getY(), BufferedImage.TYPE_INT_RGB);
