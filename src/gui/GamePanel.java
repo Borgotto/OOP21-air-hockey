@@ -26,23 +26,19 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     public GamePanel(GameState game) throws IOException {
         super("Air Hockey - Game", new Dimension(GUI.getMinScreenSize()*3/4, GUI.getMinScreenSize()));
 
-        c.anchor = GridBagConstraints.CENTER;
-        c.fill = GridBagConstraints.BOTH;
         c.weighty = 1.0;
-
-        // Add the game field as a arenaLabel
-        c.weightx = 9/12d;
         c.gridx = 0;
         c.gridy = 0;
         c.gridheight = 3;
+
+        // Add the game field as a JLabel
         this.arenaLabel = new JLabel();
         Image arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
-        arenaImage = ImageScaler.scale(arenaImage, new Dimension(this.getPreferredSize().width*9/12, this.getPreferredSize().height));
+        arenaImage = ImageScaler.scale(arenaImage, new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height));
         this.arenaLabel.setIcon(new ImageIcon(arenaImage));
         //this.arenaLabel.setBackground(Color.BLUE);
         //this.arenaLabel.setOpaque(true);
         this.add(this.arenaLabel, c);
-        c.fill = GridBagConstraints.NONE;
 
         c.weightx = 3/12d;
         c.gridheight = 1;
