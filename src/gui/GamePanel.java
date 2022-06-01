@@ -24,24 +24,32 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     }
     
     public GamePanel(GameState game) throws IOException {
-        super("Air Hockey - Game", new Dimension(GUI.getMinScreenSize(), GUI.getMinScreenSize()));
+        super("Air Hockey - Game", new Dimension(GUI.getMinScreenSize()*3/4, GUI.getMinScreenSize()));
 
         c.anchor = GridBagConstraints.CENTER;
+        c.fill = GridBagConstraints.BOTH;
         c.weighty = 1.0;
 
-        // Add the game field as a canvas
+        // Add the game field as a arenaLabel
+        c.weightx = 9/12d;
         c.gridx = 0;
         c.gridy = 0;
-        c.weightx = 3.0/4.0;
         c.gridheight = 3;
         this.arenaLabel = new JLabel();
+        Image arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
+        arenaImage = ImageScaler.scale(arenaImage, new Dimension(this.getPreferredSize().width*9/12, this.getPreferredSize().height));
+        this.arenaLabel.setIcon(new ImageIcon(arenaImage));
+        //this.arenaLabel.setBackground(Color.BLUE);
+        //this.arenaLabel.setOpaque(true);
         this.add(this.arenaLabel, c);
         c.fill = GridBagConstraints.NONE;
 
-        // Add the scores as labels
+        c.weightx = 3/12d;
+        c.gridheight = 1;
         c.gridx = 1;
+
+        // Add the scores as labels
         c.gridy = 0;
-        c.weightx = 1.0/4.0;
         Label enemyScore = new Label(game.getEnemyPlayer().getScore().toString());
         this.add(enemyScore, c);
 
@@ -71,14 +79,12 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         Image mainPlayerImage = ResourceLoader.load(Path.of("res/main_player.png"), BufferedImage.class);
         Image enemyPlayerImage = ResourceLoader.load(Path.of("res/enemy_player.png"), BufferedImage.class);
         Image puckImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
-        Image arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
-        arenaImage = ImageScaler.scale(arenaImage, new Dimension(this.arenaLabel.getWidth(), this.arenaLabel.getHeight()));
+
 
         // Set the images
         this.mainPlayerButton.setIcon(new ImageIcon(mainPlayerImage));
         this.enemyPlayerButton.setIcon(new ImageIcon(enemyPlayerImage));
         this.puckButton.setIcon(new ImageIcon(puckImage));
-        this.arenaLabel.setIcon(new ImageIcon(arenaImage));
 
         this.gameLoop();
     }
