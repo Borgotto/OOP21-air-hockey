@@ -10,8 +10,12 @@ import java.io.IOException;
 public class PausePanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;
 
-    public PausePanel() {
+    private GameState gameState;
+
+    public PausePanel(GameState gameState) {
         super("Air Hockey - Pause");
+
+        this.gameState = gameState;
 
         c.gridx = 1;
         c.weightx = 1.0;
