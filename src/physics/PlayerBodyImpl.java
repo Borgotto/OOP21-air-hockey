@@ -20,7 +20,7 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
     	this.radius = radius;
     	
         setWorld(world);
-        setBodyTypeDef(BodyType.DYNAMIC);
+        setBodyType(BodyType.DYNAMIC);
         setLinearDampingDef(0.0f);
         setStartPositionDef(pos);
         configBodyDef();

@@ -21,7 +21,7 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
         this.radius = radius;
         
     	setWorld(world);
-        setBodyTypeDef(BodyType.DYNAMIC);
+        setBodyType(BodyType.DYNAMIC);
         setStartPositionDef(pos);
         setLinearDampingDef(0.1f);
         configBodyDef();

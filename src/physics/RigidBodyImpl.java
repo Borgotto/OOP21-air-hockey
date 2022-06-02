@@ -10,7 +10,7 @@ public abstract class RigidBodyImpl implements RigidBody {
 	
 	World world;
     
-    BodyType bodyTypeDef = BodyType.STATIC;
+    BodyType bodyType = BodyType.STATIC;
     private Vec2 startPositionDef = new Vec2(0.0f, 0.0f);
     private float linearDampingDef = 0.0f;
    
@@ -21,7 +21,7 @@ public abstract class RigidBodyImpl implements RigidBody {
      * set the BodyDef data
      */
     protected void configBodyDef() {
-        bodyDef.type = getBodyTypeDef();
+        bodyDef.type = getBodyType();
         bodyDef.position.set(getStartPositionDef());
         bodyDef.linearDamping = getLinearDampingDef();
         bodyDef.angularDamping = 0.0f;
@@ -86,15 +86,15 @@ public abstract class RigidBodyImpl implements RigidBody {
     /**
      * @return the bodyTypeDef
      */
-    protected BodyType getBodyTypeDef() {
-        return bodyTypeDef;
+    protected BodyType getBodyType() {
+        return bodyType;
     }
 
     /**
      * @param bodyTypeDef the bodyTypeDef to set
      */
-    protected void setBodyTypeDef(BodyType bodyTypeDef) {
-        this.bodyTypeDef = bodyTypeDef;
+    protected void setBodyType(BodyType bodyTypeDef) {
+        this.bodyType = bodyTypeDef;
     }
 
     /**
