@@ -6,7 +6,7 @@ import java.io.*;
 
 import utils.ObjectSerializer;
 
-public class SerializationTest {
+public class ObjectSerializerTest {
     
     @org.junit.Before
     void initTests() {
