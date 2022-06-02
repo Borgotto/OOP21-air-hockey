@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class GameState implements GameObject, Serializable {
     private static final long serialVersionUID = 1L;
 
-    private final Physics2D gamePhysics;
+    private final transient Physics2D gamePhysics;
     private final Arena arena;
     private final MainPlayer mainPlayer;
     private final EnemyPlayer enemyPlayer;
