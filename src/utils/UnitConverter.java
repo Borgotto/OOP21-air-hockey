@@ -12,13 +12,13 @@ public class UnitConverter {
 		return new Pair<Integer,Integer>(xPair, yPair);
 	}
 	
-	public Vec2 PixelToMeter(final Pair<Integer,Integer> posPair) {
+	public static Vec2 PixelToMeter(final Pair<Integer,Integer> posPair) {
 		float xVec = (float)(posPair.getX() / conversionFactor);
 		float yVec = (float)(posPair.getY() / conversionFactor);
 		return new Vec2(xVec, yVec);
 	}
 	
-	public void setConversionFactor(final double conversionFactor) {
+	public static void setConversionFactor(final double conversionFactor) {
 	    UnitConverter.conversionFactor = conversionFactor;
 	}
 	
