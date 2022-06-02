@@ -1,6 +1,7 @@
 package gui;
 
-import utils.JPanelLoader;
+import logics.GameState;
+import utils.ObjectSerializer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,27 +27,26 @@ public class PausePanel extends AbstractGridBagLayoutJPanel {
 
         c.gridy = 2;
         c.anchor = GridBagConstraints.CENTER;
-        JButton restart = new JButton("Restart");
-        restart.addActionListener(e -> {
-            JFrame parentFrame = JPanelLoader.getParentFrame(this);
+        JButton exit = new JButton("Quit");
+        exit.addActionListener(e -> {
+            int answer = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Exit?", JOptionPane.YES_NO_OPTION);
+            if (answer == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        });
+        this.add(exit, c);
+
+        c.gridy = 3;
+        c.anchor = GridBagConstraints.NORTH;
+        JButton quitAndSave = new JButton("Quit and save");
+        quitAndSave.addActionListener(e -> {
             try {
-                JPanelLoader.load(parentFrame, new GamePanel());
+                ObjectSerializer.serialize(gameState, "save.ser");
+                System.exit(0);
             } catch (IOException ex) {
                 new ExceptionPanel(ex);
             }
         });
-        this.add(restart, c);
-
-        c.gridy = 3;
-        c.anchor = GridBagConstraints.NORTH;
-        JButton exit = new JButton("Exit");
-        exit.addActionListener(e -> {
-            int answer = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Exit?", JOptionPane.YES_NO_OPTION);
-            if (answer == JOptionPane.YES_OPTION) {
-                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-                frame.dispose();
-            }
-        });
-        this.add(exit, c);
+        this.add(quitAndSave, c);
     }
 }
