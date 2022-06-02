@@ -15,7 +15,7 @@ import physics.RigidBody;
 public class ArenaImpl implements Arena {
 
     private final float goalWidth;
-    private final ArenaBody body;
+    private final transient ArenaBody body;
 
     /**
      * Create a new Arena with a certain goal size.

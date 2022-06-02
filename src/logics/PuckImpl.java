@@ -13,7 +13,7 @@ import physics.RigidBody;
  */
 public class PuckImpl implements Puck {
 
-    protected final PuckBody body;
+    protected final transient PuckBody body;
 	
     /**
      * Constructor with default values

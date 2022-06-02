@@ -12,7 +12,7 @@ import physics.RigidBody;
  * The class EnemyAIPlayer represents the enemy player, controlled by the computer.
  */
 public class EnemyPlayerImpl implements EnemyPlayer {
-    private final PlayerBody body;
+    private final transient PlayerBody body;
     private final Difficulty difficulty;
     private Integer score;
 

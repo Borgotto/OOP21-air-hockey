@@ -12,7 +12,7 @@ import physics.RigidBody;
  * The class NormalPlayer represents a user-controlled player.
  */
 public class MainPlayerImpl implements MainPlayer {
-    private final PlayerBody body;
+    private final transient PlayerBody body;
     private Integer score;
 
     public MainPlayerImpl(Physics2D world, float radius, Vec2 position) {
