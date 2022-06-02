@@ -14,53 +14,46 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
 
     private GameState game;
 
-    private JLabel arenaLabel;
+    // create a timer to update the game state
+    private static final int delay = 1000/60; // 60 FPS
+    private final Timer timer = new Timer(delay, e -> this.updateGame());
+
+    private final JLabel arenaLabel;
+    private final JLabel playerScoreLabel;
+    private final JLabel enemyScoreLabel;
     private final JButton puckButton;
     private final JButton mainPlayerButton;
     private final JButton enemyPlayerButton;
 
     public GamePanel() throws IOException {
-        this(new GameState());
-    }
-    
-    public GamePanel(GameState game) throws IOException {
         super("Air Hockey - Game", new Dimension(GUI.getMinScreenSize()*3/4, GUI.getMinScreenSize()));
 
+        // Add the game field as a JLabel
         c.weighty = 1.0;
+        c.gridheight = 3;
         c.gridx = 0;
         c.gridy = 0;
-        c.gridheight = 3;
-
-        // Add the game field as a JLabel
         this.arenaLabel = new JLabel();
-        Image arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
-        arenaImage = ImageScaler.scale(arenaImage, new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height));
-        this.arenaLabel.setIcon(new ImageIcon(arenaImage));
-        //this.arenaLabel.setBackground(Color.BLUE);
-        //this.arenaLabel.setOpaque(true);
         this.add(this.arenaLabel, c);
 
-        c.weightx = 3/12d;
+        // Create labels to show the players scores
+        c.weightx = 1/4d;
         c.gridheight = 1;
         c.gridx = 1;
-
-        // Add the scores as labels
         c.gridy = 0;
-        Label enemyScore = new Label(game.getEnemyPlayer().getScore().toString());
-        this.add(enemyScore, c);
-
+        this.enemyScoreLabel = new JLabel();
+        this.add(enemyScoreLabel, c);
         c.gridy = 2;
-        Label playerScore = new Label(game.getMainPlayer().getScore().toString());
-        this.add(playerScore, c);
+        this.playerScoreLabel = new JLabel();
+        this.add(playerScoreLabel, c);
 
-        // Add the pause button
+        // Create the pause button
         c.gridy = 1;
         JButton pauseButton = new JButton("Pause");
         pauseButton.addActionListener(e -> {
-            JOptionPane.showOptionDialog(this, new PausePanel(game),"Pause", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+            JOptionPane.showOptionDialog(this, new PausePanel(this.game), "Pause", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
         });
         this.add(pauseButton, c);
-        this.game = game;
 
         // Create buttons to show the puck and the two players
         this.mainPlayerButton = new JButton("");
@@ -68,32 +61,58 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         this.puckButton = new JButton("");
         this.enemyPlayerButton.setEnabled(false);
         this.puckButton.setEnabled(false);
-    }
 
-    public void start() throws IOException {
         // Load resources
         Image mainPlayerImage = ResourceLoader.load(Path.of("res/main_player.png"), BufferedImage.class);
         Image enemyPlayerImage = ResourceLoader.load(Path.of("res/enemy_player.png"), BufferedImage.class);
         Image puckImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+        Image arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
+        arenaImage = ImageScaler.scale(arenaImage, new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height));
 
-
-        // Set the images
+        // Set the component images
         this.mainPlayerButton.setIcon(new ImageIcon(mainPlayerImage));
         this.enemyPlayerButton.setIcon(new ImageIcon(enemyPlayerImage));
         this.puckButton.setIcon(new ImageIcon(puckImage));
-
-        this.gameLoop();
+        this.arenaLabel.setIcon(new ImageIcon(arenaImage));
     }
 
-    private void gameLoop() {
-        boolean exit = false;
-
-        while (!exit) {
-            this.game.update();
-            updatePositions();
-        }
+    /**
+     * Sets up the JLabels and JButtons to the initial game state and starts the timer.
+     */
+    public void startGame(GameState game) {
+        this.game = game;
+        this.playerScoreLabel.setText(String.valueOf(game.getMainPlayer().getScore()));
+        this.enemyScoreLabel.setText(String.valueOf(game.getEnemyPlayer().getScore()));
+        this.repaint();
+        this.timer.start();
     }
 
+    /**
+     * Method to be called to render the next frame
+     * It will update the game state and update the GUI
+     */
+    private void updateGame() {
+        // tell the game logics to update the game state
+        this.game.update();
+        // update the Components based on the new game state
+        this.updatePositions();
+        this.repaint();
+    }
+
+    /**
+     * Method called automatically by the timer function
+     * Can be called manually to end the game
+     */
+    private void endGame() {
+        this.timer.stop();
+        JOptionPane.showMessageDialog(this, "Game over!");
+        //JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        //JPanelLoader.load(parentFrame, new GameOverPanel());
+    }
+
+    /**
+     * Method to update the positions of the components
+     */
     private void updatePositions() {
         // get the positions
         Pair<Integer, Integer> mainPlayerPosition = UnitConverter.MeterToPixel(this.game.getMainPlayer().getPosition());
