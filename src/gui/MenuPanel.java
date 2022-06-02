@@ -3,6 +3,7 @@ package gui;
 import logics.GameState;
 import utils.ImageScaler;
 import utils.JPanelLoader;
+import utils.ObjectSerializer;
 import utils.ResourceLoader;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -40,11 +42,10 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
 
         var b1 = new JButton("New game");
         b1.addActionListener(e -> {
-            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             try {
                 GamePanel gamePanel = new GamePanel();
-                JPanelLoader.load(parentFrame, gamePanel);
-                gamePanel.start();
+                JPanelLoader.load((JFrame) SwingUtilities.getWindowAncestor(this), gamePanel);
+                gamePanel.startGame(new GameState());
             } catch (IOException ex) {
                 new ExceptionPanel(ex);
             }
@@ -55,7 +56,17 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         c.gridy = 2;
 
         var b2 = new JButton("Continue");
-        b2.setEnabled(false);
+        b2.setEnabled(new File("config/saves/save.ser").isFile());
+        b2.addActionListener(e -> {
+            try {
+                GameState game = ObjectSerializer.deserialize("config/saves/save.ser");
+                GamePanel gamePanel = new GamePanel();
+                JPanelLoader.load((JFrame) SwingUtilities.getWindowAncestor(this), gamePanel);
+                gamePanel.startGame(game);
+            } catch (IOException | ClassNotFoundException ex) {
+                new ExceptionPanel(ex);
+            }
+        });
         this.add(b2, c);
 
         c.gridx = 0;
