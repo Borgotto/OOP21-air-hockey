@@ -59,7 +59,7 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         b2.setEnabled(new File("config/saves/save.ser").isFile());
         b2.addActionListener(e -> {
             try {
-                GameState game = ObjectSerializer.deserialize("config/saves/save.ser");
+                GameState game = ObjectSerializer.deserialize(Path.of("config/saves/save.ser"));
                 GamePanel gamePanel = new GamePanel();
                 JPanelLoader.load((JFrame) SwingUtilities.getWindowAncestor(this), gamePanel);
                 gamePanel.startGame(game);

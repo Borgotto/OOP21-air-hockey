@@ -2,6 +2,7 @@ package logics;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +34,11 @@ public class AchievementLogicsImpl implements AchievementLogics {
 
 	@SuppressWarnings("unchecked")
 	public void loadFromFile() throws IOException, FileNotFoundException, ClassNotFoundException {
-		this.achievements = (ArrayList<Achievement>) ObjectSerializer.deserialize("achievements.ser");
+		this.achievements = (ArrayList<Achievement>) ObjectSerializer.deserialize(Path.of("achievements.ser"));
 	}
 
 	public void saveToFile() throws IOException {		
-		ObjectSerializer.serialize(this.achievements, "achievements.ser");
+		ObjectSerializer.serialize(this.achievements, Path.of("achievements.ser"));
 	}
 
 }
