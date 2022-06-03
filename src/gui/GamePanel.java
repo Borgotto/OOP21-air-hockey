@@ -34,6 +34,7 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         c.gridx = 0;
         c.gridy = 0;
         this.arenaLabel = new JLabel();
+        this.arenaLabel.setLayout(new GridBagLayout());
         this.add(this.arenaLabel, c);
 
         // Create labels to show the players scores
@@ -56,9 +57,9 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         this.add(pauseButton, c);
 
         // Create buttons to show the puck and the two players
-        this.mainPlayerButton = new JButton("");
-        this.enemyPlayerButton = new JButton("");
-        this.puckButton = new JButton("");
+        this.mainPlayerButton = new JButton("player");
+        this.enemyPlayerButton = new JButton("enemy");
+        this.puckButton = new JButton("puck");
         this.enemyPlayerButton.setEnabled(false);
         this.puckButton.setEnabled(false);
 
@@ -69,11 +70,20 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         Image arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
         arenaImage = ImageScaler.scale(arenaImage, new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height));
 
+        this.arenaLabel.add(this.mainPlayerButton, new GridBagConstraints());
+        this.arenaLabel.add(this.enemyPlayerButton, new GridBagConstraints());
+        this.arenaLabel.add(this.puckButton, new GridBagConstraints());
+
         // Set the component images
         this.mainPlayerButton.setIcon(new ImageIcon(mainPlayerImage));
         this.enemyPlayerButton.setIcon(new ImageIcon(enemyPlayerImage));
         this.puckButton.setIcon(new ImageIcon(puckImage));
         this.arenaLabel.setIcon(new ImageIcon(arenaImage));
+
+        this.mainPlayerButton.setBackground(Color.RED);
+        this.enemyPlayerButton.setBackground(Color.BLUE);
+        this.puckButton.setBackground(Color.GREEN);
+
     }
 
     /**
