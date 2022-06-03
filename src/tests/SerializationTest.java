@@ -3,13 +3,19 @@ package tests;
 import logics.*;
 import utils.ObjectSerializer;
 
+import java.io.File;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
 public class SerializationTest {
 
-    GameState gameState = new GameState();
+    private GameState gameState;
+
+    @org.junit.Before
+    public void initTests() {
+        this.gameState = new GameState();
+    }
 
     @org.junit.Test
     public void serializeArena() throws IOException, ClassNotFoundException {
@@ -43,5 +49,10 @@ public class SerializationTest {
     public void serializeGameState() throws IOException, ClassNotFoundException {
         ObjectSerializer.serialize(this.gameState, "test.ser");
         assertEquals(ObjectSerializer.deserialize("test.ser"), this.gameState);
+    }
+
+    @org.junit.After
+    public void cleanFiles() {
+        new File("test.ser").delete();
     }
 }
