@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class ImageModifier {
     public static Image fit(Image img, Dimension dim) {
-        return img.getScaledInstance((int) dim.getWidth(), (int) (dim.getHeight()), Image.SCALE_DEFAULT);
+        return img.getScaledInstance((int) dim.getWidth(), (int) (dim.getHeight()), Image.SCALE_SMOOTH);
     }
 
     public static Image scale(Image img, Dimension bounds) {
