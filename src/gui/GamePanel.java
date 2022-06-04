@@ -18,14 +18,16 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     private static final int delay = 1000/60; // 60 FPS
     private final Timer timer = new Timer(delay, e -> this.updateGame());
 
-    private final JLabel arenaLabel;
+    // GUI elements to be updated every frame by the updateGame() method
+    private final ArenaLabel arenaLabel;
     private final JLabel playerScoreLabel;
     private final JLabel enemyScoreLabel;
-    private final JButton puckButton;
-    private final JButton mainPlayerButton;
-    private final JButton enemyPlayerButton;
+    private final JButton pauseButton;
 
-    public GamePanel() throws IOException {
+    // class used to handle the mouse inputs on the player button
+    private final ComponentMover componentMover;
+
+    public GamePanel() {
         super("Air Hockey - Game", new Dimension(GUI.getMinScreenSize()*3/4, GUI.getMinScreenSize()));
 
         // Add the game field as a JLabel
@@ -33,9 +35,8 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         c.gridheight = 3;
         c.gridx = 0;
         c.gridy = 0;
-        this.arenaLabel = new JLabel();
-        this.arenaLabel.setLayout(new GridBagLayout());
-        this.add(this.arenaLabel, c);
+        this.arenaLabel = new ArenaLabel(new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height));
+        this.add(arenaLabel, c);
 
         // Create labels to show the players scores
         c.weightx = 1/4d;
@@ -50,40 +51,16 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
 
         // Create the pause button
         c.gridy = 1;
-        JButton pauseButton = new JButton("Pause");
+        pauseButton = new JButton("Pause");
+        pauseButton.setEnabled(false); // prevent the user from pausing the game before it is started
         pauseButton.addActionListener(e -> {
             JOptionPane.showOptionDialog(this, new PausePanel(this.game), "Pause", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
         });
         this.add(pauseButton, c);
 
-        // Create buttons to show the puck and the two players
-        this.mainPlayerButton = new JButton("player");
-        this.enemyPlayerButton = new JButton("enemy");
-        this.puckButton = new JButton("puck");
-        this.enemyPlayerButton.setEnabled(false);
-        this.puckButton.setEnabled(false);
-
-        // Load resources
-        Image mainPlayerImage = ResourceLoader.load(Path.of("res/main_player.png"), BufferedImage.class);
-        Image enemyPlayerImage = ResourceLoader.load(Path.of("res/enemy_player.png"), BufferedImage.class);
-        Image puckImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
-        Image arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
-        arenaImage = ImageModifier.scale(arenaImage, new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height));
-
-        this.arenaLabel.add(this.mainPlayerButton, new GridBagConstraints());
-        this.arenaLabel.add(this.enemyPlayerButton, new GridBagConstraints());
-        this.arenaLabel.add(this.puckButton, new GridBagConstraints());
-
-        // Set the component images
-        this.mainPlayerButton.setIcon(new ImageIcon(mainPlayerImage));
-        this.enemyPlayerButton.setIcon(new ImageIcon(enemyPlayerImage));
-        this.puckButton.setIcon(new ImageIcon(puckImage));
-        this.arenaLabel.setIcon(new ImageIcon(arenaImage));
-
-        this.mainPlayerButton.setBackground(Color.RED);
-        this.enemyPlayerButton.setBackground(Color.BLUE);
-        this.puckButton.setBackground(Color.GREEN);
-
+        // handle the mouse inputs on the player button
+        this.componentMover = new ComponentMover();
+        this.componentMover.registerComponent(this.arenaLabel.getPlayerButton());
     }
 
     /**
@@ -91,6 +68,7 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
      */
     public void startGame(GameState game) {
         this.game = game;
+        this.pauseButton.setEnabled(true);
         this.playerScoreLabel.setText(String.valueOf(game.getMainPlayer().getScore()));
         this.enemyScoreLabel.setText(String.valueOf(game.getEnemyPlayer().getScore()));
         this.repaint();
@@ -138,8 +116,8 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         puckPosition = new Pair<>(puckPosition.getX(), arenaHeight - puckPosition.getY());
 
         // Update the positions of the buttons
-        this.mainPlayerButton.setLocation(mainPlayerPosition.getX(), mainPlayerPosition.getY());
-        this.enemyPlayerButton.setLocation(enemyPlayerPosition.getX(), enemyPlayerPosition.getY());
-        this.puckButton.setLocation(puckPosition.getX(), puckPosition.getY());
+        //this.mainPlayerButton.setLocation(mainPlayerPosition.getX(), mainPlayerPosition.getY());
+        //this.enemyPlayerButton.setLocation(enemyPlayerPosition.getX(), enemyPlayerPosition.getY());
+        //this.puckButton.setLocation(puckPosition.getX(), puckPosition.getY());
     }
 }
