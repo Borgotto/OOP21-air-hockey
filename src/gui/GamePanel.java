@@ -68,7 +68,7 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         Image enemyPlayerImage = ResourceLoader.load(Path.of("res/enemy_player.png"), BufferedImage.class);
         Image puckImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
         Image arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
-        arenaImage = ImageScaler.scale(arenaImage, new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height));
+        arenaImage = ImageModifier.scale(arenaImage, new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height));
 
         this.arenaLabel.add(this.mainPlayerButton, new GridBagConstraints());
         this.arenaLabel.add(this.enemyPlayerButton, new GridBagConstraints());
