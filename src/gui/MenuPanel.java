@@ -4,15 +4,18 @@ import logics.GameState;
 import logics.GameStateImpl;
 import utils.ImageModifier;
 import utils.JPanelLoader;
+import utils.ResourceLoader;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class MenuPanel extends AbstractGridBagLayoutJPanel {
     public MenuPanel() {
@@ -24,7 +27,7 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         c.gridy = 0;
 
         // adjust the logo image size based on the panel size
-        Image logoImage = new ImageIcon("res/airhockey_logo.png").getImage();
+        BufferedImage logoImage = ResourceLoader.load(Path.of("res/airhockey_logo.png"), BufferedImage.class);
         Dimension logoDimension = new Dimension(this.getPreferredSize().width-2*pad, this.getPreferredSize().height-2*pad);
         ImageIcon logoIconScaled = new ImageIcon(ImageModifier.scale(logoImage, logoDimension));
         JLabel logoLabel = new JLabel(logoIconScaled);

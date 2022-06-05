@@ -3,10 +3,8 @@ package utils;
 import gui.ExceptionPanel;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Path;
-import java.util.Optional;
 
 /**
  * Load resources from the JAR file.
