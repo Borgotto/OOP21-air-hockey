@@ -5,7 +5,7 @@ import logics.GameStateImpl;
 
 import static org.junit.Assert.*;
 
-class AchievementTest {
+public class AchievementTest {
 
     @org.junit.Test
 	public void testAchievement() {
