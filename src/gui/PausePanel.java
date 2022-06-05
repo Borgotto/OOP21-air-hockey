@@ -5,14 +5,11 @@ import utils.ObjectSerializer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.nio.file.Path;
 
 public class PausePanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;
 
     private GameState gameState;
-    private final Path savePath = Path.of("config/save/save.ser");
 
     public PausePanel(GameState gameState) {
         super("Air Hockey - Pause");
@@ -46,11 +43,11 @@ public class PausePanel extends AbstractGridBagLayoutJPanel {
         c.anchor = GridBagConstraints.NORTH;
         JButton quitAndSave = new JButton("Quit and save");
         quitAndSave.addActionListener(e -> {
-            try {
-                ObjectSerializer.serialize(gameState, this.savePath);
+            Exception goneWrong = this.gameState.save();
+            if (goneWrong == null) {
                 System.exit(0);
-            } catch (IOException ex) {
-                new ExceptionPanel(ex);
+            } else {
+                new ExceptionPanel(goneWrong);
             }
         });
         this.add(quitAndSave, c);

@@ -3,14 +3,18 @@ package logics;
 import org.jbox2d.common.Vec2;
 import physics.Physics2D;
 import physics.Physics2DImpl;
+import utils.ObjectSerializer;
 
 import java.io.Serializable;
+import java.nio.file.Path;
 
 /**
  * The class GameState holds the state of the game.
  */
 public class GameState implements GameObject, Serializable {
     private static final long serialVersionUID = 1L;
+
+    private final Path savePath = Path.of(System.getProperty("user.dir") + "/config/save/save.ser");
 
     private final transient Physics2D gamePhysics;
     private final Arena arena;
@@ -79,5 +83,15 @@ public class GameState implements GameObject, Serializable {
 
     public void update() {
         /*TODO*/
+    }
+
+    public Exception save() {
+        try {
+            ObjectSerializer.serialize(this, this.savePath);
+        } catch (Exception e) {
+            return e;
+        }
+
+        return null;
     }
 }
