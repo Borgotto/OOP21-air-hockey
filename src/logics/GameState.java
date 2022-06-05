@@ -18,7 +18,7 @@ public class GameState implements GameObject, Serializable {
 
     private static final Path savePath = Path.of(System.getProperty("user.dir") + "/config/save/save.ser");
 
-    private final transient Physics2D gamePhysics;
+    private final transient Physics2D gamePhysics = new Physics2DImpl();
     private final Arena arena;
     private final MainPlayer mainPlayer;
     private final EnemyPlayer enemyPlayer;
@@ -29,7 +29,6 @@ public class GameState implements GameObject, Serializable {
      * Create a new GameState object using default values.
      */
     public GameState() {
-        this.gamePhysics = new Physics2DImpl();
         this.arena = new ArenaImpl(50.0f, this.gamePhysics);
         this.maxScore = 35;
 
