@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 //import logics.EnemyDifficulty.Difficulty;
 
+/**
+ * This class is used to build the and serialize them.
+ */
 public class AchievementsBuilder {
 	
 	public static void main(String args[]) {

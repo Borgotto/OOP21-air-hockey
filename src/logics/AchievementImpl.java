@@ -37,45 +37,23 @@ public class AchievementImpl implements Achievement {
 		this.description = description;
 		this.condition = (Predicate & Serializable) condition;
 	}
-	
-	/**
-	 * Get the image icon using icon path 
-	 * @return The image icon
-	 */
+
 	public ImageIcon getIcon() {
 		return new ImageIcon(this.iconPath);
 	}
-	
-	 /**
-	  * Get the name of the achievement
-	  * @return The name of the achievement
-	  */
+
 	public String getName() {
 		return this.name;
 	}
-	
-	/**
-	 * Get the description of the achievement
-	 * @return The description of the achievement
-	 */
+
 	public String getDescr() {
 		return this.description;
 	}
-	
-	/**
-	 * Get the unlocking condition of the achievement 
-	 * @return The Unlocking condition of the achievement
-	 */
+
 	public Predicate<GameState> getCondition() {
 		return this.condition;
 	}
-	
-	/**
-	 * Check if the achievement has been unlocked
-	 * @param gamestate The situation of the game
-	 * @return true if the condition is satisfy
-	 * 
-	 */
+
 	public boolean isUnlocked(GameState gamestate) {
 		return this.condition.test(gamestate);
 	}
