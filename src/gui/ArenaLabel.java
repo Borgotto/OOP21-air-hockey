@@ -6,7 +6,6 @@ import utils.ResourceLoader;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.nio.file.Path;
 
 public class ArenaLabel extends JLabel {
@@ -18,9 +17,12 @@ public class ArenaLabel extends JLabel {
 
     public ArenaLabel(Dimension size){
         // Load resources
-        Image strikerImage = ResourceLoader.load(Path.of("res/striker.png"), BufferedImage.class);
-        Image puckImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
-        Image arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
+        BufferedImage strikerImag = ResourceLoader.load(Path.of("res/striker.png"), BufferedImage.class);
+        BufferedImage puckImag = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+        BufferedImage arenaImag = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
+        Image strikerImage = ImageModifier.color(strikerImag, new Color(200,0,200, 150));
+        Image puckImage = ImageModifier.color(puckImag, new Color(255,100,255,125));
+        Image arenaImage = ImageModifier.color(arenaImag, new Color(255,0,255,200));
 
         // Manually manage the label's layout
         this.setLayout(null);
