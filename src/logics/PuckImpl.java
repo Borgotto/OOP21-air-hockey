@@ -27,11 +27,11 @@ public class PuckImpl implements Puck {
 	    //TODO
 	}
 	
-	public void center(ArenaImpl arena) {
+	public void center(Arena arena) {
 	    //TODO
 	}
 	
-	public void moveToPlayer(ArenaImpl arena, Player player) {
+	public void moveToPlayer(Arena arena, Player player) {
 	    //TODO
 	}
 	
