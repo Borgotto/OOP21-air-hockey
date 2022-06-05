@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class MenuPanel extends AbstractGridBagLayoutJPanel {
@@ -50,10 +51,11 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         c.gridy = 2;
 
         var b2 = new JButton("Continue");
-        b2.setEnabled(new File("config/saves/save.ser").isFile());
+        b2.setEnabled(Files.exists(GameState.savePath));
         b2.addActionListener(e -> {
             try {
-                GameState game = ObjectSerializer.deserialize(Path.of("config/saves/save.ser"));
+                GameState game = new GameState();
+                game.load();
                 GamePanel gamePanel = new GamePanel();
                 JPanelLoader.load((JFrame) SwingUtilities.getWindowAncestor(this), gamePanel);
                 gamePanel.startGame(game);
