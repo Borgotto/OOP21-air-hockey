@@ -14,8 +14,8 @@ import physics.RigidBody;
  */
 public class ArenaImpl implements Arena {
 
-    private final float goalWidth;
     private final transient ArenaBody body;
+    private float goalWidth;
 
     /**
      * Create a new Arena with a certain goal size.
@@ -27,12 +27,12 @@ public class ArenaImpl implements Arena {
         this.body = new ArenaBodyImpl(18.0f, 32.0f, goalWidth, world);
     }
 
-    /**
-     * Get the arena's goal size.
-     * @return The arena's goal size.
-     */
     public float getGoalWidth() {
         return this.goalWidth;
+    }
+
+    public void setGoalWidth(float goalWidth) {
+        this.goalWidth = goalWidth;
     }
 
     public Vec2 getPosition() {

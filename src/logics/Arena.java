@@ -12,6 +12,12 @@ public interface Arena extends GameObjectWithPhysics {
     public float getGoalWidth();
 
     /**
+     * Set the {@code Arena} goal size.
+     * @param goalWidth the {@code Arena} goal size in meters.
+     */
+    public void setGoalWidth(float goalWidth);
+
+    /**
      * Get the {@code Arena} width.
      * @return the {@code Arena} width in meters.
      */
