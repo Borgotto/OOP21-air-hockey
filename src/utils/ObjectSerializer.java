@@ -14,13 +14,13 @@ public interface ObjectSerializer <O> {
                 ObjectOutputStream out = new ObjectOutputStream(file);) {
             out.writeObject(obj);
         }
-    };
+    }
 
     @SuppressWarnings("unchecked")
     static <O> O deserialize(Path filePath) throws IOException, ClassNotFoundException {
         try (FileInputStream file = new FileInputStream(filePath.toString());
              ObjectInputStream in = new ObjectInputStream(file)) {
                return (O)in.readObject();
-           }
-       };
+        }
+    }
 }
