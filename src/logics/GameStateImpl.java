@@ -13,6 +13,7 @@ import java.io.IOException;
 public class GameStateImpl implements GameState {
     private static final long serialVersionUID = 1L;
 
+    private Physics2D gamePhysics;
     private final MainPlayer mainPlayer;
     private final EnemyPlayer enemyPlayer;
     private final Puck puck;
@@ -23,7 +24,7 @@ public class GameStateImpl implements GameState {
      * Create a new GameState object using default values.
      */
     public GameStateImpl() {
-        Physics2D gamePhysics = new Physics2DImpl();
+        this.gamePhysics = new Physics2DImpl();
         this.arena = new ArenaImpl(50.0f, gamePhysics);
         this.maxScore = 35;
 
@@ -63,7 +64,7 @@ public class GameStateImpl implements GameState {
 
     @Override
     public void update() {
-        /*TODO*/
+        this.gamePhysics.update();
     }
 
     @Override
