@@ -5,7 +5,9 @@ import physics.Physics2D;
 import physics.Physics2DImpl;
 import utils.ObjectSerializer;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
@@ -85,13 +87,7 @@ public class GameState implements GameObject, Serializable {
         /*TODO*/
     }
 
-    public Exception save() {
-        try {
-            ObjectSerializer.serialize(this, this.savePath);
-        } catch (Exception e) {
-            return e;
-        }
-
-        return null;
+    public void save() throws IOException {
+        ObjectSerializer.serialize(this, this.savePath);
     }
 }

@@ -5,6 +5,7 @@ import utils.ObjectSerializer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class PausePanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 1L;
@@ -43,11 +44,10 @@ public class PausePanel extends AbstractGridBagLayoutJPanel {
         c.anchor = GridBagConstraints.NORTH;
         JButton quitAndSave = new JButton("Quit and save");
         quitAndSave.addActionListener(e -> {
-            Exception goneWrong = this.gameState.save();
-            if (goneWrong == null) {
-                System.exit(0);
-            } else {
-                new ExceptionPanel(goneWrong);
+            try {
+                this.gameState.save();
+            } catch (IOException ex) {
+                new ExceptionPanel(ex);
             }
         });
         this.add(quitAndSave, c);
