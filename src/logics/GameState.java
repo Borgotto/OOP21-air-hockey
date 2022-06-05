@@ -16,7 +16,7 @@ import java.nio.file.Path;
 public class GameState implements GameObject, Serializable {
     private static final long serialVersionUID = 1L;
 
-    private final Path savePath = Path.of(System.getProperty("user.dir") + "/config/save/save.ser");
+    private static final Path savePath = Path.of(System.getProperty("user.dir") + "/config/save/save.ser");
 
     private final transient Physics2D gamePhysics;
     private final Arena arena;
