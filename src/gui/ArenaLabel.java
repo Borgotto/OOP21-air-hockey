@@ -21,13 +21,11 @@ public class ArenaLabel extends JLabel {
         Image strikerImage = null;
         Image puckImage = null;
         Image arenaImage = null;
-        try {
-            strikerImage = ResourceLoader.load(Path.of("res/striker.png"), BufferedImage.class);
-            puckImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
-            arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        strikerImage = ResourceLoader.load(Path.of("res/striker.png"), BufferedImage.class);
+        puckImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+        arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
+
 
         // Manually manage the label's layout
         this.setLayout(null);

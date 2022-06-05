@@ -21,7 +21,7 @@ public interface ResourceLoader {
      * @return The file as {@code fileType} class.
      */
     @SuppressWarnings("unchecked")
-    public static <F> F load(Path resourcePath, Class<F> fileType) throws IOException {
+    public static <F> F load(Path resourcePath, Class<F> fileType) {
         File file = resourcePath.toFile();
 
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
@@ -31,7 +31,9 @@ public interface ResourceLoader {
                 default:
                     throw new IllegalArgumentException("Unsupported file type: " + fileType.getName());
             }
+        } catch (IOException e) {
+            new ExceptionPanel(e);
+            return null;
         }
-
     }
 }
