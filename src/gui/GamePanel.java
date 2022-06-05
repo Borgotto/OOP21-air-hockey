@@ -58,9 +58,8 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         });
         this.add(this.pauseButton, c);
 
-        // handle the mouse inputs on the player button
+        // handler for the mouse inputs on the player button
         this.componentMover = new ComponentMover();
-        this.componentMover.registerComponent(this.arenaLabel.getPlayerButton());
     }
 
     /**
@@ -69,6 +68,7 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     public void startGame(GameState game) {
         this.game = game;
         this.pauseButton.setEnabled(true);
+        this.componentMover.registerComponent(this.arenaLabel.getPlayerButton());
         this.playerScoreLabel.setText(String.valueOf(game.getMainPlayer().getScore()));
         this.enemyScoreLabel.setText(String.valueOf(game.getEnemyPlayer().getScore()));
         this.repaint();
