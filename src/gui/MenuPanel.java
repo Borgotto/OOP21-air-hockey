@@ -1,20 +1,18 @@
 package gui;
 
 import logics.GameState;
+import logics.GameStateImpl;
 import utils.ImageModifier;
 import utils.JPanelLoader;
-import utils.ObjectSerializer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class MenuPanel extends AbstractGridBagLayoutJPanel {
     public MenuPanel() {
@@ -43,7 +41,7 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         b1.addActionListener(e -> {
             GamePanel gamePanel = new GamePanel();
             JPanelLoader.load((JFrame) SwingUtilities.getWindowAncestor(this), gamePanel);
-            gamePanel.startGame(new GameState());
+            gamePanel.startGame(new GameStateImpl());
         });
         this.add(b1, c);
 
@@ -54,7 +52,7 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         b2.setEnabled(Files.exists(GameState.savePath));
         b2.addActionListener(e -> {
             try {
-                GameState game = new GameState();
+                GameState game = new GameStateImpl();
                 game.load();
                 GamePanel gamePanel = new GamePanel();
                 JPanelLoader.load((JFrame) SwingUtilities.getWindowAncestor(this), gamePanel);

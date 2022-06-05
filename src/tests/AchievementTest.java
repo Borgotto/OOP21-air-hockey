@@ -1,7 +1,7 @@
 package tests;
 
 import logics.AchievementImpl;
-import logics.GameState;
+import logics.GameStateImpl;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +9,7 @@ class AchievementTest {
 
     @org.junit.Test
 	public void testAchievement() {
-		var gamestate = new GameState();
+		var gamestate = new GameStateImpl();
         var achievement = new AchievementImpl("", "Champion", "Score 5 goals in one game", (game) -> game.getMainPlayer().getScore() >= 5);
         var achievement2 = new AchievementImpl("", "PogChamp", "score 15 goals in one game", (game) -> game.getMainPlayer().getScore() >= 15);
         

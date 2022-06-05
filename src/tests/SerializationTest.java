@@ -16,7 +16,7 @@ public class SerializationTest {
 
     @org.junit.Before
     public void initTests() {
-        this.gameState = new GameState();
+        this.gameState = new GameStateImpl();
     }
 
     @org.junit.Test

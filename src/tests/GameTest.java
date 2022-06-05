@@ -1,6 +1,7 @@
 package tests;
 
 import logics.GameState;
+import logics.GameStateImpl;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +10,7 @@ public class GameTest {
 
     @org.junit.Before
     public void initTests() {
-        this.game = new GameState();
+        this.game = new GameStateImpl();
 
         // render the first 1.000 frames (16.66 seconds) of the game
         for(int i=0;i<1000;i++) {
