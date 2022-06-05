@@ -71,7 +71,6 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         this.componentMover.registerComponent(this.arenaLabel.getPlayerButton());
         this.playerScoreLabel.setText(String.valueOf(game.getMainPlayer().getScore()));
         this.enemyScoreLabel.setText(String.valueOf(game.getEnemyPlayer().getScore()));
-        this.repaint();
         this.timer.start();
     }
 
