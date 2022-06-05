@@ -44,19 +44,19 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         c.gridx = 1;
         c.gridy = 0;
         this.enemyScoreLabel = new JLabel();
-        this.add(enemyScoreLabel, c);
+        this.add(this.enemyScoreLabel, c);
         c.gridy = 2;
         this.playerScoreLabel = new JLabel();
-        this.add(playerScoreLabel, c);
+        this.add(this.playerScoreLabel, c);
 
         // Create the pause button
         c.gridy = 1;
-        pauseButton = new JButton("Pause");
-        pauseButton.setEnabled(false); // prevent the user from pausing the game before it is started
-        pauseButton.addActionListener(e -> {
+        this.pauseButton = new JButton("Pause");
+        this.pauseButton.setEnabled(false); // prevent the user from pausing the game before it is started
+        this.pauseButton.addActionListener(e -> {
             JOptionPane.showOptionDialog(this, new PausePanel(this.game), "Pause", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
         });
-        this.add(pauseButton, c);
+        this.add(this.pauseButton, c);
 
         // handle the mouse inputs on the player button
         this.componentMover = new ComponentMover();
