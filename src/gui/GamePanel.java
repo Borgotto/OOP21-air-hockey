@@ -101,7 +101,7 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
      * Method to update the positions of the components
      */
     private void updatePositions() {
-        // get the positions
+        // Get the positions
         Pair<Integer, Integer> mainPlayerPosition = UnitConverter.MeterToPixel(this.game.getMainPlayer().getPosition());
         Pair<Integer, Integer> enemyPlayerPosition = UnitConverter.MeterToPixel(this.game.getEnemyPlayer().getPosition());
         Pair<Integer, Integer> puckPosition = UnitConverter.MeterToPixel(this.game.getPuck().getPosition());
@@ -114,9 +114,14 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         enemyPlayerPosition = new Pair<>(enemyPlayerPosition.getX(), arenaHeight - enemyPlayerPosition.getY());
         puckPosition = new Pair<>(puckPosition.getX(), arenaHeight - puckPosition.getY());
 
+        // Adjust the positions so that they refer to the center of the button
+        mainPlayerPosition = new Pair<>(mainPlayerPosition.getX() - this.arenaLabel.getPlayerButton().getWidth()/2, mainPlayerPosition.getY() - this.arenaLabel.getPlayerButton().getHeight()/2);
+        enemyPlayerPosition = new Pair<>(enemyPlayerPosition.getX() - this.arenaLabel.getEnemyButton().getWidth()/2, enemyPlayerPosition.getY() - this.arenaLabel.getEnemyButton().getHeight()/2);
+        puckPosition = new Pair<>(puckPosition.getX() - this.arenaLabel.getPuckButton().getWidth()/2, puckPosition.getY() - this.arenaLabel.getPuckButton().getHeight()/2);
+
         // Update the positions of the buttons
-        //this.mainPlayerButton.setLocation(mainPlayerPosition.getX(), mainPlayerPosition.getY());
-        //this.enemyPlayerButton.setLocation(enemyPlayerPosition.getX(), enemyPlayerPosition.getY());
-        //this.puckButton.setLocation(puckPosition.getX(), puckPosition.getY());
+        this.arenaLabel.getPlayerButton().setLocation(mainPlayerPosition.getX(), mainPlayerPosition.getY());
+        this.arenaLabel.getEnemyButton().setLocation(enemyPlayerPosition.getX(), enemyPlayerPosition.getY());
+        this.arenaLabel.getPuckButton().setLocation(puckPosition.getX(), puckPosition.getY());
     }
 }
