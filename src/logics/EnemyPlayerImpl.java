@@ -22,10 +22,6 @@ public class EnemyPlayerImpl implements EnemyPlayer {
         this.score = 0;
     }
 
-    /**
-     * Get the difficulty of the enemy player.
-     * @return The difficulty set for the enemy.
-     */
     public Difficulty getDifficulty() {
         return this.difficulty;
     }
