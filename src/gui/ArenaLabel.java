@@ -18,14 +18,9 @@ public class ArenaLabel extends JLabel {
 
     public ArenaLabel(Dimension size){
         // Load resources
-        Image strikerImage = null;
-        Image puckImage = null;
-        Image arenaImage = null;
-
-        strikerImage = ResourceLoader.load(Path.of("res/striker.png"), BufferedImage.class);
-        puckImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
-        arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
-
+        Image strikerImage = ResourceLoader.load(Path.of("res/striker.png"), BufferedImage.class);
+        Image puckImage = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
+        Image arenaImage = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
 
         // Manually manage the label's layout
         this.setLayout(null);
