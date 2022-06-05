@@ -1,11 +1,6 @@
 package utils;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.nio.file.Path;
 import java.util.Optional;
 
@@ -14,6 +9,7 @@ import java.util.Optional;
  */
 public interface ObjectSerializer <O> {
     static <O> void serialize(O obj, Path filePath) throws IOException {
+        new File(filePath.getParent().toString()).mkdirs(); // create directory if needed
         try (FileOutputStream file = new FileOutputStream(filePath.toString());
                 ObjectOutputStream out = new ObjectOutputStream(file);) {
             out.writeObject(obj);
