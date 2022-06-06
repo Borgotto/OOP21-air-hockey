@@ -76,11 +76,16 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
      * It will update the game state and update the GUI
      */
     private void updateGame() {
-        // tell the game logics to update the game state
+        // Tell the game logics to update the game state
         this.game.update();
-        // update the Components based on the new game state
+        // Update the Components based on the new game state
         this.updatePositions();
         this.repaint();
+
+        // Check if the game is over
+        if (this.game.isGameOver()) {
+           this.endGame();
+        }
     }
 
     /**
