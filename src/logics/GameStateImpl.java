@@ -27,15 +27,15 @@ public class GameStateImpl implements GameState {
     public GameStateImpl() {
         this.gamePhysics = new Physics2DImpl();
         this.arena = new ArenaImpl(50.0f, gamePhysics);
-        this.maxScore = 35;
+        this.maxScore = 5;
 
         float arenaWidth = this.getArena().getWidth();
         float arenaHeight = this.getArena().getHeight();
         float goalSize = this.getArena().getGoalWidth();
 
-        this.mainPlayer = new MainPlayerImpl(gamePhysics, arenaWidth / 6.0f, new Vec2(arenaWidth / 2.0f, arenaHeight * (1.0f / 4.0f)));
-        this.enemyPlayer = new EnemyPlayerImpl(gamePhysics, arenaWidth / 6.0f, new Vec2(arenaWidth / 2.0f,  arenaHeight * (3.0f / 4.0f)));
-        this.puck = new PuckImpl(gamePhysics, goalSize * (4.0f / 5.0f), new Vec2(arenaWidth / 2.0f, arenaHeight / 2.0f));
+        this.mainPlayer = new MainPlayerImpl(gamePhysics,arenaWidth/6.0f,new Vec2(arenaWidth/2.0f,arenaHeight*(1.0f/4.0f)));
+        this.enemyPlayer = new EnemyPlayerImpl(gamePhysics,arenaWidth/6.0f,new Vec2(arenaWidth/2.0f,arenaHeight*(3.0f/4.0f)));
+        this.puck = new PuckImpl(gamePhysics,goalSize*(4.0f/5.0f),new Vec2(arenaWidth/2.0f,arenaHeight/2.0f));
     }
 
     public Arena getArena() {

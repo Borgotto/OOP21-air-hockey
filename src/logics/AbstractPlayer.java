@@ -11,14 +11,24 @@ import physics.RigidBody;
 public abstract class AbstractPlayer implements Player {
     private final transient PlayerBody body;
     private Integer score;
+    private final String name;
 
-    public AbstractPlayer(Physics2D world, float radius, Vec2 position) {
+    public AbstractPlayer(String name, Physics2D world, float radius, Vec2 position) {
         this.body = new PlayerBodyImpl(radius, position, world);
         this.score = 0;
+        this.name = name;
+    }
+
+    public AbstractPlayer(Physics2D world, float radius, Vec2 position) {
+        this("", world, radius, position);
     }
 
     public Integer getScore() {
         return this.score;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public void setScore(final Integer score) {
