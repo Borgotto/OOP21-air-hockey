@@ -1,13 +1,12 @@
 package gui;
 
 import logics.GameState;
-import utils.ObjectSerializer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class PausePanel extends AbstractGridBagLayoutJPanel {
+public class PausePanel extends AbstractGridBagLayoutJComponent {
     private static final long serialVersionUID = 1L;
 
     private GameState gameState;

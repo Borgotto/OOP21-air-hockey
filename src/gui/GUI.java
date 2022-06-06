@@ -1,6 +1,6 @@
 package gui;
 
-import utils.JPanelLoader;
+import utils.JComponentLoader;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -16,7 +16,7 @@ public class GUI extends JFrame {
     public GUI() {
         GUI.setFont(new FontUIResource(new Font("Arial", Font.PLAIN, 14)));
 
-        JPanelLoader.load(this, new MenuPanel());
+        JComponentLoader.load(this, new MenuPanel());
 
         this.setIconImage(new ImageIcon("res/airhockey_ico.png").getImage());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -1,12 +1,12 @@
 package gui;
 
-import utils.JPanelLoader;
+import utils.JComponentLoader;
 
 import javax.swing.*;
 import java.awt.*;
 
 
-public class SettingsPanel extends AbstractGridBagLayoutJPanel {
+public class SettingsPanel extends AbstractGridBagLayoutJComponent {
     private static final long serialVersionUID = 1L;
     
     public SettingsPanel() {
@@ -27,7 +27,7 @@ public class SettingsPanel extends AbstractGridBagLayoutJPanel {
         var b2 = new JButton("Go back");
         b2.addActionListener(e -> {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            JPanelLoader.load(parentFrame, new MenuPanel());
+            JComponentLoader.load(parentFrame, new MenuPanel());
         });
         this.add(b2,c);
     }

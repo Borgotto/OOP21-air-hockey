@@ -2,9 +2,8 @@ package gui;
 
 import logics.GameState;
 import logics.GameStateBuilder;
-import logics.GameStateImpl;
 import utils.ImageModifier;
-import utils.JPanelLoader;
+import utils.JComponentLoader;
 import utils.ResourceLoader;
 
 import javax.swing.*;
@@ -18,7 +17,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class MenuPanel extends AbstractGridBagLayoutJPanel {
+public class MenuPanel extends AbstractGridBagLayoutJComponent {
     public MenuPanel() {
         super("Air Hockey", new Dimension(GUI.getMinScreenSize()*9/16, GUI.getMinScreenSize()));
 
@@ -44,7 +43,7 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         var b1 = new JButton("New game");
         b1.addActionListener(e -> {
             GamePanel gamePanel = new GamePanel();
-            JPanelLoader.load((JFrame) SwingUtilities.getWindowAncestor(this), gamePanel);
+            JComponentLoader.load((JFrame) SwingUtilities.getWindowAncestor(this), gamePanel);
             gamePanel.startGame(new GameStateBuilder().build());
         });
         this.add(b1, c);
@@ -59,7 +58,7 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
                 GameState game = new GameStateBuilder().build();
                 game.load();
                 GamePanel gamePanel = new GamePanel();
-                JPanelLoader.load((JFrame) SwingUtilities.getWindowAncestor(this), gamePanel);
+                JComponentLoader.load((JFrame) SwingUtilities.getWindowAncestor(this), gamePanel);
                 gamePanel.startGame(game);
             } catch (IOException | ClassNotFoundException ex) {
                 new ExceptionPanel("Failed to load the game", ex);
@@ -73,7 +72,7 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         var b3 = new JButton("Settings");
         b3.addActionListener(e -> {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            JPanelLoader.load(parentFrame, new SettingsPanel());
+            JComponentLoader.load(parentFrame, new SettingsPanel());
         });
         this.add(b3, c);
 

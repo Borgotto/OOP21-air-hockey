@@ -6,7 +6,7 @@ import utils.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends AbstractGridBagLayoutJPanel {
+public class GamePanel extends AbstractGridBagLayoutJComponent {
     private static final long serialVersionUID = 1L;
 
     private GameState game;
@@ -96,7 +96,7 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         this.timer.stop();
         JOptionPane.showMessageDialog(this, "Game over!");
         //JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        //JPanelLoader.load(parentFrame, new GameOverPanel());
+        //JComponentLoader.load(parentFrame, new GameOverPanel());
     }
 
     /**
