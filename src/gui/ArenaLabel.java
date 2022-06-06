@@ -15,7 +15,7 @@ public class ArenaLabel extends JLabel {
     private final JButton playerButton;
     private final JButton puckButton;
 
-    public ArenaLabel(Dimension size){
+    public ArenaLabel(Dimension size) {
         // Load resources
         BufferedImage strikerImag = ResourceLoader.load(Path.of("res/striker.png"), BufferedImage.class);
         BufferedImage puckImag = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
