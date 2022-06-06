@@ -17,9 +17,9 @@ public class ImageModifier {
                                                   (int) (img.getHeight(null) * ratio)));
     }
 
-    public static Image color(BufferedImage img, Color color) {
+    public static Image color(Image img, Color color) {
         // Create a copy of the image
-        BufferedImage newImg = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
+        BufferedImage newImg = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics = newImg.createGraphics();
         graphics.drawImage(img, 0, 0, null);
         // Change every pixel to the specified color
