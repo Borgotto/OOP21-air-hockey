@@ -42,8 +42,8 @@ public class PausePanel extends AbstractGridBagLayoutJPanel {
 
         c.gridy = 3;
         c.anchor = GridBagConstraints.NORTH;
-        JButton quitAndSave = new JButton("Save and quit");
-        quitAndSave.addActionListener(e -> {
+        JButton saveAndQuit = new JButton("Save and quit");
+        saveAndQuit.addActionListener(e -> {
             try {
                 this.gameState.save();
             } catch (IOException ex) {
@@ -52,6 +52,6 @@ public class PausePanel extends AbstractGridBagLayoutJPanel {
 
             System.exit(0);
         });
-        this.add(quitAndSave, c);
+        this.add(saveAndQuit, c);
     }
 }
