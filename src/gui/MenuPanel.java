@@ -1,6 +1,7 @@
 package gui;
 
 import logics.GameState;
+import logics.GameStateBuilder;
 import logics.GameStateImpl;
 import utils.ImageModifier;
 import utils.JPanelLoader;
@@ -44,7 +45,7 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         b1.addActionListener(e -> {
             GamePanel gamePanel = new GamePanel();
             JPanelLoader.load((JFrame) SwingUtilities.getWindowAncestor(this), gamePanel);
-            gamePanel.startGame(new GameStateImpl());
+            gamePanel.startGame(new GameStateBuilder().build());
         });
         this.add(b1, c);
 
@@ -55,7 +56,7 @@ public class MenuPanel extends AbstractGridBagLayoutJPanel {
         b2.setEnabled(Files.exists(GameState.savePath));
         b2.addActionListener(e -> {
             try {
-                GameState game = new GameStateImpl();
+                GameState game = new GameStateBuilder().build();
                 game.load();
                 GamePanel gamePanel = new GamePanel();
                 JPanelLoader.load((JFrame) SwingUtilities.getWindowAncestor(this), gamePanel);
