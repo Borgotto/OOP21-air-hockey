@@ -3,6 +3,7 @@ package logics;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Path;
+import java.util.Optional;
 
 public interface GameState extends GameObject, Serializable {
     /**
@@ -27,6 +28,18 @@ public interface GameState extends GameObject, Serializable {
      * @return the {@code Player}
      */
     EnemyPlayer getEnemyPlayer();
+
+    /**
+     * Get the {@link Player} that has won the game
+     * @return the {@code Player} or {@code Optional.empty()} if the game is not over
+     */
+    Optional<Player> getWinner();
+
+    /**
+     * Check if the game is over
+     * @return {@code true} if the game is over, {@code false} otherwise
+     */
+    boolean isGameOver();
 
     /**
      * Get the {@link Puck}

@@ -6,19 +6,20 @@ import physics.Physics2DImpl;
 import utils.ObjectSerializer;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * The class GameState holds the state of the game.
  */
 public class GameStateImpl implements GameState {
-    private static final long serialVersionUID = 1L;
-
-    private Physics2D gamePhysics;
+    private final Physics2D gamePhysics;
     private final MainPlayer mainPlayer;
     private final EnemyPlayer enemyPlayer;
     private final Puck puck;
     private final Arena arena;
     private Integer maxScore;
+    private Optional<Player> winner = Optional.empty();
+    private boolean isGameOver = false;
 
     /**
      * Create a new GameState object using default values.
@@ -37,42 +38,50 @@ public class GameStateImpl implements GameState {
         this.puck = new PuckImpl(gamePhysics, goalSize * (4.0f / 5.0f), new Vec2(arenaWidth / 2.0f, arenaHeight / 2.0f));
     }
 
-    @Override
     public Arena getArena() {
         return this.arena;
     }
 
-    @Override
     public MainPlayer getMainPlayer() {
         return this.mainPlayer;
     }
 
-    @Override
     public EnemyPlayer getEnemyPlayer() {
         return this.enemyPlayer;
     }
 
-    @Override
+    public Optional<Player> getWinner() {
+        return this.winner;
+    }
+
+    public boolean isGameOver() {
+        return this.isGameOver;
+    }
+
     public Puck getPuck() {
         return this.puck;
     }
 
-    @Override
     public Integer getMaxScore() {
         return this.maxScore;
     }
 
-    @Override
     public void update() {
         this.gamePhysics.update();
+
+        if (this.mainPlayer.getScore() >= this.maxScore) {
+            this.winner = Optional.of(this.mainPlayer);
+            this.isGameOver = true;
+        } else if (this.enemyPlayer.getScore() >= this.maxScore) {
+            this.winner = Optional.of(this.enemyPlayer);
+            this.isGameOver = true;
+        }
     }
 
-    @Override
     public void save() throws IOException {
         ObjectSerializer.serialize(this, GameState.savePath);
     }
 
-    @Override
     public void load() throws IOException, ClassNotFoundException {
         // Load the game state from the save file
         GameStateImpl savedGame = ObjectSerializer.deserialize(GameState.savePath);
