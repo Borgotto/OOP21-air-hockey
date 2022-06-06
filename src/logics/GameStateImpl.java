@@ -12,13 +12,13 @@ import java.util.Optional;
  * The class GameState holds the state of the game.
  */
 public class GameStateImpl implements GameState {
-    private final Physics2D gamePhysics;
+    private transient final Physics2D gamePhysics;
     private final MainPlayer mainPlayer;
     private final EnemyPlayer enemyPlayer;
     private final Puck puck;
     private final Arena arena;
     private Integer maxScore;
-    private Optional<Player> winner = Optional.empty();
+    private transient Optional<Player> winner = Optional.empty();
     private boolean isGameOver = false;
 
     public GameStateImpl(Physics2D physics, Arena arena, MainPlayer mainPlayer, EnemyPlayer enemyPlayer, Puck puck, Integer maxScore) {
