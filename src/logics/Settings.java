@@ -39,7 +39,7 @@ public class Settings {
         ObjectMapper mapper = new ObjectMapper();
         Settings s = mapper.readValue(new File("settings.json"), Settings.class);
 
-        // Use streams and reflection to set the field values
+        // Use reflection to set the field values
         for (Field f : this.getClass().getDeclaredFields()) {
             f.setAccessible(true);
             f.set(this, f.get(s));
