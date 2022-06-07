@@ -84,7 +84,7 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
 
         // Check if the game is over
         if (this.game.isGameOver()) {
-           this.endGame();
+           this.endGame(game);
         }
     }
 
@@ -92,11 +92,10 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
      * Method called automatically by the timer function
      * Can be called manually to end the game
      */
-    private void endGame() {
+    private void endGame(GameState game) {
         this.timer.stop();
-        JOptionPane.showMessageDialog(this, "Game over!");
-        //JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        //JComponentLoader.load(parentFrame, new GameOverPanel());
+        //JFrame parent = JComponentLoader.getParentFrame(this);
+        //JComponentLoader.load(parent, new GameOverPanel(game));
     }
 
     /**
