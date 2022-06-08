@@ -14,7 +14,7 @@ public class GameStateBuilder {
 
     public GameStateBuilder() {
         this.gamePhysics = new Physics2DImpl();
-        this.arena = new ArenaImpl(50.0f, this.gamePhysics);
+        this.arena = new ArenaImpl(18.0f,32.0f, 6.0f, this.gamePhysics);
         this.maxScore = 35;
 
         float arenaWidth = this.arena.getWidth();
