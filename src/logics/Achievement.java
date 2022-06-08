@@ -7,10 +7,10 @@ import java.util.function.Predicate;
 /**
  * Interface describing an achievement
  */
-public interface Achievement extends Serializable {
+public interface Achievement {
 
 	/**
-	 * Get the image representing the achievement
+	 * Get the image representing the achievement or an empty image if imagePath is not set
 	 * @return The image icon
 	 */
 	public ImageIcon getIcon();

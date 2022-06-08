@@ -6,40 +6,25 @@ import java.io.Serializable;
 import java.util.function.Predicate;
 
 public class AchievementImpl implements Achievement {
-	
-	private static final long serialVersionUID = 1L;
-	private final String iconPath;
+	private final ImageIcon icon = new ImageIcon("res/achievement.png");
 	private final String name;
 	private final String description;
-	private Predicate<GameState> condition;
-	
-	/**
-	 * Create a new Achievement object with default values
-	 */
-	@SuppressWarnings("unchecked")
-	public AchievementImpl() {
-		this.iconPath = "";
-		this.name = "";
-		this.description = "";
-		this.condition = (Predicate & Serializable) (game)->true; 
-	}
-	
+	private final Predicate<GameState> condition;
+
 	/**
 	 * Create a new Achievement object with given values
-	 * @param iconPath The path to the file
 	 * @param name The name of the achievement
 	 * @param description A brief description of what has been unlocked
 	 * @param condition The unlocking condition
 	 */
-	public AchievementImpl(String iconPath, String name, String description, Predicate<GameState> condition) {
-		this.iconPath = iconPath;
+	public AchievementImpl(String name, String description, Predicate<GameState> condition) {
 		this.name = name;
 		this.description = description;
-		this.condition = (Predicate & Serializable) condition;
+		this.condition = condition;
 	}
 
 	public ImageIcon getIcon() {
-		return new ImageIcon(this.iconPath);
+		return this.icon;
 	}
 
 	public String getName() {
