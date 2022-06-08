@@ -102,6 +102,10 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
      * Method to update the positions of the components
      */
     private void updatePositions() {
+    	int arenaSize = this.arenaLabel.getPreferredSize().height;
+    	
+    	UnitConverter.setConversionFactor((double)(arenaSize/32.0f));
+    	
         // Get the positions
         Pair<Integer, Integer> mainPlayerPosition = UnitConverter.MeterToPixel(this.game.getMainPlayer().getPosition());
         Pair<Integer, Integer> enemyPlayerPosition = UnitConverter.MeterToPixel(this.game.getEnemyPlayer().getPosition());

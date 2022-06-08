@@ -11,19 +11,18 @@ public class GameStateBuilder {
     private Puck puck;
     private Arena arena;
     private Integer maxScore;
-
+    
+    /*
+     * Initializes GameState with default values based on a real game
+     */
     public GameStateBuilder() {
         this.gamePhysics = new Physics2DImpl();
-        this.arena = new ArenaImpl(18.0f,32.0f, 6.0f, this.gamePhysics);
-        this.maxScore = 35;
+        this.arena = new ArenaImpl(18.0f, 32.0f, 6.0f, this.gamePhysics);
+        this.maxScore = 5;
 
-        float arenaWidth = this.arena.getWidth();
-        float arenaHeight = this.arena.getHeight();
-        float goalSize = this.arena.getGoalWidth();
-
-        this.mainPlayer = new MainPlayerImpl(this.gamePhysics, arenaWidth / 6.0f, new Vec2(arenaWidth / 2.0f, arenaHeight * (1.0f / 4.0f)));
-        this.enemyPlayer = new EnemyPlayerImpl(this.gamePhysics, arenaWidth / 6.0f, new Vec2(arenaWidth / 2.0f,  arenaHeight * (3.0f / 4.0f)));
-        this.puck = new PuckImpl(this.gamePhysics, goalSize * (4.0f / 5.0f), new Vec2(arenaWidth / 2.0f, arenaHeight / 2.0f));
+        this.mainPlayer = new MainPlayerImpl(this.gamePhysics, 1.8f, new Vec2(9.0f, 6.0f));
+        this.enemyPlayer = new EnemyPlayerImpl(this.gamePhysics, 1.8f, new Vec2(9.0f, 26.0f));
+        this.puck = new PuckImpl(this.gamePhysics, 1.5f, new Vec2(9.0f, 16.0f));
     }
 
     public GameStateBuilder setPhysics(Physics2D physics) {
