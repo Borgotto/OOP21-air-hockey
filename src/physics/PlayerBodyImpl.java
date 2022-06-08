@@ -12,14 +12,14 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
     
 	/**
 	 * Player body generator
-	 * @param radius
+	 * @param radius of the body
 	 * @param pos Position to be spawned
-	 * @param world
+	 * @param physicsWorld World to be spawned in
 	 */
     public PlayerBodyImpl(final float radius, final Vec2 pos, final Physics2D physicsWorld) {
     	this.radius = radius;
     	
-        setWorld(world);
+        setWorld(physicsWorld.getWorld());
         setBodyType(BodyType.DYNAMIC);
         setLinearDampingDef(0.0f);
         setStartPositionDef(pos);
