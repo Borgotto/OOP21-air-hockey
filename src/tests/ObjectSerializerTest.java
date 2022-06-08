@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 import utils.ObjectSerializer;
@@ -12,7 +13,7 @@ public class ObjectSerializerTest {
     private final Path path = Path.of("string.ser");
     
     @org.junit.Before
-    void initTests() {
+    public void initTests() {
         try (FileOutputStream file = new FileOutputStream("string.ser");
                 ObjectOutputStream out = new ObjectOutputStream(file);) {
             out.writeObject("string");
@@ -22,7 +23,7 @@ public class ObjectSerializerTest {
     }
     
     @org.junit.Test
-    void testSerialization() {
+    public void testSerialization() {
         try {
             ObjectSerializer.serialize("string", this.path);
         } catch (IOException e) {
@@ -32,9 +33,9 @@ public class ObjectSerializerTest {
     }
     
     @org.junit.Test
-    void testDeserialization() {
+    public void testDeserialization() {
         try {
-            assertTrue(ObjectSerializer.deserialize(this.path).equals("string"));
+            assertEquals("string", ObjectSerializer.deserialize(this.path));
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             fail("failed to deserialize");
@@ -42,10 +43,10 @@ public class ObjectSerializerTest {
     }
     
     @org.junit.Test
-    void testSerializationAndDeserialization() {
+    public void testSerializationAndDeserialization() {
         try {
             ObjectSerializer.serialize("string", this.path);
-            assertTrue(ObjectSerializer.deserialize(this.path).equals("string"));
+            assertEquals("string", ObjectSerializer.deserialize(this.path));
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             fail("failed to serialize and deserialize");
@@ -53,7 +54,7 @@ public class ObjectSerializerTest {
     }
 
     @org.junit.Test
-    void testDeserializationAndSerialization() {
+    public void testDeserializationAndSerialization() {
         try {
             ObjectSerializer.deserialize(this.path);
             ObjectSerializer.serialize("string", this.path);
@@ -64,7 +65,11 @@ public class ObjectSerializerTest {
     }
     
     @org.junit.After
-    void destroyTests() {
-       new File(this.path.toString()).delete();
+    public void destroyTests() {
+        try {
+            Files.deleteIfExists(this.path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
