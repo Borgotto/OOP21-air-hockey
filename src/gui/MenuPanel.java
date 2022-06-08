@@ -4,6 +4,7 @@ import logics.GameState;
 import logics.GameStateBuilder;
 import utils.ImageModifier;
 import utils.JComponentLoader;
+import utils.ObjectSerializer;
 import utils.ResourceLoader;
 
 import javax.swing.*;
@@ -57,7 +58,7 @@ public class MenuPanel extends AbstractGridBagLayoutJComponent {
         b2.addActionListener(e -> {
             try {
                 GameState game = new GameStateBuilder().build();
-                game.load();
+                game.load(ObjectSerializer.deserialize(GameState.savePath));
                 GamePanel gamePanel = new GamePanel();
                 JFrame parent = JComponentLoader.getParentFrame(this);
                 JComponentLoader.load(parent, gamePanel);

@@ -4,12 +4,6 @@ package logics;
  * Interface that defines Arena specifics
  */
 public interface Arena extends GameObjectWithPhysics {
-    
-    /**
-     * Get the {@code Arena} goal size.
-     * @return the {@code Arena} goal size in meters.
-     */
-    public float getGoalWidth();
 
     /**
      * Get the {@code Arena} width.
@@ -22,4 +16,10 @@ public interface Arena extends GameObjectWithPhysics {
      * @return the {@code Arena} height in meters.
      */
     public float getHeight();
+
+    /**
+     * Get the {@code Arena} goal size.
+     * @return the {@code Arena} goal size in meters.
+     */
+    public float getGoalWidth();
 }

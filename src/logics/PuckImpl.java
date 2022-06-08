@@ -13,14 +13,26 @@ import physics.RigidBody;
  */
 public class PuckImpl implements Puck {
 
-    protected final transient PuckBody body;
+    private final transient PuckBody body;
+	private final float radius;
+	private final Vec2 startingPosition;
 	
     /**
      * Constructor with default values
      * @param world the {@link Physics2D} object to put the puck in
      */
-	public PuckImpl(Physics2D world, float radius, Vec2 position) {
-		this.body = new PuckBodyImpl(radius, position, world);
+	public PuckImpl(float radius, Vec2 startingPosition, Physics2D world) {
+		this.body = new PuckBodyImpl(radius, startingPosition, world);
+		this.radius = radius;
+		this.startingPosition = startingPosition;
+	}
+
+	public float getRadius() {
+		return this.radius;
+	}
+
+	public Vec2 getStartingPosition() {
+		return this.startingPosition;
 	}
 	
 	public void update() {

@@ -14,21 +14,17 @@ import physics.RigidBody;
 public class EnemyPlayerImpl extends AbstractPlayer implements EnemyPlayer {
     private final Difficulty difficulty;
 
-    public EnemyPlayerImpl(String name, Physics2D world, float radius, Vec2 position, Difficulty difficulty) {
-        super(name, world, radius, position);
+    public EnemyPlayerImpl(String name, float radius, Vec2 startingPosition, Physics2D world, Difficulty difficulty) {
+        super(name, radius, startingPosition, world);
         this.difficulty = difficulty;
     }
 
-    public EnemyPlayerImpl(String name, Physics2D world, float radius, Vec2 position) {
-        this(name, world, radius, position, Difficulty.EASY);
+    public EnemyPlayerImpl(float radius, Vec2 startingPosition, Physics2D world, Difficulty difficulty) {
+        this("Enemy", radius, startingPosition, world, difficulty);
     }
 
-    public EnemyPlayerImpl(Physics2D world, float radius, Vec2 position, Difficulty difficulty) {
-        this("Enemy", world, radius, position, difficulty);
-    }
-
-    public EnemyPlayerImpl(Physics2D world, float radius, Vec2 position) {
-        this(world, radius, position, Difficulty.EASY);
+    public EnemyPlayerImpl(float radius, Vec2 startingPosition, Physics2D world) {
+        this(radius, startingPosition, world, Difficulty.EASY);
     }
 
     public Difficulty getDifficulty() {

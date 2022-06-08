@@ -13,10 +13,10 @@ import java.util.Optional;
  */
 public class GameStateImpl implements GameState {
     private transient final Physics2D gamePhysics;
-    private final MainPlayer mainPlayer;
-    private final EnemyPlayer enemyPlayer;
-    private final Puck puck;
-    private final Arena arena;
+    private MainPlayer mainPlayer;
+    private EnemyPlayer enemyPlayer;
+    private Puck puck;
+    private Arena arena;
     private Integer maxScore;
     private transient Optional<Player> winner = Optional.empty();
     private boolean isGameOver = false;
@@ -58,28 +58,42 @@ public class GameStateImpl implements GameState {
         return this.maxScore;
     }
 
-    public void update() {
-        this.gamePhysics.update();
-
+    private void updateWinner() {
         if (this.mainPlayer.getScore() >= this.maxScore) {
             this.winner = Optional.of(this.mainPlayer);
-            this.isGameOver = true;
         } else if (this.enemyPlayer.getScore() >= this.maxScore) {
             this.winner = Optional.of(this.enemyPlayer);
-            this.isGameOver = true;
         }
+    }
+
+    public void update() {
+        this.gamePhysics.update();
+        this.updateWinner();
+
     }
 
     public void save() throws IOException {
         ObjectSerializer.serialize(this, GameState.savePath);
     }
 
-    public void load() throws IOException, ClassNotFoundException {
-        // Load the game state from the save file
-        GameStateImpl savedGame = ObjectSerializer.deserialize(GameState.savePath);
+    public void load(GameState savedGame) {
         // Set the current game state to the saved game state
-        this.mainPlayer.setScore(savedGame.mainPlayer.getScore());
-        this.enemyPlayer.setScore(savedGame.enemyPlayer.getScore());
-        this.maxScore = savedGame.maxScore;
+        var savedArena = savedGame.getArena();
+        this.arena = new ArenaImpl(savedArena.getWidth(), savedArena.getHeight(), savedArena.getGoalWidth(), this.gamePhysics);
+
+        var savedMainPlayer = savedGame.getMainPlayer();
+        this.mainPlayer = new MainPlayerImpl(savedMainPlayer.getName(), savedMainPlayer.getRadius(), savedMainPlayer.getStartingPosition(), this.gamePhysics);
+
+        var savedEnemyPlayer = savedGame.getEnemyPlayer();
+        this.enemyPlayer = new EnemyPlayerImpl(savedEnemyPlayer.getName(), savedEnemyPlayer.getRadius(), savedEnemyPlayer.getStartingPosition(), this.gamePhysics, savedEnemyPlayer.getDifficulty());
+
+        var savedPuck = savedGame.getPuck();
+        this.puck = new PuckImpl(savedPuck.getRadius(), savedPuck.getStartingPosition(), this.gamePhysics);
+
+        this.mainPlayer.setScore(savedGame.getMainPlayer().getScore());
+        this.enemyPlayer.setScore(savedGame.getEnemyPlayer().getScore());
+        this.maxScore = savedGame.getMaxScore();
+        this.updateWinner();
+        this.isGameOver = savedGame.isGameOver();
     }
 }

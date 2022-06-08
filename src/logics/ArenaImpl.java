@@ -15,6 +15,9 @@ import physics.RigidBody;
 public class ArenaImpl implements Arena {
 
     private final transient ArenaBody body;
+    private final float width;
+    private final float height;
+    private final float goalWidth;
 
     /**
      * Create a new Arena with a certain goal size.
@@ -23,17 +26,28 @@ public class ArenaImpl implements Arena {
      */
     public ArenaImpl(float width, float height, float goalWidth, Physics2D world) {
         this.body = new ArenaBodyImpl(width,height, goalWidth, world);
+        this.width = width;
+        this.height = height;
+        this.goalWidth = goalWidth;
+    }
+
+    public float getWidth() {
+        return this.width;
+    }
+
+    public float getHeight() {
+        return this.height;
     }
 
     public float getGoalWidth() {
-        return this.body.getGoalSize();
+        return this.goalWidth;
     }
 
     public Vec2 getPosition() {
         return this.body.getPosition();
     }
 
-    public void setPosition(Vec2 pos) { 
+    public void setPosition(Vec2 pos) {
     }
 
     public World getWorld() {
@@ -44,16 +58,16 @@ public class ArenaImpl implements Arena {
         return this.body.getBody();
     }
 
+    public Vec2 getStartingPosition() {
+        return new Vec2(0,0);
+    }
+
+    public float getRadius() {
+        return 0;
+    }
+
     public RigidBody getRigidBody() {
         return this.body;
-    }
-
-    public float getWidth() {
-        return this.body.getWidth();
-    }
-
-    public float getHeight() {
-        return this.body.getHeight();
     }
 
     public void resetBodyPos() {

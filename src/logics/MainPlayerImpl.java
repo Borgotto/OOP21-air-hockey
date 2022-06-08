@@ -13,11 +13,11 @@ import physics.RigidBody;
  */
 public class MainPlayerImpl extends AbstractPlayer implements MainPlayer {
 
-    public MainPlayerImpl(String name, Physics2D world, float radius, Vec2 position) {
-        super(name, world, radius, position);
+    public MainPlayerImpl(String name, float radius, Vec2 startingPosition, Physics2D world) {
+        super(name, radius, startingPosition, world);
     }
 
-    public MainPlayerImpl(Physics2D world, float radius, Vec2 position) {
-        this("Player", world, radius, position);
+    public MainPlayerImpl(float radius, Vec2 startingPosition, Physics2D world) {
+        this("Player", radius, startingPosition, world);
     }
 }

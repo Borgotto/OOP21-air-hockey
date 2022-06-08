@@ -65,9 +65,7 @@ public interface GameState extends GameObject, Serializable {
     void save() throws IOException;
 
     /**
-     * Loads the game state from a serialized save file.
-     * @throws IOException if an I/O error occurs
-     * @throws ClassNotFoundException if the serialized object cannot be deserialized
+     * Loads the game state from a deserialized save file or another GameState object onto the current game state.w
      */
-    void load() throws IOException, ClassNotFoundException;
+    void load(GameState game) throws IOException, ClassNotFoundException;
 }
