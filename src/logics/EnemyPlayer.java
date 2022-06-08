@@ -2,7 +2,7 @@ package logics;
 
 import org.jbox2d.common.Vec2;
 
-public interface EnemyPlayer extends Player, EnemyDifficulty {
+public interface EnemyPlayer extends Player {
     /**
      * Get the next position of the enemy player
      * @return the next position
