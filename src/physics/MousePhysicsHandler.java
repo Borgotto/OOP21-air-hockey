@@ -41,6 +41,7 @@ public class MousePhysicsHandler {
 	 */
 	public void MouseReleased() {
 		world.destroyJoint(mouseJoint);
+		playerBody.updateSpeedVec(new Vec2(0.0f, 0.0f));
 	}
 	
 	/**
