@@ -78,7 +78,6 @@ public class GameStateImpl implements GameState {
         // Load the game state from the save file
         GameStateImpl savedGame = ObjectSerializer.deserialize(GameState.savePath);
         // Set the current game state to the saved game state
-        this.arena.setGoalWidth(savedGame.getArena().getGoalWidth());
         this.mainPlayer.setScore(savedGame.mainPlayer.getScore());
         this.enemyPlayer.setScore(savedGame.enemyPlayer.getScore());
         this.maxScore = savedGame.maxScore;
