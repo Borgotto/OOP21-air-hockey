@@ -1,6 +1,5 @@
 package physics;
 
-import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 
 public interface Physics2D {
@@ -9,7 +8,7 @@ public interface Physics2D {
     
     public World getWorld();
     
-    public Body addRigidBody(RigidBodyImpl rigidBody);
+    public void addRigidBody(RigidBody rigidBody);
     
     public void resetWorld();
     

@@ -1,7 +1,6 @@
 package physics;
 
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 
 import java.util.ArrayList;
@@ -41,10 +40,8 @@ public class Physics2DImpl implements Physics2D {
 	}
 
 	@Override
-	public Body addRigidBody(RigidBodyImpl rigidBody) {
-		Body body = getWorld().createBody(rigidBody.getBodyDef());
+	public void addRigidBody(RigidBody rigidBody) {
 		this.rigidBodyList.add(rigidBody);
-		return body;
 	}
 
 	@Override
