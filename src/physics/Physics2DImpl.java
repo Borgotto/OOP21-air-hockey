@@ -31,7 +31,7 @@ public class Physics2DImpl implements Physics2D {
      */
     @Override
     public void update() {
-    	world.step(physicsTime, velocityIterations, positionIterations);  
+    	this.world.step(physicsTime, velocityIterations, positionIterations);  
     }
 
 	@Override
@@ -54,7 +54,7 @@ public class Physics2DImpl implements Physics2D {
 	@Override
 	public void deleteAllBodies() {
 		for(RigidBody rigidBody : rigidBodyList) {
-			getWorld().destroyBody(rigidBody.getBody());
+			this.getWorld().destroyBody(rigidBody.getBody());
 		}
 		rigidBodyList.clear();
 	}

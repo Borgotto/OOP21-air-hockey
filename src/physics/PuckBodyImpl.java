@@ -19,11 +19,11 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
     public PuckBodyImpl(final float radius, final Vec2 pos, final Physics2D physicsWorld) {
         this.radius = radius;
         
-    	setWorld(physicsWorld.getWorld());
-        setBodyType(BodyType.DYNAMIC);
-        setStartPositionDef(pos);
-        setLinearDampingDef(0.1f);
-        configBodyDef();
+    	this.setWorld(physicsWorld.getWorld());
+    	this.setBodyType(BodyType.DYNAMIC);
+    	this.setStartPositionDef(pos);
+    	this.setLinearDampingDef(0.1f);
+    	this.configBodyDef();
         
         CircleShape shape = new CircleShape();
         shape.m_radius = getRadius();
@@ -36,23 +36,15 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
         Body playerBody = physicsWorld.getWorld().createBody(getBodyDef());
         physicsWorld.addRigidBody(this);
         playerBody.createFixture(fixture);
-        setBody(playerBody);
+        this.setBody(playerBody);
     }
     
-    // Methods only for Enemy IA
-    
-    /**
-     * @return the predicted position 1 second after the current position of the puck.
-     */
     public Vec2 getNextPos() {
         return new Vec2(getBody().getLinearVelocity().x + getPosition().x, getBody().getLinearVelocity().y + getPosition().y);
     }
 
-    /**
-     * @return the radius
-     */
     public float getRadius() {
-        return radius;
+        return this.radius;
     } 
     
 }

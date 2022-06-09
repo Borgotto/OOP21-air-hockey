@@ -25,7 +25,7 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         this.height = height;
         this.goalSize = goalSize;
         
-        setBodyType(BodyType.STATIC);
+        this.setBodyType(BodyType.STATIC);
         Body arenaBody = physicsWorld.getWorld().createBody(getBodyDef());
         physicsWorld.addRigidBody(this);
         
@@ -35,7 +35,7 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         arenaFixtureDef.shape = shape;
         arenaFixtureDef.density = 0.0f;
         arenaFixtureDef.restitution = 0.9f;
-
+        
         // Left vertical wall
         shape.set(new Vec2(0.0f, 0.0f), new Vec2(0.0f, getHeight()));
         arenaBody.createFixture(arenaFixtureDef);
@@ -65,31 +65,19 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         arenaFixtureDef.filter.maskBits = 0x0002;
         arenaBody.createFixture(arenaFixtureDef);
         
-        setBody(arenaBody);
+        this.setBody(arenaBody);
     }
 
-    /**
-     * @return the width of the arena
-     */
-    @Override
     public float getWidth() {
-        return width;
+        return this.width;
     }
 
-    /**
-     * @return the height of the arena
-     */
-    @Override
     public float getHeight() {
-        return height;
+        return this.height;
     }
 
-    /**
-     * @return the goal size of the arena
-     */
-    @Override
     public float getGoalSize() {
-        return goalSize;
+        return this.goalSize;
     }
  
 }

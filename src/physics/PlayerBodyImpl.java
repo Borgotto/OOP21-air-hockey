@@ -19,11 +19,11 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
     public PlayerBodyImpl(final float radius, final Vec2 pos, final Physics2D physicsWorld) {
     	this.radius = radius;
     	
-        setWorld(physicsWorld.getWorld());
-        setBodyType(BodyType.DYNAMIC);
-        setLinearDampingDef(0.0f);
-        setStartPositionDef(pos);
-        configBodyDef();
+        this.setWorld(physicsWorld.getWorld());
+        this.setBodyType(BodyType.DYNAMIC);
+        this.setLinearDampingDef(0.0f);
+        this.setStartPositionDef(pos);
+        this.configBodyDef();
         
         CircleShape shape = new CircleShape();
         shape.m_radius = radius;
@@ -39,24 +39,15 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
         Body playerBody = physicsWorld.getWorld().createBody(getBodyDef());
         physicsWorld.addRigidBody(this);
         playerBody.createFixture(fixture);
-        setBody(playerBody);
+        this.setBody(playerBody);
     }
 
-    /**
-     * Apply a force to the player body.
-     * @param force to be applied to the body.
-     */
-    @Override
     public void updateSpeedVec(final Vec2 force) {
-        getBody().applyForceToCenter(force);
+        this.getBody().applyForceToCenter(force);
     }
     
-    /**
-     * @return the radius
-     */
-    @Override
     public float getRadius() {
-        return radius;
+        return this.radius;
     }
     
 }
