@@ -2,53 +2,74 @@ package logics;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.awt.*;
+import gui.Theme;
+
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
+import java.nio.file.Path;
 
 /**
  * The game settings.
  */
 public class Settings {
-    Color theme;
-    int maxScore;
-
-    public Settings(Color theme, int maxScore) {
-        this.theme = theme;
-        this.maxScore = maxScore;
+	private static final Path path = Path.of("config\settings.json");
+	
+	private String username;
+    private Theme theme;
+    private Integer maxScore;
+    private Difficulty difficulty;
+    
+    public Settings() {
+    	this.username = "Player";
+    	this.theme = Theme.DEFAULT;
+    	this.maxScore = 5;
+    	this.difficulty = Difficulty.EASY;
     }
 
-    public Color getTheme() {
-        return this.theme;
-    }
+    public String getUsername() {
+		return this.username;
+	}
 
-    public void setTheme(Color theme) {
-        this.theme = theme;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public int getMaxScore() {
-        return this.maxScore;
-    }
+	public Theme getTheme() {
+		return this.theme;
+	}
 
-    public void setMaxScore(int maxScore) {
-        this.maxScore = maxScore;
-    }
+	public void setTheme(Theme theme) {
+		this.theme = theme;
+	}
 
-    public void load() throws IOException, IllegalAccessException {
+	public int getMaxScore() {
+		return this.maxScore;
+	}
+
+	public void setMaxScore(int maxScore) {
+		this.maxScore = maxScore;
+	}
+
+	public Difficulty getDifficulty() {
+		return this.difficulty;
+	}
+
+	public void setDifficulty(Difficulty difficulty) {
+		this.difficulty = difficulty;
+	}
+
+	public void load() throws IOException, IllegalAccessException {
         ObjectMapper mapper = new ObjectMapper();
-        Settings s = mapper.readValue(new File("settings.json"), Settings.class);
-
-        // Use reflection to set the field values
-        for (Field f : this.getClass().getDeclaredFields()) {
-            f.setAccessible(true);
-            f.set(this, f.get(s));
-        }
-
+        Settings s = mapper.readValue(new File(Settings.path.toString()), Settings.class);
+        
+        this.setUsername(s.getUsername());
+        this.setTheme(s.getTheme());
+        this.setMaxScore(s.getMaxScore());
+        this.setDifficulty(s.getDifficulty());
     }
 
     public void save() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(new File("settings.json"), this);
+        mapper.writeValue(new File(Settings.path.toString()), this);
     }
 }
