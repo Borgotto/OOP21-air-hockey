@@ -1,6 +1,7 @@
 package gui;
 
 import logics.GameState;
+import org.jbox2d.common.Vec2;
 import utils.*;
 
 import javax.swing.*;
@@ -66,8 +67,6 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
         this.game = game;
         this.pauseButton.setEnabled(true);
         this.componentMover.registerComponent(this.arenaLabel.getPlayerButton());
-        this.playerScoreLabel.setText(String.valueOf(game.getMainPlayer().getScore()));
-        this.enemyScoreLabel.setText(String.valueOf(game.getEnemyPlayer().getScore()));
         this.timer.start();
     }
 
@@ -78,13 +77,14 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
     private void updateGame() {
         // Tell the game logics to update the game state
         this.game.update();
+        // Update the scores
+        this.playerScoreLabel.setText(String.valueOf(this.game.getMainPlayer().getScore()));
+        this.enemyScoreLabel.setText(String.valueOf(this.game.getEnemyPlayer().getScore()));
         // Update the Components based on the new game state
         this.updatePositions();
-        this.repaint();
-
         // Check if the game is over
         if (this.game.isGameOver()) {
-           this.endGame(game);
+           this.endGame();
         }
     }
 
@@ -92,10 +92,10 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
      * Method called automatically by the timer function
      * Can be called manually to end the game
      */
-    private void endGame(GameState game) {
+    private void endGame() {
         this.timer.stop();
-        //JFrame parent = JComponentLoader.getParentFrame(this);
-        //JComponentLoader.load(parent, new GameOverPanel(game));
+        JFrame parent = JComponentLoader.getParentFrame(this);
+        JComponentLoader.load(parent, new GameOverPanel(game));
     }
 
     /**
