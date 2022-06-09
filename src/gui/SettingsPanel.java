@@ -2,8 +2,12 @@ package gui;
 
 import utils.JComponentLoader;
 import javax.swing.*;
+
 import logics.Difficulty;
+import logics.Settings;
+
 import java.awt.*;
+import java.io.IOException;
 
 public class SettingsPanel extends AbstractGridBagLayoutJComponent {
     private static final long serialVersionUID = 1L;
@@ -13,6 +17,15 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
     
     public SettingsPanel() {
         super("Air Hockey - Settings", new Dimension(GUI.getMinScreenSize()/2, GUI.getMinScreenSize()));
+        
+        // Load settings from "settings.json"
+        
+        Settings settings = new Settings();
+        try {
+        	settings.load();
+        } catch (IOException | IllegalAccessException e1) {
+        	e1.printStackTrace();
+        }
         
         /*
          * User name panel
@@ -29,10 +42,7 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
         c.gridx = 1;
         c.gridy = 0;
         
-        JTextField t1 = new JTextField(10);
-        t1.addActionListener(e -> {
-
-        });
+        JTextField t1 = new JTextField(settings.getUsername(), 10);
         p1.add(t1, c);
 
         addComponent(p1, 0, 0);
@@ -53,9 +63,7 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
         c.gridy = 0;
         
         JComboBox<Theme> t2 = new JComboBox<Theme>(themeArray);
-        t2.addActionListener(e -> {
-        	
-        });
+        t2.setSelectedItem(settings.getTheme());
         p2.add(t2, c);
         
         addComponent(p2, 0, 1);
@@ -75,10 +83,7 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
         c.gridx = 1;
         c.gridy = 0;
         
-        JTextField t3 = new JTextField(3);
-        t3.addActionListener(e -> {
-        	
-        });
+        JTextField t3 = new JTextField(String.valueOf(settings.getMaxScore()), 3);
         p3.add(t3, c);
         
         addComponent(p3, 0, 2);
@@ -99,9 +104,7 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
         c.gridy = 0;
         
         JComboBox<Difficulty> t4 = new JComboBox<Difficulty>(difficultyArray);
-        t4.addActionListener(e -> {
-        	
-        });
+        t4.setSelectedItem(settings.getDifficulty());
         p4.add(t4, c);
         
         addComponent(p4, 0, 3);
@@ -117,7 +120,15 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
         
         JButton b1 = new JButton("Save settings");
         b1.addActionListener(e -> {
-        	
+        	settings.setUsername(t1.getText());
+        	settings.setTheme((Theme)t2.getSelectedItem());
+        	settings.setMaxScore(Integer.parseInt(t3.getText()));
+        	settings.setDifficulty((Difficulty)t4.getSelectedItem());
+	        try {
+	        	settings.save();
+	        } catch (IOException e1) {
+	        	e1.printStackTrace();
+	        }
         });
         p5.add(b1, c);
         
