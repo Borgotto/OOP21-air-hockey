@@ -26,7 +26,8 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         this.goalSize = goalSize;
         
         setBodyType(BodyType.STATIC);
-        Body arenaBody = physicsWorld.addRigidBody(this);
+        Body arenaBody = physicsWorld.getWorld().createBody(getBodyDef());
+        physicsWorld.addRigidBody(this);
         
         EdgeShape shape = new EdgeShape();
         

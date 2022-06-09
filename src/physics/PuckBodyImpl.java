@@ -33,7 +33,8 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
         fixture.density = 1.0f;
         fixture.restitution = 1.0f;
         
-        Body playerBody = physicsWorld.addRigidBody(this);
+        Body playerBody = physicsWorld.getWorld().createBody(getBodyDef());
+        physicsWorld.addRigidBody(this);
         playerBody.createFixture(fixture);
         setBody(playerBody);
     }
