@@ -8,9 +8,9 @@ import org.jbox2d.dynamics.World;
 
 public abstract class RigidBodyImpl implements RigidBody {
 	
-	World world;
+	private World world;
     
-    BodyType bodyType = BodyType.STATIC;
+    private BodyType bodyType = BodyType.STATIC;
     private Vec2 startPositionDef = new Vec2(0.0f, 0.0f);
     private float linearDampingDef = 0.0f;
    
@@ -21,73 +21,52 @@ public abstract class RigidBodyImpl implements RigidBody {
      * set the BodyDef data
      */
     protected void configBodyDef() {
-        bodyDef.type = getBodyType();
-        bodyDef.position.set(getStartPositionDef());
-        bodyDef.linearDamping = getLinearDampingDef();
-        bodyDef.angularDamping = 0.0f;
-        bodyDef.gravityScale = 0.0f;
-        bodyDef.fixedRotation = true;
-        bodyDef.angle = 0.0f;
-        bodyDef.bullet = true;
-        bodyDef.active = true;
-        bodyDef.allowSleep = false;
+        this.bodyDef.type = getBodyType();
+        this.bodyDef.position.set(getStartPositionDef());
+        this.bodyDef.linearDamping = getLinearDampingDef();
+        this.bodyDef.angularDamping = 0.0f;
+        this.bodyDef.gravityScale = 0.0f;
+        this.bodyDef.fixedRotation = true;
+        this.bodyDef.angle = 0.0f;
+        this.bodyDef.bullet = true;
+        this.bodyDef.active = true;
+        this.bodyDef.allowSleep = false;
     }
     
-    /**
-     * @return the body position
-     */
-    @Override
     public Vec2 getPosition() {
-    	return body.getPosition();
+    	return this.body.getPosition();
     }
     
-    /**
-     * set the body in a position and resets the speed of the object.
-     * @param pos to set the object
-     */
-    @Override
     public void setPosition(Vec2 pos) {
-        body.setLinearVelocity(new Vec2(0.0f, 0.0f));
-    	body.setTransform(pos, 0.0f);
+    	this.body.setLinearVelocity(new Vec2(0.0f, 0.0f));
+    	this.body.setTransform(pos, 0.0f);
     }
 
-	/**
-	 * @return the world
-	 */
-    @Override
 	public World getWorld() {
-		return world;
+		return this.world;
 	}
-    
-    /**
-     * @return the body
-     */
-    @Override
+
     public Body getBody() {
-        return body;
+        return this.body;
     }
     
-    /**
-     * reset the body position to the start position.
-     */
-    @Override
     public void resetBodyPos() {
-        resetBodySpeed();
-        body.setTransform(getStartPositionDef(), 0.0f);
+    	this.resetBodySpeed();
+    	this.body.setTransform(getStartPositionDef(), 0.0f);
     }
     
     /**
      * reset the body speed, stops the body
      */
     protected void resetBodySpeed() {
-        body.setLinearVelocity(new Vec2(0.0f, 0.0f));
+    	this.body.setLinearVelocity(new Vec2(0.0f, 0.0f));
     }
 
     /**
      * @return the bodyTypeDef
      */
     protected BodyType getBodyType() {
-        return bodyType;
+        return this.bodyType;
     }
 
     /**
@@ -101,7 +80,7 @@ public abstract class RigidBodyImpl implements RigidBody {
      * @return the startPositionDef
      */
     protected Vec2 getStartPositionDef() {
-        return startPositionDef;
+        return this.startPositionDef;
     }
 
     /**
@@ -115,7 +94,7 @@ public abstract class RigidBodyImpl implements RigidBody {
      * @return the linearDampingDef
      */
     protected float getLinearDampingDef() {
-        return linearDampingDef;
+        return this.linearDampingDef;
     }
 
     /**
@@ -129,7 +108,7 @@ public abstract class RigidBodyImpl implements RigidBody {
      * @return the bodyDef
      */
     protected BodyDef getBodyDef() {
-        return bodyDef;
+        return this.bodyDef;
     }
 
     /**
