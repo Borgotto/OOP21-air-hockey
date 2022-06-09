@@ -134,7 +134,7 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
         addComponent(p5, 0, 4);
     }
     
-    public void addComponent(JComponent component, int x, int y) {
+    private void addComponent(JComponent component, int x, int y) {
     	c.gridx = x;
     	c.gridy = y;
     	this.add(component, c);
