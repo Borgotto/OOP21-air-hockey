@@ -24,9 +24,9 @@ public class GameStateBuilder {
         this.gamePhysics = new Physics2DImpl();
         this.arena = new ArenaImpl(18.0f, 32.0f, 6.0f, this.gamePhysics);
         this.maxScore = settings.getMaxScore();
-        this.mainPlayer = new MainPlayerImpl(2.0f, new Vec2(9.0f,8.0f), this.gamePhysics);
-        this.enemyPlayer = new EnemyPlayerImpl(2.0f, new Vec2(9.0f,24.0f), this.gamePhysics, settings.getDifficulty());
-        this.puck = new PuckImpl(1.8f, new Vec2(9.0f,16.0f), this.gamePhysics);
+        this.mainPlayer = new MainPlayerImpl(1.4f, new Vec2(9.0f,4.0f), this.gamePhysics);
+        this.enemyPlayer = new EnemyPlayerImpl(1.4f, new Vec2(9.0f,28.0f), this.gamePhysics, settings.getDifficulty());
+        this.puck = new PuckImpl(1.2f, new Vec2(9.0f,16.0f), this.gamePhysics);
     }
 
     public GameStateBuilder setPhysics(Physics2D physics) {
