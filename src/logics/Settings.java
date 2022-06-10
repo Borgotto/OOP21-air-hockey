@@ -12,7 +12,7 @@ import java.nio.file.Path;
  * The game settings.
  */
 public class Settings {
-	private static final Path path = Path.of("config\settings.json");
+	private static final Path path = Path.of("config/settings.json");
 	
 	private String username;
     private Theme theme;
