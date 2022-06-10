@@ -3,9 +3,10 @@ package physics;
 import org.jbox2d.common.Vec2;
 
 public interface PuckBody extends RigidBody {
-    
+
     /**
-     * @return the predicted position 1 second after the current position of the puck.
+     * Get the position where the {@code Puck} will be in the next game loop frame
+     * @return the {@code Vec2} vector position
      */
     public Vec2 getNextPos();
     

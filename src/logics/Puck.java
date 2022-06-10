@@ -1,11 +1,12 @@
 package logics;
 
 import org.jbox2d.common.Vec2;
+import physics.PuckBody;
 
 /**
  * Interface that represents a {@code Puck} object
  */
-public interface Puck extends GameObjectWithPhysics {
+public interface Puck extends GameObjectWithPhysics, PuckBody {
     
     /**
      * Place the {@code Puck} at the center of the {@code Arena}
@@ -19,11 +20,4 @@ public interface Puck extends GameObjectWithPhysics {
      * @param player is the {@code Arena} side to move the {@code Puck} to
      */
     public void moveToPlayer(Arena arena, Player player);
-    
-    /**
-     * Get the position where the {@code Puck} will be in the next game loop frame
-     * @return the {@code Vec2} vector position
-     */
-    public Vec2 getNextPos();
-    
 }

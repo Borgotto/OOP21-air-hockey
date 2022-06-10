@@ -86,6 +86,10 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         return this.height;
     }
 
+    public float getGoalWidth() {
+        return this.goalSize;
+    }
+
     public float getGoalSize() {
         return this.goalSize;
     }

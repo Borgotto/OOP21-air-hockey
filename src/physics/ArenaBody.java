@@ -1,20 +1,21 @@
 package physics;
 
 public interface ArenaBody extends RigidBody {
-    
     /**
-     * @return the width of the arena
+     * Get the {@code Arena} width.
+     * @return the {@code Arena} width in meters.
      */
     public float getWidth();
-    
+
     /**
-     * @return the height of the arena
+     * Get the {@code Arena} height.
+     * @return the {@code Arena} height in meters.
      */
     public float getHeight();
-    
+
     /**
-     * @return the goal size of the arena
+     * Get the {@code Arena} goal size.
+     * @return the {@code Arena} goal size in meters.
      */
-    public float getGoalSize();
-    
+    public float getGoalWidth();
 }

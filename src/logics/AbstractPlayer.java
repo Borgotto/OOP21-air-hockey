@@ -67,6 +67,10 @@ public abstract class AbstractPlayer implements Player {
         return this.body;
     }
 
+    public void updateSpeedVec(final Vec2 force) {
+        this.getBody().applyForceToCenter(force);
+    }
+
     public void resetBodyPos() {
         this.body.resetBodyPos();
     }

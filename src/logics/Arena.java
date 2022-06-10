@@ -1,25 +1,11 @@
 package logics;
 
+import physics.ArenaBody;
+
 /**
  * Interface that defines Arena specifics
  */
-public interface Arena extends GameObjectWithPhysics {
+public interface Arena extends GameObjectWithPhysics, ArenaBody {
 
-    /**
-     * Get the {@code Arena} width.
-     * @return the {@code Arena} width in meters.
-     */
-    public float getWidth();
-
-    /**
-     * Get the {@code Arena} height.
-     * @return the {@code Arena} height in meters.
-     */
-    public float getHeight();
-
-    /**
-     * Get the {@code Arena} goal size.
-     * @return the {@code Arena} goal size in meters.
-     */
-    public float getGoalWidth();
+    // TODO getters for puck positions when it needs to be placed near a player
 }

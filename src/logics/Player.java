@@ -1,10 +1,12 @@
 package logics;
 
+import physics.PlayerBody;
+
 /**
  * The abstract class Player contains the common fields and methods that can be found in any player of the game.
  * Instances of the Player class are equivalent to the mallet they control.
  */
-public interface Player extends GameObjectWithPhysics {
+public interface Player extends GameObjectWithPhysics, PlayerBody {
 
     /**
      * Returns the name of the player or an empty string if not set.

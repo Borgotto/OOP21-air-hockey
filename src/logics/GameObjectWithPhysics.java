@@ -17,12 +17,6 @@ public interface GameObjectWithPhysics extends GameObject, RigidBody {
     public Vec2 getStartingPosition();
 
     /**
-     * Get the radius of the GameObject
-     * @return the radius of the GameObject
-     */
-    public float getRadius();
-
-    /**
      * @return the {@link physics.RigidBody} of the current {@code GameObjectWithPhysics}
      */
     public RigidBody getRigidBody();
