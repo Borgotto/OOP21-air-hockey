@@ -78,6 +78,8 @@ public class GameStateImpl implements GameState {
 
     public void load(GameState savedGame) {
         // Set the current game state to the saved game state
+        this.gamePhysics.deleteAllBodies();
+
         var savedArena = savedGame.getArena();
         this.arena = new ArenaImpl(savedArena.getWidth(), savedArena.getHeight(), savedArena.getGoalWidth(), this.gamePhysics);
 
