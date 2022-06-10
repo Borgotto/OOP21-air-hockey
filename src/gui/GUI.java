@@ -1,5 +1,7 @@
 package gui;
 
+import logics.Settings;
+import utils.ImageModifier;
 import utils.JComponentLoader;
 
 import javax.swing.*;
@@ -15,10 +17,10 @@ public class GUI extends JFrame {
      */
     public GUI() {
         GUI.setFont(new FontUIResource(new Font("Arial", Font.PLAIN, 14)));
-
         JComponentLoader.load(this, new MenuPanel());
-
-        this.setIconImage(new ImageIcon("res/airhockey_ico.png").getImage());
+        Settings settings = new Settings().load();
+        Image icon = ImageModifier.color(new ImageIcon("res/airhockey_ico.png").getImage(), settings.getTheme().getColor());
+        this.setIconImage(icon);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setVisible(true);
