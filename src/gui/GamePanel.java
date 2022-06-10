@@ -10,7 +10,7 @@ import java.awt.*;
 public class GamePanel extends AbstractGridBagLayoutJComponent {
     private static final long serialVersionUID = 1L;
 
-    private GameState game;
+    private final GameState game;
 
     // create a timer to update the game state
     private static final int delay = 1000/60; // 60 FPS
@@ -25,15 +25,16 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
     // class used to handle the mouse inputs on the player button
     private final ComponentMover componentMover;
 
-    public GamePanel() {
+    public GamePanel(GameState game) {
         super("Air Hockey - Game", new Dimension(GUI.getMinScreenSize()*3/4, GUI.getMinScreenSize()));
+        this.game = game;
 
         // Add the game field as a JLabel
         c.weighty = 1.0;
         c.gridheight = 3;
         c.gridx = 0;
         c.gridy = 0;
-        this.arenaLabel = new ArenaLabel(new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height));
+        this.arenaLabel = new ArenaLabel(new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height), this.game);
         this.add(arenaLabel, c);
 
         // Create labels to show the players scores
@@ -63,8 +64,7 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
     /**
      * Sets up the JLabels and JButtons to the initial game state and starts the timer.
      */
-    public void startGame(GameState game) {
-        this.game = game;
+    public void startGame() {
         this.pauseButton.setEnabled(true);
         this.componentMover.registerComponent(this.arenaLabel.getPlayerButton());
         this.timer.start();

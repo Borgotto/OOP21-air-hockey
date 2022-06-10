@@ -43,10 +43,10 @@ public class MenuPanel extends AbstractGridBagLayoutJComponent {
 
         var b1 = new JButton("New game");
         b1.addActionListener(e -> {
-            GamePanel gamePanel = new GamePanel();
+            GamePanel gamePanel = new GamePanel(new GameStateBuilder().build());
             JFrame parent = JComponentLoader.getParentFrame(this);
             JComponentLoader.load(parent, gamePanel);
-            gamePanel.startGame(new GameStateBuilder().build());
+            gamePanel.startGame();
         });
         this.add(b1, c);
 
@@ -59,10 +59,10 @@ public class MenuPanel extends AbstractGridBagLayoutJComponent {
             try {
                 GameState game = new GameStateBuilder().build();
                 game.load(ObjectSerializer.deserialize(GameState.savePath));
-                GamePanel gamePanel = new GamePanel();
+                GamePanel gamePanel = new GamePanel(game);
                 JFrame parent = JComponentLoader.getParentFrame(this);
                 JComponentLoader.load(parent, gamePanel);
-                gamePanel.startGame(game);
+                gamePanel.startGame();
             } catch (IOException | ClassNotFoundException ex) {
                 new ExceptionPanel("Failed to load the game", ex);
             }
