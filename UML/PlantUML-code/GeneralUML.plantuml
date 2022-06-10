@@ -1,0 +1,205 @@
+@startuml AllLogicsInterface
+
+interface GameObject {
+    + update() : void
+}
+
+interface GameObjectWithPhysics {
+    + getStartingPosition() : Vec2
+    + getRadius() : float
+    + getRigidBody() : RigidBody
+}
+
+interface RigidBody {
+    + getPosition() : Vec2
+    + setPosition( pos : Vec2 ) : Vec2
+    + getWorld() : World
+    + getBody() : Body
+    + resetBodyPos() : void
+}
+
+interface GameState {
+    savePath : Path
+
+    + getArena() : Arena
+    + getMainPlayer() : MainPlayer
+    + getEnemyPlayer() : EnemyPlayer
+    + getWinner() : Optional<Player>
+    + isGameOver() : boolean
+    + getPuck() : Puck
+    + getMaxScore() : void
+    + save() : void
+    + load( game : GameState ) : void
+}
+
+interface Player {
+    + getName() : String
+    + getScore() : Integer
+    + setScore( score : Integer ) : void
+    + scorePoint() : void
+}
+
+interface EnemyPlayer {
+    nextPosition( gameState : GameState ) ; Vec2
+    getDifficulty() : Difficulty
+}
+
+interface Puck {
+    + center( arena : Arena ) : void
+    + moveToPlayer( arena : Arena , player : Player ) : void
+    + getNextPos() : Vec2
+}
+
+interface RigidBody {
+    + getPosition() : Vec2
+    + setPosition( pos : Vec2 ) : void
+    + getWorld() : World
+    + getBody() : Body
+    + resetBodyPos() : void
+}
+
+interface PlayerBody {
+    + updateSpeedVec( force : Vec2 ) : void
+    + getRadius() : float
+}
+
+interface PuckBody {
+    + getNextPos() : Vec2
+    + getRadius() : float
+}
+
+interface ArenaBody {
+    + getWidth() : float
+    + getHeight() : float
+    + getGoalSize() : float
+}
+
+interface GameObject extends Serializable
+interface GameObjectWithPhysics extends GameObject, RigidBody
+interface GameState extends GameObject, Serializable
+
+interface Player extends GameObjectWithPhysics
+interface MainPlayer extends Player
+interface EnemyPlayer extends Player
+interface Puck extends GameObjectWithPhysics
+
+interface PlayerBody extends RigidBody
+interface PuckBody extends RigidBody
+interface ArenaBody extends RigidBody
+
+@enduml
+
+@startuml Gui
+
+abstract class AbstractGridLayoutJComponent {
+    c : GridBagConstraints
+}
+
+class Main {
+}
+
+class GUI {
+    + getScreenSize() : Dimension
+    + getMinScreenSize() : int
+    + setFont( f : FontUIResource ) : void  
+}
+
+class MenuPanel {
+}
+
+class PausePanel {
+    serialVersionUID : long
+    gameState : GameState
+}
+
+class SettingsPanel {
+    serialVersionUID : long
+    themeArray[] : Theme
+    difficultyArray[] : Difficulty
+}
+
+class GamePanel {
+    serialVersionUID : long
+    game : GameState
+    delay : int
+    timer : Timer
+    arenaLabel : ArenaLabel
+    playerScoreLabel : JLabel
+    enemyScoreLabel : JLabel
+    pauseButton : JButton
+    componentMover : ComponentMover
+
+    + startGame( game : GameState ) : void
+    - updateGame() : void
+    - endGame() : void
+    - updatePositions() : void
+}
+
+class GameOverPanel {
+}
+
+class AchievementsPanel {
+}
+
+class AchievementLabel {
+}
+
+class ArenaLabel {
+    enemyField : JLabel
+    playerField : JLabel
+    enemyButton : JButton
+    playerButton : JButton
+    puckButton : JButton
+
+    + getEnemyField() : JLabel
+    + getPlayerField() : JLabel
+    + getEnemyButton() : JButton
+    + getPlayerButton() : JButton
+    + getPuckButton() : JButton
+}
+
+class ExceptionPanel {
+}
+
+class IconButton {
+}
+
+enum Theme {
+    DEFAULT
+    RED
+    GREEN
+    BLUE
+    BLACK
+    color : Color
+
+    + getColor() : Color
+}
+
+class ComponentMover {
+}
+
+abstract class AbstractGridLayoutJComponent extends JComponent
+Main *-- GUI
+class GUI extends JFrame
+
+class MenuPanel extends AbstractGridLayoutJComponent
+class PausePanel extends AbstractGridLayoutJComponent
+class SettingsPanel extends AbstractGridLayoutJComponent
+class GamePanel extends AbstractGridLayoutJComponent
+class GameOverPanel extends AbstractGridLayoutJComponent
+
+class AchievementsPanel extends JPanel
+class AchievementLabel extends JLabel
+class ArenaLabel extends JLabel
+class IconButton extends JButton
+
+class ComponentMover extends MouseAdapter
+
+ArenaLabel --* GamePanel
+AchievementLabel --* AchievementsPanel
+IconButton --* ArenaLabel
+Theme --* SettingsPanel
+ExceptionPanel --* MenuPanel
+ExceptionPanel --* PausePanel
+
+@enduml
