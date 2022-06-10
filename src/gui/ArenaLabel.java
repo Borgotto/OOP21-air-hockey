@@ -50,7 +50,7 @@ public class ArenaLabel extends JLabel {
         UnitConverter converter = new UnitConverter(size, new Vec2(game.getArena().getWidth(), game.getArena().getHeight()));
 
         // Create the enemy button
-        int enemyButtonSize = Math.round(game.getEnemyPlayer().getRadius() * converter.xScaling);
+        int enemyButtonSize = Math.round(game.getEnemyPlayer().getRadius()*2 * converter.xScaling);
         converter.setOffset(new Vec2(-enemyButtonSize/2.0f, -enemyButtonSize/2.0f));
         Point enemyButtonPos = converter.MeterToPixel(game.getEnemyPlayer().getPosition());
         enemyButton = new IconButton(strikerImage, new Dimension(enemyButtonSize, enemyButtonSize));
@@ -58,7 +58,7 @@ public class ArenaLabel extends JLabel {
         enemyField.add(enemyButton);
 
         // Create the player button
-        int playerButtonSize = Math.round(game.getMainPlayer().getRadius() * converter.xScaling);
+        int playerButtonSize = Math.round(game.getMainPlayer().getRadius()*2 * converter.xScaling);
         converter.setOffset(new Vec2(-playerButtonSize/2.0f, -playerButtonSize/2.0f));
         Point playerButtonPos = converter.MeterToPixel(game.getMainPlayer().getPosition());
         playerButton = new IconButton(strikerImage, new Dimension(playerButtonSize, playerButtonSize));
@@ -66,7 +66,7 @@ public class ArenaLabel extends JLabel {
         playerField.add(playerButton);
 
         // Create the puck button
-        int puckButtonSize = Math.round(game.getPuck().getRadius() * converter.xScaling);
+        int puckButtonSize = Math.round(game.getPuck().getRadius()*2 * converter.xScaling);
         converter.setOffset(new Vec2(-puckButtonSize/2.0f, -puckButtonSize/2.0f));
         Point puckButtonPos = converter.MeterToPixel(game.getPuck().getPosition());
         puckButton = new IconButton(puckImage, new Dimension(puckButtonSize, puckButtonSize));
