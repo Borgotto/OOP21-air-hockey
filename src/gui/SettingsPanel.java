@@ -21,12 +21,7 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
         
         // Load settings from "settings.json"
         
-        Settings settings = new Settings();
-        try {
-        	settings.load();
-        } catch (IOException | IllegalAccessException e) {
-        	new ExceptionPanel(e, "Error loading settings, using default values", false);
-        }
+        Settings settings = new Settings().load();
         
         /*
          * User name panel

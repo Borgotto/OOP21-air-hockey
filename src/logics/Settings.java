@@ -57,15 +57,17 @@ public class Settings {
 		this.difficulty = difficulty;
 	}
 
-	public Settings load() throws IOException, IllegalAccessException {
-        ObjectMapper mapper = new ObjectMapper();
-        Settings s = mapper.readValue(new File(Settings.path.toString()), Settings.class);
-        
-        this.setUsername(s.getUsername());
-        this.setTheme(s.getTheme());
-        this.setMaxScore(s.getMaxScore());
-        this.setDifficulty(s.getDifficulty());
-        
+	public Settings load() {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			Settings s = mapper.readValue(new File(Settings.path.toString()), Settings.class);
+			this.setUsername(s.getUsername());
+			this.setTheme(s.getTheme());
+			this.setMaxScore(s.getMaxScore());
+			this.setDifficulty(s.getDifficulty());
+		} catch (IOException e) {
+			// ignore exception
+		}
         return this;
     }
 
