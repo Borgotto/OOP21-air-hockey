@@ -23,8 +23,8 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
         Settings settings = new Settings();
         try {
         	settings.load();
-        } catch (IOException | IllegalAccessException e1) {
-        	e1.printStackTrace();
+        } catch (IOException | IllegalAccessException e) {
+        	new ExceptionPanel(e, "Error loading settings, using default values", false);
         }
         
         /*

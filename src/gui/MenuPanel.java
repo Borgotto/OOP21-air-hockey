@@ -64,7 +64,7 @@ public class MenuPanel extends AbstractGridBagLayoutJComponent {
                 JComponentLoader.load(parent, gamePanel);
                 gamePanel.startGame();
             } catch (IOException | ClassNotFoundException ex) {
-                new ExceptionPanel("Failed to load the game", ex);
+                new ExceptionPanel(ex,"Failed to load the game");
             }
         });
         this.add(b2, c);
