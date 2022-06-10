@@ -29,5 +29,5 @@ hs_err_pid*
 .metadata/
 /target/
 
-# Serialization files
-*.ser
+# Game files
+/config/*
