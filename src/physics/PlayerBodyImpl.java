@@ -21,7 +21,7 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
     	
         this.setWorld(physicsWorld.getWorld());
         this.setBodyType(BodyType.DYNAMIC);
-        this.setLinearDampingDef(0.0f);
+        this.setLinearDampingDef(4.0f);
         this.setStartPositionDef(pos);
         this.configBodyDef();
         
@@ -30,8 +30,9 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
         
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;
-        fixture.density = 0.4f;
-        fixture.friction = 0.3f;
+        fixture.density = 10.0f;
+        fixture.friction = 1.0f;
+        fixture.restitution = 0.6f;
         
         // Bit mask for mid arena fixture collision
         fixture.filter.categoryBits = 0x0002;

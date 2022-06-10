@@ -34,7 +34,7 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         FixtureDef arenaFixtureDef = new FixtureDef();
         arenaFixtureDef.shape = shape;
         arenaFixtureDef.density = 0.0f;
-        arenaFixtureDef.restitution = 0.9f;
+        arenaFixtureDef.restitution = 1.0f;
         
         // Left vertical wall
         shape.set(new Vec2(0.0f, 0.0f), new Vec2(0.0f, getHeight()));
