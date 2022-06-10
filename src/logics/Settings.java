@@ -58,7 +58,7 @@ public class Settings {
 		this.difficulty = difficulty;
 	}
 
-	public void load() throws IOException, IllegalAccessException {
+	public Settings load() throws IOException, IllegalAccessException {
         ObjectMapper mapper = new ObjectMapper();
         Settings s = mapper.readValue(new File(Settings.path.toString()), Settings.class);
         
@@ -66,6 +66,8 @@ public class Settings {
         this.setTheme(s.getTheme());
         this.setMaxScore(s.getMaxScore());
         this.setDifficulty(s.getDifficulty());
+        
+        return this;
     }
 
     public void save() throws IOException {
