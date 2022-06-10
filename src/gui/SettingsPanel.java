@@ -1,5 +1,6 @@
 package gui;
 
+import logics.Theme;
 import utils.JComponentLoader;
 import javax.swing.*;
 

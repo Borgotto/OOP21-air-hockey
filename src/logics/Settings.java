@@ -2,8 +2,6 @@ package logics;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import gui.Theme;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
