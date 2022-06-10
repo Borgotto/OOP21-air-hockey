@@ -6,6 +6,7 @@ import gui.Theme;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
@@ -72,6 +73,7 @@ public class Settings {
 
     public void save() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
+        Files.createDirectories(Settings.path.getParent());
         mapper.writeValue(new File(Settings.path.toString()), this);
     }
 }
