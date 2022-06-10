@@ -12,19 +12,19 @@ import java.io.IOException;
 public class SettingsPanel extends AbstractGridBagLayoutJComponent {
     private static final long serialVersionUID = 1L;
     
-    final Theme themeArray[] = Theme.values();
-    final Difficulty difficultyArray[] = logics.Difficulty.values();
+    final Theme[] themeArray = Theme.values();
+    final Difficulty[] difficultyArray = logics.Difficulty.values();
     
     public SettingsPanel() {
-        super("Air Hockey - Settings", new Dimension(GUI.getMinScreenSize()/2, GUI.getMinScreenSize()));
+        super("Air Hockey - Settings", new Dimension(GUI.getMinScreenSize()/2, GUI.getMinScreenSize()/2));
         
         // Load settings from "settings.json"
         
         Settings settings = new Settings();
         try {
         	settings.load();
-        } catch (IOException | IllegalAccessException e1) {
-        	e1.printStackTrace();
+        } catch (IOException | IllegalAccessException e) {
+        	new ExceptionPanel(e, "Error loading settings, using default values", false);
         }
         
         /*

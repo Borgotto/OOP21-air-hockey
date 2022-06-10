@@ -1,7 +1,10 @@
 package gui;
 
+import logics.GameState;
+import org.jbox2d.common.Vec2;
 import utils.ImageModifier;
 import utils.ResourceLoader;
+import utils.UnitConverter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +18,7 @@ public class ArenaLabel extends JLabel {
     private final JButton playerButton;
     private final JButton puckButton;
 
-    public ArenaLabel(Dimension size) {
+    public ArenaLabel(Dimension size, GameState game) {
         // Load resources
         BufferedImage strikerImag = ResourceLoader.load(Path.of("res/striker.png"), BufferedImage.class);
         BufferedImage puckImag = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
@@ -39,22 +42,31 @@ public class ArenaLabel extends JLabel {
         playerField.setBounds(0,size.height/2, size.width,size.height/2);
         this.add(playerField);
 
-        // Buttons dimension
-        int buttonSize = size.width/8;
+        // Determine the size of the buttons with the help of the UnitConverter
+        UnitConverter converter = new UnitConverter(size, new Vec2(game.getArena().getWidth(), game.getArena().getHeight()));
 
         // Create the enemy button
-        enemyButton = new IconButton(strikerImage, new Dimension(buttonSize, buttonSize));
-        enemyButton.setBounds(size.width/2-enemyButton.getWidth()/2,size.height/4-enemyButton.getHeight(),enemyButton.getWidth(),enemyButton.getHeight());
+        int enemyButtonSize = Math.round(game.getEnemyPlayer().getRadius() * converter.xScaling);
+        converter.setOffset(new Vec2(-enemyButtonSize/2.0f, -enemyButtonSize/2.0f));
+        Point enemyButtonPos = converter.MeterToPixel(game.getEnemyPlayer().getPosition());
+        enemyButton = new IconButton(strikerImage, new Dimension(enemyButtonSize, enemyButtonSize));
+        enemyButton.setBounds(enemyButtonPos.x, enemyButtonPos.y, enemyButton.getPreferredSize().width, enemyButton.getPreferredSize().height);
         enemyField.add(enemyButton);
 
         // Create the player button
-        playerButton = new IconButton(strikerImage, new Dimension(buttonSize, buttonSize));
-        playerButton.setBounds(size.width/2-playerButton.getWidth()/2,size.height/4,playerButton.getWidth(),playerButton.getHeight());
+        int playerButtonSize = Math.round(game.getMainPlayer().getRadius() * converter.xScaling);
+        converter.setOffset(new Vec2(-playerButtonSize/2.0f, -playerButtonSize/2.0f));
+        Point playerButtonPos = converter.MeterToPixel(game.getMainPlayer().getPosition());
+        playerButton = new IconButton(strikerImage, new Dimension(playerButtonSize, playerButtonSize));
+        playerButton.setBounds(playerButtonPos.x, playerButtonPos.y - size.height/2, playerButton.getPreferredSize().width, playerButton.getPreferredSize().height);
         playerField.add(playerButton);
 
         // Create the puck button
-        puckButton = new IconButton(puckImage, new Dimension(buttonSize, buttonSize));
-        puckButton.setBounds(size.width/2-puckButton.getWidth()/2,size.height/2-puckButton.getWidth()/2,puckButton.getWidth(),puckButton.getHeight());
+        int puckButtonSize = Math.round(game.getPuck().getRadius() * converter.xScaling);
+        converter.setOffset(new Vec2(-puckButtonSize/2.0f, -puckButtonSize/2.0f));
+        Point puckButtonPos = converter.MeterToPixel(game.getPuck().getPosition());
+        puckButton = new IconButton(puckImage, new Dimension(puckButtonSize, puckButtonSize));
+        puckButton.setBounds(puckButtonPos.x, puckButtonPos.y, puckButton.getPreferredSize().width, puckButton.getPreferredSize().height);
         this.add(puckButton);
     }
 

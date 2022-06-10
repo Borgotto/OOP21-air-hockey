@@ -12,7 +12,7 @@ public class IconButton extends JButton {
 
     public IconButton(Image icon, Dimension size) {
         super();
-        setSize(size);
+        setPreferredSize(size);
         setIcon(new ImageIcon(ImageModifier.fit(icon, size)));
         setOpaque(false);
         setBorder(null);

@@ -10,7 +10,7 @@ import java.awt.*;
 public class GamePanel extends AbstractGridBagLayoutJComponent {
     private static final long serialVersionUID = 1L;
 
-    private GameState game;
+    private final GameState game;
 
     // create a timer to update the game state
     private static final int delay = 1000/60; // 60 FPS
@@ -25,15 +25,16 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
     // class used to handle the mouse inputs on the player button
     private final ComponentMover componentMover;
 
-    public GamePanel() {
+    public GamePanel(GameState game) {
         super("Air Hockey - Game", new Dimension(GUI.getMinScreenSize()*3/4, GUI.getMinScreenSize()));
+        this.game = game;
 
         // Add the game field as a JLabel
         c.weighty = 1.0;
         c.gridheight = 3;
         c.gridx = 0;
         c.gridy = 0;
-        this.arenaLabel = new ArenaLabel(new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height));
+        this.arenaLabel = new ArenaLabel(new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height), this.game);
         this.add(arenaLabel, c);
 
         // Create labels to show the players scores
@@ -63,8 +64,7 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
     /**
      * Sets up the JLabels and JButtons to the initial game state and starts the timer.
      */
-    public void startGame(GameState game) {
-        this.game = game;
+    public void startGame() {
         this.pauseButton.setEnabled(true);
         this.componentMover.registerComponent(this.arenaLabel.getPlayerButton());
         this.timer.start();
@@ -99,34 +99,21 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
     }
 
     /**
-     * Method to update the positions of the components
+     * Method to update the positions of the components.
+     * It converts the GameObject positions to the JLabel positions
      */
     private void updatePositions() {
-    	int arenaSize = this.arenaLabel.getPreferredSize().height;
-    	
-    	UnitConverter.setConversionFactor((double)(arenaSize/32.0f));
-    	
-        // Get the positions
-        Pair<Integer, Integer> mainPlayerPosition = UnitConverter.MeterToPixel(this.game.getMainPlayer().getPosition());
-        Pair<Integer, Integer> enemyPlayerPosition = UnitConverter.MeterToPixel(this.game.getEnemyPlayer().getPosition());
-        Pair<Integer, Integer> puckPosition = UnitConverter.MeterToPixel(this.game.getPuck().getPosition());
-
-        int arenaHeight = this.arenaLabel.getHeight();
-
-        // Invert the Y axis since (0,0) is in the top left corner of the screen in the GUI while it's in the bottom
-        // left corner in the game logics
-        mainPlayerPosition = new Pair<>(mainPlayerPosition.getX(), arenaHeight - mainPlayerPosition.getY());
-        enemyPlayerPosition = new Pair<>(enemyPlayerPosition.getX(), arenaHeight - enemyPlayerPosition.getY());
-        puckPosition = new Pair<>(puckPosition.getX(), arenaHeight - puckPosition.getY());
-
-        // Adjust the positions so that they refer to the center of the button
-        mainPlayerPosition = new Pair<>(mainPlayerPosition.getX() - this.arenaLabel.getPlayerButton().getWidth()/2, mainPlayerPosition.getY() - this.arenaLabel.getPlayerButton().getHeight()/2);
-        enemyPlayerPosition = new Pair<>(enemyPlayerPosition.getX() - this.arenaLabel.getEnemyButton().getWidth()/2, enemyPlayerPosition.getY() - this.arenaLabel.getEnemyButton().getHeight()/2);
-        puckPosition = new Pair<>(puckPosition.getX() - this.arenaLabel.getPuckButton().getWidth()/2, puckPosition.getY() - this.arenaLabel.getPuckButton().getHeight()/2);
-
-        // Update the positions of the buttons
-        this.arenaLabel.getPlayerButton().setLocation(mainPlayerPosition.getX(), mainPlayerPosition.getY());
-        this.arenaLabel.getEnemyButton().setLocation(enemyPlayerPosition.getX(), enemyPlayerPosition.getY());
-        this.arenaLabel.getPuckButton().setLocation(puckPosition.getX(), puckPosition.getY());
+        // Convert physics coordinates [(0,0) is bottom left] to awt coordinates [(0,0) is top left corner]
+        UnitConverter uc = new UnitConverter(this.arenaLabel.getPreferredSize(), new Vec2(this.game.getArena().getWidth(), this.game.getArena().getHeight()));
+        // Update the player, enemy and puck positions
+        JButton playerButton = this.arenaLabel.getPlayerButton();
+        uc.setOffset(new Vec2(-playerButton.getWidth()/2.0f, -playerButton.getHeight()/2.0f - this.arenaLabel.getEnemyField().getHeight()));
+        playerButton.setLocation(uc.MeterToPixel(this.game.getMainPlayer().getPosition()));
+        JButton enemyButton = this.arenaLabel.getEnemyButton();
+        uc.setOffset(new Vec2(-enemyButton.getWidth()/2.0f, -enemyButton.getHeight()/2.0f));
+        enemyButton.setLocation(uc.MeterToPixel(this.game.getEnemyPlayer().getPosition()));
+        JButton puckButton = this.arenaLabel.getPuckButton();
+        uc.setOffset(new Vec2(-puckButton.getWidth()/2.0f, -puckButton.getHeight()/2.0f));
+        puckButton.setLocation(uc.MeterToPixel(this.game.getPuck().getPosition()));
     }
 }

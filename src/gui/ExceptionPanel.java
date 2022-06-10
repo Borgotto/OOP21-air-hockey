@@ -3,16 +3,24 @@ package gui;
 import javax.swing.*;
 
 public class ExceptionPanel {
-    public ExceptionPanel(Exception ex) {
-        this(null,ex);
+
+    public ExceptionPanel(Exception ex, String message, Boolean quit) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
+        if (quit) {
+            System.exit(1);
+        }
     }
 
-    public ExceptionPanel(String message, Exception ex) {
-        ex.printStackTrace();
-        if (message == null) {
-            message = ex.toString();
-        }
-        JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
-        System.exit(1);
+    public ExceptionPanel(Exception ex, Boolean quit) {
+        this(ex, ex.toString(), quit);
+    }
+
+    public ExceptionPanel(Exception ex) {
+        this(ex, true);
+    }
+
+    public ExceptionPanel(Exception ex, String message) {
+        this(ex, message, true);
     }
 }
