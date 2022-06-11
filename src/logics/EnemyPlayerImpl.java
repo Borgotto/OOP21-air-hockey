@@ -38,6 +38,6 @@ public class EnemyPlayerImpl extends AbstractPlayer implements EnemyPlayer {
     }
 
     public void update() {
-        this.getBody().applyForceToCenter(this.nextMove);
+        this.getBody().setLinearVelocity(this.nextMove);
     }
 }
