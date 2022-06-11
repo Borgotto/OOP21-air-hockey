@@ -74,7 +74,7 @@ public class GameStateImpl implements GameState {
             }
         }
 
-        //this.enemyPlayer.setNextMove(this);
+        this.enemyPlayer.setNextMove(this);
         this.enemyPlayer.update();
 
         this.gamePhysics.update();
