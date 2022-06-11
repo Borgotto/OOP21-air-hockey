@@ -9,7 +9,7 @@ import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 
 public class GameOverPanel extends AbstractGridBagLayoutJComponent {
-    public GameOverPanel(GameState game) {
+    public GameOverPanel(GameState game, int parentFrameHeight) {
         super("Game Over", new Dimension(GUI.getMinScreenSize(), GUI.getMinScreenSize()/2));
 
         GUI.setFont(new FontUIResource("Arial", Font.BOLD, 20));
@@ -19,7 +19,7 @@ public class GameOverPanel extends AbstractGridBagLayoutJComponent {
         JLabel gameResult = new JLabel(result);
         JLabel gameScore = new JLabel(score);
 
-        AchievementsPanel achPanel = new AchievementsPanel(game);
+        AchievementsPanel achPanel = new AchievementsPanel(game, parentFrameHeight);
         achPanel.setPreferredSize(new Dimension(this.getPreferredSize().width, this.getPreferredSize().height/2));
 
         JButton backToMenu = new JButton("Back to main menu");

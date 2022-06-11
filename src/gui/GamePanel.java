@@ -120,7 +120,7 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
     private void endGame() {
         this.timer.stop();
         JFrame parent = JComponentLoader.getParentFrame(this);
-        JComponentLoader.load(parent, new GameOverPanel(game));
+        JComponentLoader.load(parent, new GameOverPanel(game, JComponentLoader.getParentFrame(this).getHeight()));
     }
 
     /**

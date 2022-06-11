@@ -11,7 +11,7 @@ import java.awt.*;
 import java.util.List;
 
 public class AchievementsPanel extends JScrollPane {
-    public AchievementsPanel(GameState game) {
+    public AchievementsPanel(GameState game, int parentFrameHeight) {
 
         //this.setLayout(new ScrollPaneLayout());
 
@@ -27,7 +27,7 @@ public class AchievementsPanel extends JScrollPane {
         }
 
         JList<AchievementLabel> achievementList = new JList<>(listModel);
-        achievementList.setCellRenderer(new AchievementLabelCellRenderer());
+        achievementList.setCellRenderer(new AchievementLabelCellRenderer(parentFrameHeight));
         achievementList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         achievementList.setLayoutOrientation(JList.VERTICAL);
 
@@ -39,17 +39,18 @@ public class AchievementsPanel extends JScrollPane {
 
 class AchievementLabelCellRenderer extends JLabel implements ListCellRenderer<AchievementLabel> {
 
-    public AchievementLabelCellRenderer() {
+    private final int iconSize;
+
+    public AchievementLabelCellRenderer(int parentFrameHeight) {
         setOpaque(true);
         setHorizontalAlignment(LEFT);
         setVerticalAlignment(CENTER);
+        this.iconSize = parentFrameHeight / 20;
     }
-
 
     @Override
     public Component getListCellRendererComponent(JList<? extends AchievementLabel> jList, AchievementLabel achievementLabel, int i, boolean b, boolean b1) {
-        ImageIcon icon = achievementLabel.getIcon();
-        Image scaledImage = ImageModifier.scale(icon.getImage(), new Dimension(50, 50));
+        Image scaledImage = ImageModifier.scale(achievementLabel.getIcon().getImage(), new Dimension(this.iconSize, this.iconSize));
 
         setIcon(new ImageIcon(scaledImage));
         setText(achievementLabel.toString());
