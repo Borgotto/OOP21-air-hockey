@@ -20,4 +20,8 @@ public class MainPlayerImpl extends AbstractPlayer implements MainPlayer {
     public MainPlayerImpl(float radius, Vec2 startingPosition, Physics2D world) {
         this("Player", radius, startingPosition, world);
     }
+
+    public void update() {
+
+    }
 }

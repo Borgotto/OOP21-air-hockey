@@ -34,4 +34,8 @@ public class EnemyPlayerImpl extends AbstractPlayer implements EnemyPlayer {
     public Vec2 nextPosition(GameState gameState) {
         return this.difficulty.getMovingStrategy().apply(gameState);
     }
+
+    public void update() {
+
+    }
 }

@@ -23,10 +23,6 @@ public abstract class AbstractPlayer implements Player {
         this.score = 0;
     }
 
-    public void update() {
-        //TODO
-    }
-
     public String getName() {
         return this.name;
     }
