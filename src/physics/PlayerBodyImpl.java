@@ -41,10 +41,6 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
         playerBody.createFixture(fixture);
         this.setBody(playerBody);
     }
-
-    public void updateSpeedVec(final Vec2 force) {
-        this.getBody().applyForceToCenter(force);
-    }
     
     public float getRadius() {
         return this.radius;
