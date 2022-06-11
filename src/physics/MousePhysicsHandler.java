@@ -16,9 +16,9 @@ public class MousePhysicsHandler {
 	private MouseJointDef mouseJointDef;
 	private MouseJoint mouseJoint;
 	
-	public MousePhysicsHandler(Body boundBody, Body groundBody, Physics2D physicsWorld) {
+	public MousePhysicsHandler(Body boundBody, Body groundBody) {
 		this.boundBody = boundBody;
-		this.world = physicsWorld.getWorld();
+		this.world = boundBody.getWorld();
 		
 		this.mouseJointDef = new MouseJointDef();
 		this.mouseJointDef.bodyA = groundBody;
@@ -33,7 +33,7 @@ public class MousePhysicsHandler {
 	 * @param mousePos the mouse position
 	 * @return true if the mouse was clicked 
 	 */
-	public void MousePressed(final Vec2 mousePos) {
+	public void mousePressed(final Vec2 mousePos) {
 		this.mouseJointDef.target.set(mousePos);
 		this.setMouseJoint((MouseJoint)world.createJoint(this.getMouseJointDef()));
 	}
@@ -48,7 +48,7 @@ public class MousePhysicsHandler {
 	/**
 	 * destroy the mouseJoint
 	 */
-	public void MouseReleased() {
+	public void mouseReleased() {
 		this.world.destroyJoint(mouseJoint);
 		this.boundBody.setLinearVelocity(new Vec2(0.0f, 0.0f));;
 	}
