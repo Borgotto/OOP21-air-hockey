@@ -61,6 +61,6 @@ public class UnitConverter {
 	 * @return The converted position as a {@link Vec2}.
 	 */
 	public Vec2 PixelToMeter(final Point position) {
-		return new Vec2(position.x * this.xScaling + offset.x, position.y * this.yScaling + offset.y);
+		return new Vec2(position.x / this.xScaling + offset.x, (cs1.height - position.y) / this.yScaling + offset.y);
 	}
 }
