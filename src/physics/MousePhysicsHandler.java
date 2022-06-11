@@ -8,7 +8,7 @@ import org.jbox2d.dynamics.Body;
  */
 public class MousePhysicsHandler {
 
-	private final static int MOUSE_ACCELERATION = 100;
+	private final static int MOUSE_ACCELERATION = 60;
 	private final Body boundBody;
 	
 	public MousePhysicsHandler(Body boundBody) {
