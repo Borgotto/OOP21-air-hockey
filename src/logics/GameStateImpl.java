@@ -7,6 +7,7 @@ import utils.ObjectSerializer;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.Random;
 
 /**
  * The class GameState holds the state of the game.
@@ -58,18 +59,50 @@ public class GameStateImpl implements GameState {
         return this.maxScore;
     }
 
-    private void updateWinner() {
-        if (this.mainPlayer.getScore() >= this.maxScore) {
-            this.winner = Optional.of(this.mainPlayer);
-        } else if (this.enemyPlayer.getScore() >= this.maxScore) {
-            this.winner = Optional.of(this.enemyPlayer);
+    public void update() {
+        // Uncomment for funny physics
+        //Random rng = new Random();
+        //this.puck.getBody().applyForceToCenter(new Vec2(10000f*(rng.nextFloat()-0.5f), 10000*(rng.nextFloat()-0.5f)));
+        //this.mainPlayer.getBody().applyForceToCenter(new Vec2(14000f*(rng.nextFloat()-0.5f), 11000*(rng.nextFloat()-0.5f)));
+        //this.enemyPlayer.getBody().applyForceToCenter(new Vec2(14000f*(rng.nextFloat()-0.5f), 11000*(rng.nextFloat()-0.5f)));
+
+        if (this.updateScore()) {
+            this.mainPlayer.resetBodyPos();
+            this.enemyPlayer.resetBodyPos();
+            if (this.updateWinner()){
+                this.isGameOver = true;
+            }
         }
+
+        //this.enemyPlayer.setNextMove(this);
+        this.enemyPlayer.update();
+
+        this.gamePhysics.update();
     }
 
-    public void update() {
-        this.gamePhysics.update();
-        this.updateWinner();
+    private boolean updateWinner() {
+        if (this.mainPlayer.getScore() >= this.maxScore) {
+            this.winner = Optional.of(this.mainPlayer);
+            return true;
+        } else if (this.enemyPlayer.getScore() >= this.maxScore) {
+            this.winner = Optional.of(this.enemyPlayer);
+            return true;
+        }
+        return false;
+    }
 
+    private boolean updateScore() {
+        if (this.puck.getPosition().y > 0 && this.puck.getPosition().y < this.arena.getHeight()) {
+            return false;
+        }
+        if (this.puck.getBody().getPosition().y < 0) {
+            this.enemyPlayer.scorePoint();
+            this.puck.moveToPlayer(this.arena, this.mainPlayer);
+        } else if (this.puck.getBody().getPosition().y > this.arena.getHeight()) {
+            this.mainPlayer.scorePoint();
+            this.puck.moveToPlayer(this.arena, this.enemyPlayer);
+        }
+        return true;
     }
 
     public void save() throws IOException {
