@@ -4,6 +4,7 @@ import logics.Achievement;
 import logics.AchievementLogicsFactory;
 import logics.AchievementLogicsFactoryImpl;
 import logics.GameState;
+import utils.ImageModifier;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,3 +26,25 @@ public class AchievementsPanel extends JPanel {
         }
     }
 }
+
+
+class AchievementLabelCellRenderer extends JLabel implements ListCellRenderer<AchievementLabel> {
+
+    public AchievementLabelCellRenderer() {
+        setOpaque(true);
+        setHorizontalAlignment(LEFT);
+        setVerticalAlignment(CENTER);
+    }
+
+
+    @Override
+    public Component getListCellRendererComponent(JList<? extends AchievementLabel> jList, AchievementLabel achievementLabel, int i, boolean b, boolean b1) {
+        ImageIcon icon = achievementLabel.getIcon();
+        Image scaledImage = ImageModifier.scale(icon.getImage(), new Dimension(50, 50));
+
+        setIcon(new ImageIcon(scaledImage));
+        setText(achievementLabel.toString());
+        return this;
+    }
+}
+
