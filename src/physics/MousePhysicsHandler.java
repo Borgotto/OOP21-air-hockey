@@ -1,6 +1,7 @@
 package physics;
 
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.joints.MouseJoint;
 import org.jbox2d.dynamics.joints.MouseJointDef;
@@ -10,20 +11,21 @@ import org.jbox2d.dynamics.joints.MouseJointDef;
  */
 public class MousePhysicsHandler {
 
-	private World world;
-	private PlayerBody playerBody;
-	private MouseJointDef mouseJointDef = new MouseJointDef();
+	private final World world;
+	private final Body boundBody;
+	private MouseJointDef mouseJointDef;
 	private MouseJoint mouseJoint;
 	
-	public MousePhysicsHandler(PlayerBody playerBody, ArenaBody arenaBody) {
-		setWorld(playerBody.getWorld());
-		setPlayerBody(playerBody);
+	public MousePhysicsHandler(Body boundBody, Body groundBody, Physics2D physicsWorld) {
+		this.boundBody = boundBody;
+		this.world = physicsWorld.getWorld();
 		
-		mouseJointDef.bodyA = arenaBody.getBody();
-		mouseJointDef.bodyB = getPlayerBody().getBody();
-		mouseJointDef.dampingRatio = 0.9f;
-		mouseJointDef.maxForce = 1000f;
-		mouseJointDef.frequencyHz = 5.0f;
+		this.mouseJointDef = new MouseJointDef();
+		this.mouseJointDef.bodyA = groundBody;
+		this.mouseJointDef.bodyB = this.boundBody;
+		this.mouseJointDef.dampingRatio = 0.9f;
+		this.mouseJointDef.maxForce = 1000f;
+		this.mouseJointDef.frequencyHz = 5.0f;
 	}
 	
 	/**
@@ -32,65 +34,51 @@ public class MousePhysicsHandler {
 	 * @return true if the mouse was clicked 
 	 */
 	public void MousePressed(final Vec2 mousePos) {
-		mouseJointDef.target.set(mousePos);
-		setMouseJoint((MouseJoint)world.createJoint(getMouseJointDef()));
-	}
-	
-	/**
-	 * destroy the mouseJoint
-	 */
-	public void MouseReleased() {
-		world.destroyJoint(mouseJoint);
-		playerBody.updateSpeedVec(new Vec2(0.0f, 0.0f));
+		this.mouseJointDef.target.set(mousePos);
+		this.setMouseJoint((MouseJoint)world.createJoint(this.getMouseJointDef()));
 	}
 	
 	/**
 	 * @param mousePos the position of the mouse when updated
 	 */
 	public void update(Vec2 mousePos) {
-		getMouseJoint().setTarget(mousePos);
+		this.getMouseJoint().setTarget(mousePos);
 	}
-
+	
 	/**
-	 * @param world the world to set
-	 */ 
-	public void setWorld(World world) {
-		this.world = world;
+	 * destroy the mouseJoint
+	 */
+	public void MouseReleased() {
+		this.world.destroyJoint(mouseJoint);
+		this.boundBody.setLinearVelocity(new Vec2(0.0f, 0.0f));;
 	}
 
 	/**
 	 * @return the playerBody
 	 */
-	public PlayerBody getPlayerBody() {
-		return playerBody;
-	}
-
-	/**
-	 * @param playerBody the playerBody to set
-	 */
-	public void setPlayerBody(PlayerBody playerBody) {
-		this.playerBody = playerBody;
+	public Body getBoundedBody() {
+		return this.boundBody;
 	}
 
 	/**
 	 * @return the mouseJoint
 	 */
-	public MouseJoint getMouseJoint() {
-		return mouseJoint;
+	private MouseJoint getMouseJoint() {
+		return this.mouseJoint;
 	}
 
 	/**
 	 * @param mouseJoint the mouseJoint to set
 	 */
-	public void setMouseJoint(MouseJoint mouseJoint) {
+	private void setMouseJoint(MouseJoint mouseJoint) {
 		this.mouseJoint = mouseJoint;
 	}
 
 	/**
 	 * @return the mouseJointDef
 	 */
-	public MouseJointDef getMouseJointDef() {
-		return mouseJointDef;
+	private MouseJointDef getMouseJointDef() {
+		return this.mouseJointDef;
 	}
 	
 }
