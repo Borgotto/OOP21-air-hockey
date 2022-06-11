@@ -6,7 +6,14 @@ import org.jbox2d.dynamics.World;
 import java.util.ArrayList;
 
 public class Physics2DImpl implements Physics2D {	
-    private final Vec2 gravity;
+	
+	private static final Vec2 GRAVITY = new Vec2(0.0f, 0.0f);
+	private static final float PHYSICS_TIME = 1.0f/60.0f;
+	private static final int VELOCITY_ITERATIONS = 6;
+	private static final int POSITION_ITERATIONS = 3;
+
+	
+	private final Vec2 gravity;
     private World world;
     
     private ArrayList<RigidBody> rigidBodyList;
@@ -16,14 +23,14 @@ public class Physics2DImpl implements Physics2D {
     private final int positionIterations;
     
     public Physics2DImpl() {
-        this.gravity = new Vec2(0.0f, 0.0f);
+        this.gravity = GRAVITY;
         this.world = new World(gravity);
         
         rigidBodyList = new ArrayList<RigidBody>();
         
-        this.physicsTime = 1.0f / 60.0f;
-        this.velocityIterations = 6;
-        this.positionIterations = 3;
+        this.physicsTime = PHYSICS_TIME;
+        this.velocityIterations = VELOCITY_ITERATIONS;
+        this.positionIterations = POSITION_ITERATIONS;
     }
     
     /**

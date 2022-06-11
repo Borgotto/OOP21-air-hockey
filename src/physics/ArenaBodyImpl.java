@@ -9,7 +9,12 @@ import org.jbox2d.dynamics.FixtureDef;
 
 public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
 	
-    private final float width;
+	private static final float DENSITY_VALOR = 0.0f;
+	private static final float ENERGY_RESTITUTION = 1.0f;
+	private static final float PLAYER_ENERGY_RESTITUTION = 0.0f;
+	private static final int MIDARENA_BITMASK = 0x0002;
+	
+	private final float width;
     private final float height;
     private final float goalWidth;
     
@@ -33,8 +38,8 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         
         FixtureDef arenaFixtureDef = new FixtureDef();
         arenaFixtureDef.shape = shape;
-        arenaFixtureDef.density = 0.0f;
-        arenaFixtureDef.restitution = 1.0f;
+        arenaFixtureDef.density = DENSITY_VALOR;
+        arenaFixtureDef.restitution = ENERGY_RESTITUTION;
         
         // Left vertical wall
         shape.set(new Vec2(0.0f, 0.0f), new Vec2(0.0f, getHeight()));
@@ -62,20 +67,20 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         
         // Generation of the mid arena wall. This wall has the properties of collide only with the player, not the puck.
         shape.set(new Vec2(0.0f, (float)(getHeight()/2)), new Vec2(getWidth(), (float)(getHeight()/2)));
-        arenaFixtureDef.filter.maskBits = 0x0002;
-        arenaFixtureDef.restitution = 0.0f;
+        arenaFixtureDef.filter.maskBits = MIDARENA_BITMASK;
+        arenaFixtureDef.restitution = PLAYER_ENERGY_RESTITUTION;
         arenaBody.createFixture(arenaFixtureDef);
         
         // Generation of the bottom arena wall. This wall has the properties of collide only with the player, not the puck.
         shape.set(new Vec2(0.0f, 0.0f), new Vec2(getWidth(), 0.0f));
-        arenaFixtureDef.filter.maskBits = 0x0002;
-        arenaFixtureDef.restitution = 0.0f;
+        arenaFixtureDef.filter.maskBits = MIDARENA_BITMASK;
+        arenaFixtureDef.restitution = PLAYER_ENERGY_RESTITUTION;
         arenaBody.createFixture(arenaFixtureDef);
         
         // Generation of the top arena wall. This wall has the properties of collide only with the player, not the puck.
         shape.set(new Vec2(0.0f, getHeight()), new Vec2(getWidth(), getHeight()));
-        arenaFixtureDef.filter.maskBits = 0x0002;
-        arenaFixtureDef.restitution = 0.0f;
+        arenaFixtureDef.filter.maskBits = MIDARENA_BITMASK;
+        arenaFixtureDef.restitution = PLAYER_ENERGY_RESTITUTION;
         arenaBody.createFixture(arenaFixtureDef);
         
         this.setBody(arenaBody);

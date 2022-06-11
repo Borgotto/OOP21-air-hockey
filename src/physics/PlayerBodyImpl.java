@@ -8,6 +8,11 @@ import org.jbox2d.dynamics.FixtureDef;
 
 public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
 	
+	private static final float DENSITY_VALOR = 0.6f;
+	private static final float FRICTION_VALOR = 0.8f;
+	private static final float ENERGY_RESTITUTION = 0.7f;
+	private static final int MIDARENA_BITMASK = 0x0002;
+
     private final float radius;
     
 	/**
@@ -21,7 +26,6 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
     	
         this.setBodyType(BodyType.DYNAMIC);
         this.setStartPositionDef(pos);
-        this.setLinearDampingDef(0.0f);
         this.configBodyDef();
         
         CircleShape shape = new CircleShape();
@@ -29,12 +33,12 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
         
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;
-        fixture.density = 0.6f;
-        fixture.friction = 0.8f;
-        fixture.restitution = 0.7f;
+        fixture.density = DENSITY_VALOR;
+        fixture.friction = FRICTION_VALOR;
+        fixture.restitution = ENERGY_RESTITUTION;
         
         // Bit mask for mid arena fixture collision
-        fixture.filter.categoryBits = 0x0002;
+        fixture.filter.categoryBits = MIDARENA_BITMASK;
         
         Body playerBody = physicsWorld.getWorld().createBody(getBodyDef());
         physicsWorld.addRigidBody(this);

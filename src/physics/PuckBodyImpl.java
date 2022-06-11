@@ -8,6 +8,9 @@ import org.jbox2d.dynamics.FixtureDef;
 
 public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
 	
+	private static final float DENSITY_VALOR = 0.2f;
+	private static final float FRICTION_VALOR = 0.6f;
+	
     private final float radius;
     
 	/**
@@ -21,7 +24,6 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
 
     	this.setBodyType(BodyType.DYNAMIC);
     	this.setStartPositionDef(pos);
-    	this.setLinearDampingDef(0.0f);
     	this.configBodyDef();
         
         CircleShape shape = new CircleShape();
@@ -29,8 +31,8 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
         
         FixtureDef fixture = new FixtureDef();
         fixture.shape = shape;
-        fixture.density = 0.2f;
-        fixture.friction = 0.5f;
+        fixture.density = DENSITY_VALOR ;
+        fixture.friction = FRICTION_VALOR;
         
         Body playerBody = physicsWorld.getWorld().createBody(getBodyDef());
         physicsWorld.addRigidBody(this);
