@@ -36,29 +36,24 @@ public class Physics2DImpl implements Physics2D {
     /**
      * Update the physics world
      */
-    @Override
     public void update() {
     	this.world.step(physicsTime, velocityIterations, positionIterations);  
     }
 
-	@Override
 	public World getWorld() {
 		return this.world;
 	}
 
-	@Override
 	public void addRigidBody(RigidBody rigidBody) {
 		this.rigidBodyList.add(rigidBody);
 	}
 
-	@Override
 	public void resetWorld() {
 		for(RigidBody rigidBody : rigidBodyList) {
 			rigidBody.resetBodyPos();
 		}
 	}
 
-	@Override
 	public void deleteAllBodies() {
 		for(RigidBody rigidBody : rigidBodyList) {
 			this.getWorld().destroyBody(rigidBody.getBody());
