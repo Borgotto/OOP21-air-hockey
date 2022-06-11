@@ -67,7 +67,7 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
         this.uc = new UnitConverter(this.arenaLabel.getPreferredSize(), new Vec2(this.game.getArena().getWidth(), this.game.getArena().getHeight()));
         // Handle mouse movement on the Player button
         this.isMainPlayerMoving = false;
-        this.mouseHandler = new MousePhysicsHandler(this.game.getMainPlayer().getBody(), this.game.getArena().getBody());
+        this.mouseHandler = new MousePhysicsHandler(this.game.getMainPlayer().getBody());
     }
 
     /**
@@ -79,7 +79,6 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
         this.arenaLabel.getPlayerButton().addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 isMainPlayerMoving = true;
-                mouseHandler.mousePressed();
             }
             public void mouseReleased(MouseEvent e) {
                 isMainPlayerMoving = false;
