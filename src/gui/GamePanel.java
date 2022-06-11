@@ -53,7 +53,9 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
         this.pauseButton = new JButton("Pause");
         this.pauseButton.setEnabled(false); // prevent the user from pausing the game before it is started
         this.pauseButton.addActionListener(e -> {
+            this.timer.stop();
             JOptionPane.showOptionDialog(this, new PausePanel(this.game), "Pause", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+            this.timer.start();
         });
         this.add(this.pauseButton, c);
 
