@@ -39,10 +39,6 @@ public abstract class AbstractPlayer implements Player {
         this.score++;
     }
 
-    public void updateSpeedVec(Vec2 speedVec) {
-        this.body.updateSpeedVec(speedVec);
-    }
-
     public float getRadius() {
         return this.radius;
     }
