@@ -24,20 +24,8 @@ public abstract class RigidBodyImpl implements RigidBody {
     private BodyDef bodyDef = new BodyDef();
     private Body body;
     
-    /**
-     * set the BodyDef data
-     */
-    protected void configBodyDef() {
-        this.bodyDef.type = this.getBodyType();
-        this.bodyDef.position.set(this.getStartPositionDef());
-        this.bodyDef.linearDamping = this.getLinearDampingDef();
-        this.bodyDef.angularDamping = DEFAULT_ANGULARDAMPING;
-        this.bodyDef.gravityScale = DEFAULT_GRAVITYSCALE;
-        this.bodyDef.fixedRotation = DEFAULT_FIXEDROTATION;
-        this.bodyDef.angle = DEFAULT_ANGLE;
-        this.bodyDef.bullet = DEFAULT_BULLET;
-        this.bodyDef.active = DEFAULT_ACTIVE;
-        this.bodyDef.allowSleep = DEFAULT_ALLOWSLEEP;
+    public Body getBody() {
+        return this.body;
     }
     
     public Vec2 getPosition() {
@@ -55,12 +43,21 @@ public abstract class RigidBodyImpl implements RigidBody {
     }
     
     /**
-     * @return the body
+     * set the BodyDef data
      */
-    public Body getBody() {
-        return this.body;
+    protected void configBodyDef() {
+        this.bodyDef.type = this.getBodyType();
+        this.bodyDef.position.set(this.getStartPositionDef());
+        this.bodyDef.linearDamping = this.getLinearDampingDef();
+        this.bodyDef.angularDamping = DEFAULT_ANGULARDAMPING;
+        this.bodyDef.gravityScale = DEFAULT_GRAVITYSCALE;
+        this.bodyDef.fixedRotation = DEFAULT_FIXEDROTATION;
+        this.bodyDef.angle = DEFAULT_ANGLE;
+        this.bodyDef.bullet = DEFAULT_BULLET;
+        this.bodyDef.active = DEFAULT_ACTIVE;
+        this.bodyDef.allowSleep = DEFAULT_ALLOWSLEEP;
     }
-    
+
     /**
      * reset the body speed, stops the body
      */
