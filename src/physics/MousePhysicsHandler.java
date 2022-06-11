@@ -33,8 +33,8 @@ public class MousePhysicsHandler {
 	 * @param mousePos the mouse position
 	 * @return true if the mouse was clicked 
 	 */
-	public void mousePressed(final Vec2 mousePos) {
-		this.mouseJointDef.target.set(mousePos);
+	public void mousePressed() {
+		this.mouseJointDef.target.set(boundBody.getPosition());
 		this.setMouseJoint((MouseJoint)world.createJoint(this.getMouseJointDef()));
 	}
 	
