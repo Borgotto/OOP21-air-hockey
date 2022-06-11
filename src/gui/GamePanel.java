@@ -2,10 +2,13 @@ package gui;
 
 import logics.GameState;
 import org.jbox2d.common.Vec2;
+import physics.MousePhysicsHandler;
 import utils.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GamePanel extends AbstractGridBagLayoutJComponent {
     private static final long serialVersionUID = 1L;
@@ -22,8 +25,9 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
     private final JLabel enemyScoreLabel;
     private final JButton pauseButton;
 
-    // class used to handle the mouse inputs on the player button
-    private final ComponentMover componentMover;
+    private final UnitConverter uc;
+    private boolean isMainPlayerMoving;
+    private final MousePhysicsHandler mouseHandler;
 
     public GamePanel(GameState game) {
         super("Air Hockey - Game", new Dimension(GUI.getMinScreenSize()*3/4, GUI.getMinScreenSize()));
@@ -59,8 +63,11 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
         });
         this.add(this.pauseButton, c);
 
-        // handler for the mouse inputs on the player button
-        this.componentMover = new ComponentMover();
+        // Convert physics coordinates [(0,0) is bottom left] to awt coordinates [(0,0) is top left corner]
+        this.uc = new UnitConverter(this.arenaLabel.getPreferredSize(), new Vec2(this.game.getArena().getWidth(), this.game.getArena().getHeight()));
+        // Handle mouse movement on the Player button
+        this.isMainPlayerMoving = false;
+        this.mouseHandler = new MousePhysicsHandler(this.game.getMainPlayer().getBody(), this.game.getArena().getBody());
     }
 
     /**
@@ -68,7 +75,17 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
      */
     public void startGame() {
         this.pauseButton.setEnabled(true);
-        this.componentMover.registerComponent(this.arenaLabel.getPlayerButton());
+        this.arenaLabel.getPlayerButton().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        this.arenaLabel.getPlayerButton().addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                isMainPlayerMoving = true;
+                mouseHandler.mousePressed();
+            }
+            public void mouseReleased(MouseEvent e) {
+                isMainPlayerMoving = false;
+                mouseHandler.mouseReleased();
+            }
+        });
         this.timer.start();
     }
 
@@ -77,6 +94,13 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
      * It will update the game state and update the GUI
      */
     private void updateGame() {
+        // Update the Player position
+        if (this.isMainPlayerMoving) {
+            Point mousePosition = MouseInfo.getPointerInfo().getLocation();
+            SwingUtilities.convertPointFromScreen(mousePosition, this.arenaLabel);
+            this.uc.setOffset(new Vec2(0,0));
+            this.mouseHandler.update(this.uc.PixelToMeter(mousePosition));
+        }
         // Tell the game logics to update the game state
         this.game.update();
         // Update the scores
@@ -105,17 +129,15 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
      * It converts the GameObject positions to the JLabel positions
      */
     private void updatePositions() {
-        // Convert physics coordinates [(0,0) is bottom left] to awt coordinates [(0,0) is top left corner]
-        UnitConverter uc = new UnitConverter(this.arenaLabel.getPreferredSize(), new Vec2(this.game.getArena().getWidth(), this.game.getArena().getHeight()));
         // Update the player, enemy and puck positions
         JButton playerButton = this.arenaLabel.getPlayerButton();
-        uc.setOffset(new Vec2(-playerButton.getWidth()/2.0f, -playerButton.getHeight()/2.0f - this.arenaLabel.getEnemyField().getHeight()));
-        playerButton.setLocation(uc.MeterToPixel(this.game.getMainPlayer().getPosition()));
+        this.uc.setOffset(new Vec2(-playerButton.getWidth()/2.0f, -playerButton.getHeight()/2.0f - this.arenaLabel.getEnemyField().getHeight()));
+        playerButton.setLocation(this.uc.MeterToPixel(this.game.getMainPlayer().getPosition()));
         JButton enemyButton = this.arenaLabel.getEnemyButton();
-        uc.setOffset(new Vec2(-enemyButton.getWidth()/2.0f, -enemyButton.getHeight()/2.0f));
-        enemyButton.setLocation(uc.MeterToPixel(this.game.getEnemyPlayer().getPosition()));
+        this.uc.setOffset(new Vec2(-enemyButton.getWidth()/2.0f, -enemyButton.getHeight()/2.0f));
+        enemyButton.setLocation(this.uc.MeterToPixel(this.game.getEnemyPlayer().getPosition()));
         JButton puckButton = this.arenaLabel.getPuckButton();
-        uc.setOffset(new Vec2(-puckButton.getWidth()/2.0f, -puckButton.getHeight()/2.0f));
-        puckButton.setLocation(uc.MeterToPixel(this.game.getPuck().getPosition()));
+        this.uc.setOffset(new Vec2(-puckButton.getWidth()/2.0f, -puckButton.getHeight()/2.0f));
+        puckButton.setLocation(this.uc.MeterToPixel(this.game.getPuck().getPosition()));
     }
 }
