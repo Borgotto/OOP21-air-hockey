@@ -36,16 +36,21 @@ public class PuckImpl implements Puck {
 	}
 
 	public void center(Arena arena) {
-	    //TODO
+	    this.body.setPosition(new Vec2(arena.getWidth() / 2, arena.getHeight() / 2));
 	}
 
 	public void moveToPlayer(Arena arena, Player player) {
-	    //TODO
+		Vec2 position = new Vec2(arena.getWidth()/2, arena.getHeight()/2);
+		if (player instanceof MainPlayer) {
+			position.y -= arena.getHeight()/4;
+		} else if (player instanceof EnemyPlayer) {
+			position.y += arena.getHeight()/4;
+		}
+	    this.setPosition(position);
 	}
 
 	public Vec2 getNextPos() {
-	    //TODO
-	    return null;
+	    return this.body.getNextPos();
 	}
 
 	public Body getBody() {
