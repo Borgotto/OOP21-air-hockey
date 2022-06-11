@@ -11,7 +11,7 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
 	
     private final float width;
     private final float height;
-    private final float goalSize;
+    private final float goalWidth;
     
     /**
      * ArenaBody constructor
@@ -20,10 +20,10 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
      * @param goalSize the size of the goal hole
      * @param world the world to generate the arena
      */
-    public ArenaBodyImpl(final float width, final float height, final float goalSize, final Physics2D physicsWorld) {
+    public ArenaBodyImpl(final float width, final float height, final float goalWidth, final Physics2D physicsWorld) {
         this.width = width;
         this.height = height;
-        this.goalSize = goalSize;
+        this.goalWidth = goalWidth;
         
         this.setBodyType(BodyType.STATIC);
         Body arenaBody = physicsWorld.getWorld().createBody(getBodyDef());
@@ -87,7 +87,7 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
     }
 
     public float getGoalWidth() {
-        return this.goalSize;
+        return this.goalWidth;
     }
 
 }
