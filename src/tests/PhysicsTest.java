@@ -43,7 +43,7 @@ public class PhysicsTest {
     
     @org.junit.Test
     public void testPlayerForceApply() {
-    	playerBody.updateSpeedVec(new Vec2(5.0f, 0.0f)); // Moved to the right
+    	playerBody.getBody().setLinearVelocity(new Vec2(5.0f, 0.0f)); // Moved to the right
     	for(int i = 0; i < 3; i++) physicsTestWorld.update();
     	assertNotEquals(new Vec2(9.0f, 8.0f), puckBody.getPosition());
     	assertNotEquals(new Vec2(0.0f, 0.0f), playerBody.getBody().getLinearVelocity());
