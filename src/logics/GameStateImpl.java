@@ -69,9 +69,9 @@ public class GameStateImpl implements GameState {
         if (this.updateScore()) {
             this.mainPlayer.resetBodyPos();
             this.enemyPlayer.resetBodyPos();
-            if (this.updateWinner()){
-                this.isGameOver = true;
-            }
+        }
+        if (this.updateWinner()){
+            this.isGameOver = true;
         }
 
         this.enemyPlayer.setNextMove(this);
