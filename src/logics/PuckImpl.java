@@ -60,10 +60,6 @@ public class PuckImpl implements Puck {
         this.body.setPosition(pos);
     }
 
-    public World getWorld() {
-        return this.body.getWorld();
-    }
-
     public Body getBody() {
         return this.body.getBody();
     }

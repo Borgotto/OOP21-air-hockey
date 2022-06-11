@@ -19,7 +19,6 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
     public PlayerBodyImpl(final float radius, final Vec2 pos, final Physics2D physicsWorld) {
     	this.radius = radius;
     	
-        this.setWorld(physicsWorld.getWorld());
         this.setBodyType(BodyType.DYNAMIC);
         this.setLinearDampingDef(4.0f);
         this.setStartPositionDef(pos);

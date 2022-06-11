@@ -18,16 +18,6 @@ public interface RigidBody {
     public void setPosition(Vec2 pos);
     
     /**
-	 * @return the world
-	 */
-    public World getWorld();
-    
-    /**
-     * @return the body
-     */
-    public Body getBody();
-    
-    /**
      * reset the body position to the start position.
      */
     public void resetBodyPos();

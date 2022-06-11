@@ -50,10 +50,6 @@ public class ArenaImpl implements Arena {
     public void setPosition(Vec2 pos) {
     }
 
-    public World getWorld() {
-        return this.body.getWorld();
-    }
-
     public Body getBody() {
         return this.body.getBody();
     }

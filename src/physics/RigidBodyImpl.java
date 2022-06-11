@@ -7,9 +7,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.World;
 
 public abstract class RigidBodyImpl implements RigidBody {
-	
-	private World world;
-    
+	    
     private BodyType bodyType = BodyType.STATIC;
     private Vec2 startPositionDef = new Vec2(0.0f, 0.0f);
     private float linearDampingDef = 0.0f;
@@ -41,18 +39,17 @@ public abstract class RigidBodyImpl implements RigidBody {
     	this.body.setLinearVelocity(new Vec2(0.0f, 0.0f));
     	this.body.setTransform(pos, 0.0f);
     }
-
-	public World getWorld() {
-		return this.world;
-	}
-
-    public Body getBody() {
-        return this.body;
-    }
     
     public void resetBodyPos() {
     	this.resetBodySpeed();
     	this.body.setTransform(getStartPositionDef(), 0.0f);
+    }
+    
+    /**
+     * @return the body
+     */
+    protected Body getBody() {
+        return this.body;
     }
     
     /**
@@ -116,13 +113,6 @@ public abstract class RigidBodyImpl implements RigidBody {
      */
     protected void setBodyDef(BodyDef bodyDef) {
         this.bodyDef = bodyDef;
-    }
-
-    /**
-     * @param world the world to set
-     */
-    protected void setWorld(World world) {
-        this.world = world;
     }
 
     /**
