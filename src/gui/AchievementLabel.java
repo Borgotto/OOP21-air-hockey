@@ -38,4 +38,20 @@ public class AchievementLabel extends JLabel {
         c.gridy = 1;
         this.add(this.descriptionLabel, c);
     }
+
+    public String toString() {
+        return this.nameLabel.getText() + ": " + this.descriptionLabel.getText();
+    }
+
+    public ImageIcon getIcon() {
+        return (ImageIcon) this.iconLabel.getIcon();
+    }
+
+    public String getName() {
+        return this.nameLabel.getText();
+    }
+
+    public String getDescription() {
+        return this.descriptionLabel.getText();
+    }
 }
