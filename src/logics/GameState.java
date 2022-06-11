@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.Optional;
 
-public interface GameState extends GameObject, Serializable {
+public interface GameState extends GameObject {
     /**
      * Save file directory.
      */
