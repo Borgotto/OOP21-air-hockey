@@ -7,7 +7,7 @@ public interface EnemyPlayer extends Player {
      * Get the next position of the enemy player
      * @return the next position
      */
-    public Vec2 nextPosition(GameState gameState);
+    public void setNextMove(GameState gameState);
 
     /**
      * Get the difficulty of the enemy player.

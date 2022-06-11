@@ -13,10 +13,12 @@ import physics.RigidBody;
  */
 public class EnemyPlayerImpl extends AbstractPlayer implements EnemyPlayer {
     private final Difficulty difficulty;
+    private Vec2 nextMove;
 
     public EnemyPlayerImpl(String name, float radius, Vec2 startingPosition, Physics2D world, Difficulty difficulty) {
         super(name, radius, startingPosition, world);
         this.difficulty = difficulty;
+        this.nextMove = new Vec2(0,0);
     }
 
     public EnemyPlayerImpl(float radius, Vec2 startingPosition, Physics2D world, Difficulty difficulty) {
@@ -31,11 +33,11 @@ public class EnemyPlayerImpl extends AbstractPlayer implements EnemyPlayer {
         return this.difficulty;
     }
     
-    public Vec2 nextPosition(GameState gameState) {
-        return this.difficulty.getMovingStrategy().apply(gameState);
+    public void setNextMove(GameState gameState) {
+        this.nextMove = this.difficulty.getMovingStrategy().apply(gameState);
     }
 
     public void update() {
-
+        this.getBody().setLinearVelocity(this.nextMove);
     }
 }
