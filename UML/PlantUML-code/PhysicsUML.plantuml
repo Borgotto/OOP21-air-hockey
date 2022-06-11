@@ -26,10 +26,9 @@ class Physics2DImpl implements Physics2D
 !theme plain
 
 interface RigidBody{
+    + getBody() : Body
     + getPosition() : Vec2
     + setPosition( pos : Vec2) : void
-    + getWorld() : World
-    + getBody() : Body
     + resetBodyPos() : void
 }
 
@@ -40,7 +39,6 @@ interface ArenaBody{
 }
 
 interface PlayerBody{
-    + updateSpeedVec( force : Vec2) : void
     + getRadius() : float
 }
 
@@ -59,15 +57,13 @@ interface PuckBody extends RigidBody
 !theme plain
 
 interface RigidBody{
+    + getBody() : Body
     + getPosition() : Vec2
     + setPosition( pos : Vec2 ) : void
-    + getWorld() : World
-    + getBody() : Body
     + resetBodyPos() : void
 }
 
 abstract class RigidBodyImpl{
-    world : World
     bodyTypeDef : BodyTypeDef
     startPositionDef : Vec2
     linearDampingDef : float
@@ -84,7 +80,6 @@ abstract class RigidBodyImpl{
     # setLinearDampingDef( linearDampingDef : float ) : void
     # getBodyDef() : BodyDef
     # setBodyDef( bodyDef : BodyDef ) : void
-    # setWorld( world : World ) : void
     # setBody( body : Body ) : void
 }
 
@@ -96,21 +91,19 @@ class RigidBodyImpl implements RigidBody
 !theme plain
 
 interface RigidBody{
+    + getBody() : Body
     + getPosition() : Vec2
     + setPosition( pos : Vec2 ) : void
-    + getWorld() : World
-    + getBody() : Body
     + resetBodyPos() : void
 }
 
 interface ArenaBody{
     + getWidth() : float
     + getHeight() : float
-    + getGoalSize() : float
+    + getGoalWidth() : float
 }
 
 abstract class RigidBodyImpl{
-    world : World
     bodyTypeDef : BodyTypeDef
     startPositionDef : Vec2
     linearDampingDef : float
@@ -127,14 +120,13 @@ abstract class RigidBodyImpl{
     # setLinearDampingDef( linearDampingDef : float ) : void
     # getBodyDef() : BodyDef
     # setBodyDef( bodyDef : BodyDef ) : void
-    # setWorld( world : World ) : void
     # setBody( body : Body ) : void
 }
 
 class ArenaBodyImpl{
     width : float
     height : float
-    goalSize : float
+    goalWidth : float
 }
 
 ArenaBody -R-|> RigidBody
@@ -148,20 +140,17 @@ ArenaBodyImpl -R-|> RigidBodyImpl
 !theme plain
 
 interface RigidBody{
-    + getPosition() : Vec2
-    + setPosition(pos : Vec2) : void
-    + getWorld() : World
     + getBody() : Body
+    + getPosition() : Vec2
+    + setPosition( pos : Vec2 ) : void
     + resetBodyPos() : void
 }
 
 interface PlayerBody{
-    + updateSpeedVec( force : Vec2 ) : void
     + getRadius() : float
 }
 
 abstract class RigidBodyImpl{
-    world : World
     bodyTypeDef : BodyTypeDef
     startPositionDef : Vec2
     linearDampingDef : float
@@ -178,7 +167,6 @@ abstract class RigidBodyImpl{
     # setLinearDampingDef( linearDampingDef : float ) : void
     # getBodyDef() : BodyDef
     # setBodyDef( bodyDef : BodyDef ) : void
-    # setWorld( world : World ) : void
     # setBody( body : Body ) : void
 }
 
@@ -197,10 +185,9 @@ PlayerBodyImpl -R-|> RigidBodyImpl
 !theme plain
 
 interface RigidBody{
-    + getPosition() : Vec2
-    + setPosition(pos : Vec2) : void
-    + getWorld() : World
     + getBody() : Body
+    + getPosition() : Vec2
+    + setPosition( pos : Vec2 ) : void
     + resetBodyPos() : void
 }
 
@@ -210,7 +197,6 @@ interface PuckBody{
 }
 
 abstract class RigidBodyImpl{
-    world : World
     bodyTypeDef : BodyTypeDef
     startPositionDef : Vec2
     linearDampingDef : float
@@ -227,7 +213,6 @@ abstract class RigidBodyImpl{
     # setLinearDampingDef( linearDampingDef : float ) : void
     # getBodyDef() : BodyDef
     # setBodyDef( bodyDef : BodyDef ) : void
-    # setWorld( world : World ) : void
     # setBody( body : Body ) : void
 }
 
