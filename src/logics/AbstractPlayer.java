@@ -23,16 +23,12 @@ public abstract class AbstractPlayer implements Player {
         this.score = 0;
     }
 
+    public void update() {
+        //TODO
+    }
+
     public String getName() {
         return this.name;
-    }
-
-    public float getRadius() {
-        return this.radius;
-    }
-
-    public Vec2 getStartingPosition() {
-        return this.startingPosition;
     }
 
     public Integer getScore() {
@@ -47,6 +43,18 @@ public abstract class AbstractPlayer implements Player {
         this.score++;
     }
 
+    public void updateSpeedVec(Vec2 speedVec) {
+        this.body.updateSpeedVec(speedVec);
+    }
+
+    public float getRadius() {
+        return this.radius;
+    }
+
+    public Body getBody() {
+        return this.body.getBody();
+    }
+
     public Vec2 getPosition() {
         return this.body.getPosition();
     }
@@ -55,27 +63,11 @@ public abstract class AbstractPlayer implements Player {
         this.body.setPosition(pos);
     }
 
-    public World getWorld() {
-        return this.body.getWorld();
-    }
-
-    public Body getBody() {
-        return this.body.getBody();
-    }
-
-    public RigidBody getRigidBody() {
-        return this.body;
-    }
-
-    public void updateSpeedVec(final Vec2 force) {
-        this.getBody().applyForceToCenter(force);
+    public Vec2 getStartingPosition() {
+        return this.startingPosition;
     }
 
     public void resetBodyPos() {
         this.body.resetBodyPos();
-    }
-
-    public void update() {
-        //TODO
     }
 }

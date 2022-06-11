@@ -31,6 +31,10 @@ public class ArenaImpl implements Arena {
         this.goalWidth = goalWidth;
     }
 
+    public void update() {
+        //TODO
+    }
+
     public float getWidth() {
         return this.width;
     }
@@ -43,6 +47,10 @@ public class ArenaImpl implements Arena {
         return this.goalWidth;
     }
 
+    public Body getBody() {
+        return this.body.getBody();
+    }
+
     public Vec2 getPosition() {
         return this.body.getPosition();
     }
@@ -50,27 +58,11 @@ public class ArenaImpl implements Arena {
     public void setPosition(Vec2 pos) {
     }
 
-    public Body getBody() {
-        return this.body.getBody();
-    }
-
     public Vec2 getStartingPosition() {
         return new Vec2(0,0);
     }
 
-    public float getRadius() {
-        return 0;
-    }
-
-    public RigidBody getRigidBody() {
-        return this.body;
-    }
-
     public void resetBodyPos() {
         this.body.resetBodyPos();
-    }
-
-    public void update() {
-        //TODO
     }
 }

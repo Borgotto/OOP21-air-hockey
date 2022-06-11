@@ -27,31 +27,31 @@ public class PuckImpl implements Puck {
 		this.startingPosition = startingPosition;
 	}
 
+	public void update() {
+		//TODO
+	}
+
 	public float getRadius() {
 		return this.radius;
 	}
 
-	public Vec2 getStartingPosition() {
-		return this.startingPosition;
-	}
-	
-	public void update() {
-	    //TODO
-	}
-	
 	public void center(Arena arena) {
 	    //TODO
 	}
-	
+
 	public void moveToPlayer(Arena arena, Player player) {
 	    //TODO
 	}
-	
+
 	public Vec2 getNextPos() {
 	    //TODO
 	    return null;
 	}
-	
+
+	public Body getBody() {
+		return this.body.getBody();
+	}
+
 	public Vec2 getPosition() {
 		return this.body.getPosition();
 	}
@@ -60,12 +60,8 @@ public class PuckImpl implements Puck {
         this.body.setPosition(pos);
     }
 
-    public Body getBody() {
-        return this.body.getBody();
-    }
-
-	public RigidBody getRigidBody() {
-		return this.body;
+	public Vec2 getStartingPosition() {
+		return this.startingPosition;
 	}
 
     public void resetBodyPos() {

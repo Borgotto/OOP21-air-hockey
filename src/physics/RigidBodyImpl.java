@@ -48,7 +48,7 @@ public abstract class RigidBodyImpl implements RigidBody {
     /**
      * @return the body
      */
-    protected Body getBody() {
+    public Body getBody() {
         return this.body;
     }
     

@@ -5,6 +5,11 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 
 public interface RigidBody {
+    /**
+     * Get the body of the RigidBody
+     * @return the body
+     */
+    public Body getBody();
     
     /**
      * @return the body position
@@ -21,5 +26,4 @@ public interface RigidBody {
      * reset the body position to the start position.
      */
     public void resetBodyPos();
-    
 }
