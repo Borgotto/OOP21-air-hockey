@@ -63,16 +63,19 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         // Generation of the mid arena wall. This wall has the properties of collide only with the player, not the puck.
         shape.set(new Vec2(0.0f, (float)(getHeight()/2)), new Vec2(getWidth(), (float)(getHeight()/2)));
         arenaFixtureDef.filter.maskBits = 0x0002;
+        arenaFixtureDef.restitution = 0.0f;
         arenaBody.createFixture(arenaFixtureDef);
         
         // Generation of the bottom arena wall. This wall has the properties of collide only with the player, not the puck.
         shape.set(new Vec2(0.0f, 0.0f), new Vec2(getWidth(), 0.0f));
         arenaFixtureDef.filter.maskBits = 0x0002;
+        arenaFixtureDef.restitution = 0.0f;
         arenaBody.createFixture(arenaFixtureDef);
         
         // Generation of the top arena wall. This wall has the properties of collide only with the player, not the puck.
         shape.set(new Vec2(0.0f, getHeight()), new Vec2(getWidth(), getHeight()));
         arenaFixtureDef.filter.maskBits = 0x0002;
+        arenaFixtureDef.restitution = 0.0f;
         arenaBody.createFixture(arenaFixtureDef);
         
         this.setBody(arenaBody);
