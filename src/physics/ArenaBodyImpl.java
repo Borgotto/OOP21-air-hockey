@@ -43,7 +43,7 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         shape.set(new Vec2(getWidth(), 0.0f), new Vec2(getWidth(), getHeight()));
         arenaBody.createFixture(arenaFixtureDef);
         
-        float goalHalfSize = (getGoalSize()/2);
+        float goalHalfSize = (getGoalWidth()/2);
         float widthHalfSize = (getWidth()/2);
         
         // Bottom-left horizontal wall
@@ -90,8 +90,4 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         return this.goalSize;
     }
 
-    public float getGoalSize() {
-        return this.goalSize;
-    }
- 
 }
