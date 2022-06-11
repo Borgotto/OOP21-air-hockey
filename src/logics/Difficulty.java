@@ -15,7 +15,7 @@ public enum Difficulty {
 	DUMB((GameState gamestate) -> {
 		Random random = new Random();
 		float angle = random.nextFloat()*360;
-		float module = (float) Math.random()*(gamestate.getArena().getWidth()/4);
+		float module = ((float) Math.random()*(gamestate.getArena().getWidth()/4))*40000;
 		return new Vec2((float)Math.cos(angle)*module, (float)Math.sin(angle)*module);
 	}),
 	EASY((GameState gamestate) -> {
@@ -31,16 +31,16 @@ public enum Difficulty {
 		if (xPuckCurr < gamestate.getArena().getHeight()/2) {
 			if (Math.abs((xPuckCurr - xEnemy)/(yPuckCurr - yEnemy)) > gamestate.getArena().getWidth()/7) {
 				float angle = (float)Math.atan((yPuckNext - yEnemy)/(xPuckNext - xEnemy));
-				float module = gamestate.getArena().getWidth()/8;
+				float module = (gamestate.getArena().getWidth()/8)*40000;
 				return new Vec2((float)Math.cos(angle)*module, (float)Math.sin(angle)*module);
 			} else {
 				float angle = (float)Math.atan((yPuckCurr - yEnemy)/(xPuckCurr - xEnemy));
-				float module = gamestate.getArena().getWidth()/6;
+				float module = (gamestate.getArena().getWidth()/6)*40000;
 				return new Vec2((float)Math.cos(angle)*module, (float)Math.sin(angle)*module);
 			}
 		} else {
 			float angle = (float)Math.atan((yDefPos - yEnemy)/(xDefPos - xEnemy));
-			float module = gamestate.getArena().getWidth()/6;
+			float module = (gamestate.getArena().getWidth()/6)*40000;
 			return new Vec2((float)Math.cos(angle)*module, (float)Math.sin(angle)*module);
 		}
 	}),
@@ -51,14 +51,22 @@ public enum Difficulty {
 		float yEnemy =  gamestate.getEnemyPlayer().getPosition().y;
 		float yPuckCurr = gamestate.getPuck().getPosition().y;
 		float yPuckNext = gamestate.getPuck().getNextPos().y;
+		float xDefPos = gamestate.getArena().getWidth()/2;
+		float yDefPos = gamestate.getArena().getHeight()/12;
 
-		if (Math.abs((xPuckCurr - xEnemy)/(yPuckCurr - yEnemy)) > gamestate.getArena().getWidth()/7) {
-			float angle = (float)Math.atan((yPuckNext - yEnemy)/(xPuckNext - xEnemy));
-			float module = gamestate.getArena().getWidth()/4;
-			return new Vec2((float)Math.cos(angle)*module, (float)Math.sin(angle)*module);
+		if (xPuckCurr < gamestate.getArena().getHeight()/2) {
+			if (Math.abs((xPuckCurr - xEnemy)/(yPuckCurr - yEnemy)) > gamestate.getArena().getWidth()/7) {
+				float angle = (float)Math.atan((yPuckNext - yEnemy)/(xPuckNext - xEnemy));
+				float module = (gamestate.getArena().getWidth()/4)*40000;
+				return new Vec2((float)Math.cos(angle)*module, (float)Math.sin(angle)*module);
+			} else {
+				float angle = (float)Math.atan((yPuckCurr - yEnemy)/(xPuckCurr - xEnemy));
+				float module = (gamestate.getArena().getWidth()/3)*40000;
+				return new Vec2((float)Math.cos(angle)*module, (float)Math.sin(angle)*module);
+			}
 		} else {
-			float angle = (float)Math.atan((yPuckCurr - yEnemy)/(xPuckCurr - xEnemy));
-			float module = gamestate.getArena().getWidth()/3;
+			float angle = (float)Math.atan((yDefPos - yEnemy)/(xDefPos - xEnemy));
+			float module = (gamestate.getArena().getWidth()/3)*40000;
 			return new Vec2((float)Math.cos(angle)*module, (float)Math.sin(angle)*module);
 		}
 	});
