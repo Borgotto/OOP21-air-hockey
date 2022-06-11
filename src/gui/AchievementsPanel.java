@@ -10,20 +10,29 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class AchievementsPanel extends JPanel {
+public class AchievementsPanel extends JScrollPane {
     public AchievementsPanel(GameState game) {
+
         //this.setLayout(new ScrollPaneLayout());
-        this.setLayout(new GridBagLayout());
 
         // Get the base achievements
         AchievementLogicsFactory factory = new AchievementLogicsFactoryImpl();
         List<Achievement> achievements = factory.baseAchievements().getAchievements();
+        DefaultListModel<AchievementLabel> listModel = new DefaultListModel<>();
 
-        // for each achievement create a label
+        // Add the achievements as JLabels to the list
         for (Achievement achievement : achievements) {
             AchievementLabel achievementLabel = new AchievementLabel(game, achievement);
-            this.add(achievementLabel);
+            listModel.addElement(achievementLabel);
         }
+
+        JList<AchievementLabel> achievementList = new JList<>(listModel);
+        achievementList.setCellRenderer(new AchievementLabelCellRenderer());
+        achievementList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        achievementList.setLayoutOrientation(JList.VERTICAL);
+
+        // Set the list to the scroll pane
+        this.setViewportView(achievementList);
     }
 }
 
