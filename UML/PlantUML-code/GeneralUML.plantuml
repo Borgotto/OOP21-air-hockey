@@ -106,3 +106,510 @@ class PausePanel extends AbstractGridBagLayoutJComponent
 class SettingsPanel extends AbstractGridBagLayoutJComponent
 
 @enduml
+
+@startuml All-Logics-interfaces
+
+interface Achievement {
+    + getIcon() : ImageIcon
+    + getName() : String
+    + getDescr() : String
+    + getCondition() : Predicate<GameState>
+    + isUnlocked( gameState : GameState ) : boolean
+}
+
+interface AchievementLogics {
+    + addAchievement( achievement : Achievement ) : void
+    + addAchievements( achievements : List<Achievement> ) : void
+    + getAchievements() : List<Achievement>
+}
+
+interface AchievementLogicsFactory {
+    + baseAchievements() : AchievementLogics
+    + fromList( achievements : List<Achievement> ) ; AchievementLogics
+}
+
+interface Arena {
+}
+
+interface EnemyPlayer {
+    + setNextMove( gameState : GameState ) : void
+    + getDifficulty() : Difficulty
+}
+
+interface GameObject {
+    + update() : void
+}
+
+interface GameObjectWithPhysics {
+    + getStartingPosition() : Vec2
+}
+
+interface GameState {
+    savePath : Path
+
+    + getArena() : Arena
+    + getMainPlayer() : MainPlayer
+    + getEnemyPlayer() : EnemyPlayer
+    + getWinner() : Optional<Player>
+    + isGameOver() : boolean
+    + getPuck() : Puck
+    + getMaxScore() : Integer
+    + save() : void
+    + load( game : GameState ) : void
+}
+
+interface MainPlayer {
+}
+
+interface Player {
+    + getName() : String
+    + getScore() : Integer
+    + setScore( score : Integer ) : void
+    + scorePoint() : void
+}
+
+interface Puck {
+    + center( arena : Arena ) : void
+    + moveToPlayer( arena : Arena, player : Player ) : void
+}
+
+interface Arena extends GameObjectWithPhysics
+interface Arena extends ArenaBody
+interface EnemyPlayer extends Player
+interface GameObject extends Serializable
+interface GameObjectWithPhysics extends GameObject
+interface GameObjectWithPhysics extends RigidBody
+interface GameState extends GameObject
+interface MainPlayer extends Player
+interface Player extends GameObjectWithPhysics
+interface Player extends PlayerBody
+interface Puck extends GameObjectWithPhysics
+interface Puck extends PuckBody
+
+/'
+From here start the physics interfaces
+'/
+
+interface ArenaBody {
+    + getWidth() : float
+    + getHeight() : float
+    + getGoalWidth() : float
+}
+
+interface Physics2D {
+    + update() : void
+    + getWorld() : World
+    + addRigidBody( rigidBody : RigidBody ) : void
+    + resetWorld() : void
+    + deleteAllBodies() : void
+}
+
+interface PlayerBody {
+    + getRadius() : float
+}
+
+interface PuckBody {
+    + getNextPos() : Vec2
+    + getRadius() : float
+}
+
+interface RigidBody {
+    + getBody() : Body
+    + getPosition() : Vec2
+    + setPosition( pos : Vec2 ) : void
+    + resetBodyPos() : void
+}
+
+interface ArenaBody extends RigidBody
+interface PlayerBody extends RigidBody
+interface PuckBody extends RigidBody
+
+@enduml
+
+@startuml All-Logics
+
+interface Achievement {
+    + getIcon() : ImageIcon
+    + getName() : String
+    + getDescr() : String
+    + getCondition() : Predicate<GameState>
+    + isUnlocked( gameState : GameState ) : boolean
+}
+
+interface AchievementLogics {
+    + addAchievement( achievement : Achievement ) : void
+    + addAchievements( achievements : List<Achievement> ) : void
+    + getAchievements() : List<Achievement>
+}
+
+interface AchievementLogicsFactory {
+    + baseAchievements() : AchievementLogics
+    + fromList( achievements : List<Achievement> ) ; AchievementLogics
+}
+
+interface Arena {
+}
+
+interface EnemyPlayer {
+    + setNextMove( gameState : GameState ) : void
+    + getDifficulty() : Difficulty
+}
+
+interface GameObject {
+    + update() : void
+}
+
+interface GameObjectWithPhysics {
+    + getStartingPosition() : Vec2
+}
+
+interface GameState {
+    savePath : Path
+
+    + getArena() : Arena
+    + getMainPlayer() : MainPlayer
+    + getEnemyPlayer() : EnemyPlayer
+    + getWinner() : Optional<Player>
+    + isGameOver() : boolean
+    + getPuck() : Puck
+    + getMaxScore() : Integer
+    + save() : void
+    + load( game : GameState ) : void
+}
+
+interface MainPlayer {
+}
+
+interface Player {
+    + getName() : String
+    + getScore() : Integer
+    + setScore( score : Integer ) : void
+    + scorePoint() : void
+}
+
+interface Puck {
+    + center( arena : Arena ) : void
+    + moveToPlayer( arena : Arena, player : Player ) : void
+}
+
+interface Arena extends GameObjectWithPhysics
+interface Arena extends ArenaBody
+interface EnemyPlayer extends Player
+interface GameObject extends Serializable
+interface GameObjectWithPhysics extends GameObject
+interface GameObjectWithPhysics extends RigidBody
+interface GameState extends GameObject
+interface MainPlayer extends Player
+interface Player extends GameObjectWithPhysics
+interface Player extends PlayerBody
+interface Puck extends GameObjectWithPhysics
+interface Puck extends PuckBody
+
+/'
+From here start the physics interfaces
+'/
+
+interface ArenaBody {
+    + getWidth() : float
+    + getHeight() : float
+    + getGoalWidth() : float
+}
+
+interface Physics2D {
+    + update() : void
+    + getWorld() : World
+    + addRigidBody( rigidBody : RigidBody ) : void
+    + resetWorld() : void
+    + deleteAllBodies() : void
+}
+
+interface PlayerBody {
+    + getRadius() : float
+}
+
+interface PuckBody {
+    + getNextPos() : Vec2
+    + getRadius() : float
+}
+
+interface RigidBody {
+    + getBody() : Body
+    + getPosition() : Vec2
+    + setPosition( pos : Vec2 ) : void
+    + resetBodyPos() : void
+}
+
+interface ArenaBody extends RigidBody
+interface PlayerBody extends RigidBody
+interface PuckBody extends RigidBody
+
+/'
+From here start the classes
+'/
+
+abstract class AbstractPlayer {
+    body : PlayerBody
+    name : String
+    radius : float
+    startingPosition : Vec2
+    score : Integer
+
+    + getName() : String
+    + getScore() : Integer
+    + setScore( score : Integer ) : void
+    + scorePoint() : void
+    + getRadius() : float
+    + getBody() : Body
+    + getPosition() : Vec2
+    + setPosition( pos : Vec2 ) : void
+    + getStartingPosition() : Vec2
+    + resetBodyPos() : void
+}
+
+class AchievementImpl {
+    icon : ImageIcon
+    name : String
+    description : String
+    condition : Predicate<GameState>
+
+    + getIcon() : ImageIcon
+    + getName() : String
+    + getDescr() : String
+    + getCondition() : Predicate<GameState>
+    + isUnlocked( gamestate : GameState ) : boolean
+}
+
+class AchievementLogicsFactoryImpl {
+    + fromList() : AchievementLogics
+}
+
+class AchievementLogicsImpl {
+    + addAchievement( achievement : Achievement ) : void
+    + addAchievements( achievements : List<Achievement> ) : void
+    + getAchievements() : List<Achievement>
+}
+
+class ArenaImpl {
+    body : ArenaBody
+    width : float
+    height : float
+    goalWidth : float
+
+    + update() : void
+    + getWidth() : float
+    + getHeight() : float
+    + getGoalWidth() : float
+    + getBody() : Body
+    + getPosition() : Vec2
+    + setPosition( pos : Vec2 ) : void
+    + getStartingPosition() : Vec2
+    + resetBodyPos() : void
+}
+
+enum Difficulty {
+    DUMB : gameState GameState -> Vec2
+    EASY : gameState GameState -> Vec2
+    NORMAL : gameState GameState -> Vec2
+    movingStrategy : Function<GameState, Vec2>
+
+    + getMovingStrategy() : Function<GameState, Vec2>
+}
+
+class EnemyPlayerImpl {
+    difficulty : Difficulty
+    nextMove : Vec2
+
+    + getDifficulty() : Difficulty
+    + setNextMove( gameState : GameState ) : void
+    + update() : void
+}
+
+class GameStateBuilder {
+    gamePhysics : Physics2D
+    mainPlayer : MainPlayer
+    enemyPlayer : EnemyPlayer
+    puck : Puck
+    arena : Arena
+    maxScore : Integer
+
+    + setPhysics( physics : Physics2D ) : GameStateBuilder
+    + setArena( arena : Arena ) : GameStateBuilder
+    + setMainPlayer( mainPlayer : MainPlayer ) : GameStateBuilder
+    + setEnemyPlayer( enemyPlayer : EnemyPlayer ) : GameStateBuilder
+    + setPuck( puck : Puck ) : GameStateBuilder
+    + setMaxScore( maxScore : int ) : GameStateBuilder
+    + build() : GameState
+}
+
+class GameStateImpl {
+    gamePhysics : Physics2D
+    mainPlayer : MainPlayer
+    enemyPlayer : EnemyPlayer
+    puck : Puck
+    arena : Arena
+    maxScore : Integer
+    winner : Optional<Player>
+    isGameOver : boolean
+
+    + getArena() : Arena
+    + getMainPlayer() : MainPlayer
+    + getEnemyPlayer() : EnemyPlayer
+    + getWinner() : Optional<Player>
+    + isGameOver() : boolean
+    + getPuck() : Puck
+    + getMaxScore() : Integer
+    + update() : void
+    + updateWinner() : boolean
+    + updateScore() : boolean
+    + save() : void
+    + load( savedGame : GameState ) : void
+}
+
+class MainPlayerImpl {
+    + update() : void
+}
+
+class PuckImpl {
+    body : PuckBody
+    radius : float
+    startingPosition : Vec2
+
+    + update() : void
+    + getRadius() : float
+    + center( arena : Arena ) : void
+    + moveToPlayer( arena : Arena , player : Player ) : void
+    + getNextPos() : Vec2
+    + getBody() : Body
+    + getPosition() : Vec2
+    + setPosition( pos : Vec2 ) : void
+    + getStartingPosition() : Vec2
+    + resetBodyPos() : void
+}
+
+class Settings {
+    path : Path
+    username : String
+    theme : Theme
+    maxScore : Integer
+    difficulty : Difficulty
+
+    + getUsername() : String
+    + setUsername( username : String ) : void
+    + getTheme() : Theme
+    + setTheme( theme : Theme ) : void
+    + getMaxScore() : Integer
+    + setMaxScore( maxScore : Integer ) : void
+    + getDifficulty() : Difficulty
+    + setDifficulty( difficulty : Difficulty ) : void
+    + load() : Settings
+    + save() : void
+}
+
+enum Theme {
+    DEFAULT
+    RED
+    GREEN
+    BLUE
+    BLACK
+    color : Color
+
+    + getColor() : Color
+}
+
+abstract class AbstractPlayer implements Player
+class AchievementImpl implements Achievement
+class AchievementLogicsFactoryImpl implements AchievementLogicsFactory
+class AchievementLogicsImpl implements AchievementLogics
+class ArenaImpl implements Arena
+class EnemyPlayerImpl extends AbstractPlayer
+class EnemyPlayerImpl implements EnemyPlayer
+class GameStateImpl implements GameState
+class MainPlayerImpl extends AbstractPlayer
+class MainPlayerImpl implements MainPlayer
+class PuckImpl implements Puck
+
+/'
+From here start the physics classes
+'/
+
+class ArenaBodyImpl {
+    width : float
+    height : float
+    goalWidth : float
+
+    + getWidth() : float
+    + getHeight() : float
+    + getGoalWidth() : float
+}
+
+class MousePhysicsHandler {
+    MOUSE_ACCELERATION : int
+    boundBody : Body
+
+    + update( mousePos : Vec2 )
+    + mouseReleased() : void
+    + getBoundedBody() : Body
+}
+
+class Physics2DImpl {
+    gravity : Vec2
+    world : World
+    rigidBodyList : ArrayList<RigidBody>
+    physicsTime : float
+    velocityIterations : int
+    positionIterations : int
+
+    + update() : void
+    + getWorld() : World
+    + addRigidBody( rigidBody : RigidBody ) : void 
+    + resetWorld() : void
+    + deleteAllBodies() : void
+}
+
+class PlayerBodyImpl {
+    radius : float
+
+    + getRadius() : float
+}
+
+class PuckBodyImpl {
+    radius : float
+
+    + getNextPos() : Vec2
+    + getRadius() : float
+}
+
+abstract class RigidBodyImpl {
+    bodyType : BodyType
+    startPositionDef : Vec2
+    linearDampingDef : float
+    bodyDef : BodyDef
+    body : Body
+
+    + getBody() : Body
+    + getPosition() : Vec2
+    + setPosition( pos : Vec2 ) : void
+    + resetBodyPos() : void
+    # configBodyDef() : void
+    # resetBodySpeed() : void
+    # getBodyType() : BodyType
+    # setBodyType( bodyTypeDef : BodyType ) : void
+    # getStartPositionDef() : Vec2
+    # setStartPositionDef( startPositionDef : Vec2 ) : void
+    # getLinearDampingDef() : float
+    # setLinearDampingDef( linearDampingDef : float ) : void
+    # getBodyDef() : BodyDef
+    # setBodyDef( bodyDef : BodyDef ) : void
+    # setBody( body : Body ) : void
+}
+
+class ArenaBodyImpl extends RigidBodyImpl
+class ArenaBodyImpl implements ArenaBody
+class Physics2DImpl implements Physics2D
+class PlayerBodyImpl extends RigidBodyImpl
+class PlayerBodyImpl implements PlayerBody
+class PuckBodyImpl extends RigidBodyImpl
+class PuckBodyImpl implements PuckBody
+abstract class RigidBodyImpl implements RigidBody
+
+@enduml
