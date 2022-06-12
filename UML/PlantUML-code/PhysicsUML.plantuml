@@ -1,5 +1,5 @@
 @startuml Physics2D-implement
-!theme plain
+!theme reddress-darkgreen
 
 interface Physics2D{
     + update() : void
@@ -23,7 +23,7 @@ class Physics2DImpl implements Physics2D
 @enduml
 
 @startuml RigidBody-interface-tree
-!theme plain
+!theme reddress-darkgreen
 
 interface RigidBody{
     + getBody() : Body
@@ -54,7 +54,7 @@ interface PuckBody extends RigidBody
 @enduml
 
 @startuml RigidBody-implement
-!theme plain
+!theme reddress-darkgreen
 
 interface RigidBody{
     + getBody() : Body
@@ -88,7 +88,7 @@ class RigidBodyImpl implements RigidBody
 @enduml
 
 @startuml ArenaBody-implement
-!theme plain
+!theme reddress-darkgreen
 
 interface RigidBody{
     + getBody() : Body
@@ -137,7 +137,7 @@ ArenaBodyImpl -R-|> RigidBodyImpl
 @enduml
 
 @startuml PlayerBody-implement
-!theme plain
+!theme reddress-darkgreen
 
 interface RigidBody{
     + getBody() : Body
@@ -182,7 +182,7 @@ PlayerBodyImpl -R-|> RigidBodyImpl
 @enduml
 
 @startuml PuckBody-implement
-!theme plain
+!theme reddress-darkgreen
 
 interface RigidBody{
     + getBody() : Body

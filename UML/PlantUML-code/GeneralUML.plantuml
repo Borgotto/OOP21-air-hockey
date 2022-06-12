@@ -1,4 +1,5 @@
 @startuml All-GUI
+!theme reddress-darkgreen
 
 abstract class AbstractGridBagLayoutJComponent {
     c : GridBagConstraints
@@ -108,6 +109,7 @@ class SettingsPanel extends AbstractGridBagLayoutJComponent
 @enduml
 
 @startuml All-Logics-interfaces
+!theme reddress-darkgreen
 
 interface Achievement {
     + getIcon() : ImageIcon
@@ -227,6 +229,7 @@ interface PuckBody extends RigidBody
 @enduml
 
 @startuml All-Logics
+!theme reddress-darkgreen
 
 interface Achievement {
     + getIcon() : ImageIcon
@@ -527,89 +530,5 @@ class GameStateImpl implements GameState
 class MainPlayerImpl extends AbstractPlayer
 class MainPlayerImpl implements MainPlayer
 class PuckImpl implements Puck
-
-/'
-From here start the physics classes
-'/
-
-class ArenaBodyImpl {
-    width : float
-    height : float
-    goalWidth : float
-
-    + getWidth() : float
-    + getHeight() : float
-    + getGoalWidth() : float
-}
-
-class MousePhysicsHandler {
-    MOUSE_ACCELERATION : int
-    boundBody : Body
-
-    + update( mousePos : Vec2 )
-    + mouseReleased() : void
-    + getBoundedBody() : Body
-}
-
-class Physics2DImpl {
-    gravity : Vec2
-    world : World
-    rigidBodyList : ArrayList<RigidBody>
-    physicsTime : float
-    velocityIterations : int
-    positionIterations : int
-
-    + update() : void
-    + getWorld() : World
-    + addRigidBody( rigidBody : RigidBody ) : void 
-    + resetWorld() : void
-    + deleteAllBodies() : void
-}
-
-class PlayerBodyImpl {
-    radius : float
-
-    + getRadius() : float
-}
-
-class PuckBodyImpl {
-    radius : float
-
-    + getNextPos() : Vec2
-    + getRadius() : float
-}
-
-abstract class RigidBodyImpl {
-    bodyType : BodyType
-    startPositionDef : Vec2
-    linearDampingDef : float
-    bodyDef : BodyDef
-    body : Body
-
-    + getBody() : Body
-    + getPosition() : Vec2
-    + setPosition( pos : Vec2 ) : void
-    + resetBodyPos() : void
-    # configBodyDef() : void
-    # resetBodySpeed() : void
-    # getBodyType() : BodyType
-    # setBodyType( bodyTypeDef : BodyType ) : void
-    # getStartPositionDef() : Vec2
-    # setStartPositionDef( startPositionDef : Vec2 ) : void
-    # getLinearDampingDef() : float
-    # setLinearDampingDef( linearDampingDef : float ) : void
-    # getBodyDef() : BodyDef
-    # setBodyDef( bodyDef : BodyDef ) : void
-    # setBody( body : Body ) : void
-}
-
-class ArenaBodyImpl extends RigidBodyImpl
-class ArenaBodyImpl implements ArenaBody
-class Physics2DImpl implements Physics2D
-class PlayerBodyImpl extends RigidBodyImpl
-class PlayerBodyImpl implements PlayerBody
-class PuckBodyImpl extends RigidBodyImpl
-class PuckBodyImpl implements PuckBody
-abstract class RigidBodyImpl implements RigidBody
 
 @enduml
