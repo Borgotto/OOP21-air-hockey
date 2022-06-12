@@ -18,6 +18,7 @@ public class GUI extends JFrame {
     public GUI() {
         GUI.setFont(new FontUIResource(new Font("Arial", Font.PLAIN, 14)));
         JComponentLoader.load(this, new MenuPanel());
+        this.setLocationRelativeTo(null);
         Settings settings = new Settings().load();
         Image icon = ImageModifier.color(new ImageIcon("res/airhockey_ico.png").getImage(), settings.getTheme().getColor());
         this.setIconImage(icon);

@@ -12,8 +12,6 @@ public class GameOverPanel extends AbstractGridBagLayoutJComponent {
     public GameOverPanel(GameState game, int parentFrameHeight) {
         super("Game Over", new Dimension(GUI.getMinScreenSize(), GUI.getMinScreenSize()/2));
 
-        GUI.setFont(new FontUIResource("Arial", Font.BOLD, 20));
-
         String result = game.getWinner().isPresent() ? "Winner: " + game.getWinner().get().getName() : "Draw";
         String score = "Score: " + game.getMainPlayer().getScore() + " - " + game.getEnemyPlayer().getScore();
         JLabel gameResult = new JLabel(result);
