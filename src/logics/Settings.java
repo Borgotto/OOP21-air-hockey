@@ -41,11 +41,11 @@ public class Settings {
 		this.theme = theme;
 	}
 
-	public int getMaxScore() {
+	public Integer getMaxScore() {
 		return this.maxScore;
 	}
 
-	public void setMaxScore(int maxScore) {
+	public void setMaxScore(Integer maxScore) {
 		this.maxScore = maxScore;
 	}
 
