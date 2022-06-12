@@ -4,14 +4,10 @@ import logics.GameState;
 import logics.Settings;
 import org.jbox2d.common.Vec2;
 import utils.ImageModifier;
-import utils.ResourceLoader;
 import utils.UnitConverter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.nio.file.Path;
 
 public class ArenaLabel extends JLabel {
     private final JLabel enemyField;
@@ -21,15 +17,11 @@ public class ArenaLabel extends JLabel {
     private final JButton puckButton;
 
     public ArenaLabel(Dimension size, GameState game) {
-        // Load resources
-        BufferedImage strikerImag = ResourceLoader.load(Path.of("res/striker.png"), BufferedImage.class);
-        BufferedImage puckImag = ResourceLoader.load(Path.of("res/puck.png"), BufferedImage.class);
-        BufferedImage arenaImag = ResourceLoader.load(Path.of("res/arena.png"), BufferedImage.class);
-        // Load settings and color the images based on the theme
-        Settings settings = new Settings().load();
-        Image strikerImage = ImageModifier.color(strikerImag, settings.getTheme().getColor());
-        Image puckImage = ImageModifier.color(puckImag, settings.getTheme().getColor());
-        Image arenaImage = ImageModifier.color(arenaImag, settings.getTheme().getColor());
+        // Load resources and color the images based on the Theme saved in settings
+        Color color = new Settings().load().getTheme().getColor();
+        Image strikerImage = ImageModifier.color(new ImageIcon("res/striker.png").getImage(), color);
+        Image puckImage = ImageModifier.color(new ImageIcon("res/puck.png").getImage(), color);
+        Image arenaImage = ImageModifier.color(new ImageIcon("res/arena.png").getImage(), color);
 
         // Manually manage the label's layout
         this.setLayout(null);
