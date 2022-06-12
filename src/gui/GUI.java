@@ -7,6 +7,8 @@ import utils.JComponentLoader;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Main class to start the GUI process.
@@ -16,11 +18,17 @@ public class GUI extends JFrame {
      * Initializes and shows the main menu JPanel.
      */
     public GUI() {
-        GUI.setFont(new FontUIResource(new Font("Arial", Font.PLAIN, 14)));
+        Font font = null;
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("res/aerial.ttf"));
+            GUI.setFont(new FontUIResource(font.deriveFont(Font.PLAIN, 14)));
+        } catch (FontFormatException | IOException e) {
+            GUI.setFont(new FontUIResource("arial", Font.BOLD, 16));
+        }
         JComponentLoader.load(this, new MenuPanel());
         this.setLocationRelativeTo(null);
-        Settings settings = new Settings().load();
-        Image icon = ImageModifier.color(new ImageIcon("res/airhockey_ico.png").getImage(), settings.getTheme().getColor());
+        Color iconColor = new Settings().load().getTheme().getColor();
+        Image icon = ImageModifier.color(new ImageIcon("res/airhockey_ico.png").getImage(), iconColor);
         this.setIconImage(icon);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
