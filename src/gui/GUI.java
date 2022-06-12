@@ -18,22 +18,21 @@ public class GUI extends JFrame {
      * Initializes and shows the main menu JPanel.
      */
     public GUI() {
-        Font font = null;
+        // Try to set the custom font, if it fails, use the default one
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("res/aerial.ttf"));
+            Font font = font = Font.createFont(Font.TRUETYPE_FONT, new File("res/aerial.ttf"));
             GUI.setFont(new FontUIResource(font.deriveFont(Font.PLAIN, 14)));
         } catch (FontFormatException | IOException e) {
             GUI.setFont(new FontUIResource("arial", Font.BOLD, 16));
         }
-        JComponentLoader.load(this, new MenuPanel());
-        this.setLocationRelativeTo(null);
+        JComponentLoader.load(this, new MenuPanel()); // Loads the main menu
+        this.setLocationRelativeTo(null); // Center the window on the screen
         Color iconColor = new Settings().load().getTheme().getColor();
         Image icon = ImageModifier.color(new ImageIcon("res/airhockey_ico.png").getImage(), iconColor);
         this.setIconImage(icon);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
