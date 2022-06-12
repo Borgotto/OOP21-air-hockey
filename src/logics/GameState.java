@@ -54,11 +54,6 @@ public interface GameState extends GameObject {
     Integer getMaxScore();
 
     /**
-     * Update the game state via internal logic
-     */
-    void update();
-
-    /**
      * Save the current {@link GameState} to a serialized file.
      * @throws IOException if an I/O error occurs
      */
