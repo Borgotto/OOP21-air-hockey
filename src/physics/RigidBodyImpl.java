@@ -33,7 +33,7 @@ public abstract class RigidBodyImpl implements RigidBody {
     }
     
     public void setPosition(Vec2 pos) {
-    	this.body.setLinearVelocity(new Vec2(0.0f, 0.0f));
+    	this.resetBodySpeed();
     	this.body.setTransform(pos, 0.0f);
     }
     
