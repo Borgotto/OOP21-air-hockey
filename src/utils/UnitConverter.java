@@ -9,7 +9,6 @@ import java.awt.*;
  * awt uses the top left corner as the origin, while JBox2D uses the bottom left corner.
  */
 public class UnitConverter {
-
 	public final Dimension cs1;
 	public final Vec2 cs2;
 	public final float xScaling;

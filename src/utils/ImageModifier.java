@@ -4,11 +4,26 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 
+/**
+ * Utility class for modifying images.
+ */
 public class ImageModifier {
+    /**
+     * Resize an image to fit a certain size.
+     * @param img The image to resize.
+     * @param dim The {@link Dimension} to fit the image to.
+     * @return The resized image.
+     */
     public static Image fit(Image img, Dimension dim) {
         return img.getScaledInstance((int) dim.getWidth(), (int) (dim.getHeight()), Image.SCALE_SMOOTH);
     }
 
+    /**
+     * Scale an image to a certain size keeping the aspect ratio.
+     * @param img The image to resize.
+     * @param bounds The {@link Dimension} to fit the image to.
+     * @return The resized image.
+     */
     public static Image scale(Image img, Dimension bounds) {
         double ratio = Math.min(bounds.getWidth() / img.getWidth(null),
                                 bounds.getHeight() / img.getHeight(null));
@@ -17,6 +32,13 @@ public class ImageModifier {
                                                   (int) (img.getHeight(null) * ratio)));
     }
 
+    /**
+     * Color an image with a certain color.
+     * Based on the color's alpha it subtracts the color from the image and adds the color's rgb values.
+     * @param img The image to color.
+     * @param color The color to color the image with.
+     * @return The colored image.
+     */
     public static Image color(Image img, Color color) {
         // Create a copy of the image
         BufferedImage newImg = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
