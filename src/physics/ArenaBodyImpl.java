@@ -14,6 +14,7 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
 	private static final float FILTER_RESTITUTION = 0.0f;
 	private static final int PLAYER_BITMASK = 0x0002;
 	private static final float PLAYER_FILTER_DISTANCE = 0.1f;
+	private static final float ANGLE_DIVIDER = 14;
 	
 	private final float width;
     private final float height;
@@ -67,7 +68,7 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         // Generation of right vertical wall. This This wall has the properties of collide only with the player.
         arenaBody.createFixture(this.generatePlayerWall(new Vec2(this.getWidth() - PLAYER_FILTER_DISTANCE, 0.0f), new Vec2(this.getWidth() - PLAYER_FILTER_DISTANCE, this.getHeight())));
         
-        float triangleBase = this.getWidth()/14;
+        float triangleBase = this.getWidth()/ANGLE_DIVIDER;
         
         // Generation of the bottom angles of the arena.
         arenaBody.createFixture(this.generateWall(new Vec2(0.0f, triangleBase),  new Vec2(triangleBase, 0.0f)));
