@@ -11,7 +11,7 @@ public abstract class RigidBodyImpl implements RigidBody {
 	private static final float DEFAULT_LINEARDAMPING = 0.0f;
 	private static final float DEFAULT_ANGULARDAMPING = 0.0f;
 	private static final float DEFAULT_GRAVITYSCALE = 0.0f;
-	private static final boolean DEFAULT_FIXEDROTATION = true;
+	private static final boolean DEFAULT_FIXEDROTATION = false;
 	private static final float DEFAULT_ANGLE = 0.0f;
 	private static final boolean DEFAULT_BULLET = true;
 	private static final boolean DEFAULT_ACTIVE = true;
