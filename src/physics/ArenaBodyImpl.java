@@ -12,7 +12,8 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
 	private static final float DENSITY_VALOR = 0.0f;
 	private static final float ENERGY_RESTITUTION = 1.0f;
 	private static final float PLAYER_ENERGY_RESTITUTION = 0.0f;
-	private static final int MIDARENA_BITMASK = 0x0002;
+	private static final int PLAYER_BITMASK = 0x0002;
+	private static final float PLAYER_WALL_DISTANCE = 0.1f;
 	
 	private final float width;
     private final float height;
@@ -31,57 +32,40 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         this.goalWidth = goalWidth;
         
         this.setBodyType(BodyType.STATIC);
-        Body arenaBody = physicsWorld.getWorld().createBody(getBodyDef());
+        Body arenaBody = physicsWorld.getWorld().createBody(this.getBodyDef());
         physicsWorld.addRigidBody(this);
         
-        EdgeShape shape = new EdgeShape();
-        
-        FixtureDef arenaFixtureDef = new FixtureDef();
-        arenaFixtureDef.shape = shape;
-        arenaFixtureDef.density = DENSITY_VALOR;
-        arenaFixtureDef.restitution = ENERGY_RESTITUTION;
-        
         // Left vertical wall
-        shape.set(new Vec2(0.0f, 0.0f), new Vec2(0.0f, getHeight()));
-        arenaBody.createFixture(arenaFixtureDef);
+        arenaBody.createFixture(this.generateWall(new Vec2(0.0f, 0.0f), new Vec2(0.0f, this.getHeight())));
         // Right vertical wall
-        shape.set(new Vec2(getWidth(), 0.0f), new Vec2(getWidth(), getHeight()));
-        arenaBody.createFixture(arenaFixtureDef);
+        arenaBody.createFixture(this.generateWall(new Vec2(this.getWidth(), 0.0f), new Vec2(this.getWidth(), this.getHeight())));
         
-        float goalHalfSize = (getGoalWidth()/2);
-        float widthHalfSize = (getWidth()/2);
-        
-        // Bottom-left horizontal wall
-        shape.set(new Vec2(0.0f, 0.0f), new Vec2(widthHalfSize - goalHalfSize, 0.0f));
-        arenaBody.createFixture(arenaFixtureDef);
-        // Bottom-right horizontal wall
-        shape.set(new Vec2(widthHalfSize + goalHalfSize, 0.0f), new Vec2(getWidth(), 0.0f));
-        arenaBody.createFixture(arenaFixtureDef);
+        float goalHalfSize = (this.getGoalWidth()/2);
+        float widthHalfSize = (this.getWidth()/2);
         
         // Bottom-left horizontal wall
-        shape.set(new Vec2(0.0f,  getHeight()), new Vec2(widthHalfSize - goalHalfSize, getHeight()));
-        arenaBody.createFixture(arenaFixtureDef);
+        arenaBody.createFixture(this.generateWall(new Vec2(0.0f, 0.0f), new Vec2(widthHalfSize - goalHalfSize, 0.0f)));
         // Bottom-right horizontal wall
-        shape.set(new Vec2(widthHalfSize + goalHalfSize,  getHeight()), new Vec2(getWidth(),  getHeight()));
-        arenaBody.createFixture(arenaFixtureDef);
+        arenaBody.createFixture(this.generateWall(new Vec2(widthHalfSize + goalHalfSize, 0.0f), new Vec2(this.getWidth(), 0.0f)));
         
-        // Generation of the mid arena wall. This wall has the properties of collide only with the player, not the puck.
-        shape.set(new Vec2(0.0f, (float)(getHeight()/2)), new Vec2(getWidth(), (float)(getHeight()/2)));
-        arenaFixtureDef.filter.maskBits = MIDARENA_BITMASK;
-        arenaFixtureDef.restitution = PLAYER_ENERGY_RESTITUTION;
-        arenaBody.createFixture(arenaFixtureDef);
+        // Bottom-left horizontal wall
+        arenaBody.createFixture(this.generateWall(new Vec2(0.0f,  this.getHeight()), new Vec2(widthHalfSize - goalHalfSize, this.getHeight())));
+        // Bottom-right horizontal wall
+        arenaBody.createFixture(this.generateWall(new Vec2(widthHalfSize + goalHalfSize,  this.getHeight()), new Vec2(this.getWidth(),  this.getHeight())));
         
-        // Generation of the bottom arena wall. This wall has the properties of collide only with the player, not the puck.
-        shape.set(new Vec2(0.0f, 0.0f), new Vec2(getWidth(), 0.0f));
-        arenaFixtureDef.filter.maskBits = MIDARENA_BITMASK;
-        arenaFixtureDef.restitution = PLAYER_ENERGY_RESTITUTION;
-        arenaBody.createFixture(arenaFixtureDef);
         
-        // Generation of the top arena wall. This wall has the properties of collide only with the player, not the puck.
-        shape.set(new Vec2(0.0f, getHeight()), new Vec2(getWidth(), getHeight()));
-        arenaFixtureDef.filter.maskBits = MIDARENA_BITMASK;
-        arenaFixtureDef.restitution = PLAYER_ENERGY_RESTITUTION;
-        arenaBody.createFixture(arenaFixtureDef);
+        // Generation of the mid arena wall. This wall has the properties of collide only with the player
+        arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f, this.getHeight()/2), new Vec2(this.getWidth(), this.getHeight()/2)));
+        
+        // Generation of the bottom arena wall. This wall has the properties of collide only with the player.
+        arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f, 0.0f + PLAYER_WALL_DISTANCE), new Vec2(this.getWidth(), 0.0f + PLAYER_WALL_DISTANCE)));
+        // Generation of the top arena wall. This wall has the properties of collide only with the player.
+        arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f, this.getHeight() - PLAYER_WALL_DISTANCE), new Vec2(this.getWidth(), this.getHeight() - PLAYER_WALL_DISTANCE)));
+        
+        // Generation of left vertical wall. This This wall has the properties of collide only with the player.
+        arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f + PLAYER_WALL_DISTANCE, 0.0f),  new Vec2(0.0f + PLAYER_WALL_DISTANCE, this.getHeight())));
+        // Generation of right vertical wall. This This wall has the properties of collide only with the player.
+        arenaBody.createFixture(this.generatePlayerWall(new Vec2(this.getWidth() - PLAYER_WALL_DISTANCE, 0.0f), new Vec2(this.getWidth() - PLAYER_WALL_DISTANCE, this.getHeight())));
         
         this.setBody(arenaBody);
     }
@@ -96,6 +80,31 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
 
     public float getGoalWidth() {
         return this.goalWidth;
+    }
+    
+    private FixtureDef generateWall(Vec2 firstCord, Vec2 secondCord) {
+    	EdgeShape shape = new EdgeShape();
+    	
+    	FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = shape;
+        fixtureDef.density = DENSITY_VALOR;
+        fixtureDef.restitution = ENERGY_RESTITUTION;
+        
+        shape.set(firstCord, secondCord);
+        return fixtureDef;
+    }
+    
+    private FixtureDef generatePlayerWall(Vec2 firstCord, Vec2 secondCord) {
+    	EdgeShape shape = new EdgeShape();
+    	
+    	FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = shape;
+        fixtureDef.density = DENSITY_VALOR;
+        fixtureDef.filter.maskBits = PLAYER_BITMASK;
+        fixtureDef.restitution = PLAYER_ENERGY_RESTITUTION;
+        
+        shape.set(firstCord, secondCord);
+        return fixtureDef;
     }
 
 }
