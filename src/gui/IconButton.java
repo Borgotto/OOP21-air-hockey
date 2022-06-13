@@ -5,6 +5,9 @@ import utils.ImageModifier;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class that creates a button with an icon and predetermined size.
+ */
 public class IconButton extends JButton {
     public IconButton(Image icon) {
         this(icon, new Dimension(icon.getWidth(null), icon.getHeight(null)));

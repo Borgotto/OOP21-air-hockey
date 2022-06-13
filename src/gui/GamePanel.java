@@ -11,20 +11,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class GamePanel extends AbstractGridBagLayoutJComponent {
-    private static final long serialVersionUID = 1L;
-
     private final GameState game;
-
     // create a timer to update the game state
     private static final int delay = 1000/60; // 60 FPS
     private final Timer timer = new Timer(delay, e -> this.updateGame());
-
     // GUI elements to be updated every frame by the updateGame() method
     private final ArenaLabel arenaLabel;
     private final JLabel playerScoreLabel;
     private final JLabel enemyScoreLabel;
     private final JButton pauseButton;
-
+    // Gui to physics unit converter and mouse input handler
     private final UnitConverter uc;
     private boolean isMainPlayerMoving;
     private final MousePhysicsHandler mouseHandler;
@@ -32,7 +28,6 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
     public GamePanel(GameState game) {
         super("Air Hockey - Game", new Dimension(GUI.getMinScreenSize()*3/4, GUI.getMinScreenSize()));
         this.game = game;
-
         // Add the game field as a JLabel
         c.weighty = 1.0;
         c.gridheight = 3;
@@ -40,7 +35,6 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
         c.gridy = 0;
         this.arenaLabel = new ArenaLabel(new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height), this.game);
         this.add(arenaLabel, c);
-
         // Create labels to show the players scores
         c.weightx = 1/4d;
         c.gridheight = 1;
@@ -51,7 +45,6 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
         c.gridy = 2;
         this.playerScoreLabel = new JLabel();
         this.add(this.playerScoreLabel, c);
-
         // Create the pause button
         c.gridy = 1;
         this.pauseButton = new JButton("Pause");
@@ -114,10 +107,10 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
     }
 
     /**
-     * Method called automatically by the timer function
+     * Method called automatically by the updateGame method when the game ends
      * Can be called manually to end the game
      */
-    private void endGame() {
+    public void endGame() {
         this.timer.stop();
         JFrame parent = JComponentLoader.getParentFrame(this);
         JComponentLoader.load(parent, new GameOverPanel(game, JComponentLoader.getParentFrame(this).getHeight()));

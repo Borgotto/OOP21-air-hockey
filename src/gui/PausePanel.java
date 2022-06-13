@@ -7,27 +7,22 @@ import java.awt.*;
 import java.io.IOException;
 
 public class PausePanel extends AbstractGridBagLayoutJComponent {
-    private static final long serialVersionUID = 1L;
+    private final GameState game;
 
-    private GameState gameState;
-
-    public PausePanel(GameState gameState) {
+    public PausePanel(GameState game) {
         super("Air Hockey - Pause");
-
-        this.gameState = gameState;
+        this.game = game;
 
         c.gridx = 1;
+        c.gridy = 1;
         c.weightx = 1.0;
         c.weighty = 1.0;
-
-        c.gridy = 1;
         c.anchor = GridBagConstraints.SOUTH;
         JButton resume = new JButton("Resume");
         resume.addActionListener(e -> {
             SwingUtilities.getWindowAncestor(this).dispose();
         });
         this.add(resume, c);
-
         c.gridy = 2;
         c.anchor = GridBagConstraints.CENTER;
         JButton exit = new JButton("Quit");
@@ -38,18 +33,15 @@ public class PausePanel extends AbstractGridBagLayoutJComponent {
             }
         });
         this.add(exit, c);
-
         c.gridy = 3;
         c.anchor = GridBagConstraints.NORTH;
         JButton saveAndQuit = new JButton("Save and quit");
         saveAndQuit.addActionListener(e -> {
             try {
-                this.gameState.save();
+                this.game.save();
             } catch (IOException ex) {
                 new ExceptionPanel(ex);
             }
-
-            System.exit(0);
         });
         this.add(saveAndQuit, c);
     }

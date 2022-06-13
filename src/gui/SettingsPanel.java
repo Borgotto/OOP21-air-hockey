@@ -1,18 +1,15 @@
 package gui;
 
 import logics.Theme;
-import utils.JComponentLoader;
-import javax.swing.*;
-
 import logics.Difficulty;
 import logics.Settings;
+import utils.JComponentLoader;
 
 import java.awt.*;
+import javax.swing.*;
 import java.io.IOException;
 
 public class SettingsPanel extends AbstractGridBagLayoutJComponent {
-    private static final long serialVersionUID = 1L;
-    
     final Theme[] themeArray = Theme.values();
     final Difficulty[] difficultyArray = logics.Difficulty.values();
     
@@ -95,7 +92,13 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
         p5.add(b3, c);
         this.addComponent(p5, 0, 4);
     }
-    
+
+    /**
+     * Adds a component to a component that uses a GridBagLayout.
+     * @param component the component to add.
+     * @param x the row index.
+     * @param y the column index.
+     */
     private void addComponent(JComponent component, int x, int y) {
     	this.c.gridx = x;
     	this.c.gridy = y;

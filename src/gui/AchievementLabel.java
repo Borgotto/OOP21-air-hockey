@@ -8,14 +8,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-public class AchievementLabel extends JLabel {
-
+public class AchievementLabel extends AbstractGridBagLayoutJComponent {
     private final JLabel iconLabel;
     private final JLabel nameLabel;
     private final JLabel descriptionLabel;
 
     public AchievementLabel(GameState game, Achievement achievement) {
-        this.setLayout(new GridBagLayout());
+        super();
 
         // Create label Components
         ImageIcon icon = achievement.getIcon();

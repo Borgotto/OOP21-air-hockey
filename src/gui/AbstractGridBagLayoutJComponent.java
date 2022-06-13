@@ -3,6 +3,9 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Abstract class that defines a JComponent with a GridBagLayout as layout manager.
+ */
 public abstract class AbstractGridBagLayoutJComponent extends JComponent {
     public final GridBagConstraints c;
     
