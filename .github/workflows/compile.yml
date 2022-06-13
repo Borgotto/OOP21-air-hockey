@@ -28,4 +28,6 @@ jobs:
         run: find src -name "*.java" -print | xargs javac -cp '.:./target/dependency/*' -d out
 
       - name: Make JAR archive
-        run: find out -print | xargs jar cf air-hockey.jar
+        run: |
+          cp -r res out  # copy resources into output directory
+          find out -print | xargs jar cf air-hockey.jar
