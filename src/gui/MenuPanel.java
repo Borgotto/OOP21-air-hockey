@@ -76,34 +76,7 @@ public class MenuPanel extends AbstractGridBagLayoutJComponent {
         // Credits button
         var b4 = new JButton("Credits");
         b4.addActionListener(e -> {
-            var messagePanel = new JPanel();
-            messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
-
-            var repositoryLabel = new JLabel(" GitHub repository", new ImageIcon("res/GitHub-Mark-32px.png"), SwingConstants.LEFT);
-            repositoryLabel.setForeground(Color.BLUE.darker());
-            repositoryLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            repositoryLabel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    try {
-                        Desktop.getDesktop().browse(new URI("https://github.com/Borgotto/OOP21-air-hockey"));
-                    } catch (IOException | URISyntaxException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            });
-
-            var engineersLabel = new JLabel(
-                    "<html><br>Written by:<ul>\n" +
-                      "<li>Emanuele Borghini - emanuele.borghini@studio.unibo.it</li>\n" +
-                      "<li>Edoardo La Greca - edoardo.lagreca@studio.unibo.it</li>\n" +
-                      "<li>Francesca Lanzi - francesca.lanzi6@studio.unibo.it</li>\n" +
-                      "<li>Pablo Sebastian Vargas Grateron - pablo.vargasgrateron@studio.unibo.it</li>\n" +
-                    "</ul></html>");
-
-            messagePanel.add(repositoryLabel);
-            messagePanel.add(engineersLabel);
-            JOptionPane.showMessageDialog(this, messagePanel, b4.getText(), JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, new CreditsPanel(), b4.getText(), JOptionPane.PLAIN_MESSAGE);
         });
         this.add(b4, c);
         c.insets = new Insets(pad/2, pad, pad, pad);
