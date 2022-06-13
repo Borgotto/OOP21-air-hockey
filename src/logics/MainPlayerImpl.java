@@ -9,7 +9,7 @@ import physics.PlayerBodyImpl;
 import physics.RigidBody;
 
 /**
- * The class NormalPlayer represents a user-controlled player.
+ * Implementation of the MainPlayer interface.
  */
 public class MainPlayerImpl extends AbstractPlayer implements MainPlayer {
 

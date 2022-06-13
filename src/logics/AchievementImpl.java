@@ -2,9 +2,11 @@ package logics;
 
 import javax.swing.*;
 
-import java.io.Serializable;
 import java.util.function.Predicate;
 
+/**
+ * Implementation of the Achievement interface.
+ */
 public class AchievementImpl implements Achievement {
 	private final ImageIcon icon = new ImageIcon("res/achievement.png");
 	private final String name;
@@ -39,7 +41,7 @@ public class AchievementImpl implements Achievement {
 		return this.condition;
 	}
 
-	public boolean isUnlocked(GameState gamestate) {
-		return this.condition.test(gamestate);
+	public boolean isUnlocked(GameState game) {
+		return this.condition.test(game);
 	}
 }

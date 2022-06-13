@@ -4,8 +4,9 @@ import org.jbox2d.common.Vec2;
 import physics.Physics2D;
 import physics.Physics2DImpl;
 
-import java.io.IOException;
-
+/**
+ * Builder class for GameState.
+ */
 public class GameStateBuilder {
     private Physics2D gamePhysics;
     private MainPlayer mainPlayer;

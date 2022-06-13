@@ -12,7 +12,6 @@ import java.nio.file.Path;
  */
 public class Settings {
 	private static final Path path = Path.of("config/settings.json");
-	
 	private String username;
     private Theme theme;
     private Integer maxScore;
@@ -66,7 +65,7 @@ public class Settings {
 			this.setMaxScore(s.getMaxScore());
 			this.setDifficulty(s.getDifficulty());
 		} catch (IOException e) {
-			// ignore exception
+			// ignore exception, return default settings
 		}
         return this;
     }

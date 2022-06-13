@@ -1,16 +1,13 @@
 package logics;
 
-import org.jbox2d.common.Vec2;
 import physics.Physics2D;
-import physics.Physics2DImpl;
 import utils.ObjectSerializer;
 
 import java.io.IOException;
 import java.util.Optional;
-import java.util.Random;
 
 /**
- * The class GameState holds the state of the game.
+ * Implementation of GameState interface.
  */
 public class GameStateImpl implements GameState {
     private transient final Physics2D gamePhysics;

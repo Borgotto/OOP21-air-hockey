@@ -2,12 +2,9 @@ package logics;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.World;
 import physics.ArenaBody;
 import physics.ArenaBodyImpl;
 import physics.Physics2D;
-import physics.RigidBody;
-
 
 /**
  * Class that represent arenas the player can play in.
@@ -56,6 +53,7 @@ public class ArenaImpl implements Arena {
     }
 
     public void setPosition(Vec2 pos) {
+        // can't set position of arena
     }
 
     public Vec2 getStartingPosition() {

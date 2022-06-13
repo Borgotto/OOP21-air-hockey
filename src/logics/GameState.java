@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.Optional;
 
+/**
+ * Interface describing a Game of Air Hockey
+ */
 public interface GameState extends GameObject {
     /**
      * Save file directory.

@@ -9,7 +9,7 @@ import physics.PlayerBodyImpl;
 import physics.RigidBody;
 
 /**
- * The class EnemyAIPlayer represents the enemy player, controlled by the computer.
+ * Implementation of the EnemyPlayer interface.
  */
 public class EnemyPlayerImpl extends AbstractPlayer implements EnemyPlayer {
     private final Difficulty difficulty;
@@ -33,8 +33,8 @@ public class EnemyPlayerImpl extends AbstractPlayer implements EnemyPlayer {
         return this.difficulty;
     }
     
-    public void setNextMove(GameState gameState) {
-        this.nextMove = this.difficulty.getMovingStrategy().apply(gameState);
+    public void setNextMove(GameState game) {
+        this.nextMove = this.difficulty.getMovingStrategy().apply(game);
     }
 
     public void update() {

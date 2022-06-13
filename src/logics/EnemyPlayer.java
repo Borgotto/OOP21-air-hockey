@@ -1,17 +1,17 @@
 package logics;
 
-import org.jbox2d.common.Vec2;
-
+/**
+ * An AI controlled player.
+ */
 public interface EnemyPlayer extends Player {
     /**
-     * Get the next position of the enemy player
-     * @return the next position
+     * Get the next position of the enemy player.
      */
-    public void setNextMove(GameState gameState);
+    void setNextMove(GameState game);
 
     /**
      * Get the difficulty of the enemy player.
      * @return The difficulty set for the enemy.
      */
-    public Difficulty getDifficulty();
+    Difficulty getDifficulty();
 }

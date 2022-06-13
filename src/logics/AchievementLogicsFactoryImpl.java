@@ -5,7 +5,6 @@ import java.util.List;
 
 public class AchievementLogicsFactoryImpl implements AchievementLogicsFactory {
 
-
     public AchievementLogics baseAchievements() {
         AchievementLogicsImpl achievementLogics = new AchievementLogicsImpl();
         ArrayList<Achievement> list = new ArrayList<>();

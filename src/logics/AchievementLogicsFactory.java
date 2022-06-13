@@ -2,6 +2,9 @@ package logics;
 
 import java.util.List;
 
+/**
+ * An achievement factory with basic creation methods.
+ */
 public interface AchievementLogicsFactory {
 
     /**

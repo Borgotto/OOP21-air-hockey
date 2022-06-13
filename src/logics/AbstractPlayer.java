@@ -8,6 +8,10 @@ import physics.PlayerBody;
 import physics.PlayerBodyImpl;
 import physics.RigidBody;
 
+/**
+ * Abstract class for player.
+ * It defines base parameters and methods for a generic player.
+ */
 public abstract class AbstractPlayer implements Player {
     private final transient PlayerBody body;
     private final String name;
