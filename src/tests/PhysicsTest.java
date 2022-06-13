@@ -1,7 +1,5 @@
 package tests;
 
-import physics.ArenaBody;
-import physics.ArenaBodyImpl;
 import physics.Physics2D;
 import physics.Physics2DImpl;
 import physics.PlayerBody;
@@ -19,20 +17,18 @@ public class PhysicsTest {
     private Physics2D physicsTestWorld;
     private PuckBody puckBody;
     private PlayerBody playerBody;
-    private ArenaBody arenaBody;
     
     @org.junit.Before
     public void initTests() {
     	physicsTestWorld = new Physics2DImpl();
     	puckBody = new PuckBodyImpl(1.0f, new Vec2(9.0f, 24.0f), physicsTestWorld);
     	playerBody = new PlayerBodyImpl(1.0f, new Vec2(9.0f, 8.0f), physicsTestWorld);
-    	arenaBody = new ArenaBodyImpl(16.0f, 32.0f, 0.0f, physicsTestWorld);
     }
     
     @org.junit.Test
     public void testBodyCount() {
     	int bodyNum = physicsTestWorld.getWorld().getBodyCount();
-    	assertEquals(3, bodyNum);
+    	assertEquals(2, bodyNum);
     }
     
     @org.junit.Test
