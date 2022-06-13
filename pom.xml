@@ -32,16 +32,13 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>src</sourceDirectory>
+        <!-- <testSourceDirectory>src/tests</testSourceDirectory> -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <compilerArgument>
-                        -proc:none
-                    </compilerArgument>
-                    <source>1.7</source>
-                    <target>1.7</target>
                 </configuration>
             </plugin>
             <plugin>
