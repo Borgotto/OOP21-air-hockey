@@ -27,7 +27,5 @@ jobs:
       - name: Compile all source files
         run: find src -name "*.java" -print | xargs javac -cp '.:./target/dependency/*' -d out
 
-      - name: Make JAR archive
-        run: |
-          cp -r res out  # copy resources into output directory
-          find out -print | xargs jar cf air-hockey.jar
+      - name: Make JAR archive (using Maven)
+        run: mvn clean package
