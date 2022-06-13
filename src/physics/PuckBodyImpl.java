@@ -10,6 +10,7 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
 	
 	private static final float DENSITY_VALOR = 0.2f;
 	private static final float FRICTION_VALOR = 0.6f;
+	private static final int GROUP_FILTER_INDEX = -2;
 	
     private final float radius;
     
@@ -33,6 +34,7 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
         fixture.shape = shape;
         fixture.density = DENSITY_VALOR ;
         fixture.friction = FRICTION_VALOR;
+        fixture.filter.groupIndex = GROUP_FILTER_INDEX;
         
         Body playerBody = physicsWorld.getWorld().createBody(this.getBodyDef());
         physicsWorld.addRigidBody(this);

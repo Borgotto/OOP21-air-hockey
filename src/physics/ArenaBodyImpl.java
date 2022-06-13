@@ -11,7 +11,7 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
 	
 	private static final float DENSITY_VALOR = 0.0f;
 	private static final float ENERGY_RESTITUTION = 1.0f;
-	private static final float PLAYER_ENERGY_RESTITUTION = 0.0f;
+	private static final float FILTER_RESTITUTION = 0.0f;
 	private static final int PLAYER_BITMASK = 0x0002;
 	private static final float PLAYER_WALL_DISTANCE = 0.1f;
 	
@@ -100,8 +100,8 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
     	FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = DENSITY_VALOR;
+        fixtureDef.restitution = FILTER_RESTITUTION;
         fixtureDef.filter.maskBits = PLAYER_BITMASK;
-        fixtureDef.restitution = PLAYER_ENERGY_RESTITUTION;
         
         shape.set(firstCord, secondCord);
         return fixtureDef;

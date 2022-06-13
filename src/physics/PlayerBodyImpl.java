@@ -10,9 +10,13 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
 	
 	private static final float DENSITY_VALOR = 0.6f;
 	private static final float FRICTION_VALOR = 0.8f;
-	private static final float ENERGY_RESTITUTION = 0.7f;
-	private static final int MIDARENA_BITMASK = 0x0002;
+	private static final float ENERGY_RESTITUTION = 0.8f;
+	private static final float FILTER_RESTITUTION = 0.0f;
+	private static final int PLAYER_BITMASK = 0x0002;
+	private static final float FILTER_DISTANCE = 0.1f;
+	private static final int GROUP_FILTER_INDEX = -2;
 
+	
     private final float radius;
     
 	/**
@@ -27,8 +31,21 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
         this.setBodyType(BodyType.DYNAMIC);
         this.setStartPositionDef(pos);
         this.configBodyDef();
+
+        Body playerBody = physicsWorld.getWorld().createBody(this.getBodyDef());
+        physicsWorld.addRigidBody(this);
+        playerBody.createFixture(this.generateCircleFixture(radius));
+        playerBody.createFixture(this.generateMaskedCircleFixture(radius + FILTER_DISTANCE));
         
-        CircleShape shape = new CircleShape();
+        this.setBody(playerBody);
+    }
+    
+    public float getRadius() {
+        return this.radius;
+    }
+    
+    private FixtureDef generateCircleFixture(final float radius) {
+    	CircleShape shape = new CircleShape();
         shape.m_radius = radius;
         
         FixtureDef fixture = new FixtureDef();
@@ -37,17 +54,22 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
         fixture.friction = FRICTION_VALOR;
         fixture.restitution = ENERGY_RESTITUTION;
         
-        // Bit mask for mid arena fixture collision
-        fixture.filter.categoryBits = MIDARENA_BITMASK;
-        
-        Body playerBody = physicsWorld.getWorld().createBody(this.getBodyDef());
-        physicsWorld.addRigidBody(this);
-        playerBody.createFixture(fixture);
-        this.setBody(playerBody);
+        return fixture;
     }
     
-    public float getRadius() {
-        return this.radius;
+    private FixtureDef generateMaskedCircleFixture(final float radius) {
+    	CircleShape shape = new CircleShape();
+        shape.m_radius = radius;
+        
+        FixtureDef fixture = new FixtureDef();
+        fixture.shape = shape;
+        fixture.density = DENSITY_VALOR;
+        fixture.friction = FRICTION_VALOR;
+        fixture.restitution = FILTER_RESTITUTION;
+        fixture.filter.categoryBits = PLAYER_BITMASK;
+        fixture.filter.groupIndex = GROUP_FILTER_INDEX;
+        
+        return fixture;
     }
     
 }
