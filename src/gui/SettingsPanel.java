@@ -17,103 +17,61 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
     final Difficulty[] difficultyArray = logics.Difficulty.values();
     
     public SettingsPanel() {
-        super("Air Hockey - Settings", new Dimension(GUI.getMinScreenSize()/2, GUI.getMinScreenSize()/2));
+        super("Air Hockey - Settings", new Dimension(GUI.getMinScreenSize()*3/4, GUI.getMinScreenSize()*3/4));
+        c.insets = new Insets(10, 10, 10, 10); // padding
         
-        // Load settings from "settings.json"
-        
+        // Load Settings obj
         Settings settings = new Settings().load();
-        
-        /*
-         * User name panel
-         */
-        
+        // Username JPanel
         JPanel p1 = new JPanel(new FlowLayout());
-        
         c.gridx = 0;
         c.gridy = 0;
-        
-        JLabel l1 = new JLabel("Username:");
-        p1.add(l1, c);
-        
+        p1.add(new JLabel("Username:"), c);
         c.gridx = 1;
         c.gridy = 0;
-        
         JTextField t1 = new JTextField(settings.getUsername(), 10);
         p1.add(t1, c);
-
-        addComponent(p1, 0, 0);
+        this.addComponent(p1, 0, 0);
         
-        /*
-         * Style panel
-         */
-        
+        // Theme JPanel
         JPanel p2 = new JPanel(new FlowLayout());
-        
         c.gridx = 0;
         c.gridy = 0;
-        
-        JLabel l2 = new JLabel("Theme:");
-        p2.add(l2, c);
-        
+        p2.add(new JLabel("Theme:"), c);
         c.gridx = 1;
         c.gridy = 0;
-        
         JComboBox<Theme> t2 = new JComboBox<Theme>(themeArray);
         t2.setSelectedItem(settings.getTheme());
         p2.add(t2, c);
+        this.addComponent(p2, 0, 1);
         
-        addComponent(p2, 0, 1);
-        
-        /*
-         * Score panel
-         */
-        
+        // maxScore JPanel
         JPanel p3 = new JPanel(new FlowLayout());
-        
         c.gridx = 0;
         c.gridy = 0;
-        
-        JLabel l3 = new JLabel("Max score:");
-        p3.add(l3, c);
-        
+        p3.add(new JLabel("Max score:"), c);
         c.gridx = 1;
         c.gridy = 0;
-        
         JTextField t3 = new JTextField(String.valueOf(settings.getMaxScore()), 3);
         p3.add(t3, c);
+        this.addComponent(p3, 0, 2);
         
-        addComponent(p3, 0, 2);
-        
-        /*
-         * Difficulty panel
-         */
-        
+        // Difficulty JPanel
         JPanel p4 = new JPanel(new FlowLayout());
-        
         c.gridx = 0;
         c.gridy = 0;
-        
-        JLabel l4 = new JLabel("Difficulty:");
-        p4.add(l4, c);
-        
+        p4.add(new JLabel("Difficulty:"), c);
         c.gridx = 1;
         c.gridy = 0;
-        
-        JComboBox<Difficulty> t4 = new JComboBox<Difficulty>(difficultyArray);
+        JComboBox<Difficulty> t4 = new JComboBox<>(difficultyArray);
         t4.setSelectedItem(settings.getDifficulty());
         p4.add(t4, c);
+        this.addComponent(p4, 0, 3);
         
-        addComponent(p4, 0, 3);
-        
-        /*
-         * Last buttons of the window
-         */
-        
+        // Save and Back to Menu buttons
         JPanel p5 = new JPanel(new FlowLayout());
-        
         c.gridx = 0;
         c.gridy = 0;
-        
         JButton b1 = new JButton("Save settings");
         b1.addActionListener(e -> {
         	settings.setUsername(t1.getText());
@@ -127,23 +85,20 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
 	        }
         });
         p5.add(b1, c);
-        
         c.gridx = 1;
         c.gridy = 0;
-        
         JButton b3 = new JButton("Go back");
         b3.addActionListener(e -> {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             JComponentLoader.load(parentFrame, new MenuPanel());
         });
         p5.add(b3, c);
-        
-        addComponent(p5, 0, 4);
+        this.addComponent(p5, 0, 4);
     }
     
     private void addComponent(JComponent component, int x, int y) {
-    	c.gridx = x;
-    	c.gridy = y;
+    	this.c.gridx = x;
+    	this.c.gridy = y;
     	this.add(component, c);
     }
 }
