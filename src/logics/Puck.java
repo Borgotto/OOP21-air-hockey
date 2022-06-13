@@ -1,6 +1,5 @@
 package logics;
 
-import org.jbox2d.common.Vec2;
 import physics.PuckBody;
 
 /**
@@ -12,12 +11,12 @@ public interface Puck extends GameObjectWithPhysics, PuckBody {
      * Place the {@code Puck} at the center of the {@code Arena}
      * @param arena contains the {@code Puck}
      */
-    public void center(Arena arena);
+    void center(Arena arena);
 
     /**
      * Place the {@code Puck} in front of the {@code Player}
      * @param arena contains the {@code Puck} and the {@code Player}
      * @param player is the {@code Arena} side to move the {@code Puck} to
      */
-    public void moveToPlayer(Arena arena, Player player);
+    void moveToPlayer(Arena arena, Player player);
 }

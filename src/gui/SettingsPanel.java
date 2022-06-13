@@ -37,7 +37,7 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
         p2.add(new JLabel("Theme:"), c);
         c.gridx = 1;
         c.gridy = 0;
-        JComboBox<Theme> t2 = new JComboBox<Theme>(themeArray);
+        JComboBox<Theme> t2 = new JComboBox<>(themeArray);
         t2.setSelectedItem(settings.getTheme());
         p2.add(t2, c);
         this.addComponent(p2, 0, 1);

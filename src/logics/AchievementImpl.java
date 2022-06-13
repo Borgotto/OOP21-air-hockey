@@ -33,7 +33,7 @@ public class AchievementImpl implements Achievement {
 		return this.name;
 	}
 
-	public String getDescr() {
+	public String getDescription() {
 		return this.description;
 	}
 

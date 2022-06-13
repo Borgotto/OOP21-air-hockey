@@ -48,15 +48,15 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         arenaBody.createFixture(this.generateWall(new Vec2(0.0f,  this.getHeight()), new Vec2(widthHalfSize - goalHalfSize, this.getHeight())));
         // Bottom-right horizontal wall
         arenaBody.createFixture(this.generateWall(new Vec2(widthHalfSize + goalHalfSize,  this.getHeight()), new Vec2(this.getWidth(),  this.getHeight())));
-        // Generation of the mid arena wall. This wall has the properties of collide only with the player
+        // Generation of the mid-arena wall. This wall has the properties of collide only with the player
         arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f, this.getHeight()/2), new Vec2(this.getWidth(), this.getHeight()/2)));
         // Generation of the bottom arena wall. This wall has the properties of collide only with the player.
         arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f, 0.0f + PLAYER_FILTER_DISTANCE), new Vec2(this.getWidth(), 0.0f + PLAYER_FILTER_DISTANCE)));
         // Generation of the top arena wall. This wall has the properties of collide only with the player.
         arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f, this.getHeight() - PLAYER_FILTER_DISTANCE), new Vec2(this.getWidth(), this.getHeight() - PLAYER_FILTER_DISTANCE)));
-        // Generation of left vertical wall. This This wall has the properties of collide only with the player.
+        // Generation of left vertical wall. This wall has the properties of collide only with the player.
         arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f + PLAYER_FILTER_DISTANCE, 0.0f),  new Vec2(0.0f + PLAYER_FILTER_DISTANCE, this.getHeight())));
-        // Generation of right vertical wall. This This wall has the properties of collide only with the player.
+        // Generation of right vertical wall. This wall has the properties of collide only with the player.
         arenaBody.createFixture(this.generatePlayerWall(new Vec2(this.getWidth() - PLAYER_FILTER_DISTANCE, 0.0f), new Vec2(this.getWidth() - PLAYER_FILTER_DISTANCE, this.getHeight())));
         
         float triangleBase = this.getWidth()/ANGLE_DIVIDER;

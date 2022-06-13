@@ -24,7 +24,7 @@ public interface Achievement {
 	 * Get the description of the achievement
 	 * @return The description of the achievement
 	 */
-	String getDescr();
+	String getDescription();
 
 	/**
 	 * Get the condition necessary to unlock the achievement

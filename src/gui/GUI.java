@@ -20,14 +20,14 @@ public class GUI extends JFrame {
     public GUI() {
         // Try to set the custom font and LookAndFeel, if it fails, use the default one
         try {
-            Font font = font = Font.createFont(Font.TRUETYPE_FONT, new File("res/aerial.ttf"));
+            Font font = Font.createFont(Font.TRUETYPE_FONT, new File("res/aerial.ttf"));
             GUI.setFont(new FontUIResource(font.deriveFont(Font.PLAIN, 14)));
         } catch (FontFormatException | IOException e) {
             GUI.setFont(new FontUIResource("arial", Font.BOLD, 16));
         }
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException |InstantiationException|IllegalAccessException|UnsupportedLookAndFeelException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             // Do nothing
         }
         JComponentLoader.load(this, new MenuPanel()); // Loads the main menu

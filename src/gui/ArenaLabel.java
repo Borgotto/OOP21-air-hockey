@@ -1,10 +1,8 @@
 package gui;
 
-import logics.GameObjectWithPhysics;
 import logics.GameState;
 import logics.Settings;
 import org.jbox2d.common.Vec2;
-import physics.RigidBody;
 import utils.ImageModifier;
 import utils.UnitConverter;
 

@@ -1,11 +1,9 @@
 package gui;
 
-import logics.AchievementImpl;
 import logics.GameState;
 import utils.JComponentLoader;
 
 import javax.swing.*;
-import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 
 public class GameOverPanel extends AbstractGridBagLayoutJComponent {

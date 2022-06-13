@@ -5,8 +5,6 @@ import utils.ImageModifier;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.List;
 
 public class AchievementLabel extends AbstractGridBagLayoutJComponent {
     private final JLabel iconLabel;
@@ -23,7 +21,7 @@ public class AchievementLabel extends AbstractGridBagLayoutJComponent {
         }
         this.iconLabel = new JLabel(icon);
         this.nameLabel = new JLabel(achievement.getName());
-        this.descriptionLabel = new JLabel(achievement.getDescr());
+        this.descriptionLabel = new JLabel(achievement.getDescription());
         // Add Components to the label
         GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;

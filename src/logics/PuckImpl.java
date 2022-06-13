@@ -2,11 +2,9 @@ package logics;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.World;
 import physics.Physics2D;
 import physics.PuckBody;
 import physics.PuckBodyImpl;
-import physics.RigidBody;
 
 /**
  * The Puck class representing the puck of the {@link Arena}

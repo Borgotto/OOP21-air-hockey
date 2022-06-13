@@ -8,11 +8,7 @@ import utils.ObjectSerializer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 
 public class MenuPanel extends AbstractGridBagLayoutJComponent {

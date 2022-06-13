@@ -1,7 +1,6 @@
 package logics;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.Optional;
 
@@ -65,5 +64,5 @@ public interface GameState extends GameObject {
     /**
      * Loads the game state from a deserialized save file or another GameState object onto the current game state.w
      */
-    void load(GameState game) throws IOException, ClassNotFoundException;
+    void load(GameState game);
 }

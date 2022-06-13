@@ -2,11 +2,9 @@ package logics;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.World;
 import physics.Physics2D;
 import physics.PlayerBody;
 import physics.PlayerBodyImpl;
-import physics.RigidBody;
 
 /**
  * Abstract class for player.
