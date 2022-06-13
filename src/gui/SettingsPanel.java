@@ -84,6 +84,20 @@ public class SettingsPanel extends AbstractGridBagLayoutJComponent {
         p5.add(b1, c);
         c.gridx = 1;
         c.gridy = 0;
+        JButton b2 = new JButton("Reset settings");
+        b2.addActionListener(e -> {
+            Settings resetSettings = new Settings();
+            try {
+				resetSettings.save();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            JComponentLoader.load(parentFrame, new SettingsPanel());
+        });
+        p5.add(b2, c);
+        c.gridx = 2;
+        c.gridy = 0;
         JButton b3 = new JButton("Go back");
         b3.addActionListener(e -> {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
