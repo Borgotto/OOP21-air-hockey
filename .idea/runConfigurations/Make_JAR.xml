@@ -10,7 +10,7 @@
           </option>
           <option name="goals">
             <list>
-              <option value="mvn" />
+              <option value="clean" />
               <option value="package" />
             </list>
           </option>

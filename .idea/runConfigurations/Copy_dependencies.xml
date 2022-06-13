@@ -10,7 +10,6 @@
           </option>
           <option name="goals">
             <list>
-              <option value="mvn" />
               <option value="install" />
               <option value="dependency:copy-dependencies" />
             </list>
