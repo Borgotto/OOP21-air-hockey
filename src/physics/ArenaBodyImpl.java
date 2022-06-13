@@ -13,7 +13,7 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
 	private static final float ENERGY_RESTITUTION = 1.0f;
 	private static final float FILTER_RESTITUTION = 0.0f;
 	private static final int PLAYER_BITMASK = 0x0002;
-	private static final float PLAYER_WALL_DISTANCE = 0.1f;
+	private static final float PLAYER_FILTER_DISTANCE = 0.1f;
 	
 	private final float width;
     private final float height;
@@ -58,14 +58,24 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
         arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f, this.getHeight()/2), new Vec2(this.getWidth(), this.getHeight()/2)));
         
         // Generation of the bottom arena wall. This wall has the properties of collide only with the player.
-        arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f, 0.0f + PLAYER_WALL_DISTANCE), new Vec2(this.getWidth(), 0.0f + PLAYER_WALL_DISTANCE)));
+        arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f, 0.0f + PLAYER_FILTER_DISTANCE), new Vec2(this.getWidth(), 0.0f + PLAYER_FILTER_DISTANCE)));
         // Generation of the top arena wall. This wall has the properties of collide only with the player.
-        arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f, this.getHeight() - PLAYER_WALL_DISTANCE), new Vec2(this.getWidth(), this.getHeight() - PLAYER_WALL_DISTANCE)));
+        arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f, this.getHeight() - PLAYER_FILTER_DISTANCE), new Vec2(this.getWidth(), this.getHeight() - PLAYER_FILTER_DISTANCE)));
         
         // Generation of left vertical wall. This This wall has the properties of collide only with the player.
-        arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f + PLAYER_WALL_DISTANCE, 0.0f),  new Vec2(0.0f + PLAYER_WALL_DISTANCE, this.getHeight())));
+        arenaBody.createFixture(this.generatePlayerWall(new Vec2(0.0f + PLAYER_FILTER_DISTANCE, 0.0f),  new Vec2(0.0f + PLAYER_FILTER_DISTANCE, this.getHeight())));
         // Generation of right vertical wall. This This wall has the properties of collide only with the player.
-        arenaBody.createFixture(this.generatePlayerWall(new Vec2(this.getWidth() - PLAYER_WALL_DISTANCE, 0.0f), new Vec2(this.getWidth() - PLAYER_WALL_DISTANCE, this.getHeight())));
+        arenaBody.createFixture(this.generatePlayerWall(new Vec2(this.getWidth() - PLAYER_FILTER_DISTANCE, 0.0f), new Vec2(this.getWidth() - PLAYER_FILTER_DISTANCE, this.getHeight())));
+        
+        float triangleBase = this.getWidth()/14;
+        
+        // Generation of the bottom angles of the arena.
+        arenaBody.createFixture(this.generateWall(new Vec2(0.0f, triangleBase),  new Vec2(triangleBase, 0.0f)));
+        arenaBody.createFixture(this.generateWall(new Vec2(this.getWidth() - triangleBase, 0.0f),  new Vec2(this.getWidth(), triangleBase)));
+        
+        // Generation of the top angles of the arena.
+        arenaBody.createFixture(this.generateWall(new Vec2(0.0f, this.getHeight() - triangleBase),  new Vec2(triangleBase, this.getHeight())));
+        arenaBody.createFixture(this.generateWall(new Vec2(this.getWidth() - triangleBase, this.getHeight()),  new Vec2(this.getWidth(), this.getHeight() - triangleBase)));
         
         this.setBody(arenaBody);
     }
