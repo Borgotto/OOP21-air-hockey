@@ -5,4 +5,5 @@ package logics;
  */
 public interface MainPlayer extends Player {
     // TODO add methods to control the player (that aren't through the gui)
+    // not necessary for the current version of the game
 }

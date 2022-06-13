@@ -27,7 +27,7 @@ public class PuckImpl implements Puck {
 	}
 
 	public void update() {
-		//TODO
+		// nothing to update on a Puck object
 	}
 
 	public float getRadius() {

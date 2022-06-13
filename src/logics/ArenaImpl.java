@@ -29,7 +29,7 @@ public class ArenaImpl implements Arena {
     }
 
     public void update() {
-        //TODO
+        // nothing to update on an Arena object
     }
 
     public float getWidth() {
