@@ -7,20 +7,18 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 
 public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
-	
 	private static final float DENSITY_VALOR = 0.2f;
 	private static final float FRICTION_VALOR = 0.6f;
 	private static final int GROUP_FILTER_INDEX = -2;
-	
     private final float radius;
     
 	/**
 	 * Puck body generator.
 	 * @param radius of the body
 	 * @param pos Position to be spawned.
-	 * @param physicsWorld World to be spawned in
+	 * @param physics World to be spawned in
 	 */
-    public PuckBodyImpl(final float radius, final Vec2 pos, final Physics2D physicsWorld) {
+    public PuckBodyImpl(final float radius, final Vec2 pos, final Physics2D physics) {
         this.radius = radius;
 
     	this.setBodyType(BodyType.DYNAMIC);
@@ -36,8 +34,8 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
         fixture.friction = FRICTION_VALOR;
         fixture.filter.groupIndex = GROUP_FILTER_INDEX;
         
-        Body playerBody = physicsWorld.getWorld().createBody(this.getBodyDef());
-        physicsWorld.addRigidBody(this);
+        Body playerBody = physics.getWorld().createBody(this.getBodyDef());
+        physics.addRigidBody(this);
         playerBody.createFixture(fixture);
         this.setBody(playerBody);
     }

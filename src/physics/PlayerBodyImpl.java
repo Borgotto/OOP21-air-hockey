@@ -7,7 +7,6 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 
 public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
-	
 	private static final float DENSITY_VALOR = 0.6f;
 	private static final float FRICTION_VALOR = 0.8f;
 	private static final float ENERGY_RESTITUTION = 0.8f;
@@ -15,28 +14,24 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
 	private static final int PLAYER_BITMASK = 0x0002;
 	private static final float FILTER_DISTANCE = 0.1f;
 	private static final int GROUP_FILTER_INDEX = -2;
-
-	
     private final float radius;
     
 	/**
 	 * Player body generator
 	 * @param radius of the body
 	 * @param pos Position to be spawned
-	 * @param physicsWorld World to be spawned in
+	 * @param physics World to be spawned in
 	 */
-    public PlayerBodyImpl(final float radius, final Vec2 pos, final Physics2D physicsWorld) {
+    public PlayerBodyImpl(final float radius, final Vec2 pos, final Physics2D physics) {
     	this.radius = radius;
-    	
         this.setBodyType(BodyType.DYNAMIC);
         this.setStartPositionDef(pos);
         this.configBodyDef();
 
-        Body playerBody = physicsWorld.getWorld().createBody(this.getBodyDef());
-        physicsWorld.addRigidBody(this);
+        Body playerBody = physics.getWorld().createBody(this.getBodyDef());
+        physics.addRigidBody(this);
         playerBody.createFixture(this.generateCircleFixture(radius));
         playerBody.createFixture(this.generateMaskedCircleFixture(radius + FILTER_DISTANCE));
-        
         this.setBody(playerBody);
     }
     
@@ -53,7 +48,6 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
         fixture.density = DENSITY_VALOR;
         fixture.friction = FRICTION_VALOR;
         fixture.restitution = ENERGY_RESTITUTION;
-        
         return fixture;
     }
     
@@ -68,8 +62,6 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
         fixture.restitution = FILTER_RESTITUTION;
         fixture.filter.categoryBits = PLAYER_BITMASK;
         fixture.filter.groupIndex = GROUP_FILTER_INDEX;
-        
         return fixture;
     }
-    
 }

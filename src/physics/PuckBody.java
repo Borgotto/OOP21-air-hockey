@@ -2,17 +2,18 @@ package physics;
 
 import org.jbox2d.common.Vec2;
 
+/**
+ * Interface that defines the physics body of a puck object.
+ */
 public interface PuckBody extends RigidBody {
-
     /**
-     * Get the position where the {@code Puck} will be in the next game loop frame
+     * Get the position where the {@code Puck} will be in the next physics step
      * @return the {@code Vec2} vector position
      */
-    public Vec2 getNextPos();
-    
+    Vec2 getNextPos();
+
     /**
-     * @return the radius
+     * @return the radius of the puck body.
      */
-    public float getRadius();
-    
+    float getRadius();
 }

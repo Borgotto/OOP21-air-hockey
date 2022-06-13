@@ -19,10 +19,10 @@ public class ArenaImpl implements Arena {
     /**
      * Create a new Arena with a certain goal size.
      * @param goalWidth the arena's goal size in meters.
-     * @param world the game world to put the arena in.
+     * @param physics the game world to put the arena in.
      */
-    public ArenaImpl(float width, float height, float goalWidth, Physics2D world) {
-        this.body = new ArenaBodyImpl(width,height, goalWidth, world);
+    public ArenaImpl(float width, float height, float goalWidth, Physics2D physics) {
+        this.body = new ArenaBodyImpl(width,height, goalWidth, physics);
         this.width = width;
         this.height = height;
         this.goalWidth = goalWidth;

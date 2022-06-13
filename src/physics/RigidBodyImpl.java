@@ -5,8 +5,10 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 
+/**
+ * Generic implementation of a rigid body with default values.
+ */
 public abstract class RigidBodyImpl implements RigidBody {
-	    
 	private static final Vec2 DEFAULT_STARTPOSITION = new Vec2(0.0f, 0.0f);
 	private static final float DEFAULT_LINEARDAMPING = 0.0f;
 	private static final float DEFAULT_ANGULARDAMPING = 0.0f;
@@ -20,14 +22,13 @@ public abstract class RigidBodyImpl implements RigidBody {
     private BodyType bodyType = BodyType.STATIC;
     private Vec2 startPositionDef = DEFAULT_STARTPOSITION;
     private float linearDampingDef = DEFAULT_LINEARDAMPING;
-   
     private BodyDef bodyDef = new BodyDef();
     private Body body;
-    
+
     public Body getBody() {
         return this.body;
     }
-    
+
     public Vec2 getPosition() {
     	return this.body.getPosition();
     }

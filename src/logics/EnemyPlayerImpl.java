@@ -15,18 +15,18 @@ public class EnemyPlayerImpl extends AbstractPlayer implements EnemyPlayer {
     private final Difficulty difficulty;
     private Vec2 nextMove;
 
-    public EnemyPlayerImpl(String name, float radius, Vec2 startingPosition, Physics2D world, Difficulty difficulty) {
-        super(name, radius, startingPosition, world);
+    public EnemyPlayerImpl(String name, float radius, Vec2 startingPosition, Physics2D physics, Difficulty difficulty) {
+        super(name, radius, startingPosition, physics);
         this.difficulty = difficulty;
         this.nextMove = new Vec2(0,0);
     }
 
-    public EnemyPlayerImpl(float radius, Vec2 startingPosition, Physics2D world, Difficulty difficulty) {
-        this("Enemy", radius, startingPosition, world, difficulty);
+    public EnemyPlayerImpl(float radius, Vec2 startingPosition, Physics2D physics, Difficulty difficulty) {
+        this("Enemy", radius, startingPosition, physics, difficulty);
     }
 
-    public EnemyPlayerImpl(float radius, Vec2 startingPosition, Physics2D world) {
-        this(radius, startingPosition, world, Difficulty.EASY);
+    public EnemyPlayerImpl(float radius, Vec2 startingPosition, Physics2D physics) {
+        this(radius, startingPosition, physics, Difficulty.EASY);
     }
 
     public Difficulty getDifficulty() {

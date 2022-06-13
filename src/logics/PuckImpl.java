@@ -18,10 +18,10 @@ public class PuckImpl implements Puck {
 	private final Vec2 startingPosition;
 	
     /**
-     * @param world the {@link Physics2D} object to put the puck in
+     * @param physics the {@link Physics2D} object to put the puck in
      */
-	public PuckImpl(float radius, Vec2 startingPosition, Physics2D world) {
-		this.body = new PuckBodyImpl(radius, startingPosition, world);
+	public PuckImpl(float radius, Vec2 startingPosition, Physics2D physics) {
+		this.body = new PuckBodyImpl(radius, startingPosition, physics);
 		this.radius = radius;
 		this.startingPosition = startingPosition;
 	}

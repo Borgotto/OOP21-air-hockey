@@ -19,11 +19,11 @@ public abstract class AbstractPlayer implements Player {
     private final Vec2 startingPosition;
     private Integer score;
 
-    public AbstractPlayer(String name, float radius, Vec2 startingPosition, Physics2D world) {
+    public AbstractPlayer(String name, float radius, Vec2 startingPosition, Physics2D physics) {
         this.name = name;
         this.radius = radius;
         this.startingPosition = startingPosition;
-        this.body = new PlayerBodyImpl(radius, startingPosition, world);
+        this.body = new PlayerBodyImpl(radius, startingPosition, physics);
         this.score = 0;
     }
 
