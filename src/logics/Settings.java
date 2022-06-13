@@ -45,7 +45,7 @@ public class Settings {
 	}
 
 	public void setMaxScore(Integer maxScore) {
-		this.maxScore = maxScore;
+		this.maxScore = Math.abs(maxScore);
 	}
 
 	public Difficulty getDifficulty() {
