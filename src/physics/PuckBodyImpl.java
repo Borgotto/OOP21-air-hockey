@@ -34,14 +34,14 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
         fixture.density = DENSITY_VALOR ;
         fixture.friction = FRICTION_VALOR;
         
-        Body playerBody = physicsWorld.getWorld().createBody(getBodyDef());
+        Body playerBody = physicsWorld.getWorld().createBody(this.getBodyDef());
         physicsWorld.addRigidBody(this);
         playerBody.createFixture(fixture);
         this.setBody(playerBody);
     }
     
     public Vec2 getNextPos() {
-        return new Vec2(getBody().getLinearVelocity().x + getPosition().x, getBody().getLinearVelocity().y + getPosition().y);
+        return new Vec2(getBody().getLinearVelocity().x + this.getPosition().x, getBody().getLinearVelocity().y + this.getPosition().y);
     }
 
     public float getRadius() {

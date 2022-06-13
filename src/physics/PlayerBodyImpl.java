@@ -40,7 +40,7 @@ public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
         // Bit mask for mid arena fixture collision
         fixture.filter.categoryBits = MIDARENA_BITMASK;
         
-        Body playerBody = physicsWorld.getWorld().createBody(getBodyDef());
+        Body playerBody = physicsWorld.getWorld().createBody(this.getBodyDef());
         physicsWorld.addRigidBody(this);
         playerBody.createFixture(fixture);
         this.setBody(playerBody);
