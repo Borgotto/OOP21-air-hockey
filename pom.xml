@@ -63,6 +63,13 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>${project.build.outputDirectory}/res</outputDirectory>
+                </configuration>
+            </plugin>
         </plugins>
 
         <resources>
