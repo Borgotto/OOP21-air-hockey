@@ -1,6 +1,7 @@
 package gui;
 
 import logics.Settings;
+import utils.ImageLoader;
 import utils.ImageModifier;
 import utils.JComponentLoader;
 
@@ -33,7 +34,7 @@ public class GUI extends JFrame {
         JComponentLoader.load(this, new MenuPanel()); // Loads the main menu
         this.setLocationRelativeTo(null); // Center the window on the screen
         Color iconColor = new Settings().load().getTheme().getColor();
-        Image icon = ImageModifier.color(new ImageIcon("res/airhockey_ico.png").getImage(), iconColor);
+        Image icon = ImageModifier.color(ImageLoader.load("airhockey_ico.png"), iconColor);
         this.setIconImage(icon);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);

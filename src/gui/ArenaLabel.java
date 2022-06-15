@@ -3,6 +3,7 @@ package gui;
 import logics.GameState;
 import logics.Settings;
 import org.jbox2d.common.Vec2;
+import utils.ImageLoader;
 import utils.ImageModifier;
 import utils.UnitConverter;
 
@@ -19,9 +20,9 @@ public class ArenaLabel extends JLabel {
     public ArenaLabel(Dimension size, GameState game) {
         // Load resources and color the images based on the Theme saved in settings
         Color color = new Settings().load().getTheme().getColor();
-        Image strikerImage = ImageModifier.color(new ImageIcon("res/striker.png").getImage(), color);
-        Image puckImage = ImageModifier.color(new ImageIcon("res/puck.png").getImage(), color);
-        Image arenaImage = ImageModifier.color(new ImageIcon("res/arena.png").getImage(), color);
+        Image strikerImage = ImageModifier.color(ImageLoader.load("striker.png"), color);
+        Image puckImage = ImageModifier.color(ImageLoader.load("res/puck.png"), color);
+        Image arenaImage = ImageModifier.color(ImageLoader.load("res/arena.png"), color);
 
         // Manually manage the label's layout
         this.setLayout(null);
