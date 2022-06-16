@@ -39,7 +39,7 @@ public class GameStateImpl implements GameState {
     }
 
     public EnemyPlayer getEnemyPlayer() {
-        return this.enemyPlayer;
+        return new EnemyPlayerImpl(enemyPlayer.getName(), enemyPlayer.getRadius(), enemyPlayer.getPosition(), gamePhysics, enemyPlayer.getDifficulty());
     }
 
     public Optional<Player> getWinner() {
