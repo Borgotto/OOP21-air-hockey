@@ -2,10 +2,10 @@ package gui;
 
 import logics.GameState;
 import logics.GameStateBuilder;
-import utils.ImageLoader;
 import utils.ImageModifier;
 import utils.JComponentLoader;
 import utils.ObjectSerializer;
+import utils.ResourceLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +22,7 @@ public class MenuPanel extends AbstractGridBagLayoutJComponent {
 
         // Adjust the logo image size based on the panel size
         Dimension logoDimension = new Dimension(this.getPreferredSize().width-2*pad, this.getPreferredSize().height-2*pad);
-        Image logoImage = ImageModifier.scale(ImageLoader.load("airhockey_logo.png"), logoDimension);
+        Image logoImage = ImageModifier.scale(ResourceLoader.loadImage("airhockey_logo.png"), logoDimension);
         // Add the logo image
         JLabel logoLabel = new JLabel(new ImageIcon(logoImage));
         this.add(logoLabel, c);

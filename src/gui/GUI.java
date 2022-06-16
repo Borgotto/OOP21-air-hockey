@@ -1,15 +1,13 @@
 package gui;
 
 import logics.Settings;
-import utils.ImageLoader;
 import utils.ImageModifier;
 import utils.JComponentLoader;
+import utils.ResourceLoader;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Main class to start the GUI process.
@@ -19,13 +17,10 @@ public class GUI extends JFrame {
      * Initializes and shows the main menu JPanel.
      */
     public GUI() {
-        // Try to set the custom font and LookAndFeel, if it fails, use the default one
-        try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, new File("res/aerial.ttf"));
-            GUI.setFont(new FontUIResource(font.deriveFont(Font.PLAIN, 14)));
-        } catch (FontFormatException | IOException e) {
-            GUI.setFont(new FontUIResource("arial", Font.BOLD, 16));
-        }
+        // Set the custom font and LookAndFeel
+        Font font = ResourceLoader.loadFont("res/aerial.ttf");
+        GUI.setFont(new FontUIResource(font.deriveFont(Font.PLAIN, 14)));
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
@@ -34,7 +29,7 @@ public class GUI extends JFrame {
         JComponentLoader.load(this, new MenuPanel()); // Loads the main menu
         this.setLocationRelativeTo(null); // Center the window on the screen
         Color iconColor = new Settings().load().getTheme().getColor();
-        Image icon = ImageModifier.color(ImageLoader.load("airhockey_ico.png"), iconColor);
+        Image icon = ImageModifier.color(ResourceLoader.loadImage("airhockey_ico.png"), iconColor);
         this.setIconImage(icon);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
