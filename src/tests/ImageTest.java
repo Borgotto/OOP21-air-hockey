@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 import static org.junit.Assert.assertEquals;
 
 public class ImageTest {
-
     private BufferedImage originalImg;
 
     @org.junit.Before

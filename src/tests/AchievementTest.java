@@ -19,5 +19,4 @@ public class AchievementTest {
         assertTrue(achievement.isUnlocked(gameState));
         assertFalse(achievement2.isUnlocked(gameState));
 	}
-
 }

@@ -13,7 +13,6 @@ import static org.junit.Assert.assertNotEquals;
 import org.jbox2d.common.Vec2;
 
 public class PhysicsTest {
-	
     private Physics2D physicsTestWorld;
     private PuckBody puckBody;
     private PlayerBody playerBody;

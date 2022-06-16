@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import static org.junit.Assert.assertEquals;
 
 public class SerializationTest {
-
     private GameState gameState;
     private final Path path = Path.of("test.ser");
 
