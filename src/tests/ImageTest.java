@@ -15,7 +15,6 @@ public class ImageTest {
     public void initTest() {
         originalImg = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = originalImg.createGraphics();
-        g.setColor(Color.RED);
     }
 
     @org.junit.Test
@@ -34,7 +33,7 @@ public class ImageTest {
 
     @org.junit.Test
     public void testColor() {
-        assertEquals(Color.RED, new Color(originalImg.getRGB(0, 0)));
+        assertEquals(Color.BLACK, new Color(originalImg.getRGB(0, 0)));
         Image img = ImageModifier.color(originalImg, Color.BLUE);
         BufferedImage newImg = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics = newImg.createGraphics();
