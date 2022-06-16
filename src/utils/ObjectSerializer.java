@@ -13,8 +13,8 @@ public interface ObjectSerializer <O> {
      * @param obj object to serialize
      * @param filePath path to the file to serialize to
      */
-    static <O> void serialize(O obj, Path filePath) throws IOException {
-        if (filePath.getParent() != null) {            
+    static <O> void serialize(final O obj, final Path filePath) throws IOException {
+        if (filePath.getParent() != null) {
             Files.createDirectories(filePath.getParent()); // create directory if needed
         }
         try (FileOutputStream file = new FileOutputStream(filePath.toString());
@@ -32,7 +32,7 @@ public interface ObjectSerializer <O> {
      * @throws ClassNotFoundException if the class of the object is not the same as the one expected
      */
     @SuppressWarnings("unchecked")
-    static <O> O deserialize(Path filePath) throws IOException, ClassNotFoundException {
+    static <O> O deserialize(final Path filePath) throws IOException, ClassNotFoundException {
         try (FileInputStream file = new FileInputStream(filePath.toString());
              ObjectInputStream in = new ObjectInputStream(file)) {
                return (O)in.readObject();

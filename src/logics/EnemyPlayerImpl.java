@@ -48,6 +48,9 @@ public class EnemyPlayerImpl extends AbstractPlayer implements EnemyPlayer {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         EnemyPlayerImpl other = (EnemyPlayerImpl) obj;
         return difficulty == other.difficulty && super.equals(obj);
     }
