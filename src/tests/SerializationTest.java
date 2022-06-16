@@ -1,6 +1,7 @@
 package tests;
 
 import logics.*;
+import physics.Physics2DImpl;
 import utils.ObjectSerializer;
 
 import java.io.File;
@@ -11,45 +12,57 @@ import static org.junit.Assert.assertEquals;
 
 public class SerializationTest {
     private GameState gameState;
+    private Physics2DImpl physics;
     private final Path path = Path.of("test.ser");
 
     @org.junit.Before
     public void initTests() {
         this.gameState = new GameStateBuilder().build();
+        this.physics = new Physics2DImpl();
     }
 
     @org.junit.Test
     public void serializeArena() throws IOException, ClassNotFoundException {
         Arena arena = this.gameState.getArena();
         ObjectSerializer.serialize(arena, this.path);
-        assertEquals(ObjectSerializer.deserialize(this.path), arena);
+        Arena dArena = ObjectSerializer.deserialize(this.path);
+        dArena = new ArenaImpl(dArena.getWidth(), dArena.getHeight(), dArena.getGoalWidth(), physics);
+        assertEquals(dArena, arena);
     }
 
     @org.junit.Test
     public void serializeMainPlayer() throws IOException, ClassNotFoundException {
         MainPlayer mainPlayer = this.gameState.getMainPlayer();
         ObjectSerializer.serialize(mainPlayer, this.path);
-        assertEquals(ObjectSerializer.deserialize(this.path), mainPlayer);
+        MainPlayer dMainPlayer = ObjectSerializer.deserialize(this.path);
+        dMainPlayer = new MainPlayerImpl(dMainPlayer.getName(), dMainPlayer.getRadius(), dMainPlayer.getStartingPosition(), physics);
+        assertEquals(dMainPlayer, mainPlayer);
     }
 
     @org.junit.Test
     public void serializeEnemyPlayer() throws IOException, ClassNotFoundException {
         EnemyPlayer enemyPlayer = this.gameState.getEnemyPlayer();
         ObjectSerializer.serialize(enemyPlayer, this.path);
-        assertEquals(ObjectSerializer.deserialize(this.path), enemyPlayer);
+        EnemyPlayer dEnemyPlayer = ObjectSerializer.deserialize(this.path);
+        dEnemyPlayer = new EnemyPlayerImpl(dEnemyPlayer.getName(), dEnemyPlayer.getRadius(), dEnemyPlayer.getStartingPosition(), physics, dEnemyPlayer.getDifficulty());
+        assertEquals(dEnemyPlayer, enemyPlayer);
     }
 
     @org.junit.Test
     public void serializePuck() throws IOException, ClassNotFoundException {
         Puck puck = this.gameState.getPuck();
         ObjectSerializer.serialize(puck, this.path);
-        assertEquals(ObjectSerializer.deserialize(this.path), puck);
+        Puck dPuck = ObjectSerializer.deserialize(this.path);
+        dPuck = new PuckImpl(dPuck.getRadius(), dPuck.getStartingPosition(), physics);
+        assertEquals(dPuck, puck);
     }
 
     @org.junit.Test
     public void serializeGameState() throws IOException, ClassNotFoundException {
         ObjectSerializer.serialize(this.gameState, this.path);
-        assertEquals(ObjectSerializer.deserialize(this.path), this.gameState);
+        GameState dGameState = new GameStateBuilder().build();
+        dGameState.load(ObjectSerializer.deserialize(this.path));
+        assertEquals(dGameState, this.gameState);
     }
 
     @org.junit.After
