@@ -1,14 +1,15 @@
 package logics;
 
-import javax.swing.*;
+import utils.ResourceLoader;
 
+import java.awt.*;
 import java.util.function.Predicate;
 
 /**
  * Implementation of the Achievement interface.
  */
 public class AchievementImpl implements Achievement {
-	private final ImageIcon icon = new ImageIcon("res/achievement.png");
+	private final Image icon = ResourceLoader.loadImage("achievement.png");
 	private final String name;
 	private final String description;
 	private final Predicate<GameState> condition;
@@ -25,7 +26,7 @@ public class AchievementImpl implements Achievement {
 		this.condition = condition;
 	}
 
-	public ImageIcon getIcon() {
+	public Image getIcon() {
 		return this.icon;
 	}
 

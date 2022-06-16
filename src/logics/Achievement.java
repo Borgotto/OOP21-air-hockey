@@ -1,6 +1,6 @@
 package logics;
 
-import javax.swing.*;
+import java.awt.*;
 import java.util.function.Predicate;
 
 /**
@@ -10,9 +10,10 @@ public interface Achievement {
 
 	/**
 	 * Get the image representing the achievement or an empty image if imagePath is not set
+	 *
 	 * @return The image icon
 	 */
-	ImageIcon getIcon();
+	Image getIcon();
 
 	/**
 	 * Get the name of the achievement
