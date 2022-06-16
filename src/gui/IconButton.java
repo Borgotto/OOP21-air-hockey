@@ -9,6 +9,8 @@ import java.awt.*;
  * Class that creates a button with an icon and predetermined size.
  */
 public class IconButton extends JButton {
+    private static final long serialVersionUID = -9222621834865653061L;
+
     public IconButton(Image icon, Dimension size) {
         super();
         this.setPreferredSize(size);

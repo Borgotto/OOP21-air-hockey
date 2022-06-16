@@ -12,7 +12,7 @@ import physics.PuckBodyImpl;
  * The Puck class representing the puck of the {@link Arena}
  */
 public class PuckImpl implements Puck {
-
+    private static final long serialVersionUID = -6978887898025055114L;
     private final transient PuckBody body;
 	private final float radius;
 	private final Vec2 startingPosition;

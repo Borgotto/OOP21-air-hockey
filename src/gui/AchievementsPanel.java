@@ -11,6 +11,8 @@ import java.awt.*;
 import java.util.List;
 
 public class AchievementsPanel extends JScrollPane {
+    private static final long serialVersionUID = -8067292109260697539L;
+
     public AchievementsPanel(GameState game, int parentFrameHeight) {
         // Get the base achievements
         AchievementLogicsFactory factory = new AchievementLogicsFactoryImpl();
@@ -32,6 +34,7 @@ public class AchievementsPanel extends JScrollPane {
     }
 
     private static class AchievementLabelCellRenderer extends JLabel implements ListCellRenderer<AchievementLabel> {
+        private static final long serialVersionUID = 3905450234338100066L;
         private final int iconSize;
 
         public AchievementLabelCellRenderer(int parentFrameHeight) {

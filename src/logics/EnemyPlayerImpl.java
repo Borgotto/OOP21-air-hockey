@@ -9,6 +9,7 @@ import physics.Physics2D;
  * Implementation of the EnemyPlayer interface.
  */
 public class EnemyPlayerImpl extends AbstractPlayer implements EnemyPlayer {
+    private static final long serialVersionUID = -2782534143735977562L;
     private final Difficulty difficulty;
     private Vec2 nextMove;
 

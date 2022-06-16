@@ -12,6 +12,8 @@ import java.net.URISyntaxException;
  * Panel to display the creators of the game.
  */
 public class CreditsPanel extends JPanel{
+    private static final long serialVersionUID = 6796220906932040428L;
+
     public CreditsPanel() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 

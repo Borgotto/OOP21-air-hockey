@@ -13,6 +13,7 @@ import physics.PlayerBodyImpl;
  * It defines base parameters and methods for a generic player.
  */
 public abstract class AbstractPlayer implements Player {
+    private static final long serialVersionUID = -3628225860576536126L;
     private final transient PlayerBody body;
     private final String name;
     private final float radius;

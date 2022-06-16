@@ -11,6 +11,7 @@ import java.util.Optional;
  * Implementation of GameState interface.
  */
 public class GameStateImpl implements GameState {
+    private static final long serialVersionUID = 3168735648062117889L;
     private transient final Physics2D gamePhysics;
     private MainPlayer mainPlayer;
     private EnemyPlayer enemyPlayer;

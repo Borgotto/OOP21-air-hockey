@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameOverPanel extends AbstractGridBagLayoutJComponent {
+    private static final long serialVersionUID = -6295463075268587222L;
+
     public GameOverPanel(GameState game, int parentFrameHeight) {
         super("Game Over", new Dimension(GUI.getMinScreenSize(), GUI.getMinScreenSize()/2));
 

@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class GamePanel extends AbstractGridBagLayoutJComponent {
+    private static final long serialVersionUID = 2068452932127099196L;
     private final GameState game;
     // create a timer to update the game state
     private static final int delay = 1000/60; // 60 FPS

@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class MenuPanel extends AbstractGridBagLayoutJComponent {
+    private static final long serialVersionUID = 8475751505006519027L;
+
     public MenuPanel() {
         super("Air Hockey", new Dimension(GUI.getMinScreenSize()*9/16, GUI.getMinScreenSize()));
         int pad = this.getPreferredSize().width/40;

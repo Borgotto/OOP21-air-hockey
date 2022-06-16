@@ -13,6 +13,8 @@ import java.awt.*;
  * Main class to start the GUI process.
  */
 public class GUI extends JFrame {
+    private static final long serialVersionUID = 8605107955425262259L;
+
     /**
      * Initializes and shows the main menu JPanel.
      */

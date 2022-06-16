@@ -12,6 +12,7 @@ import physics.Physics2D;
  * Class that represent arenas the player can play in.
  */
 public class ArenaImpl implements Arena {
+    private static final long serialVersionUID = -798220930915565977L;
     private final transient ArenaBody body;
     private final float width;
     private final float height;

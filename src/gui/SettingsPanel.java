@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class SettingsPanel extends AbstractGridBagLayoutJComponent {
+    private static final long serialVersionUID = -4632838315051894445L;
     final Theme[] themeArray = Theme.values();
     final Difficulty[] difficultyArray = logics.Difficulty.values();
     

@@ -7,6 +7,7 @@ import java.awt.*;
  * Abstract class that defines a JComponent with a GridBagLayout as layout manager.
  */
 public abstract class AbstractGridBagLayoutJComponent extends JComponent {
+    private static final long serialVersionUID = -9036032217146760602L;
     public final GridBagConstraints c;
     
     public AbstractGridBagLayoutJComponent() {

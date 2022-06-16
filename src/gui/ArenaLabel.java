@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ArenaLabel extends JLabel {
+    private static final long serialVersionUID = -7722495704378516329L;
     private final JLabel enemyField;
     private final JLabel playerField;
     private final JButton enemyButton;
