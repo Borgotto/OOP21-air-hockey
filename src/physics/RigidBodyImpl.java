@@ -1,5 +1,7 @@
 package physics;
 
+import java.util.Objects;
+
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -127,6 +129,25 @@ public abstract class RigidBodyImpl implements RigidBody {
      */
     protected void setBody(Body body) {
         this.body = body;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bodyType, linearDampingDef, startPositionDef);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof RigidBodyImpl)) {
+            return false;
+        }
+        RigidBodyImpl other = (RigidBodyImpl) obj;
+        return bodyType == other.bodyType
+                && Float.floatToIntBits(linearDampingDef) == Float.floatToIntBits(other.linearDampingDef)
+                && Objects.equals(startPositionDef, other.startPositionDef);
     }
 	
 }

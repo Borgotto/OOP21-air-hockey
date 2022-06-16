@@ -4,6 +4,7 @@ import physics.Physics2D;
 import utils.ObjectSerializer;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -128,4 +129,23 @@ public class GameStateImpl implements GameState {
         this.updateWinner();
         this.isGameOver = savedGame.isGameOver();
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(arena, enemyPlayer, isGameOver, mainPlayer, maxScore, puck);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof GameStateImpl)) {
+            return false;
+        }
+        GameStateImpl other = (GameStateImpl) obj;
+        return Objects.equals(arena, other.arena) && Objects.equals(enemyPlayer, other.enemyPlayer)
+                && isGameOver == other.isGameOver && Objects.equals(mainPlayer, other.mainPlayer)
+                && Objects.equals(maxScore, other.maxScore) && Objects.equals(puck, other.puck);
+    }    
 }

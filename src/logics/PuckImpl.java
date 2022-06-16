@@ -1,5 +1,7 @@
 package logics;
 
+import java.util.Objects;
+
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import physics.Physics2D;
@@ -68,5 +70,23 @@ public class PuckImpl implements Puck {
 
     public void resetBodyPos() {
         this.body.resetBodyPos();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(body, radius, startingPosition);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof PuckImpl)) {
+            return false;
+        }
+        PuckImpl other = (PuckImpl) obj;
+        return Objects.equals(body, other.body) && Float.floatToIntBits(radius) == Float.floatToIntBits(other.radius)
+                && Objects.equals(startingPosition, other.startingPosition);
     }
 }

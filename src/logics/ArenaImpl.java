@@ -1,5 +1,7 @@
 package logics;
 
+import java.util.Objects;
+
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import physics.ArenaBody;
@@ -10,7 +12,6 @@ import physics.Physics2D;
  * Class that represent arenas the player can play in.
  */
 public class ArenaImpl implements Arena {
-
     private final transient ArenaBody body;
     private final float width;
     private final float height;
@@ -62,5 +63,25 @@ public class ArenaImpl implements Arena {
 
     public void resetBodyPos() {
         this.body.resetBodyPos();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(body, goalWidth, height, width);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ArenaImpl)) {
+            return false;
+        }
+        ArenaImpl other = (ArenaImpl) obj;
+        return Objects.equals(body, other.body)
+                && Float.floatToIntBits(goalWidth) == Float.floatToIntBits(other.goalWidth)
+                && Float.floatToIntBits(height) == Float.floatToIntBits(other.height)
+                && Float.floatToIntBits(width) == Float.floatToIntBits(other.width);
     }
 }

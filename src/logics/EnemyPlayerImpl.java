@@ -1,5 +1,7 @@
 package logics;
 
+import java.util.Objects;
+
 import org.jbox2d.common.Vec2;
 import physics.Physics2D;
 
@@ -34,5 +36,19 @@ public class EnemyPlayerImpl extends AbstractPlayer implements EnemyPlayer {
 
     public void update() {
         this.getBody().setLinearVelocity(this.nextMove);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + Objects.hash(difficulty);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        EnemyPlayerImpl other = (EnemyPlayerImpl) obj;
+        return difficulty == other.difficulty && super.equals(obj);
     }
 }

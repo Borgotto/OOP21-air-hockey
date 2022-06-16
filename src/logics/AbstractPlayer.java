@@ -1,5 +1,7 @@
 package logics;
 
+import java.util.Objects;
+
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import physics.Physics2D;
@@ -63,5 +65,24 @@ public abstract class AbstractPlayer implements Player {
 
     public void resetBodyPos() {
         this.body.resetBodyPos();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(body, name, radius, score, startingPosition);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof AbstractPlayer)) {
+            return false;
+        }
+        AbstractPlayer other = (AbstractPlayer) obj;
+        return Objects.equals(body, other.body) && Objects.equals(name, other.name)
+                && Float.floatToIntBits(radius) == Float.floatToIntBits(other.radius)
+                && Objects.equals(score, other.score) && Objects.equals(startingPosition, other.startingPosition);
     }
 }
