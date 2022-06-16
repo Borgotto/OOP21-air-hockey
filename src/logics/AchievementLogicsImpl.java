@@ -19,6 +19,6 @@ public class AchievementLogicsImpl implements AchievementLogics {
 	}
 
 	public List<Achievement> getAchievements() {
-		return this.achievements;
+		return new ArrayList<>(this.achievements);
 	}
 }

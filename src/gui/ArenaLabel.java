@@ -45,7 +45,7 @@ public class ArenaLabel extends JLabel {
         // Create the enemy button
         int enemyButtonSize = Math.round(game.getEnemyPlayer().getRadius()*2 * converter.xScaling);
         converter.setOffset(new Vec2(-enemyButtonSize/2.0f, -enemyButtonSize/2.0f));
-        Point enemyButtonPos = converter.MeterToPixel(game.getEnemyPlayer().getPosition());
+        Point enemyButtonPos = converter.meterToPixel(game.getEnemyPlayer().getPosition());
         enemyButton = new IconButton(strikerImage, new Dimension(enemyButtonSize, enemyButtonSize));
         enemyButton.setBounds(enemyButtonPos.x, enemyButtonPos.y, enemyButton.getPreferredSize().width, enemyButton.getPreferredSize().height);
         enemyField.add(enemyButton);
@@ -53,7 +53,7 @@ public class ArenaLabel extends JLabel {
         // Create the player button
         int playerButtonSize = Math.round(game.getMainPlayer().getRadius()*2 * converter.xScaling);
         converter.setOffset(new Vec2(-playerButtonSize/2.0f, -playerButtonSize/2.0f));
-        Point playerButtonPos = converter.MeterToPixel(game.getMainPlayer().getPosition());
+        Point playerButtonPos = converter.meterToPixel(game.getMainPlayer().getPosition());
         playerButton = new IconButton(strikerImage, new Dimension(playerButtonSize, playerButtonSize));
         playerButton.setBounds(playerButtonPos.x, playerButtonPos.y - size.height/2, playerButton.getPreferredSize().width, playerButton.getPreferredSize().height);
         playerField.add(playerButton);
@@ -61,7 +61,7 @@ public class ArenaLabel extends JLabel {
         // Create the puck button
         int puckButtonSize = Math.round(game.getPuck().getRadius()*2 * converter.xScaling);
         converter.setOffset(new Vec2(-puckButtonSize/2.0f, -puckButtonSize/2.0f));
-        Point puckButtonPos = converter.MeterToPixel(game.getPuck().getPosition());
+        Point puckButtonPos = converter.meterToPixel(game.getPuck().getPosition());
         puckButton = new IconButton(puckImage, new Dimension(puckButtonSize, puckButtonSize));
         puckButton.setBounds(puckButtonPos.x, puckButtonPos.y, puckButton.getPreferredSize().width, puckButton.getPreferredSize().height);
         this.add(puckButton);

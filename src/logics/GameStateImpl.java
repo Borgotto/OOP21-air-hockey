@@ -20,7 +20,7 @@ public class GameStateImpl implements GameState {
     private transient Optional<Player> winner = Optional.empty();
     private boolean isGameOver = false;
 
-    public GameStateImpl(Physics2D physics, Arena arena, MainPlayer mainPlayer, EnemyPlayer enemyPlayer, Puck puck, Integer maxScore) {
+    public GameStateImpl(final Physics2D physics, final Arena arena, final MainPlayer mainPlayer, final EnemyPlayer enemyPlayer, final Puck puck, final Integer maxScore) {
         this.gamePhysics = physics;
         this.arena = arena;
         this.mainPlayer = mainPlayer;

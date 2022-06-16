@@ -91,7 +91,7 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
             Point mousePosition = MouseInfo.getPointerInfo().getLocation();
             SwingUtilities.convertPointFromScreen(mousePosition, this.arenaLabel);
             this.uc.setOffset(new Vec2(0,0));
-            this.mouseHandler.update(this.uc.PixelToMeter(mousePosition));
+            this.mouseHandler.update(this.uc.pixelToMeter(mousePosition));
         }
         // Tell the game logics to update the game state
         this.game.update();
@@ -124,12 +124,12 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
         // Update the player, enemy and puck positions
         JButton playerButton = this.arenaLabel.getPlayerButton();
         this.uc.setOffset(new Vec2(-playerButton.getWidth()/2.0f, -playerButton.getHeight()/2.0f - this.arenaLabel.getEnemyField().getHeight()));
-        playerButton.setLocation(this.uc.MeterToPixel(this.game.getMainPlayer().getPosition()));
+        playerButton.setLocation(this.uc.meterToPixel(this.game.getMainPlayer().getPosition()));
         JButton enemyButton = this.arenaLabel.getEnemyButton();
         this.uc.setOffset(new Vec2(-enemyButton.getWidth()/2.0f, -enemyButton.getHeight()/2.0f));
-        enemyButton.setLocation(this.uc.MeterToPixel(this.game.getEnemyPlayer().getPosition()));
+        enemyButton.setLocation(this.uc.meterToPixel(this.game.getEnemyPlayer().getPosition()));
         JButton puckButton = this.arenaLabel.getPuckButton();
         this.uc.setOffset(new Vec2(-puckButton.getWidth()/2.0f, -puckButton.getHeight()/2.0f));
-        puckButton.setLocation(this.uc.MeterToPixel(this.game.getPuck().getPosition()));
+        puckButton.setLocation(this.uc.meterToPixel(this.game.getPuck().getPosition()));
     }
 }

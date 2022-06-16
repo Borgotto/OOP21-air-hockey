@@ -2,6 +2,7 @@ package logics;
 
 import utils.ResourceLoader;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.function.Predicate;
 
@@ -27,7 +28,7 @@ public class AchievementImpl implements Achievement {
 	}
 
 	public Image getIcon() {
-		return this.icon;
+		return new ImageIcon(icon).getImage();
 	}
 
 	public String getName() {

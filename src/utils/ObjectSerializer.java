@@ -1,5 +1,7 @@
 package utils;
 
+import logics.Settings;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,8 +16,9 @@ public interface ObjectSerializer <O> {
      * @param filePath path to the file to serialize to
      */
     static <O> void serialize(final O obj, final Path filePath) throws IOException {
-        if (filePath.getParent() != null) {
-            Files.createDirectories(filePath.getParent()); // create directory if needed
+        Path directories= filePath.getParent();
+        if (directories != null) {
+            Files.createDirectories(directories);
         }
         try (FileOutputStream file = new FileOutputStream(filePath.toString());
                 ObjectOutputStream out = new ObjectOutputStream(file);) {

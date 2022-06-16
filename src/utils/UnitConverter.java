@@ -50,7 +50,7 @@ public class UnitConverter {
 	 * @param position the {@link Vec2} position to convert
 	 * @return The converted position as a {@link Point}.
 	 */
-	public Point MeterToPixel(final Vec2 position) {
+	public Point meterToPixel(final Vec2 position) {
 		return new Point(Math.round(position.x * this.xScaling + offset.x), cs1.height - Math.round(position.y * this.yScaling - offset.y));
 	}
 
@@ -59,7 +59,7 @@ public class UnitConverter {
 	 * @param position The {@link Point} to convert.
 	 * @return The converted position as a {@link Vec2}.
 	 */
-	public Vec2 PixelToMeter(final Point position) {
+	public Vec2 pixelToMeter(final Point position) {
 		return new Vec2(position.x / this.xScaling + offset.x, (cs1.height - position.y) / this.yScaling + offset.y);
 	}
 }

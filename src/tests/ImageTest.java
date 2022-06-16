@@ -13,7 +13,7 @@ public class ImageTest {
     @org.junit.Before
     public void initTest() {
         originalImg = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = originalImg.createGraphics();
+        originalImg.createGraphics();
     }
 
     @org.junit.Test

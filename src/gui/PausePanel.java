@@ -42,7 +42,7 @@ public class PausePanel extends AbstractGridBagLayoutJComponent {
             } catch (IOException ex) {
                 new ExceptionPanel(ex);
             }
-            System.exit(0);
+            Runtime.getRuntime().exit(0);
         });
         this.add(saveAndQuit, c);
     }

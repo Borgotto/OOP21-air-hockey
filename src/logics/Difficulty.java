@@ -12,13 +12,11 @@ import org.jbox2d.common.Vec2;
  *  - NORMAL: the enemy tries to predict the puck's direction
  */
 public enum Difficulty {
-	
 	DUMB((GameState gameState) -> {
-		Random random = new Random();
-		float angle = random.nextFloat()*360;
-		float module = random.nextFloat()*gameState.getArena().getHeight();
+		double angle = Math.random()*360;
+		double module = Math.random()*gameState.getArena().getHeight();
 		
-		return new Vec2((float)Math.cos(angle)*module, (float)Math.sin(angle)*module);
+		return new Vec2((float)(Math.cos(angle)*module), (float)(Math.sin(angle)*module));
 	}),
 	
 	EASY((GameState gameState) -> {
@@ -46,6 +44,8 @@ public enum Difficulty {
 	});
 	
 	private static Vec2 calculateSpeedVector(final float module, final float distanceRatio, final float defenseDistance, GameState gameState) {
+		final float delta = 0.1f;
+
 		// Aggressive behavior
 		if(gameState.getPuck().getPosition().y > gameState.getArena().getHeight()/2) {
 			double angle = Math.atan2(
@@ -54,7 +54,7 @@ public enum Difficulty {
 				);
 			return new Vec2((float)Math.cos(angle)*module, (float)Math.sin(angle)*module);
 		} else { // Passive behavior
-			if(gameState.getEnemyPlayer().getPosition().y == (gameState.getArena().getHeight() - defenseDistance)) {
+			if (Math.abs(gameState.getEnemyPlayer().getPosition().y - (gameState.getArena().getHeight() - defenseDistance)) < delta) {
 				return new Vec2(0.0f, 0.0f);
 			}
 			double angle = Math.atan2(
@@ -64,7 +64,7 @@ public enum Difficulty {
 			return new Vec2((float)Math.cos(angle)*module, (float)Math.sin(angle)*module);
 		}
 	}
-		
+
 	private final Function<GameState, Vec2> movingStrategy;
 
 	private Difficulty(Function<GameState, Vec2> movingStrategy) {
@@ -74,5 +74,4 @@ public enum Difficulty {
 	public Function<GameState, Vec2> getMovingStrategy() {
 		return this.movingStrategy;
 	}
-	
 }

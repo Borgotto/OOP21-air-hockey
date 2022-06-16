@@ -72,8 +72,9 @@ public class Settings {
 
     public void save() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        if (Settings.path.getParent() != null) {            
-            Files.createDirectories(Settings.path.getParent());
+		Path directories= Settings.path.getParent();
+        if (directories != null) {
+            Files.createDirectories(directories);
         }
         mapper.writeValue(new File(Settings.path.toString()), this);
     }

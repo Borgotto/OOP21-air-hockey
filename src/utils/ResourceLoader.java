@@ -13,7 +13,7 @@ public class ResourceLoader {
     /**
      * The directory where the resources are stored. The root directory is the JAR archive's root.
      */
-    public static String resourcePath = "/res/";
+    public static final String resourcePath = "/res/";
 
     /**
      * Load an image from a file.

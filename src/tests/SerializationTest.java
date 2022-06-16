@@ -67,6 +67,6 @@ public class SerializationTest {
 
     @org.junit.After
     public void cleanFiles() {
-        new File(this.path.toString()).delete();
+        boolean deleted = new File(this.path.toString()).delete();
     }
 }

@@ -7,7 +7,7 @@ public class ExceptionPanel {
         ex.printStackTrace();
         JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
         if (quit) {
-            System.exit(1);
+            Runtime.getRuntime().exit(1);
         }
     }
 

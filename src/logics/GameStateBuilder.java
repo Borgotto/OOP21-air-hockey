@@ -30,32 +30,32 @@ public class GameStateBuilder {
         this.puck = new PuckImpl(1.2f, new Vec2(9.0f,16.0f), this.gamePhysics);
     }
 
-    public GameStateBuilder setPhysics(Physics2D physics) {
+    public GameStateBuilder setPhysics(final Physics2D physics) {
         this.gamePhysics = physics;
         return this;
     }
 
-    public GameStateBuilder setArena(Arena arena) {
+    public GameStateBuilder setArena(final Arena arena) {
         this.arena = arena;
         return this;
     }
 
-    public GameStateBuilder setMainPlayer(MainPlayer mainPlayer) {
+    public GameStateBuilder setMainPlayer(final MainPlayer mainPlayer) {
         this.mainPlayer = mainPlayer;
         return this;
     }
 
-    public GameStateBuilder setEnemyPlayer(EnemyPlayer enemyPlayer) {
+    public GameStateBuilder setEnemyPlayer(final EnemyPlayer enemyPlayer) {
         this.enemyPlayer = enemyPlayer;
         return this;
     }
 
-    public GameStateBuilder setPuck(Puck puck) {
+    public GameStateBuilder setPuck(final Puck puck) {
         this.puck = puck;
         return this;
     }
 
-    public GameStateBuilder setMaxScore(int maxScore) {
+    public GameStateBuilder setMaxScore(final int maxScore) {
         this.maxScore = maxScore;
         return this;
     }

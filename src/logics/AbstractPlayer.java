@@ -40,7 +40,7 @@ public abstract class AbstractPlayer implements Player {
     }
 
     public void scorePoint() {
-        this.score++;
+        this.score+=1;
     }
 
     public float getRadius() {
