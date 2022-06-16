@@ -21,8 +21,8 @@ public class ArenaLabel extends JLabel {
         // Load resources and color the images based on the Theme saved in settings
         Color color = new Settings().load().getTheme().getColor();
         Image strikerImage = ImageModifier.color(ImageLoader.load("striker.png"), color);
-        Image puckImage = ImageModifier.color(ImageLoader.load("res/puck.png"), color);
-        Image arenaImage = ImageModifier.color(ImageLoader.load("res/arena.png"), color);
+        Image puckImage = ImageModifier.color(ImageLoader.load("puck.png"), color);
+        Image arenaImage = ImageModifier.color(ImageLoader.load("arena.png"), color);
 
         // Manually manage the label's layout
         this.setLayout(null);
