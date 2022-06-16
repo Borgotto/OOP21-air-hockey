@@ -14,7 +14,9 @@ public interface ObjectSerializer <O> {
      * @param filePath path to the file to serialize to
      */
     static <O> void serialize(O obj, Path filePath) throws IOException {
-        Files.createDirectories(filePath.getParent()); // create directory if needed
+        if (filePath.getParent() != null) {            
+            Files.createDirectories(filePath.getParent()); // create directory if needed
+        }
         try (FileOutputStream file = new FileOutputStream(filePath.toString());
                 ObjectOutputStream out = new ObjectOutputStream(file);) {
             out.writeObject(obj);
