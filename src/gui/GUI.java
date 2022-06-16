@@ -18,7 +18,7 @@ public class GUI extends JFrame {
      */
     public GUI() {
         // Set the custom font and LookAndFeel
-        Font font = ResourceLoader.loadFont("res/aerial.ttf");
+        Font font = ResourceLoader.loadFont("aerial.ttf");
         GUI.setFont(new FontUIResource(font.deriveFont(Font.PLAIN, 14)));
 
         try {
