@@ -15,7 +15,7 @@ public class AchievementLabel extends AbstractGridBagLayoutJComponent {
         super();
 
         // Create label Components
-        ImageIcon icon = achievement.getIcon();
+        ImageIcon icon = new ImageIcon(achievement.getIcon());
         if (!achievement.isUnlocked(game)) {
             icon = new ImageIcon(ImageModifier.color(icon.getImage(), Color.GRAY));
         }
