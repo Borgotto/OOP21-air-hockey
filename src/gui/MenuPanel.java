@@ -50,8 +50,7 @@ public class MenuPanel extends AbstractGridBagLayoutJComponent {
         b2.setEnabled(Files.exists(GameState.savePath));
         b2.addActionListener(e -> {
             try {
-                GameState game = new GameStateBuilder().build();
-                game.load(ObjectSerializer.deserialize(GameState.savePath));
+                GameState game = ObjectSerializer.deserialize(GameState.savePath);
                 GamePanel gamePanel = new GamePanel(game);
                 JFrame parent = JComponentLoader.getParentFrame(this);
                 JComponentLoader.load(parent, gamePanel);

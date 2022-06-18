@@ -1,6 +1,7 @@
 package gui;
 
 import logics.GameState;
+import utils.ObjectSerializer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +40,7 @@ public class PausePanel extends AbstractGridBagLayoutJComponent {
         JButton saveAndQuit = new JButton("Save and quit");
         saveAndQuit.addActionListener(e -> {
             try {
-                this.game.save();
+                ObjectSerializer.serialize(game, GameState.savePath);
             } catch (IOException ex) {
                 new ExceptionPanel(ex);
             }

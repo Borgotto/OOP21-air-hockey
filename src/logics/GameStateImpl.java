@@ -104,33 +104,6 @@ public class GameStateImpl implements GameState {
         return true;
     }
 
-    public void save() throws IOException {
-        ObjectSerializer.serialize(this, GameState.savePath);
-    }
-
-    public void load(GameState savedGame) {
-        // Set the current game state to the saved game state
-        this.gamePhysics.deleteAllBodies();
-
-        var savedArena = savedGame.getArena();
-        this.arena = new ArenaImpl(savedArena.getWidth(), savedArena.getHeight(), savedArena.getGoalWidth(), this.gamePhysics);
-
-        var savedMainPlayer = savedGame.getMainPlayer();
-        this.mainPlayer = new MainPlayerImpl(savedMainPlayer.getName(), savedMainPlayer.getRadius(), savedMainPlayer.getStartingPosition(), this.gamePhysics);
-
-        var savedEnemyPlayer = savedGame.getEnemyPlayer();
-        this.enemyPlayer = new EnemyPlayerImpl(savedEnemyPlayer.getName(), savedEnemyPlayer.getRadius(), savedEnemyPlayer.getStartingPosition(), this.gamePhysics, savedEnemyPlayer.getDifficulty());
-
-        var savedPuck = savedGame.getPuck();
-        this.puck = new PuckImpl(savedPuck.getRadius(), savedPuck.getStartingPosition(), this.gamePhysics);
-
-        this.mainPlayer.setScore(savedGame.getMainPlayer().getScore());
-        this.enemyPlayer.setScore(savedGame.getEnemyPlayer().getScore());
-        this.maxScore = savedGame.getMaxScore();
-        this.updateWinner();
-        this.isGameOver = savedGame.isGameOver();
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(arena, enemyPlayer, isGameOver, mainPlayer, maxScore, puck);
