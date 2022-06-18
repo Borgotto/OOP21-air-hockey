@@ -149,4 +149,10 @@ public class GameStateImpl implements GameState {
                 && isGameOver == other.isGameOver && Objects.equals(mainPlayer, other.mainPlayer)
                 && Objects.equals(maxScore, other.maxScore) && Objects.equals(puck, other.puck);
     }    
+    // Override default deserialization to set transient fields
+    private void readObject(ObjectInputStream in) throws ClassNotFoundException, IOException {
+        GameState.gamePhysics.deleteAllBodies();
+        in.defaultReadObject();
+        this.updateWinner();
+    }
 }

@@ -1,12 +1,12 @@
 package logics;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Objects;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
-import physics.Physics2D;
-import physics.PlayerBody;
-import physics.PlayerBodyImpl;
+import physics.*;
 
 /**
  * Abstract class for player.
@@ -14,7 +14,7 @@ import physics.PlayerBodyImpl;
  */
 public abstract class AbstractPlayer implements Player {
     private static final long serialVersionUID = -3628225860576536126L;
-    private final transient PlayerBody body;
+    private transient PlayerBody body;
     private final String name;
     private final float radius;
     private final Vec2 startingPosition;
@@ -85,5 +85,13 @@ public abstract class AbstractPlayer implements Player {
         return Objects.equals(body, other.body) && Objects.equals(name, other.name)
                 && Float.floatToIntBits(radius) == Float.floatToIntBits(other.radius)
                 && Objects.equals(score, other.score) && Objects.equals(startingPosition, other.startingPosition);
+    }
+
+    // Override default deserialization to set transient fields
+    private void readObject(ObjectInputStream in) throws ClassNotFoundException, IOException {
+        // default deserialization
+        in.defaultReadObject();
+        // custom deserialization
+        this.body = new PlayerBodyImpl(radius, startingPosition, GameState.gamePhysics);
     }
 }

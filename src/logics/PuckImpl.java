@@ -1,10 +1,13 @@
 package logics;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Objects;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import physics.Physics2D;
+import physics.Physics2DImpl;
 import physics.PuckBody;
 import physics.PuckBodyImpl;
 
@@ -13,7 +16,7 @@ import physics.PuckBodyImpl;
  */
 public class PuckImpl implements Puck {
     private static final long serialVersionUID = -6978887898025055114L;
-    private final transient PuckBody body;
+    private transient PuckBody body;
 	private final float radius;
 	private final Vec2 startingPosition;
 	
@@ -89,4 +92,12 @@ public class PuckImpl implements Puck {
         return Objects.equals(body, other.body) && Float.floatToIntBits(radius) == Float.floatToIntBits(other.radius)
                 && Objects.equals(startingPosition, other.startingPosition);
     }
+
+	// Override default deserialization to set transient fields
+	private void readObject(ObjectInputStream in) throws ClassNotFoundException, IOException {
+		// default deserialization
+		in.defaultReadObject();
+		// custom deserialization
+		this.body = new PuckBodyImpl(radius, startingPosition, GameState.gamePhysics);
+	}
 }

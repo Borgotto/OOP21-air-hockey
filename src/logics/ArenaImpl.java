@@ -1,5 +1,7 @@
 package logics;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Objects;
 
 import org.jbox2d.common.Vec2;
@@ -7,13 +9,14 @@ import org.jbox2d.dynamics.Body;
 import physics.ArenaBody;
 import physics.ArenaBodyImpl;
 import physics.Physics2D;
+import physics.Physics2DImpl;
 
 /**
  * Class that represent arenas the player can play in.
  */
 public class ArenaImpl implements Arena {
     private static final long serialVersionUID = -798220930915565977L;
-    private final transient ArenaBody body;
+    private transient ArenaBody body;
     private final float width;
     private final float height;
     private final float goalWidth;
@@ -84,5 +87,13 @@ public class ArenaImpl implements Arena {
                 && Float.floatToIntBits(goalWidth) == Float.floatToIntBits(other.goalWidth)
                 && Float.floatToIntBits(height) == Float.floatToIntBits(other.height)
                 && Float.floatToIntBits(width) == Float.floatToIntBits(other.width);
+    }
+
+    // Override default deserialization to set transient fields
+    private void readObject(ObjectInputStream in) throws ClassNotFoundException, IOException {
+        // default deserialization
+        in.defaultReadObject();
+        // custom deserialization
+        this.body = new ArenaBodyImpl(width,height, goalWidth, GameState.gamePhysics);
     }
 }
