@@ -1,9 +1,11 @@
 package logics;
 
+import physics.ArenaBodyImpl;
 import physics.Physics2D;
-import utils.ObjectSerializer;
+import physics.Physics2DImpl;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -12,22 +14,21 @@ import java.util.Optional;
  */
 public class GameStateImpl implements GameState {
     private static final long serialVersionUID = 3168735648062117889L;
-    private transient final Physics2D gamePhysics;
-    private MainPlayer mainPlayer;
-    private EnemyPlayer enemyPlayer;
-    private Puck puck;
-    private Arena arena;
-    private Integer maxScore;
-    private transient Optional<Player> winner = Optional.empty();
-    private boolean isGameOver = false;
+    private final MainPlayer mainPlayer;
+    private final EnemyPlayer enemyPlayer;
+    private final Puck puck;
+    private final Arena arena;
+    private final Integer maxScore;
+    private transient Optional<Player> winner;
+    private boolean isGameOver;
 
-    public GameStateImpl(final Physics2D physics, final Arena arena, final MainPlayer mainPlayer, final EnemyPlayer enemyPlayer, final Puck puck, final Integer maxScore) {
-        this.gamePhysics = physics;
+    public GameStateImpl(final Arena arena, final MainPlayer mainPlayer, final EnemyPlayer enemyPlayer, final Puck puck, final Integer maxScore) {
         this.arena = arena;
         this.mainPlayer = mainPlayer;
         this.enemyPlayer = enemyPlayer;
         this.puck = puck;
         this.maxScore = maxScore;
+        this.isGameOver = this.updateWinner();
     }
 
     public Arena getArena() {
@@ -87,6 +88,7 @@ public class GameStateImpl implements GameState {
             this.winner = Optional.of(this.enemyPlayer);
             return true;
         }
+        this.winner = Optional.empty();
         return false;
     }
 

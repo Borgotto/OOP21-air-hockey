@@ -1,5 +1,8 @@
 package logics;
 
+import physics.Physics2D;
+import physics.Physics2DImpl;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -8,6 +11,11 @@ import java.util.Optional;
  * Interface describing a Game of Air Hockey
  */
 public interface GameState extends GameObject {
+    /**
+     * Game physics
+     */
+    Physics2D gamePhysics = new Physics2DImpl();
+
     /**
      * Save file directory.
      */
