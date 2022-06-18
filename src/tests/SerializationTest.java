@@ -60,7 +60,6 @@ public class SerializationTest {
     @org.junit.Test
     public void serializeGameState() throws IOException, ClassNotFoundException {
         ObjectSerializer.serialize(this.gameState, this.path);
-        GameState dGameState = new GameStateBuilder().build();
         dGameState.load(ObjectSerializer.deserialize(this.path));
         assertEquals(dGameState, this.gameState);
     }
