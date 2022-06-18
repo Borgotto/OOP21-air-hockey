@@ -122,8 +122,10 @@ public class GameStateImpl implements GameState {
         GameStateImpl other = (GameStateImpl) obj;
         return Objects.equals(arena, other.arena) && Objects.equals(enemyPlayer, other.enemyPlayer)
                 && isGameOver == other.isGameOver && Objects.equals(mainPlayer, other.mainPlayer)
-                && Objects.equals(maxScore, other.maxScore) && Objects.equals(puck, other.puck);
-    }    
+                && Objects.equals(maxScore, other.maxScore) && Objects.equals(puck, other.puck)
+                && Objects.equals(winner, other.winner);
+    }
+
     // Override default deserialization to set transient fields
     private void readObject(ObjectInputStream in) throws ClassNotFoundException, IOException {
         GameState.gamePhysics.deleteAllBodies();
