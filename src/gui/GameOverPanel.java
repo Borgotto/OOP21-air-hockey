@@ -18,7 +18,7 @@ public class GameOverPanel extends AbstractGridBagLayoutJPanel {
         JLabel gameResult = new JLabel(result);
         JLabel gameScore = new JLabel(score);
         // JFrame for the achievements
-        AchievementsPanel achPanel = new AchievementsPanel(game, parentFrameHeight);
+        AchievementsScrollPane achPanel = new AchievementsScrollPane(game, parentFrameHeight);
         achPanel.setPreferredSize(new Dimension(this.getPreferredSize().width, this.getPreferredSize().height/2));
         // Back to menu and quit buttons
         JButton backToMenu = new JButton("Back to main menu");

@@ -10,10 +10,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class AchievementsPanel extends JScrollPane {
+public class AchievementsScrollPane extends JScrollPane {
     private static final long serialVersionUID = -8067292109260697539L;
 
-    public AchievementsPanel(GameState game, int parentFrameHeight) {
+    public AchievementsScrollPane(GameState game, int parentFrameHeight) {
         this.setBorder(BorderFactory.createEmptyBorder());
         // Get the base achievements
         AchievementLogicsFactory factory = new AchievementLogicsFactoryImpl();
