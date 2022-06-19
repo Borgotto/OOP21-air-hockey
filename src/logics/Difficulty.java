@@ -44,7 +44,7 @@ public enum Difficulty {
 	});
 	
 	private static Vec2 calculateSpeedVector(final float module, final float distanceRatio, final float defenseDistance, GameState gameState) {
-		final float delta = 0.1f;
+		final float delta = 0.5f; // this is used to correct bad floating point precision
 
 		// Aggressive behavior
 		if(gameState.getPuck().getPosition().y > gameState.getArena().getHeight()/2) {
