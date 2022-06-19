@@ -7,7 +7,7 @@ import utils.ImageModifier;
 import javax.swing.*;
 import java.awt.*;
 
-public class AchievementLabel extends AbstractGridBagLayoutJPanel {
+public class AchievementLabel extends JComponent {
     private static final long serialVersionUID = 5723510034229737L;
     private final JLabel iconLabel;
     private final JLabel nameLabel;
