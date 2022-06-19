@@ -67,7 +67,7 @@ public enum Difficulty {
 
 	private final Function<GameState, Vec2> movingStrategy;
 
-	private Difficulty(Function<GameState, Vec2> movingStrategy) {
+	Difficulty(Function<GameState, Vec2> movingStrategy) {
 		this.movingStrategy = movingStrategy;
 	}
 
