@@ -15,8 +15,7 @@ public class SettingsPanel extends AbstractGridBagLayoutJPanel {
     final Difficulty[] difficultyArray = logics.Difficulty.values();
     
     public SettingsPanel() {
-        super("Air Hockey - Settings", new Dimension(GUI.getMinScreenSize()*3/4, GUI.getMinScreenSize()*3/4));
-        c.insets = new Insets(10, 10, 10, 10); // padding
+        super("Air Hockey - Settings", new Dimension(GUI.getMinScreenSize(), GUI.getMinScreenSize()*3/4));
         
         // Load Settings obj
         Settings settings = new Settings().load();
