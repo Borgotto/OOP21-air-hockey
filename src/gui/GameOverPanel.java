@@ -6,7 +6,7 @@ import utils.JComponentLoader;
 import javax.swing.*;
 import java.awt.*;
 
-public class GameOverPanel extends AbstractGridBagLayoutJComponent {
+public class GameOverPanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = -6295463075268587222L;
 
     public GameOverPanel(GameState game, int parentFrameHeight) {

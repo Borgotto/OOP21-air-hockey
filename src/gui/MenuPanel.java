@@ -12,7 +12,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class MenuPanel extends AbstractGridBagLayoutJComponent {
+public class MenuPanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 8475751505006519027L;
 
     public MenuPanel() {

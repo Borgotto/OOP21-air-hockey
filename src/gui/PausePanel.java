@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class PausePanel extends AbstractGridBagLayoutJComponent {
+public class PausePanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = -4465167712375078735L;
 
     public PausePanel(GameState game) {
