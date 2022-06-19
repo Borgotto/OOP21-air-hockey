@@ -1,45 +1,39 @@
 package tests;
 
+import logics.GameObjectWithPhysics;
 import logics.GameState;
 import logics.GameStateBuilder;
+import org.jbox2d.common.Vec2;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class GameTest {
-    private GameState game;
 
-    @org.junit.Before
-    public void initTests() {
-        this.game = new GameStateBuilder().build();
-
+    @org.junit.Test
+    public void testBounds() {
+        GameState game = new GameStateBuilder().build();
+        List<GameObjectWithPhysics> gameObjects = List.of(game.getMainPlayer(), game.getEnemyPlayer(), game.getPuck());
+        // apply a strong force to each GameObjectWithPhysics
+        for (var go : gameObjects) {
+            go.getBody().setLinearVelocity(new Vec2(45000,45000));
+        }
         // render the first 10.000 frames (166.66 seconds) of the game
         for(int i=0;i<10000;i++) {
-            this.game.update();
+            game.update();
+        }
+        // check that both the players and the puck are still inside the playable area
+        for(var go : gameObjects) {
+            assertTrue(go.getPosition().x >= 0 && go.getPosition().x <= game.getArena().getWidth());
+            assertTrue(go.getPosition().y >= 0 && go.getPosition().y <= game.getArena().getHeight());
         }
     }
 
     @org.junit.Test
-    public void testBounds() {
-        // check that both the players and the puck are still inside the playable area
-        assertTrue(this.game.getPuck().getPosition().x >= 0);
-        assertTrue(this.game.getPuck().getPosition().x <= this.game.getArena().getWidth());
-        assertTrue(this.game.getPuck().getPosition().y >= 0);
-        assertTrue(this.game.getPuck().getPosition().y <= this.game.getArena().getHeight());
-
-        assertTrue(this.game.getMainPlayer().getPosition().x >= 0);
-        assertTrue(this.game.getMainPlayer().getPosition().x <= this.game.getArena().getWidth());
-        assertTrue(this.game.getMainPlayer().getPosition().y >= 0);
-        assertTrue(this.game.getMainPlayer().getPosition().y <= this.game.getArena().getHeight());
-
-        assertTrue(this.game.getEnemyPlayer().getPosition().x >= 0);
-        assertTrue(this.game.getEnemyPlayer().getPosition().x <= this.game.getArena().getWidth());
-        assertTrue(this.game.getEnemyPlayer().getPosition().y >= 0);
-        assertTrue(this.game.getEnemyPlayer().getPosition().y <= this.game.getArena().getHeight());
-    }
-
-    @org.junit.Test
     public void testLogicalSingleton() {
-        GameState game = new GameStateBuilder().build();
-        assertEquals(this.game, game);
+        GameState game1 = new GameStateBuilder().build();
+        GameState game2 = new GameStateBuilder().build();
+        assertEquals(game1, game2);
     }
 }
