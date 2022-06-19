@@ -1,14 +1,14 @@
 package logics;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.Objects;
-
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import physics.ArenaBody;
 import physics.ArenaBodyImpl;
 import physics.Physics2D;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.Objects;
 
 /**
  * Class that represent arenas the player can play in.

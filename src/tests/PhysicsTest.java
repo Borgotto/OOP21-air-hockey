@@ -1,16 +1,10 @@
 package tests;
 
-import physics.Physics2D;
-import physics.Physics2DImpl;
-import physics.PlayerBody;
-import physics.PlayerBodyImpl;
-import physics.PuckBody;
-import physics.PuckBodyImpl;
+import org.jbox2d.common.Vec2;
+import physics.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-
-import org.jbox2d.common.Vec2;
 
 public class PhysicsTest {
     private Physics2D physicsTestWorld;

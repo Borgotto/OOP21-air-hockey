@@ -1,12 +1,15 @@
 package tests;
 
-import static org.junit.Assert.*;
+import utils.ObjectSerializer;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import utils.ObjectSerializer;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class ObjectSerializerTest {
 

@@ -1,8 +1,8 @@
 package logics;
 
-import java.util.Random;
-import java.util.function.Function;
 import org.jbox2d.common.Vec2;
+
+import java.util.function.Function;
 
 /**
  * The difficulty the enemy AI.

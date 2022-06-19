@@ -1,12 +1,14 @@
 package logics;
 
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
+import physics.Physics2D;
+import physics.PlayerBody;
+import physics.PlayerBodyImpl;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Objects;
-
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Body;
-import physics.*;
 
 /**
  * Abstract class for player.

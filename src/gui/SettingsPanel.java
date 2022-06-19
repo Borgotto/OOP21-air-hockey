@@ -1,12 +1,12 @@
 package gui;
 
-import logics.Theme;
 import logics.Difficulty;
 import logics.Settings;
+import logics.Theme;
 import utils.JComponentLoader;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 
 public class SettingsPanel extends AbstractGridBagLayoutJComponent {

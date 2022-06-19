@@ -1,9 +1,9 @@
 package logics;
 
-import java.util.Objects;
-
 import org.jbox2d.common.Vec2;
 import physics.Physics2D;
+
+import java.util.Objects;
 
 /**
  * Implementation of the EnemyPlayer interface.

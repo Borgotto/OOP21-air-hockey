@@ -1,8 +1,6 @@
 package logics;
 
 import org.jbox2d.common.Vec2;
-import physics.Physics2D;
-import physics.Physics2DImpl;
 
 /**
  * Builder class for GameState.

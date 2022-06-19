@@ -1,6 +1,7 @@
 package gui;
 
-import logics.*;
+import logics.Achievement;
+import logics.GameState;
 import utils.ImageModifier;
 
 import javax.swing.*;

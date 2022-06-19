@@ -1,14 +1,14 @@
 package logics;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.Objects;
-
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import physics.Physics2D;
 import physics.PuckBody;
 import physics.PuckBodyImpl;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.Objects;
 
 /**
  * The Puck class representing the puck of the {@link Arena}

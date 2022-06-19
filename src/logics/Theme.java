@@ -1,6 +1,6 @@
 package logics;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * The available game themes.
