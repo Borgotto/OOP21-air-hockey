@@ -36,4 +36,10 @@ public class GameTest {
         assertTrue(this.game.getEnemyPlayer().getPosition().y >= 0);
         assertTrue(this.game.getEnemyPlayer().getPosition().y <= this.game.getArena().getHeight());
     }
+
+    @org.junit.Test
+    public void testLogicalSingleton() {
+        GameState game = new GameStateBuilder().build();
+        assertEquals(this.game, game);
+    }
 }
