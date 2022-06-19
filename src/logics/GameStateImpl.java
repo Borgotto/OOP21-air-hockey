@@ -1,9 +1,5 @@
 package logics;
 
-import physics.ArenaBodyImpl;
-import physics.Physics2D;
-import physics.Physics2DImpl;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Objects;

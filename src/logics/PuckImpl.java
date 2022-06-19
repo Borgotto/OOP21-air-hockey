@@ -7,7 +7,6 @@ import java.util.Objects;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import physics.Physics2D;
-import physics.Physics2DImpl;
 import physics.PuckBody;
 import physics.PuckBodyImpl;
 
@@ -95,9 +94,7 @@ public class PuckImpl implements Puck {
 
 	// Override default deserialization to set transient fields
 	private void readObject(ObjectInputStream in) throws ClassNotFoundException, IOException {
-		// default deserialization
 		in.defaultReadObject();
-		// custom deserialization
 		this.body = new PuckBodyImpl(radius, startingPosition, GameState.gamePhysics);
 	}
 }

@@ -3,7 +3,6 @@ package logics;
 import physics.Physics2D;
 import physics.Physics2DImpl;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 

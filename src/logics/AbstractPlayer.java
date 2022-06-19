@@ -89,9 +89,7 @@ public abstract class AbstractPlayer implements Player {
 
     // Override default deserialization to set transient fields
     private void readObject(ObjectInputStream in) throws ClassNotFoundException, IOException {
-        // default deserialization
         in.defaultReadObject();
-        // custom deserialization
         this.body = new PlayerBodyImpl(radius, startingPosition, GameState.gamePhysics);
     }
 }

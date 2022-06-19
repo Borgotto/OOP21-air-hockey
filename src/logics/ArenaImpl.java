@@ -9,7 +9,6 @@ import org.jbox2d.dynamics.Body;
 import physics.ArenaBody;
 import physics.ArenaBodyImpl;
 import physics.Physics2D;
-import physics.Physics2DImpl;
 
 /**
  * Class that represent arenas the player can play in.
@@ -91,9 +90,7 @@ public class ArenaImpl implements Arena {
 
     // Override default deserialization to set transient fields
     private void readObject(ObjectInputStream in) throws ClassNotFoundException, IOException {
-        // default deserialization
         in.defaultReadObject();
-        // custom deserialization
         this.body = new ArenaBodyImpl(width,height, goalWidth, GameState.gamePhysics);
     }
 }
