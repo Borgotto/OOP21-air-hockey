@@ -49,8 +49,4 @@ public class AchievementLabel extends AbstractGridBagLayoutJPanel {
     public String getName() {
         return this.nameLabel.getText();
     }
-
-    public String getDescription() {
-        return this.descriptionLabel.getText();
-    }
 }
