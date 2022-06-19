@@ -9,11 +9,9 @@ import java.io.IOException;
 
 public class PausePanel extends AbstractGridBagLayoutJComponent {
     private static final long serialVersionUID = -4465167712375078735L;
-    private final GameState game;
 
     public PausePanel(GameState game) {
         super("Air Hockey - Pause");
-        this.game = game;
 
         c.gridx = 1;
         c.gridy = 1;
@@ -21,9 +19,7 @@ public class PausePanel extends AbstractGridBagLayoutJComponent {
         c.weighty = 1.0;
         c.anchor = GridBagConstraints.SOUTH;
         JButton resume = new JButton("Resume");
-        resume.addActionListener(e -> {
-            SwingUtilities.getWindowAncestor(this).dispose();
-        });
+        resume.addActionListener(e -> SwingUtilities.getWindowAncestor(this).dispose());
         this.add(resume, c);
         c.gridy = 2;
         c.anchor = GridBagConstraints.CENTER;
