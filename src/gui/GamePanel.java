@@ -38,17 +38,21 @@ public class GamePanel extends AbstractGridBagLayoutJComponent {
         this.arenaLabel = new ArenaLabel(new Dimension(this.getPreferredSize().width*3/4, this.getPreferredSize().height), this.game);
         this.add(arenaLabel, c);
         // Create labels to show the players scores
+        c.ipadx = this.getPreferredSize().width/16;
+        c.ipady = c.ipadx;
         c.weightx = 1/4d;
         c.gridheight = 1;
         c.gridx = 1;
         c.gridy = 0;
-        this.enemyScoreLabel = new JLabel();
+        this.enemyScoreLabel = new JLabel("", SwingConstants.CENTER);
         this.add(this.enemyScoreLabel, c);
         c.gridy = 2;
-        this.playerScoreLabel = new JLabel();
+        this.playerScoreLabel = new JLabel("", SwingConstants.CENTER);
         this.add(this.playerScoreLabel, c);
         // Create the pause button
         c.gridy = 1;
+        c.ipadx = 0;
+        c.ipady = 0;
         this.pauseButton = new JButton("Pause");
         this.pauseButton.setEnabled(false); // prevent the user from pausing the game before it is started
         this.pauseButton.addActionListener(e -> {
