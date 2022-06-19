@@ -1,5 +1,7 @@
 package gui;
 
+import utils.ResourceLoader;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -18,7 +20,8 @@ public class CreditsPanel extends JPanel{
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // JLabel containing the hyperlink to the game's website.
-        JLabel repositoryLabel = new JLabel(" GitHub repository", new ImageIcon("res/GitHub-Mark-32px.png"), SwingConstants.LEFT);
+        Image gitHubIcon = ResourceLoader.loadImage("GitHub-Mark-32px.png");
+        JLabel repositoryLabel = new JLabel(" GitHub repository", new ImageIcon(gitHubIcon), SwingConstants.LEFT);
         repositoryLabel.setForeground(Color.BLUE.darker());
         repositoryLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         repositoryLabel.addMouseListener(new MouseAdapter() {
