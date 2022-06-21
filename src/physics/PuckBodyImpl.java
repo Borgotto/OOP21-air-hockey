@@ -10,6 +10,7 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
 	private static final float DENSITY_VALOR = 0.3f;
 	private static final float FRICTION_VALOR = 0.6f;
 	private static final int GROUP_FILTER_INDEX = -2;
+	private static final float TIME_FACTOR = 1/60;
     private final float radius;
     
 	/**
@@ -41,7 +42,7 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
     }
     
     public Vec2 getNextPos() {
-        return new Vec2(getBody().getLinearVelocity().x + this.getPosition().x, getBody().getLinearVelocity().y + this.getPosition().y);
+        return new Vec2(getBody().getLinearVelocity().x*TIME_FACTOR + this.getPosition().x, getBody().getLinearVelocity().y*TIME_FACTOR + this.getPosition().y);
     }
 
     public float getRadius() {
