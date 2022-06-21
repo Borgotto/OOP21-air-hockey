@@ -49,9 +49,9 @@ public class ImageModifier {
         for (int x = 0; x < newImg.getWidth(); x++) {
             for (int y = 0; y < newImg.getHeight(); y++) {
                 int[] pixel = raster.getPixel(x, y, (int[]) null);
-                pixel[0] = (int) (pixel[0] * (1-color.getAlpha()/255d) + color.getRed() * (color.getAlpha()/255d));
-                pixel[1] = (int) (pixel[1] * (1-color.getAlpha()/255d) + color.getGreen() * (color.getAlpha()/255d));
-                pixel[2] = (int) (pixel[2] * (1-color.getAlpha()/255d) + color.getBlue() * (color.getAlpha()/255d));
+                pixel[0] = Math.round((float)(pixel[0] * (1-color.getAlpha()/255d) + color.getRed() * (color.getAlpha()/255d)));
+                pixel[1] = Math.round((float)(pixel[1] * (1-color.getAlpha()/255d) + color.getGreen() * (color.getAlpha()/255d)));
+                pixel[2] = Math.round((float)(pixel[2] * (1-color.getAlpha()/255d) + color.getBlue() * (color.getAlpha()/255d)));
                 raster.setPixel(x, y, pixel);
             }
         }
