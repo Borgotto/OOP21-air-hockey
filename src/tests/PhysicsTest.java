@@ -36,12 +36,16 @@ public class PhysicsTest {
     	for(int i = 0; i < 3; i++) physicsTestWorld.update();
     	assertNotEquals(new Vec2(9.0f, 8.0f), puckBody.getPosition());
     	assertNotEquals(new Vec2(0.0f, 0.0f), playerBody.getBody().getLinearVelocity());
+    }
+    
+    @org.junit.Test
+    public void testResetPosition() {
     	playerBody.resetBodyPos();
     	assertEquals(new Vec2(0.0f, 0.0f), playerBody.getBody().getLinearVelocity());
     }
     
     @org.junit.Test
-    public void destroyBodies() {
+    public void testDestroyBodies() {
     	physicsTestWorld.deleteAllBodies();
     	int bodyNum = physicsTestWorld.getWorld().getBodyCount();
     	assertEquals(0, bodyNum);
