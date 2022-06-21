@@ -2,7 +2,6 @@ package gui;
 
 import logics.GameState;
 import org.jbox2d.common.Vec2;
-import physics.MousePhysicsHandler;
 import utils.JComponentLoader;
 import utils.UnitConverter;
 
@@ -22,10 +21,10 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
     private final JLabel playerScoreLabel;
     private final JLabel enemyScoreLabel;
     private final JButton pauseButton;
-    // Gui to physics unit converter and mouse input handler
+    // Gui to physics unit converter
     private final UnitConverter uc;
+    // mouse clicked
     private boolean isMainPlayerMoving;
-    private final MousePhysicsHandler mouseHandler;
 
     public GamePanel(GameState game) {
         super("Air Hockey - Game", new Dimension(GUI.getMinScreenSize()*3/4, GUI.getMinScreenSize()));
@@ -66,7 +65,6 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
         this.uc = new UnitConverter(this.arenaLabel.getPreferredSize(), new Vec2(this.game.getArena().getWidth(), this.game.getArena().getHeight()));
         // Handle mouse movement on the Player button
         this.isMainPlayerMoving = false;
-        this.mouseHandler = new MousePhysicsHandler(this.game.getMainPlayer().getBody());
     }
 
     /**
@@ -80,8 +78,8 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
                 isMainPlayerMoving = true;
             }
             public void mouseReleased(MouseEvent e) {
+                game.getMainPlayer().setDirection(null);
                 isMainPlayerMoving = false;
-                mouseHandler.mouseReleased();
             }
         });
         this.timer.start();
@@ -97,7 +95,7 @@ public class GamePanel extends AbstractGridBagLayoutJPanel {
             Point mousePosition = MouseInfo.getPointerInfo().getLocation();
             SwingUtilities.convertPointFromScreen(mousePosition, this.arenaLabel);
             this.uc.setOffset(new Vec2(0,0));
-            this.mouseHandler.update(this.uc.pixelToMeter(mousePosition));
+            this.game.getMainPlayer().setDirection(this.uc.pixelToMeter(mousePosition));
         }
         // Tell the game logics to update the game state
         this.game.update();
