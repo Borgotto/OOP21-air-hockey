@@ -56,12 +56,6 @@ public class GameStateImpl implements GameState {
     }
 
     public void update() {
-        // Uncomment for funny physics
-        //Random rng = new Random();
-        //this.puck.getBody().applyForceToCenter(new Vec2(10000f*(rng.nextFloat()-0.5f), 10000*(rng.nextFloat()-0.5f)));
-        //this.mainPlayer.getBody().applyForceToCenter(new Vec2(14000f*(rng.nextFloat()-0.5f), 11000*(rng.nextFloat()-0.5f)));
-        //this.enemyPlayer.getBody().applyForceToCenter(new Vec2(14000f*(rng.nextFloat()-0.5f), 11000*(rng.nextFloat()-0.5f)));
-
         if (this.updateScore()) {
             this.mainPlayer.resetBodyPos();
             this.enemyPlayer.resetBodyPos();
@@ -69,10 +63,8 @@ public class GameStateImpl implements GameState {
         if (this.updateWinner()){
             this.isGameOver = true;
         }
-
         this.enemyPlayer.setNextMove(this);
         this.enemyPlayer.update();
-
         this.gamePhysics.update();
     }
 
