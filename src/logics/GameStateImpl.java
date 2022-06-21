@@ -63,6 +63,7 @@ public class GameStateImpl implements GameState {
         if (this.updateWinner()){
             this.isGameOver = true;
         }
+        this.mainPlayer.update();
         this.enemyPlayer.setNextMove(this);
         this.enemyPlayer.update();
         this.gamePhysics.update();
