@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * Class that extends JPanel and works as a pause menu.
+ */
 public class PausePanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = -4465167712375078735L;
 
