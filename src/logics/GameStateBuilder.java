@@ -16,6 +16,7 @@ public class GameStateBuilder {
      * Initializes GameState with default values based on a real game
      */
     public GameStateBuilder() {
+        GameState.gamePhysics.deleteAllBodies();
         // Load settings to get the MaxScore and Enemy Difficulty
         Settings settings = new Settings().load();
         // Create the GameObjects with default values
