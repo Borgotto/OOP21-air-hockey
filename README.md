@@ -10,6 +10,8 @@ https://github.com/akullpp/awesome-java
 
 [![compile](https://github.com/Borgotto/OOP21-air-hockey/actions/workflows/compile.yml/badge.svg)](https://github.com/Borgotto/OOP21-air-hockey/actions/workflows/compile.yml)
 
+[![generate javadoc](https://github.com/Borgotto/OOP21-air-hockey/actions/workflows/generate-javadoc.yml/badge.svg)](https://github.com/Borgotto/OOP21-air-hockey/actions/workflows/generate-javadoc.yml)
+
 [![Javadoc - borgotto.github.io/OOP21-air-hockey/](https://img.shields.io/badge/Javadoc-borgotto.github.io%2FOOP21--air--hockey%2F-f8981d)](https://borgotto.github.io/OOP21-air-hockey/)
 
 
