@@ -10,7 +10,7 @@ public interface Player extends GameObjectWithPhysics, PlayerBody {
 
     /**
      * Returns the name of the player or an empty string if not set.
-     * @return the string containing the name of the player
+     * @return The string containing the name of the player.
      */
     String getName();
 

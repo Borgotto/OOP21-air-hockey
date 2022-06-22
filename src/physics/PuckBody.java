@@ -8,12 +8,12 @@ import org.jbox2d.common.Vec2;
 public interface PuckBody extends RigidBody {
     /**
      * Get the position where the {@code Puck} will be in the next physics step
-     * @return the {@code Vec2} vector position
+     * @return The {@code Vec2} vector position.
      */
     Vec2 getNextPos();
 
     /**
-     * @return the radius of the puck body.
+     * @return The radius of the puck body.
      */
     float getRadius();
 }

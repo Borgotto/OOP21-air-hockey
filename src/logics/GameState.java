@@ -22,43 +22,43 @@ public interface GameState extends GameObject {
 
     /**
      * Get the current {@link Arena}
-     * @return the arena
+     * @return The {@link Arena}.
      */
     Arena getArena();
 
     /**
      * Get the {@link Player} controlled by the user
-     * @return the {@code Player}
+     * @return The {@link Player}.
      */
     MainPlayer getMainPlayer();
 
     /**
      * Get the {@link Player} controlled by the CPU
-     * @return the {@code Player}
+     * @return The {@link Player}.
      */
     EnemyPlayer getEnemyPlayer();
 
     /**
      * Get the {@link Player} that has won the game
-     * @return the {@code Player} or {@code Optional.empty()} if the game is not over
+     * @return The {@link Player} or {@code Optional.empty()} if the game is not over.
      */
     Optional<Player> getWinner();
 
     /**
      * Check if the game is over
-     * @return {@code true} if the game is over, {@code false} otherwise
+     * @return {@code true} if the game is over, {@code false} otherwise.
      */
     boolean isGameOver();
 
     /**
      * Get the {@link Puck}
-     * @return the {@code Puck}
+     * @return The {@link Puck}.
      */
     Puck getPuck();
 
     /**
-     * Get the maximum score a {@code Player} can have before winning the game.
-     * @return the integer representing the maxScore
+     * Get the maximum score a {@link Player} can have before winning the game.
+     * @return The integer representing the maximum score.
      */
     Integer getMaxScore();
 }

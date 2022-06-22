@@ -40,7 +40,7 @@ public class UnitConverter {
 
 	/**
 	 * Sets the offset to add to the converted coordinates.
-	 * @param offset The offset to set
+	 * @param offset The offset to set.
 	 */
 	public void setOffset(Vec2 offset) {
 		this.offset = offset;
@@ -48,7 +48,7 @@ public class UnitConverter {
 
 	/**
 	 * Convert a {@link Vec2} of {@link org.jbox2d} to {@link Point} from {@link java.awt}.
-	 * @param position the {@link Vec2} position to convert
+	 * @param position The {@link Vec2} position to convert.
 	 * @return The converted position as a {@link Point}.
 	 */
 	public Point meterToPixel(final Vec2 position) {

@@ -15,9 +15,9 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
     
 	/**
 	 * Puck body generator.
-	 * @param radius of the body
-	 * @param pos Position to be spawned.
-	 * @param physics World to be spawned in
+	 * @param radius The Radius of the body.
+	 * @param pos The position to be spawned.
+	 * @param physics The world to be spawned in.
 	 */
     public PuckBodyImpl(final float radius, final Vec2 pos, final Physics2D physics) {
         this.radius = radius;

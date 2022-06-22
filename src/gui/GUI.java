@@ -40,7 +40,7 @@ public class GUI extends JFrame {
 
     /**
      * Method used to get the screen dimensions.
-     * @return the size of the screen in pixels.
+     * @return The size of the screen in pixels.
      */
     public static Dimension getScreenSize() {
         return Toolkit.getDefaultToolkit().getScreenSize();
@@ -48,7 +48,7 @@ public class GUI extends JFrame {
 
     /**
      * Method used to get minimum safe screen dimension that's visible on the screen.
-     * @return the minimum safe screen dimension.
+     * @return The minimum safe screen dimension.
      */
     public static int getMinScreenSize() {
         final Dimension screenSize = GUI.getScreenSize();
@@ -57,7 +57,7 @@ public class GUI extends JFrame {
 
     /**
      * Method used to set the font for all components.
-     * @param f the font to set.
+     * @param f The font to set.
      */
     public static void setFont (FontUIResource f){
         UIManager.getDefaults().keys().asIterator().forEachRemaining(key -> {

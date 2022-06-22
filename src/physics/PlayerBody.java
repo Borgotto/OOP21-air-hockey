@@ -5,7 +5,7 @@ package physics;
  */
 public interface PlayerBody extends RigidBody {
     /**
-     * @return the radius of the player body.
+     * @return The radius of the player body.
      */
     float getRadius();
 }

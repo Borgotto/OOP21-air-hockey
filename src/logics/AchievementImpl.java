@@ -17,9 +17,9 @@ public class AchievementImpl implements Achievement {
 
 	/**
 	 * Create a new Achievement object with given values
-	 * @param name The name of the achievement
-	 * @param description A brief description of what has been unlocked
-	 * @param condition The unlocking condition
+	 * @param name The name of the achievement.
+	 * @param description A brief description of what has been unlocked.
+	 * @param condition The unlocking condition.
 	 */
 	public AchievementImpl(String name, String description, Predicate<GameState> condition) {
 		this.name = name;

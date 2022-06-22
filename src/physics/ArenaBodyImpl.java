@@ -20,10 +20,10 @@ public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
     
     /**
      * ArenaBody constructor
-     * @param width the width of the arena
-     * @param height the height of the arena
-     * @param goalWidth the size of the goal hole
-     * @param physics the physics obj to generate the arena in
+     * @param width The width of the arena.
+     * @param height The height of the arena.
+     * @param goalWidth The size of the goal hole.
+     * @param physics The physics obj to generate the arena in.
      */
     public ArenaBodyImpl(final float width, final float height, final float goalWidth, final Physics2D physics) {
         this.width = width;

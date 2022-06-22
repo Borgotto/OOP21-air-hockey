@@ -10,8 +10,10 @@ import java.nio.file.Path;
 public interface ObjectSerializer <O> {
     /**
      * Serialize an object {@code o} to a file {@code path}
-     * @param obj object to serialize
-     * @param filePath path to the file to serialize to
+     * @param obj The object to serialize.
+     * @param filePath The path to the file to serialize to.
+     * @param <O> The type of the object to serialize.
+     * @throws IOException If the file does not exist.
      */
     static <O> void serialize(final O obj, final Path filePath) throws IOException {
         Path directories= filePath.getParent();
@@ -26,11 +28,11 @@ public interface ObjectSerializer <O> {
 
     /**
      * Deserialize an object from a file
-     * @param filePath path to the file
-     * @return the object deserialized from the file
-     * @param <O> object type
-     * @throws IOException if the file does not exist
-     * @throws ClassNotFoundException if the class of the object is not the same as the one expected
+     * @param filePath The path to the file.
+     * @param <O> The type of the object to serialize.
+     * @return The object deserialized from the file.
+     * @throws IOException If the file does not exist.
+     * @throws ClassNotFoundException If the class of the object is not the same as the one expected.
      */
     @SuppressWarnings("unchecked")
     static <O> O deserialize(final Path filePath) throws IOException, ClassNotFoundException {

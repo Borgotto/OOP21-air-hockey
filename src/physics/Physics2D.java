@@ -13,13 +13,13 @@ public interface Physics2D {
 
     /**
      * Get the physics {@link World}.
-     * @return the physics {@link World}.
+     * @return The physics {@link World}.
      */
     World getWorld();
 
     /**
      * Add a RigidBody to the physics world.
-     * @param rigidBody the RigidBody to add.
+     * @param rigidBody The RigidBody to add.
      */
     void addRigidBody(RigidBody rigidBody);
 

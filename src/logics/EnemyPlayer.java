@@ -6,6 +6,7 @@ package logics;
 public interface EnemyPlayer extends Player {
     /**
      * Get the next position of the enemy player.
+     * @param game The reference state of the game.
      */
     void setNextMove(GameState game);
 

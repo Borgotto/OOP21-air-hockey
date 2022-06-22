@@ -8,15 +8,15 @@ import physics.PuckBody;
 public interface Puck extends GameObjectWithPhysics, PuckBody {
     
     /**
-     * Place the {@code Puck} at the center of the {@code Arena}
-     * @param arena contains the {@code Puck}
+     * Place the {@link Puck} at the center of the {@link Arena}
+     * @param arena Contains the {@link Puck}.
      */
     void center(Arena arena);
 
     /**
-     * Place the {@code Puck} in front of the {@code Player}
-     * @param arena contains the {@code Puck} and the {@code Player}
-     * @param player is the {@code Arena} side to move the {@code Puck} to
+     * Place the {@link Puck} in front of the {@link Player}
+     * @param arena Contains the {@link Puck} and the {@link Player}.
+     * @param player Is the {@link Arena} side to move the {@link Puck} to.
      */
     void moveToPlayer(Arena arena, Player player);
 }

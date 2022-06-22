@@ -10,23 +10,23 @@ import org.jbox2d.dynamics.Body;
 public interface RigidBody {
     /**
      * Get the body of the RigidBody
-     * @return the body
+     * @return The {@link Body}.
      */
     Body getBody();
     
     /**
-     * @return the body position
+     * @return The {@link Body} position.
      */
     Vec2 getPosition();
     
     /**
      * set the body in a position and resets the speed of the object.
-     * @param pos to set the object
+     * @param pos The position to set the object to.
      */
     void setPosition(Vec2 pos);
     
     /**
-     * reset the body position to the start position.
+     * Reset the body position to the start position.
      */
     void resetBodyPos();
 }

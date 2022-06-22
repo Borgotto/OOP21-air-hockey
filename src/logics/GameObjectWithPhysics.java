@@ -12,7 +12,7 @@ public interface GameObjectWithPhysics extends GameObject, RigidBody {
 
     /**
      * Get the initial position of the GameObject
-     * @return the initial position of the GameObject
+     * @return The initial position of the GameObject.
      */
     Vec2 getStartingPosition();
 }

@@ -46,7 +46,7 @@ public abstract class RigidBodyImpl implements RigidBody {
     }
     
     /**
-     * set the BodyDef data
+     * Set the BodyDef data
      */
     protected void configBodyDef() {
         this.bodyDef.type = this.getBodyType();
@@ -62,70 +62,70 @@ public abstract class RigidBodyImpl implements RigidBody {
     }
 
     /**
-     * reset the body speed, stops the body
+     * Reset the body speed, stops the body
      */
     protected void resetBodySpeed() {
     	this.body.setLinearVelocity(new Vec2(0.0f, 0.0f));
     }
 
     /**
-     * @return the bodyTypeDef
+     * @return The bodyTypeDef.
      */
     protected BodyType getBodyType() {
         return this.bodyType;
     }
 
     /**
-     * @param bodyTypeDef the bodyTypeDef to set
+     * @param bodyTypeDef The bodyTypeDef to set.
      */
     protected void setBodyType(BodyType bodyTypeDef) {
         this.bodyType = bodyTypeDef;
     }
 
     /**
-     * @return the startPositionDef
+     * @return The startPositionDef.
      */
     protected Vec2 getStartPositionDef() {
         return this.startPositionDef;
     }
 
     /**
-     * @param startPositionDef the startPositionDef to set
+     * @param startPositionDef The startPositionDef to set.
      */
     protected void setStartPositionDef(Vec2 startPositionDef) {
         this.startPositionDef = startPositionDef;
     }
 
     /**
-     * @return the linearDampingDef
+     * @return The linearDampingDef.
      */
     protected float getLinearDampingDef() {
         return this.linearDampingDef;
     }
 
     /**
-     * @param linearDampingDef the linearDampingDef to set
+     * @param linearDampingDef The linearDampingDef to set.
      */
     protected void setLinearDampingDef(float linearDampingDef) {
         this.linearDampingDef = linearDampingDef;
     }
 
     /**
-     * @return the bodyDef
+     * @return The bodyDef.
      */
     protected BodyDef getBodyDef() {
         return this.bodyDef;
     }
 
     /**
-     * @param bodyDef the bodyDef to set
+     * @param bodyDef The bodyDef to set.
      */
     protected void setBodyDef(BodyDef bodyDef) {
         this.bodyDef = bodyDef;
     }
 
     /**
-     * @param body the body to set
+     * @param body The body to set.
      */
     protected void setBody(Body body) {
         this.body = body;

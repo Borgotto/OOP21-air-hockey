@@ -109,9 +109,9 @@ public class SettingsPanel extends AbstractGridBagLayoutJPanel {
 
     /**
      * Adds a component to a component that uses a GridBagLayout.
-     * @param component the component to add.
-     * @param x the row index.
-     * @param y the column index.
+     * @param component The component to add.
+     * @param x The row index.
+     * @param y The column index.
      */
     private void addComponent(JComponent component, int x, int y) {
     	this.c.gridx = x;

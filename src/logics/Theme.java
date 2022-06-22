@@ -20,7 +20,7 @@ public enum Theme {
 
 	/**
 	 * Get the color of the theme.
-	 * @return the color
+	 * @return The color.
 	 */
 	public Color getColor() {
 		return this.color;
