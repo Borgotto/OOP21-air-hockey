@@ -7,6 +7,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 
 public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
+	private static final float PUCK_LINEARDAMPING = 0.3f;
 	private static final float DENSITY_VALOR = 0.3f;
 	private static final float FRICTION_VALOR = 0.6f;
 	private static final int GROUP_FILTER_INDEX = -2;
@@ -23,6 +24,7 @@ public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
         this.radius = radius;
 
     	this.setBodyType(BodyType.DYNAMIC);
+    	this.setLinearDampingDef(PUCK_LINEARDAMPING);
     	this.setStartPositionDef(pos);
     	this.configBodyDef();
         

@@ -8,7 +8,7 @@ import org.jbox2d.dynamics.FixtureDef;
 
 public class ArenaBodyImpl extends RigidBodyImpl implements ArenaBody {
 	private static final float DENSITY_VALOR = 0.0f;
-	private static final float ENERGY_RESTITUTION = 1.0f;
+	private static final float ENERGY_RESTITUTION = 0.9f;
 	private static final float FILTER_RESTITUTION = 0.0f;
 	private static final int PLAYER_BITMASK = 0x0002;
 	private static final float PLAYER_FILTER_DISTANCE = 0.1f;
