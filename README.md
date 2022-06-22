@@ -10,6 +10,9 @@ https://github.com/akullpp/awesome-java
 
 [![compile](https://github.com/Borgotto/OOP21-air-hockey/actions/workflows/compile.yml/badge.svg)](https://github.com/Borgotto/OOP21-air-hockey/actions/workflows/compile.yml)
 
+[![Javadoc - borgotto.github.io/OOP21-air-hockey/](https://img.shields.io/badge/Javadoc-borgotto.github.io%2FOOP21--air--hockey%2F-f8981d)](https://borgotto.github.io/OOP21-air-hockey/)
+
+
 L'obiettivo del progetto è quello di sviluppare un gioco simile a hockey da tavolo, chiamato anche air hockey.
 Il giocatore comanderà un [piattino](https://en.wikipedia.org/wiki/Air_hockey#/media/File:Air_Hockey_Mallet.jpg) e dovrà cercare di fare gol nella rete avversaria protetta da un'AI anch'essa al controllo di un piattino.
 La partita terminerà raggiunto un certo punteggio o alla chiusura dell'applicazione.
