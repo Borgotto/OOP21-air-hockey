@@ -25,13 +25,14 @@ public class MainPlayerImpl extends AbstractPlayer implements MainPlayer {
     }
 
     public void setDirection(Vec2 direction) {
+        if (direction == null) {
+            this.pointPhysicsHandler.pointReleased();
+        }
         this.direction = direction;
     }
 
     public void update() {
-        if (this.direction == null){
-            this.pointPhysicsHandler.pointReleased();
-        } else {
+        if (this.direction != null) {
             this.pointPhysicsHandler.update(this.direction);
         }
     }
