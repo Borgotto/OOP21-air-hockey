@@ -20,6 +20,8 @@ public class PuckImpl implements Puck {
 	private final Vec2 startingPosition;
 	
     /**
+     * @param radius The puck's radius.
+     * @param startingPosition The puck's initial position.
      * @param physics The {@link Physics2D} object to put the puck in.
      */
 	public PuckImpl(float radius, Vec2 startingPosition, Physics2D physics) {
