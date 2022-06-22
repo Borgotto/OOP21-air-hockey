@@ -93,6 +93,7 @@
                 <configuration>
                     <outputDirectory>${project.basedir}/docs</outputDirectory>
                     <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>
+                    <destDir>/</destDir>
                     <!-- <additionalOptions></additionalOptions> -->
                     <show>protected</show>
                     <nodeprecated>true</nodeprecated>
