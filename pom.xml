@@ -85,6 +85,22 @@
                     <outputDirectory>${project.build.outputDirectory}/res</outputDirectory>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <outputDirectory>${project.basedir}/docs</outputDirectory>
+                    <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>
+                    <!-- <additionalOptions></additionalOptions> -->
+                    <show>protected</show>
+                    <nodeprecated>true</nodeprecated>
+                    <nodeprecatedlist>true</nodeprecatedlist>
+                    <use>true</use>
+                    <charset>UTF-8</charset>
+                </configuration>
+            </plugin>
         </plugins>
 
         <resources>
