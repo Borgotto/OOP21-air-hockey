@@ -10,6 +10,7 @@ import java.util.function.Function;
  *  - DUMB: the enemy makes random movements (random directions and speed) around the arena
  *  - EASY: the enemy mostly makes random movements, but sometimes it tries to score a goal
  *  - NORMAL: the enemy tries to predict the puck's direction
+ *  - INSANE: the enemy tries to predict the puck's direction and to score a goal
  */
 public enum Difficulty {
 	DUMB((GameState gameState) -> {
@@ -47,10 +48,10 @@ public enum Difficulty {
 		final float delta = 0.5f; // this is used to correct bad floating point precision
 
 		// Aggressive behavior
-		if(gameState.getPuck().getPosition().y > gameState.getArena().getHeight()/2) {
+		if(gameState.getPuck().getNextPos().y > gameState.getArena().getHeight()/2) {
 			double angle = Math.atan2(
-					(gameState.getPuck().getPosition().y - gameState.getEnemyPlayer().getPosition().y + (gameState.getPuck().getRadius()/distanceRatio)),
-					(gameState.getPuck().getPosition().x - gameState.getEnemyPlayer().getPosition().x)
+					(gameState.getPuck().getNextPos().y - gameState.getEnemyPlayer().getPosition().y + (gameState.getPuck().getRadius()/distanceRatio)),
+					(gameState.getPuck().getNextPos().x - gameState.getEnemyPlayer().getPosition().x)
 				);
 			return new Vec2((float)Math.cos(angle)*module, (float)Math.sin(angle)*module);
 		} else { // Passive behavior
