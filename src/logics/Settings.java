@@ -11,7 +11,7 @@ import java.nio.file.Path;
  * The game settings.
  */
 public class Settings {
-	private static final Path path = Path.of("config/settings.json");
+	private static final Path path = Path.of(System.getProperty("user.dir") + "/config/settings.json");
 	private String username;
     private Theme theme;
     private Integer maxScore;
@@ -72,7 +72,7 @@ public class Settings {
 
     public void save() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-		Path directories= Settings.path.getParent();
+		Path directories = Settings.path.getParent();
         if (directories != null) {
             Files.createDirectories(directories);
         }
