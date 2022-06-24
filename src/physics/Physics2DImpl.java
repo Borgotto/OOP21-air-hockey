@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class Physics2DImpl implements Physics2D {
 	private static final Vec2 GRAVITY = new Vec2(0.0f, 0.0f);
 	private static final float PHYSICS_TIME = 1.0f/60.0f;
-	private static final int VELOCITY_ITERATIONS = 12;
-	private static final int POSITION_ITERATIONS = 6;
+	private static final int VELOCITY_ITERATIONS = 48;
+	private static final int POSITION_ITERATIONS = 24;
     private final World world;
     private final ArrayList<RigidBody> rigidBodyList;
     private final float physicsTime;
