@@ -1,0 +1,82 @@
+@startuml AchievementsScrollPane
+!theme plain
+
+class JScrollPane {
+}
+
+class AchievementsScrollPane {
+}
+
+class AchievementLabelCellRenderer {
+}
+
+class JLabel {
+}
+
+interface ListCellRenderer<AchievementLabel> {
+}
+
+AchievementsScrollPane -u-|> JScrollPane
+AchievementLabelCellRenderer -u-|> JLabel
+AchievementLabelCellRenderer .u.|> ListCellRenderer
+AchievementLabelCellRenderer -l-* AchievementsScrollPane
+
+@enduml
+
+@startuml AbstractPlayer
+!theme plain
+
+interface Player {
+    + getName() : String
+    + getScore() : Integer
+    + setScore( Integer ) : void
+}
+
+interface EnemyPlayer {
+    + setNextMove( GameState ) : void
+    + getDifficulty() : Difficulty
+}
+
+interface MainPlayer {
+    + setDirection( Vec2 ) : void
+}
+
+abstract class AbstractPlayer {
+}
+
+class EnemyPlayerImpl {
+
+}
+
+class MainPlayerImpl {
+
+}
+
+EnemyPlayer -u-|> Player
+MainPlayer -u-|> Player
+AbstractPlayer .u.|> Player
+EnemyPlayerImpl .u.|> EnemyPlayer
+MainPlayerImpl .u.|> MainPlayer
+EnemyPlayerImpl -u-|> AbstractPlayer
+MainPlayerImpl -u-|> AbstractPlayer
+
+@enduml
+
+@startuml GameStateBuilder
+!theme plain
+
+class MenuPanel {
+}
+
+class GameStateBuilder {
+    + setArena( Arena ) : GameStateBuilder
+    + setMainPlayer( MainPlayer ) : GameStateBuilder
+    + setEnemyPlayer( EnemyPlayer ) : GameStateBuilder
+    + setPuck( Puck ) : GameStateBuilder
+    + setMaxScore( int ) : GameStateBuilder
+    + build() : GameState
+}
+
+GameStateBuilder -u-* MenuPanel
+
+@enduml
