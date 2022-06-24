@@ -5,6 +5,9 @@ import org.jbox2d.dynamics.World;
 
 import java.util.ArrayList;
 
+/**
+ * Implementation of the Physics2D interface.
+ */
 public class Physics2DImpl implements Physics2D {
 	private static final Vec2 GRAVITY = new Vec2(0.0f, 0.0f);
 	private static final float PHYSICS_TIME = 1.0f/60.0f;

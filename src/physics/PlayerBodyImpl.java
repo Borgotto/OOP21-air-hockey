@@ -6,6 +6,9 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 
+/**
+ * Implementation of the PlayerBody interface.
+ */
 public class PlayerBodyImpl extends RigidBodyImpl implements PlayerBody {
 	private static final float DENSITY_VALOR = 0.6f;
 	private static final float FRICTION_VALOR = 0.8f;

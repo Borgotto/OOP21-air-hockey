@@ -12,6 +12,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 
+/**
+ * This panel contains the game logo and has buttons to start a new game, load a saved game, change settings, show credits and exit the game.
+ */
 public class MenuPanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 8475751505006519027L;
 

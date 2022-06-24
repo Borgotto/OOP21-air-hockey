@@ -10,8 +10,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Test for the GameState class.
+ */
 public class GameTest {
-
     @org.junit.Test
     public void testBounds() {
         GameState game = new GameStateBuilder().build();

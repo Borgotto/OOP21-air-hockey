@@ -10,6 +10,10 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * This panel integrates the logic to update the game state and draw each frame.
+ * It contains the ArenaLabel and has two more labels to show the score of the players and a button to pause the game.
+ */
 public class GamePanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = 2068452932127099196L;
     private final GameState game;

@@ -11,8 +11,10 @@ import java.nio.file.Path;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+/**
+ * Test for the ObjectSerializer class.
+ */
 public class ObjectSerializerTest {
-
     private final Path path = Path.of("string.ser");
     
     @org.junit.Before

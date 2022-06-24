@@ -6,6 +6,9 @@ import physics.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+/**
+ * Test for the Physics package.
+ */
 public class PhysicsTest {
     private Physics2D physicsTestWorld;
     private PuckBody puckBody;

@@ -9,6 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * This panel shows the current settings and allows the user to change them.
+ */
 public class SettingsPanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = -4632838315051894445L;
     final Theme[] themeArray = Theme.values();

@@ -10,6 +10,10 @@ import utils.UnitConverter;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This JLabel contains the arena image with the puck and players on top.
+ * It doesn't use a layout manager in order to be able to move the buttons around independently.
+ */
 public class ArenaLabel extends JLabel {
     private static final long serialVersionUID = -7722495704378516329L;
     private final JLabel enemyField;

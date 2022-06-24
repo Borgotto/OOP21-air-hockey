@@ -7,6 +7,9 @@ import java.awt.image.BufferedImage;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test for the ImageModifier utility class.
+ */
 public class ImageModifierTest {
     private BufferedImage originalImg;
 

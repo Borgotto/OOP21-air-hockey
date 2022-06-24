@@ -16,6 +16,9 @@ import org.jbox2d.common.Vec2;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Test for the Achievement, AchievementLogics and AchievementLogicsFactory classes.
+ */
 public class AchievementTest {
 
     @org.junit.Test

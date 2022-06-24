@@ -6,6 +6,11 @@ import utils.JComponentLoader;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This panel displays the status of the game after its completion.
+ * It shows the score of the players and the winner.
+ * After that it shows the achievementsScrollPane and the button to go back to the main menu.
+ */
 public class GameOverPanel extends AbstractGridBagLayoutJPanel {
     private static final long serialVersionUID = -6295463075268587222L;
 

@@ -10,6 +10,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * This class is used to display all the achievementLabels in a scrollable pane
+ */
 public class AchievementsScrollPane extends JScrollPane {
     private static final long serialVersionUID = -8067292109260697539L;
 

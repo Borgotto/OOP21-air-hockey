@@ -6,6 +6,9 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 
+/**
+ * Implementation of the PuckBody interface.
+ */
 public class PuckBodyImpl extends RigidBodyImpl implements PuckBody {
 	private static final float PUCK_LINEARDAMPING = 0.3f;
 	private static final float DENSITY_VALOR = 0.3f;
