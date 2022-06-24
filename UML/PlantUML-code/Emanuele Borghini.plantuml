@@ -1,0 +1,133 @@
+@startuml gui
+!theme plain
+
+class JPanel {
+}
+
+abstract class AbstractGridBagLayoutJPanel {
+    c : GridBagConstraints
+}
+
+class GameOverPanel {
+}
+
+class GamePanel {
+}
+
+class MenuPanel {
+}
+
+class PausePanel {
+}
+
+class SettingsPanel {
+}
+
+AbstractGridBagLayoutJPanel -u-|> JPanel
+GameOverPanel -u-|> AbstractGridBagLayoutJPanel
+GamePanel -u-|> AbstractGridBagLayoutJPanel
+MenuPanel -u-|> AbstractGridBagLayoutJPanel
+PausePanel -u-|> AbstractGridBagLayoutJPanel
+SettingsPanel -u-|> AbstractGridBagLayoutJPanel
+
+@enduml
+
+@startuml logica
+!theme plain
+
+interface Serializable {
+}
+
+interface GameObject {
+    + update() : void
+}
+
+interface GameState {
+    gamePhysics : Physics2D
+    savePath : Path
+
+    + getArena() : Arena
+    + getMainPlayer() : MainPlayer
+    + getEnemyPlayer() : EnemyPlayer
+    + getWinner() : Optional<Player>
+    + isGameOver() : boolean
+    + getPuck() : Puck
+    + getMaxScore() : Integer
+}
+
+interface GameObjectWithPhysics {
+    + getStartingPosition() : void
+}
+
+interface Arena {
+}
+
+interface Player {
+    + getName() : String
+    + getScore() : Integer
+    + setScore( Integer ) : void
+    + scorePoint() : void
+}
+
+interface Puck {
+    + center( Arena ) : void
+    + moveToPlayer( Arena, Player ) : void
+}
+
+GameObject -u-|> Serializable
+GameState -u-|> GameObject
+GameObjectWithPhysics -l-|> GameObject
+Arena -u-|> GameObjectWithPhysics
+Player -u-|> GameObjectWithPhysics
+Puck -u-|> GameObjectWithPhysics
+
+@enduml
+
+@startuml serializzazione
+!theme plain
+
+package physics {
+    interface RigidBody
+}
+
+package logics {
+    interface GameObject
+}
+
+interface RigidBody<<Non-Serializable>> {
+    + getBody() : Body
+}
+
+interface GameObject<<Serializable>> {
+    + update() : void
+}
+
+interface GameObjectWithPhysics<<Issue>> {
+    + getStartingPosition() : void
+}
+
+GameObjectWithPhysics -u-|> RigidBody
+GameObjectWithPhysics -u-|> GameObject
+
+@enduml
+
+@startuml giocatore
+!theme plain
+
+class GamePanel {
+    + updateGame() : void
+    + updatePositions() : void
+}
+
+interface GameState {
+    + getMainPlayer() : MainPlayer
+}
+
+interface MainPlayer {
+    + setDirection( Vec2 ) : void
+}
+
+GameState -u-* GamePanel
+MainPlayer -u-* GameState 
+
+@enduml
