@@ -1,0 +1,136 @@
+@startuml Analisi-modello
+!theme plain
+
+package UI {
+    class GamePanel
+}
+
+package Logics {
+    interface GameState
+    interface Arena
+    interface Puck
+    interface Player
+}
+
+package Physics {
+    interface RigidBody
+    interface Physics2D
+}
+
+interface GamePanel {
+    + startGame()
+    - updateGame()
+    + endGame()
+    - updatePositions()
+}
+
+interface GameState {
+    + getWinner()
+    + getMaxScore()
+    + isGameOver()
+    + update()
+}
+
+interface Arena {
+}
+
+interface Puck {
+    + center()
+    + moveToPlayer()
+}
+
+interface Player {
+    + getName()
+    + getScore()
+    + setScore()
+    + getDifficulty()
+}
+
+interface RigidBody {
+    + getPosition()
+    + setPosition()
+}
+
+interface Physics2D {
+    + update()
+}
+
+GameState -u-* GamePanel
+Arena -u-* GameState
+Puck -u-* GameState
+Player -u-* GameState
+RigidBody -u-* Arena
+RigidBody -u-* Puck
+RigidBody -u-* Player
+RigidBody -l-* Physics2D
+
+@enduml
+
+@startuml Architettura
+!theme plain
+
+package View {
+    class GamePanel
+}
+
+package Presenter {
+    interface GameState
+    
+}
+
+package Model {
+    interface Arena
+    interface Puck
+    interface Player
+    interface RigidBody
+    interface Physics2D
+}
+
+interface GamePanel {
+    + startGame() : void
+    - updateGame() : void
+    + endGame() : void
+    - updatePositions() : void
+}
+
+interface GameState {
+    + getWinner() : Optional<Player>
+    + getMaxScore() : Integer
+    + isGameOver() : boolean
+    + update() : void
+}
+
+interface Arena {
+}
+
+interface Puck {
+    + center( Arena ) : void
+    + moveToPlayer( Arena, Player ) : void
+}
+
+interface Player {
+    + getName() : String
+    + getScore() : Integer
+    + setScore( Integer ) : void
+    + getDifficulty() : Difficulty
+}
+
+interface RigidBody {
+    + getPosition() : Vec2
+    + setPosition( Vec2 ) : void
+}
+
+interface Physics2D {
+    + update() : void
+}
+
+GameState -u-* GamePanel
+Arena -u-* GameState
+Puck -u-* GameState
+Player -u-* GameState
+RigidBody -u-* Arena
+RigidBody -u-* Puck
+RigidBody -u-* Player
+RigidBody -l-* Physics2D
+
+@enduml
