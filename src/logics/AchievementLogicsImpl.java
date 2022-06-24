@@ -3,6 +3,9 @@ package logics;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of AchievementLogics interface
+ */
 public class AchievementLogicsImpl implements AchievementLogics {
 	private final ArrayList<Achievement> achievements;
 	

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Implementation of theAchievementsLogicsFactory interface
+ */
 public class AchievementLogicsFactoryImpl implements AchievementLogicsFactory {
 
     public AchievementLogics baseAchievements() {
