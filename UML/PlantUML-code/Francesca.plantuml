@@ -1,0 +1,81 @@
+@startuml enemyPlayer
+!theme plain
+
+interface EnemyPlayer {
+    + setNextMove(game: GameState): void
+    + getDifficulty(): Difficulty
+}
+
+enum Difficulty {
+    + DUMB 
+    + EASY 
+    + NORMAL
+    + INSANE
+    - {static} calculateSpeedVector(module: float, distanceRatio: float, defenseRatio: float, gameState: GameState): Vec2
+    + getMovingStrategy(): Function
+}
+
+Difficulty -u-* EnemyPlayer
+
+@enduml
+
+@startuml achievement
+!theme plain
+
+interface Achievement {
+    + getIcon(): Image
+    + getName(): String
+    + getDescription(): String
+    + getCondition(): Predicate
+    + isUnlocked(gamestate: Gamestate): boolean
+}
+
+class AchievementImpl {
+    - icon: Image
+    - name: String
+    - description: String
+    - condition: Predicate
+}
+
+interface AchievementLogic {
+    + addAchievement(achievement: Achievement): void
+    + addAchievements(achievements: List): void
+    + getAchievements(): List
+}
+
+class AchievementLogicImpl {
+    - achievements: ArrayList
+}
+
+AchievementImpl -.u-^ Achievement
+AchievementLogicImpl -.u-^ AchievementLogic
+
+@enduml
+
+@startuml achievementGUI
+!theme plain
+
+interface Achievement {
+}
+
+class AchievementLabel {
+}
+
+Achievement -u-* AchievementLabel
+
+@enduml
+
+@startuml achievementFactory
+!theme plain
+
+interface AchievementLogicsFactory {
+    + baseAchievements(): AchievementLogics
+    + fromList(achievements: List): AchievementLogics
+}
+
+class AchievementLogicsFactoryImpl {
+}
+
+AchievementLogicsFactoryImpl -.u-^ AchievementLogicsFactory
+
+@enduml
